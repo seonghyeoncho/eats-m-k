@@ -1,0 +1,33 @@
+.App{
+    
+    background-color:white;
+}
+body{
+    
+    margin: 0px;
+}
+.contianer-info{
+    height: 160px;
+    background-color: #dadada;
+}
+.oder-bt{
+
+
+    width: 320px;
+    height: 76px;
+    background-color: #ff1b6d;
+    border: 0px;
+    border-radius: 38px;
+    color: white;
+    font-weight: bold;
+    font-size: 26pt;
+    margin: 10px;
+    
+
+}
+.container-oder{
+    display: flex;
+    justify-content: center;
+    position: sticky;
+    
+}

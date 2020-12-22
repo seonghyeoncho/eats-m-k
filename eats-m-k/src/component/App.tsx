@@ -1,81 +1,106 @@
 import React, { useEffect, useState } from 'react';
+import Menus from './Menus';
+import Orders from '../component/Orders';
+
 import '../scss/App.scss';
+
+
 import { dbService } from '../firebase';
 
-/*
-qr로만 접근 가능한 웹. 들어와서 어떤 가게인지 몇번 테이블인지 받아올 수 있도록 해야함
-
-다 받아오고 나서 메뉴를 표시  굳이 라우터가 필요없을것 같기도 하고
 
 
+const App = ({myTable}:any) => {
 
-*/
-const App = () => {
-
-  const [store,setStore] = useState<String>("멘동");
-  const [tableNumber, setTableNumber] = useState<number>(3);
+  const [store,setStore] = useState<string>("멘동");
+  const [tableNumber, setTableNumber] = useState<number>(myTable);
   const [totalPrice,setTotalPrice] = useState<number>(0);
   const [menu, setMenu] = useState<any>([]);
-  const [orderMenu,setOrderMenu] = useState<any>([]);
+  const [test,setTest] = useState<any>([]);
+  
   
   const getMenus = async() => {
 
-    const menus = await dbService.collection("멘동").get();
-    
-    
-    menus.forEach((document : any) => {
+    const menus = dbService.collection('store').doc(`${store}`);
 
-      const menuObj = {
+    await menus.get()
+      .then((doc) => {
+        const data = doc.data();
 
-        ...document.data(),
-        id: document.id,      
+        for(let i in data){
 
-      }
+          const menuObj:{menu:string, price:number, n:number}={
 
-      setMenu((prev:any):any => [menuObj, ...prev]);
+            menu : i,
+            price : data[i].price,
+            n:0
 
-    });
-    
-    
-   
+          }
 
-  }
+          setMenu((prev:any)=>[menuObj,...prev]);
+
+        }
+
+      }); 
+
+  } 
 
   const onSubmit = (event : any) => {
 
     event.preventDefault();
-
-
-  }
-  const onAddOrder = (price : number, menu : any) => {
-  
-    console.log(menu);
     
-  
-      
-    const sumPrice = (totalPrice) + (price);
-    setTotalPrice(sumPrice);
-       
+    dbService.collection(`${store}`).doc(`${tableNumber}`)
+      .set({
+        test,
+        orderAt: Date.now()
+
+      },{merge:true})
+      .then(function() {
+        console.log("Document successfully written!");
+        setTest([]);
+      })
+      .catch(function(error) {
+          console.error("Error writing document: ", error);
+      });
+
+      setTotalPrice(0);
+
   }
-  const onMinusPrice = (price : number) => {
-    const sumPrice = (totalPrice) - (price);
-    setTotalPrice(sumPrice);
+  
+  const cancleOrder = (m:string, n:number) => {
+
+    menu.map((doc:any)=>{
+      console.log(doc.menu,m);
+      if(doc.menu === m){
+        const sumPrice = totalPrice-(n)*(doc.price);
+        setTotalPrice(sumPrice);
+        doc.n = 0;
+        
+      }
+    });
+
+    setTest(test.filter((test:any) => test.menu !== m));
+    
   }
 
-  function numberWithCommas(x:number) {
+  const numberWithCommas = ( x:number ) => {
+
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
   }
 
 
   useEffect(() => {
+
     getMenus();
 
   },[]);
+  
+  console.log(menu);
+  console.log(test);
 
-  
-  
   return(
     <div className="App">
+
       <div>
         <div className="contianer-info">
           <div>가게 이름 : {store}</div>
@@ -83,37 +108,36 @@ const App = () => {
         </div>
       </div>
       
-      
-
       <div className="container-menu">
-        <div>메뉴</div>
-        
-        {menu.map((menu:any) => 
-        
-          <div key={menu.id}>
-          
-            <h1>이름 : {menu.id}<p/>가격 : {numberWithCommas(menu.price)}원</h1>
-            <button onClick={() => {onAddOrder(menu.price, menu)}} >주문표에 추가</button>
-            <button onClick={() => {onMinusPrice(menu.price)}}>삭제하기</button>
 
+        <div>
+          <div>메뉴</div>
+
+          <div>
+            <Menus
+              menu={menu}
+              setTotalPrice={setTotalPrice}
+              setTest={setTest}
+              currentPrice={totalPrice}
+            />
           </div>
-          
-        
-        )}
-        {/* 주문내역은 각 메뉴 개수 금액 등등 추가해야함 */}
-        <h1>주문 내역</h1>
-        {menu.map((menu:any) => 
-          <div key={menu.id}>
-            <div>{menu.id}x{menu.order}</div>
-            
+        </div>
 
+        <div>
+          <div>
+            <h1>주문 내역</h1>
+            <Orders 
+              test={test}
+              cancleOrder={cancleOrder}
+            />
           </div>
-        )}
+        </div>
         
-        <h1>총 주문금액  : {numberWithCommas(totalPrice)}원</h1>
-        <div className="container-oder">
+        <div className="container-order">
 
-          <button className="oder-bt" onClick={onSubmit}>주문하기</button>
+          <button className="order-bt" onClick={onSubmit}>
+            {numberWithCommas(totalPrice)}원 주문하기
+          </button>
 
         </div>
         
@@ -126,3 +150,4 @@ const App = () => {
 }
 
 export default App;
+

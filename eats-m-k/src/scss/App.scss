@@ -10,7 +10,7 @@ body{
     height: 160px;
     background-color: #dadada;
 }
-.oder-bt{
+.order-bt{
 
 
     width: 320px;
@@ -25,9 +25,20 @@ body{
     
 
 }
-.container-oder{
+.container-order{
     display: flex;
     justify-content: center;
     position: sticky;
     
+}
+button{
+    border: 0px;
+    border-radius: 38px;
+    background-color:  #ff1b6d;
+    margin: 10px;
+
+}
+.dd{
+    
+    border-bottom: solid 1px black;
 }

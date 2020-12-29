@@ -1,6 +1,7 @@
 import React from 'react';
-import Counter from '../component/Counter';
-
+import {Link, BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import Counter from './Counter';
+import SpecificMenu from "./SpecificMenu";
 
 const Menus = (props:any):any => {
 
@@ -8,33 +9,41 @@ const Menus = (props:any):any => {
 
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     
-      }
+    }
+    const select = (menu:string) => {
+
+        props.setSelect(menu);
+
+    }
+
+    
 
     return(
-
+        
+            
         <div>
+
             {props.menu.map((doc:any) => 
-          
-                <div key={doc.menu} className="dd">
-          
-                    <h1>{doc.menu}<p/>가격 : {numberWithCommas(doc.price)}원</h1>
+                <>
 
-                    <div>
-                        <Counter 
-                            name={doc.menu} 
-                            price={doc.price} 
-                            setTotalPrice={props.setTotalPrice}
-                            setTest={props.setTest}
-                            currentPrice={props.currentPrice}
-                        />
-                    </div>
+                    <Link to="/detail" onClick={()=>select(doc.menu)} style={{textDecoration:'none'}}>
 
-                </div>
-            
-            
+                        <button key={doc.menu} className="menu-card">
+                            
+                            <div>{doc.menu}<p/>가격 : {numberWithCommas(doc.price)}원</div>
+                                        
+                        </button>
+                        
+                    </Link> 
+                          
+
+                                
+                </>
             )}
 
         </div>
+
+        
 
     );
 }

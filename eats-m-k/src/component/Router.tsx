@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
-import { HashRouter as Router, Route, Switch} from 'react-router-dom'
-import App from './App';
+import { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 
+import Menu from './Menu';
+
+//component={()=><Test test={test} {...props}/>} 이런 방식으로 하면 다 넘겨줄 수 있지 않을까?
+//뒤로 돌아가기위해서 다시 Link를 쓸 수 있다
+//또 모르겠다면 React Router props를 검색해보면 답이 나온다
 
 
 
@@ -10,58 +14,15 @@ const AppRouter = () =>{
 
    
     const [myTable, setMyTable] = useState<number>();
-    const list:number[] = [];
-
-    const List = () => {
-        for(let i = 1; i<=6; i++) list.push(i);
-    }
-
-    const setMyTableNumber = (t:number) => {
-
-        setMyTable(t);
-
-    }
-
-    List();
-    
 
     return(
-        
-       <Router>
-           <Switch>
-               {
-                   myTable ? 
 
-                        <Route exact path="/">
-                            <App myTable={myTable}/>
-                        </Route>
+        <Router>
+            <Switch>
+                <Route exact path="/menu" component={Menu}/>
+            </Switch>
 
-                    :
-                        
-                        <Route exact path ="/">
-                            <div>
-                                
-                                <div>가게 이름 : 멘동</div>
-
-                                <div>현재 계신 테이블을 선택해주세요</div>
-                                
-                                <div>
-
-                                    {list.map((t:any)=>
-                                        <button key={t} onClick={()=>setMyTableNumber(t)}>
-                                            {t}
-                                        </button>
-                                    )}
-
-                                </div>
-                                
-                            </div>
-
-                        </Route>
-                    
-               }
-           </Switch>
-       </Router>
+        </Router>
    
     );
 

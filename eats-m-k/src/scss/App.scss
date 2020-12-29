@@ -31,14 +31,19 @@ body{
     position: sticky;
     
 }
-button{
+.order-bt{
     border: 0px;
     border-radius: 38px;
     background-color:  #ff1b6d;
     margin: 10px;
 
 }
-.dd{
+.menu-card{
+
+    margin : 10px;
+    border: 0px;
+    display: flex;
+    flex-direction: column;
     
-    border-bottom: solid 1px black;
+   
 }

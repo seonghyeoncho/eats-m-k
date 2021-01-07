@@ -1,10 +1,9 @@
 import React from 'react';
-import CancleOrderButtonContainer from '../containers/CancleOrderButtonContainer';
-import CancleOrderButton from './CancleOrderButton';;
+import CancleOrderButtonContainer from '../../atoms/CancleOrderButton/CancleOrderButtonContainer';
 type Props = {
     item: any
 }
-const OrderStatusItem = ({item}:Props) => {
+const BucketItem = ({item}:Props) => {
     return(
 
         <div>
@@ -14,4 +13,4 @@ const OrderStatusItem = ({item}:Props) => {
         
     );
 }
-export default OrderStatusItem;
+export default BucketItem;

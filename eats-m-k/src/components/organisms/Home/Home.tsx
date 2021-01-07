@@ -11,11 +11,11 @@ import MenuList from '../../molecules/MenuList/MenuList';
 import OrderButtonContainer from '../../atoms/OrderButton/OrderButtonContainer';
 import { setStore } from '../../../modules/setStore';
 import { setTable } from '../../../modules/setTable';
-import BucketButton from '../../atoms/BucketButton/BucketButton';
-import SetMenuList from '../../SetMenuList';
-import SideMenuList from '../../SideMenuList';
-import StoreAndTableBoxContainer from '../../../containers/StoreAndTableBoxContainer';
+import SetMenuList from './SetMenuList';
+import SideMenuList from './SideMenuList';
+import StoreAndTableBoxContainer from '../../molecules/StoreAndTable/StoreAndTableBoxContainer';
 import { setStatus } from '../../../modules/orderState';
+import BucketButtonContainer from '../../atoms/BucketButton/BucketButtonContainer';
 
 
 const Home = (props: any ) => {
@@ -108,13 +108,12 @@ const Home = (props: any ) => {
         <>
             {/* 가게와 테이블 표시*/}
             <StoreAndTableBoxContainer/>
-            
 
             {/* 장바구니 버튼*/}
             {totalPrice === 0 ? 
                     <></>
                 :
-                    <Link to={`/orderlist/?store=${store}&table=${table}`}><BucketButton status={status}/></Link>
+                    <BucketButtonContainer/>
             }
 
             {/*단품메뉴, 세트메뉴, 사이드메뉴 */}

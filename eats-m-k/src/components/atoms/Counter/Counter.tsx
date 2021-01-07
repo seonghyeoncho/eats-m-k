@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import OrderContainer from '../containers/OrderContainer';
-import '../scss/Counter.scss';
+import OrderContainer from '../AddMenuButton/AddMenuButtonContainer';
+import '../../../scss/Counter.scss';
 
 type Props = {
   count:number

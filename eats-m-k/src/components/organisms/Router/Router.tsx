@@ -1,11 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import Home from '../Home/Home';
-import DetailView from '../../DetailView';
+import DetailView from '../MenuDetail/DetailView';
 
-import OrderListView from '../../OrderListView';
-import CompleteView from '../../../containers/CompleteView';
-import BucketViewContainer from '../../../containers/BucketViewContainer';
+import OrderListView from '../OrderList/OrderListView';
+import CompleteView from '../Complete/CompleteView';
+import BucketViewContainer from '../Bucket/BucketViewContainer';
+import OrderStatusView from '../OrderState/OrderStatusView';
+import OrderStatusViewContainer from '../OrderState/OrderStatusViewContainer';
 
 
 //파이어 베이스에서 데이터를 받아오는 형태라서 계속 리슨함. api로 한번만 받아오기를 해야할 듯.
@@ -33,6 +35,8 @@ const AppRouter = () =>{
                     <Route exact path="/bucket"
                         component={()=><BucketViewContainer/>}
                     />
+                    <Route exact path="/orderstatus"
+                        component={()=><OrderStatusViewContainer/>}/>
 
                     <Route exact path="/detail" 
 

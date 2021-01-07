@@ -1,12 +1,13 @@
 import React from 'react';
 import queryString from 'query-string';
 import { useSelector } from 'react-redux';
-import { RootState } from '../modules';
-import CounterContainer from '../containers/CounterContainer';
-import OrderContainer from '../containers/OrderContainer';
-import OrderButtonContainer from './atoms/OrderButton/OrderButtonContainer';
-import StoreAndTableBox from './StoreAndTableBox';
-import StoreAndTableBoxContainer from '../containers/StoreAndTableBoxContainer';
+import { RootState } from '../../../modules';
+import CounterContainer from '../../atoms/Counter/CounterContainer';
+import OrderContainer from '../../atoms/AddMenuButton/AddMenuButtonContainer';
+import OrderButtonContainer from '../../atoms/OrderButton/OrderButtonContainer';
+import StoreAndTableBox from '../../molecules/StoreAndTable/StoreAndTableBox';
+import StoreAndTableBoxContainer from '../../molecules/StoreAndTable/StoreAndTableBoxContainer';
+import BackButton from '../../atoms/BackButton/BackButton';
 
 const DetailView = (props:any) => {
 
@@ -43,7 +44,7 @@ const DetailView = (props:any) => {
 
        <div>
            <StoreAndTableBoxContainer/>
-           <button onClick={goBack}>Back to Menu</button>
+           <BackButton text={'뒤로가기'}/>
 
            <div>{select.menu}<br/>{select.price}</div>
 

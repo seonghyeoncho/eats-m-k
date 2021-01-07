@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import StoreAndTableBox from '../components/StoreAndTableBox';
-import { RootState } from '../modules';
+import StoreAndTableBox from './StoreAndTableBox';
+import { RootState } from '../../../modules';
 
 
 const StoreAndTableBoxContainer = () => {

@@ -1,4 +1,5 @@
-import react from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
 interface Props {
     orderState:boolean
     status:boolean
@@ -18,6 +19,6 @@ const OrderStatusButton = ({orderState,status}:Props) => {
         text = '주문중';
     }
 
-    return<button>{text}</button>
+    return<Link to="/orderstatus"><button>{text}</button></Link>
 }
 export default OrderStatusButton;

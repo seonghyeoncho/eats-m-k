@@ -1,14 +1,14 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { dbService } from '../firebase';
-import { RootState } from '../modules';
-import { resetOrder } from '../modules/orderMenus';
-import { setState } from '../modules/orderState';
-import { resetPrice } from '../modules/totalPrice';
-import ToHomeButton from './atoms/BackButton/ToHomeButton';
-import Order from './atoms/Order';
-import OrderList from './molecules/OrderList/OrderList';
+import { dbService } from '../../../firebase';
+import { RootState } from '../../../modules';
+import { resetOrder } from '../../../modules/orderMenus';
+import { setState } from '../../../modules/orderState';
+import { resetPrice } from '../../../modules/totalPrice';
+import ToHomeButton from '../../atoms/BackButton/BackButton';
+import Order from '../../atoms/Order';
+import OrderItem from '../../atoms/OrderList/OrderList';
 
 const OrderListView = (props:any) => {
 
@@ -55,7 +55,7 @@ const OrderListView = (props:any) => {
             <div>테이블 {table}</div>
             {orderList.map((item:any)=>
 
-                <OrderList item={item}/>
+                <OrderItem item={item}/>
 
             )}
             <Order store={store} table={table} onSubmit={onSubmit}/>

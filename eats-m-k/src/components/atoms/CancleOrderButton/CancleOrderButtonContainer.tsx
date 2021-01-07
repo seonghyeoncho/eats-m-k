@@ -1,9 +1,9 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { isDoStatement } from 'typescript';
-import CancleOrderButton from '../components/CancleOrderButton';
-import { cancleOrder } from '../modules/orderMenus';
-import { decrease } from '../modules/totalPrice';
+import CancleOrderButton from './CancleOrderButton';
+import { cancleOrder } from '../../../modules/orderMenus';
+import { decrease } from '../../../modules/totalPrice';
 
 
 type Props = {

@@ -1,23 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import OrderStatusItem from './OrderStatusItem';
+import BackButton from '../../atoms/BackButton/BackButton';
+import OrderStatusItem from '../../atoms/OrderStatus/OrderStatusItem';
 
 
 type Props = {
+    
     orderList:any
-    goBack:()=>void
+    
 }
-const OrderStatusView = ({orderList,goBack}:Props) => {
 
-    console.log(typeof(orderList));
-    console.log(orderList.length === 0);
-    for(let i in orderList){
-        console.log(i, orderList[i].menu,orderList[i].count);
-    }
+const OrderStatusView = ({orderList}:Props) => {
 
     return(
         <div>
-            <button onClick={goBack}>뒤로가기</button>
+            <BackButton text={'뒤로가기'}/>
             
             {
                 orderList.length === 0 ? 
@@ -27,7 +24,7 @@ const OrderStatusView = ({orderList,goBack}:Props) => {
                     orderList.map((item:any)=>
 
                         <OrderStatusItem item={item}/>
-                        
+
                     )
             }
         </div>

@@ -1,25 +1,23 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { RootState } from '../../../modules';
 
 type Props = {
-    status: boolean;
+    store :string | string[] | null;
+    table:string | string[] | null;
 }
-const BucketButton = ({status}:Props) => {
+const BucketButton = ({store,table}:Props) => {
 
-    const orderState = useSelector((state:RootState)=>state.stateSet.orderState);
-
-    console.log('status',status)
-    console.log(orderState);
-   
     return (
         <div>
-            <button>
+            <Link to={`/bucket/?store=${store}&table=${table}`}>
+                <button>
 
-                <div>장바구니</div>
-                
+                    <div>장바구니</div>
 
-            </button>
+                </button>
+            </Link>
             
 
         </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import BucketView from '../components/BucketView';
-import { RootState } from '../modules';
+import BucketView from './BucketView';
+import { RootState } from '../../../modules';
 
 const BucketViewContainer = () => {
 

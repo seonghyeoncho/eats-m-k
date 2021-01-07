@@ -8,7 +8,7 @@ interface Props {
     text:string
 }
 
-const ToHomeButton = ({text}:Props) => {
+const BackButton = ({text}:Props) => {
     const {store,table} = useSelector((state:RootState)=>({
         store:state.storeSet.store,
         table:state.tableSet.table
@@ -18,4 +18,4 @@ const ToHomeButton = ({text}:Props) => {
     )
 }
 
-export default ToHomeButton;
+export default BackButton;

@@ -1,10 +1,10 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import AddMenuButton from '../components/atoms/AddMenuButton/AddMenu';
-import { RootState } from '../modules';
-import { resetCount } from '../modules/counters';
-import { addOrder } from '../modules/orderMenus';
-import { increase } from '../modules/totalPrice';
+import AddMenuButton from './AddMenuButton';
+import { RootState } from '../../../modules';
+import { resetCount } from '../../../modules/counters';
+import { addOrder } from '../../../modules/orderMenus';
+import { increase } from '../../../modules/totalPrice';
 
 
 type Props = {

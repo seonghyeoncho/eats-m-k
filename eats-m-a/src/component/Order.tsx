@@ -16,12 +16,13 @@ const Order = (orders:any):any =>{
     }
     
     filterData();
-    console.log(order);
+    
   
     
   
     return(
       <div>
+        
         {order.map((m:any)=>
           <>
             <div key={m.menu}>{m.menu}{m.n}</div>

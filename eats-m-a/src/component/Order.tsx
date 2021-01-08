@@ -17,9 +17,7 @@ const Order = (orders:any):any =>{
     
     filterData();
     
-  
-    
-  
+
     return(
       <div>
         

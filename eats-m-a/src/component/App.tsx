@@ -13,6 +13,7 @@ const App = () => {
   const query = queryString.parse(window.location.search);
 
   const [ table,setTable ] = useState<any>([]);
+  const [ state,setState ] = useState<number>(0);
   
   useEffect(()=>{
 
@@ -51,6 +52,12 @@ const App = () => {
     })
                   
   }
+
+  const listState = () => {
+    if(state === 0) return <NewOrderList table={table} toggleCheck={toggleCheck}/>
+    else return <CompleteOrderList table={table}/>
+   
+  }
  
   return (
     <div className="App">
@@ -62,14 +69,10 @@ const App = () => {
       <hr/>
 
       <div>
-        <Router>
-          <Link to={`/neworder/?store=${query.store}`}><h1>주문 보드</h1></Link>
-          <Link to={`/orderlist/?store=${query.store}`}><h1>주문완료보드</h1></Link>
-          <Switch>
-            <Route exact path ="/neworder" component={()=><NewOrderList table={table} toggleCheck={toggleCheck}/>}/>
-            <Route exact path ="/orderlist" component={()=><CompleteOrderList table={table}/>}/>
-          </Switch>
-        </Router>
+
+        <button onClick={()=>setState(0)}>새로운주문</button>
+        <button onClick={()=>setState(1)}>접수완료</button>
+        {listState()}
         
         
        

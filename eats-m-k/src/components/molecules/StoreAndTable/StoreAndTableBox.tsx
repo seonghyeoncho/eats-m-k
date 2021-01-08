@@ -7,18 +7,26 @@ type BoxProps = {
     store:string | string[] | null;
     table:string | string[] | null;
     status:boolean;
+    orderList:any
 }
 
-const StoreAndTableBox = ({store, table,status}:BoxProps) => {
+const StoreAndTableBox = ({store, table,status, orderList}:BoxProps) => {
 
     return(
         <div>
-            <div>가게 이름 : {store}</div>
-            <div>테이블 : {table}</div>
-            <OrderStatusButtonContainer status={status}/>
-            <hr/>
+            <div>
+                <div>가게 이름 : {store}</div>
+                <div>테이블 : {table}</div>
+            </div>
+            {orderList.length === 0 ?
+                    <></>
+                :
+                    <OrderStatusButtonContainer status={status}/>
+            }
 
             
+            <hr/>
+
             
         </div>
     );

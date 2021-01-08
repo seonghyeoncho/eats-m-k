@@ -1,13 +1,7 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
-import { dbService } from '../../../firebase';
+import { useSelector } from 'react-redux';
 import { RootState } from '../../../modules';
-import { resetOrder } from '../../../modules/orderMenus';
-import { setState } from '../../../modules/orderState';
-import { resetPrice } from '../../../modules/totalPrice';
-import ToHomeButton from '../../atoms/BackButton/BackButton';
-import Order from '../../atoms/Order';
+import OrderContainer from '../../atoms/Order/OrderContainer';
 import OrderItem from '../../atoms/OrderList/OrderList';
 
 const OrderListView = (props:any) => {
@@ -21,32 +15,7 @@ const OrderListView = (props:any) => {
 
     console.log(orderStatus);
     console.log(orderList);
-    
-    const dispatch = useDispatch();
 
-    const onSubmit = () => {
-  
-
-          
-        dbService.collection(`${store}`).doc(`${table}`)
-          .set({
-            orderList,
-            orderAt: Date.now(),
-            check:false
-      
-          })
-          .then(function() {
-            console.log("Document successfully written!");
-            dispatch(resetOrder());
-            dispatch(resetPrice());
-            dispatch(setState());
-              
-          })
-          .catch(function(error) {
-              console.error("Error writing document: ", error);
-          });
-      
-      }
 
     return (
         <div>
@@ -58,7 +27,8 @@ const OrderListView = (props:any) => {
                 <OrderItem item={item}/>
 
             )}
-            <Order store={store} table={table} onSubmit={onSubmit}/>
+            <OrderContainer text={"취소하기"}/>
+            
         </div>
     );
 }

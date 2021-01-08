@@ -5,8 +5,9 @@ import { RootState } from '../../../modules';
 
 const BucketViewContainer = () => {
 
-    const {orderList} = useSelector((state:RootState)=>({
-        orderList:state.orderMenus
+    const {orderList } = useSelector((state:RootState)=>({
+        orderList:state.orderMenus,
+        
     }))
 
     return <BucketView orderList={orderList}/>

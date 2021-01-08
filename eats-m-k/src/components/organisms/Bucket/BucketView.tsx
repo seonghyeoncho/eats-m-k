@@ -1,5 +1,7 @@
 import React from 'react';
+
 import BackButton from '../../atoms/BackButton/BackButton';
+import OrderContainer from '../../atoms/Order/OrderContainer';
 import BucketItem from '../../molecules/BucketList/BucketItem';
 
 interface Props {
@@ -23,6 +25,9 @@ const BucketView = ({orderList}:Props) => {
                         
                     )
             }
+            <OrderContainer text={"더담기"}/>
+            
+            
         </div>
     );
 }

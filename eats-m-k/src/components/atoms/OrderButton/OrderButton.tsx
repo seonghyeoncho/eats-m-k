@@ -4,6 +4,7 @@ import numberWithCommas from '../../../functions/addCommaFunc';
 
 
 type Props = {
+    
     totalPrice: number
     
 }
@@ -16,7 +17,7 @@ const OrderButton = ({totalPrice}:Props) => {
         <>
            
             <Link to="/orderlist">
-                <button>{ totalPrice === 0 ? "주문하기" : `${totalPrice}주문하기`}</button>
+                <button>주문하기</button>
             </Link>
             
         </>

@@ -44,8 +44,9 @@ const Home = (props: any ) => {
 
     console.log("totalPrice", totalPrice);
     console.log("orderMenus", orderMenus);
-    console.log(orderState)
+    console.log(orderState);
 
+    //from menudb
     const getMenuList = () => {
 
         dbService.collection("store").doc(`${store}`)

@@ -12,7 +12,6 @@ const BucketButtonContainer = () => {
         table:state.tableSet.table
     }));
 
-    console.log('status',status)
     console.log(orderState);
 
 

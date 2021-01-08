@@ -1,17 +1,23 @@
 import React from 'react';
 import queryString from 'query-string';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../modules';
 import CounterContainer from '../../atoms/Counter/CounterContainer';
-import OrderContainer from '../../atoms/AddMenuButton/AddMenuButtonContainer';
 import OrderButtonContainer from '../../atoms/OrderButton/OrderButtonContainer';
-import StoreAndTableBox from '../../molecules/StoreAndTable/StoreAndTableBox';
 import StoreAndTableBoxContainer from '../../molecules/StoreAndTable/StoreAndTableBoxContainer';
 import BackButton from '../../atoms/BackButton/BackButton';
+import AddMenuContainer from '../../atoms/AddMenuButton/AddMenuButtonContainer';
+import { addOrder } from '../../../modules/orderMenus';
+import { resetCount } from '../../../modules/counters';
 
 const DetailView = (props:any) => {
 
-    const menuList = useSelector((state:RootState)=> state.setData.menu);
+    const dispatch = useDispatch();
+
+    const {menuList, count} = useSelector((state:RootState)=> ({
+        menuList: state.setData.menu,
+        count:state.counters.count
+    }));
 
     let select = {
         menu:"",
@@ -32,13 +38,13 @@ const DetailView = (props:any) => {
         
     }
 
-    console.log(select);
-
-    const goBack = () => {
-
-        props.history.goBack();
+    const setMenuList = () => {
+        
+        //dispatch(addOrder(select.menu, count, select.price));
 
     }
+
+    console.log(select);
 
     return (
 
@@ -49,8 +55,8 @@ const DetailView = (props:any) => {
            <div>{select.menu}<br/>{select.price}</div>
 
            <CounterContainer/>
-           <OrderContainer select={select} history={props.history}/>
-           <OrderButtonContainer/>
+           <AddMenuContainer select={select} history={props.history}/>
+           <div onClick={setMenuList}><OrderButtonContainer/></div>
 
            
 
@@ -58,4 +64,5 @@ const DetailView = (props:any) => {
 
     );
 }
+
 export default DetailView;

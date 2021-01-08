@@ -6,12 +6,15 @@ import { RootState } from '../../../modules';
 
 const StoreAndTableBoxContainer = () => {
 
-    const {store, table, status} = useSelector((state:RootState)=>({
+
+    const {store, table, status, orderList} = useSelector((state:RootState)=>({
         store:state.storeSet.store,
         table:state.tableSet.table,
-        status:state.stateSet.orderStatus
+        status:state.stateSet.orderStatus,
+        orderList:state.orderMenus
+
     }))
 
-    return <StoreAndTableBox store={store} table={table} status={status}/>
+    return <StoreAndTableBox store={store} table={table} status={status} orderList={orderList}/>
 }
 export default StoreAndTableBoxContainer;

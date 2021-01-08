@@ -17,7 +17,7 @@ type Props = {
 
 }
 
-const OrderContainer = ({ select, history }:Props) => {
+const AddMenuContainer = ({ select, history }:Props) => {
 
     const count = useSelector((state:RootState)=>state.counters.count);
     const dispatch = useDispatch();
@@ -35,4 +35,4 @@ const OrderContainer = ({ select, history }:Props) => {
 
 }
 
-export default OrderContainer;
+export default AddMenuContainer;

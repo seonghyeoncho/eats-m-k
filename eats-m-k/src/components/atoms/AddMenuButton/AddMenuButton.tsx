@@ -8,15 +8,15 @@ type Props = {
 
     count:number;
     menu:string;
-    addOrders:(menu:string, count:number)=>void 
+    addOrders:(menu:string, count:number, id:string)=>void 
     
 }
 
 const AddMenuButton = ({menu, count, addOrders}:Props) => {
-    
+    const id = `${menu}/${count}/more.0`
     return(
 
-        <button onClick={()=>addOrders(menu, count)}>장바구니에 담기</button>
+        <button onClick={()=>addOrders(menu, count, id)}>장바구니에 담기</button>
 
     );
 

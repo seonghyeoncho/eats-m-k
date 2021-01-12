@@ -1,6 +1,5 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { isDoStatement } from 'typescript';
 import CancleOrderButton from './CancleOrderButton';
 import { cancleOrder } from '../../../modules/orderMenus';
 import { decrease } from '../../../modules/totalPrice';
@@ -14,7 +13,7 @@ const CancleOrderButtonContainer = ({item}:Props) => {
 
     const cancleOrders = () => {
 
-        dispatch(cancleOrder(item.menu));
+        dispatch(cancleOrder(item.menu, item.id));
         dispatch(decrease(item.count * item.price));
 
     }

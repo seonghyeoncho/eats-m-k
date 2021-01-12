@@ -1,10 +1,24 @@
-import { EBADF } from 'constants';
 import React from 'react';
+interface Props {
+    sideMenus: [] | undefined
+}
 
-const SideMenuList = () => {
+const SideMenuList = ({sideMenus}:Props) => {
+
 
     return(
-        <div>사이드 메뉴 리스트입니다.</div>
-    );
+        <div>
+            {
+                sideMenus?.map(((doc:any)=>{
+                    for(let i in doc){
+                        return <div>{i}{doc[i]}원</div>
+                    }
+                }))
+                
+            }
+
+        </div>
+    ); 
 }
+
 export default SideMenuList;

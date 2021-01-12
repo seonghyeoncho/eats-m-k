@@ -5,13 +5,17 @@ import { RootState } from '../../../modules';
 import { resetCount } from '../../../modules/counters';
 import { addOrder } from '../../../modules/orderMenus';
 import { increase } from '../../../modules/totalPrice';
+import { useCookies } from 'react-cookie';
+import { dbService } from '../../../firebase';
+import { getBucketThunk } from '../../../modules/getBucket/thunks';
 
 
 type Props = {
 
     select:{
         menu:string,
-        price:number
+        price:number,
+        more:[]
     }
     history:any
 
@@ -19,14 +23,36 @@ type Props = {
 
 const AddMenuContainer = ({ select, history }:Props) => {
 
-    const count = useSelector((state:RootState)=>state.counters.count);
+    const {count,store, table,buckets} = useSelector((state:RootState) => ({
+        count:state.counters.count,
+        store:state.storeSet.store,
+        table:state.tableSet.table,
+        buckets:state.myBucket.buckets.data?.bucket
+    }));
     const dispatch = useDispatch();
 
-    const addOrders = (menu:string, counts:number) => {
+    console.log(select);
 
-        dispatch(addOrder(menu, counts, select.price));
-        dispatch(increase(counts * select.price));
-        dispatch(resetCount());
+    const addOrders = () => {
+
+        console.log(buckets);
+
+        dbService.collection(`${store}`).doc(`${table}`).update({
+        
+            
+            
+        
+            bucket:{
+                
+                ...select,
+                ...buckets
+
+            }
+           
+            
+
+
+        })
         history.goBack();
         
     }

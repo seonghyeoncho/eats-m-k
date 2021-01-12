@@ -1,32 +1,29 @@
+import { doesNotReject } from 'assert';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import numberWithCommas from '../../../functions/addCommaFunc';
+import MenuListItem from './MenuListItem';
 
 type Props = {
     
-    menuList: object[]
+    menus: [] | undefined
 
 }
 
-const MenuList = ({ menuList }:Props ) => {
+const MenuList = ({ menus }:Props ) => {
+
 
     return(
  
         <div>
            
             {
-                menuList.map((list:any)=>
-                    <>
-                        <div>사진</div>
-
-                        <Link to={`/detail/?menu=${list.menu}`} key={list.menu} >
-                            
-                            <div >{list.menu}{numberWithCommas(list.price)}원</div>
-                        </Link>
-
-                        
-                    </>
-                )
+                menus?.map(((doc:any)=>{
+                    for(let i in doc){
+                        return <MenuListItem key={i} menu={i} price={doc[i].price}/>
+                    }
+                }))
+                
             }
 
         </div>

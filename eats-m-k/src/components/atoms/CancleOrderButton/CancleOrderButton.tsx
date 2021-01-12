@@ -9,7 +9,7 @@ const CancleOrderButton = ({cancleOrders}:Props) => {
 
 
     return (
-        <button onClick={cancleOrders}>주문취소</button>
+        <button onClick={cancleOrders}>X</button>
     );
 }
 

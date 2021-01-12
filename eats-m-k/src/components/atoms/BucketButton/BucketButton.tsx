@@ -3,11 +3,13 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { RootState } from '../../../modules';
 
+
 type Props = {
     store :string | string[] | null;
     table:string | string[] | null;
+    n:number
 }
-const BucketButton = ({store,table}:Props) => {
+const BucketButton = ({store,table,n}:Props) => {
 
     return (
         <div>
@@ -15,7 +17,7 @@ const BucketButton = ({store,table}:Props) => {
                 <button>
 
                     <div>장바구니</div>
-
+                    <div>{n}</div>
                 </button>
             </Link>
             

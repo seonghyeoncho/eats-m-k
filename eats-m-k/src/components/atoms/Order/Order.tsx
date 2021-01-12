@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 
 interface Props {
@@ -7,10 +7,13 @@ interface Props {
     table: string | string[] | null;
     text: string;
     onSubmit: ()=> void
+    n:number
 }
 
-const Order = ({store, table,onSubmit,text}:Props) => {
+const Order = ({store, table,onSubmit,text,n}:Props) => {
 
+
+    if(n === 0)  return <Redirect to={`/menu/?store=${store}&table=${table}`}/>
     console.log('sdfsdf',store,table);
 
     return ( 

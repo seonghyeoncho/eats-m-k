@@ -47,7 +47,7 @@ const OrderContainer = ({text}:Props) => {
       }
 
 
-    return <Order store={store} table={table} text={text} onSubmit={onSubmit}/>
+    return <Order store={store} table={table} text={text} onSubmit={onSubmit} n={orderList.length}/>
 }
 
 export default OrderContainer;

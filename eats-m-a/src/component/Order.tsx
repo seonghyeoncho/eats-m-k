@@ -22,9 +22,10 @@ const Order = (orders:any):any =>{
       <div>
         
         {order.map((m:any)=>
-          <>
-            <div key={m.menu}>{m.menu}{m.n}</div>
-          </>
+          <div className="orderDiv">
+            <div key={m.menu}>{m.menu}{m.n} x{m.count}{m.n}   {m.price}{m.n}원</div>
+
+          </div>
         )}
   
       </div>

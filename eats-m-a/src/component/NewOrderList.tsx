@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Order from './Order';
-
+import { Card, Col, Row,Button } from 'antd';
+import '../scss/NewOrderList.scss';
 
 interface Props {
 
@@ -26,11 +27,10 @@ const NewOrderList = ({table,toggleCheck}:Props) => {
           
         if(!m.check){
           return(
-            <div className="or-con" onClick={()=>onClick(m.orders)}>
-              <div key={m.myTable}>{m.myTable}</div>
+            <Card className="or-con" onClick={()=>onClick(m.orders)} title={`${m.myTable}번 테이블`}>
               <Order orders={m.orders}/>
-              <button onClick={()=>toggleCheck(m.myTable)}>주문완료</button>
-            </div>
+              <Button className="orderFinishedButton" onClick={()=>toggleCheck(m.myTable)}>주문완료</Button>
+            </Card>
           )
         }
             

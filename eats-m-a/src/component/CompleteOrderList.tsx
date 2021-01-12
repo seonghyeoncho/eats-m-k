@@ -4,6 +4,7 @@ import Order from './Order';
 interface Props {
     table:any
 }
+
 const CompleteOrderList = ({table}:Props) => {
 
     const [select,setSelect] = useState<any>();

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Row, Col, Card, Button} from 'antd';
+import {Col, Card} from 'antd';
 import Order from './Order';
 import '../scss/CompleteOrderList.scss';
 
@@ -20,31 +20,27 @@ const CompleteOrderList = ({table}:Props) => {
     return (
         <>
             <div className="row" >
-                {table.map((m:any)=>{
+                {
+                    table.map((m:any)=>{
 
-                    if(m.check){
-                        return(
-                            <Col span={8}>
-                                <Card className="orderCard" onClick={()=>onClick(m.orders)} title={`${m.myTable}번 테이블`}>
-                                    <Card className="orderMeta">
+                        if(m.check){
+                            return(
+                                <Col span={8}>
+                                    <Card className="orderCard" onClick={()=>onClick(m.orders)}>
+                                        <h1>{`${m.myTable}번 테이블`}</h1>
+                                        <hr/>
                                         <Order orders={m.orders}/>
+
                                     </Card>
-                                </Card>
-                            </Col>
-                        )
-                    }
+                                </Col>
+                            )
+                        }
 
 
-                })}
+                    })
+                }
             </div>
 
-            <div>
-
-                <div>상세주문</div>
-                <Order orders={select}/>
-
-
-            </div>
         </>
     );
 }

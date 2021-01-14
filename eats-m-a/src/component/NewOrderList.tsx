@@ -22,13 +22,14 @@ const NewOrderList = ({table,toggleCheck}:Props) => {
   return (
 
     <div>
-        <Row gutter={16}>
       {table.map((m:any)=>{
           
         if(!m.check){
           return(
               <Col span={8}>
-                  <Card className="orderCard" onClick={()=>onClick(m.orders)} title={`${m.myTable}번 테이블`}>
+                  <Card className="orderCard" onClick={()=>onClick(m.orders)} >
+                      <h1>{`${m.myTable}번 테이블`}</h1>
+                      <hr/>
                     <Card className="orderMeta">
                         <Order orders={m.orders}/>
                     </Card>
@@ -40,10 +41,7 @@ const NewOrderList = ({table,toggleCheck}:Props) => {
             
 
       })}
-        </Row>
 
-      <div>상세주문</div>
-      <Order orders={select}/>
 
     </div>
   );

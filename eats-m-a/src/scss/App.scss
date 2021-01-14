@@ -4,6 +4,8 @@ body{
     margin:0;
 }
 
+
+
 .Menu{
     height:8vh;
     font-size:1rem;
@@ -12,12 +14,22 @@ body{
 
 .orderButtonClass{
     margin:0;
+    font-size:2rem;
 }
 
 .newOrderButton{
     width: 50%;
+    background-color: white;
+    border:none;
 }
 .completeOrderButton{
     width:50%;
+    background-color: white;
+    border:none;
 }
 
+.buttonClicked{
+    background-color: #ff1b6d;
+    border:none;
+    color:white;
+}

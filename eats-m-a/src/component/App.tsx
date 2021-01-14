@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {Menu, Button,Radio} from 'antd';
+import {Menu, Radio} from 'antd';
 import queryString from 'query-string';
 import {dbService} from '../firebase';
 import Order from '../component/Order';
@@ -111,8 +111,8 @@ console.log(table);
 
       <div className="orderButtonClass">
 
-        <Button className="newOrderButton" onClick={()=>setState(0)}>새로운주문</Button>
-        <Button className="completeOrderButton" onClick={()=>setState(1)}>접수완료</Button>
+        <button className={`newOrderButton ${!state && "buttonClicked"}`} onClick={()=>setState(0)}>새로운주문</button>
+        <button className={`completeOrderButton ${state && "buttonClicked"}`} onClick={()=>setState(1)}>접수완료</button>
       </div>
 
       <div className="radioDiv">

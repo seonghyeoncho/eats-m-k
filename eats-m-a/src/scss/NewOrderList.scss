@@ -1,3 +1,7 @@
+.orderCard{
+  height: 70vh;
+  margin: 3vh;
+}
 .orderFinishedButton{
   position: absolute;
   bottom:0;
@@ -5,4 +9,8 @@
   width:100%;
   height: 6vh;
   border-bottom: none;
+}
+.orderMeta{
+  height: 50vh;
+  border:none;
 }

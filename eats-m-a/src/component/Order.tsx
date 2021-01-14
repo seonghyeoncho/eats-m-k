@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {Col} from "antd";
 
 
 const Order = (orders:any):any =>{
@@ -22,10 +23,11 @@ const Order = (orders:any):any =>{
       <div>
         
         {order.map((m:any)=>
-          <div className="orderDiv">
-            <div key={m.menu}>{m.menu}{m.n} x{m.count}{m.n}   {m.price}{m.n}원</div>
+              <div className="orderDiv">
+                  <h4 key={m.menu}>{m.menu}{m.n} x{m.count}{m.n}</h4>
+                  <h4 className="priceText" key={m.price}>{m.price}{m.n}원</h4>
 
-          </div>
+              </div>
         )}
   
       </div>

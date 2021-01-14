@@ -61,10 +61,42 @@ const App = () => {
                   
   }
 
+
+  const tableDummy=[
+          {
+          check: false,
+          myTable: "6",
+          orders: [{
+              count:1,
+              menu:"가츠동",
+              price:5800
+          }]
+      },
+      {
+          check: false,
+          myTable: "3",
+          orders: [{
+              count:4,
+              menu:"가츠동",
+              price:6500
+            },
+            {
+              count:4,
+              menu:"가츠동",
+              price:6500
+            }
+          ]
+      }
+  ];
+console.log('더미데이터');
+console.log(tableDummy);
+console.log("data");
+console.log(table);
+
   const listState = () => {
-    if(state === 0) return <NewOrderList table={table} toggleCheck={toggleCheck}/>
-    else return <CompleteOrderList table={table}/>
-   
+
+      if(state === 0) return <NewOrderList table={tableDummy} toggleCheck={toggleCheck}/>
+      else return <CompleteOrderList table={table}/>
   }
  
   return (

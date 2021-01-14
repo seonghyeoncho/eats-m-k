@@ -5,9 +5,9 @@ import { Buckets } from '../../api/bucketFromFire';
 export type BucketAction = ActionType<typeof actions>;
 
 export type BucketState = {
-  buckets: {
+  bucket: {
     loading: boolean;
     error: Error | null;
-    data: Buckets | null;
+    data: Buckets | null ;
   };
 };

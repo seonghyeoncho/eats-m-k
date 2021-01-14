@@ -8,7 +8,12 @@ const MenuListContainer = () => {
 
     const { menus } = useSelector((state:RootState) => ({
         menus:state.myBase.menus.data?.menu
-    }))
+    }));
+    
+    
+
+
+    
 
     return <MenuList menus={menus}/>
 }

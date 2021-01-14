@@ -7,13 +7,13 @@ interface Props {
     table: string | string[] | null;
     text: string;
     onSubmit: ()=> void
-    n:number
+    
 }
 
-const Order = ({store, table,onSubmit,text,n}:Props) => {
+const Order = ({store, table,onSubmit,text}:Props) => {
 
 
-    if(n === 0)  return <Redirect to={`/menu/?store=${store}&table=${table}`}/>
+    //if(n === 0)  return <Redirect to={`/menu/?store=${store}&table=${table}`}/>
     console.log('sdfsdf',store,table);
 
     return ( 

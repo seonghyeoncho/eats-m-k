@@ -1,31 +1,61 @@
-import React from 'react';
-import { Redirect } from 'react-router-dom';
-
+import React, { useState } from 'react';
+import { Buckets } from '../../../api/bucketFromFire';
+import numberWithCommas from '../../../functions/addCommaFunc';
 import BackButton from '../../atoms/BackButton/BackButton';
+import CancleOrderButtonContainer from '../../atoms/CancleOrderButton/CancleOrderButtonContainer';
 import OrderContainer from '../../atoms/Order/OrderContainer';
-import BucketItem from '../../molecules/BucketList/BucketItem';
+import MoreMenuListInBucket from '../MenuDetail/MoreMenuListInBucket';
+
 
 interface Props {
+    bucket: any
+    handleClick: () => void
 
-    orderList: any
+    
 }
-const BucketView = ({orderList}:Props) => {
+const BucketView = ({bucket}:Props) => {
+    const [set,forceUpdate] = useState(1);
+    console.log(bucket);
+
+    function handleClick() {
+        forceUpdate(0);
+        console.log('111')
+      }
+    
 
     return (
         <div>
-            <BackButton text={'뒤로가기'}/>
+            
             
             {
-                orderList.length === 0 ? 
-
-                    <div>주문정보가 없습니다.</div>
+                bucket.length === 0 ? 
+                    <div>메뉴를 추가해 주세요</div>
                 :
-                    orderList.map((item:any)=>
+                    bucket?.map((doc:any)=>{
+                        for(let i in doc){
+                            return (
+                                <div>
+                                    <div>{doc.menu}{numberWithCommas(doc.price)}원</div>
+                                    {
+                                        doc.more !== undefined ? 
+                                            
+                                            <MoreMenuListInBucket more={doc.more}/>
+                                        :
+                                            <div>추가사항 없음</div>
+                                    }
+                                    
+                                    <div onClick={handleClick}><CancleOrderButtonContainer id={doc.id} price={doc.price * doc.count}/></div>
 
-                        <BucketItem item={item}/>
-                        
-                    )
+                                    <hr/>
+                                </div>
+                            );
+                        }
+                    })
+                
+
+                
             }
+            
             <OrderContainer text={"더담기"}/>
             
             

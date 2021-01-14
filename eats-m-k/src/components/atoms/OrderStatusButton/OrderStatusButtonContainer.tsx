@@ -3,17 +3,16 @@ import { useSelector } from 'react-redux';
 import OrderStatusButton from './OrderStatusButton';
 import { RootState } from '../../../modules';
 
-interface Props {
 
-    status:boolean
+const OrderStatusButtonContainer = () => {
 
-}
-const OrderStatusButtonContainer = ({status}:Props) => {
+    const {orderStatus,state} = useSelector((state:RootState)=>({
+        orderStatus:state.stateSet.orderStatus,
+        state:state.stateSet.state
+    }))
 
-    const orderState = useSelector((state:RootState)=>state.stateSet.orderState);
 
-
-    return <OrderStatusButton orderState={orderState} status={status}/>
+    return <OrderStatusButton orderStatus={orderStatus} state={state}/>
 }
 
 export default OrderStatusButtonContainer;

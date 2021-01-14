@@ -7,17 +7,17 @@ import { RootState } from '../../../modules';
 type Props = {
     store :string | string[] | null;
     table:string | string[] | null;
-    n:number
+    
 }
-const BucketButton = ({store,table,n}:Props) => {
+const BucketButton = ({store,table}:Props) => {
 
     return (
         <div>
             <Link to={`/bucket/?store=${store}&table=${table}`}>
                 <button>
+                    
 
                     <div>장바구니</div>
-                    <div>{n}</div>
                 </button>
             </Link>
             

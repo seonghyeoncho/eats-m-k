@@ -1,17 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 interface Props {
-    orderState:boolean
-    status:boolean
+    orderStatus:boolean
+    state:boolean
 }
-const OrderStatusButton = ({orderState,status}:Props) => {
+const OrderStatusButton = ({orderStatus,state}:Props) => {
+    console.log(orderStatus,state)
 
 
     let text:string = '';
-    if(status && orderState){
+    if(state && orderStatus){
         text = '접수완료';
 
-    } else if(!status && orderState){
+    } else if(!state && orderStatus){
 
         text = '주문완료';
 

@@ -3,7 +3,7 @@ import { BucketState, BucketAction } from './types';
 import { GET_BUCKETS, GET_BUCKETS_SUCCESS, GET_BUCKETS_ERROR } from './actions';
 
 const initialState: BucketState = {
-  buckets:{
+  bucket:{
     loading: false,
     error: null,
     data: null
@@ -13,7 +13,7 @@ const initialState: BucketState = {
 const myBucket = createReducer<BucketState, BucketAction>(initialState, {
   [GET_BUCKETS]: state => ({
     ...state,
-    buckets: {
+    bucket: {
       loading: true,
       error: null,
       data: null
@@ -21,7 +21,7 @@ const myBucket = createReducer<BucketState, BucketAction>(initialState, {
   }),
   [GET_BUCKETS_SUCCESS]: (state, action) => ({
     ...state,
-    buckets: {
+    bucket: {
       loading: false,
       error: null,
       data: action.payload
@@ -31,7 +31,7 @@ const myBucket = createReducer<BucketState, BucketAction>(initialState, {
   }),
   [GET_BUCKETS_ERROR]: (state, action) => ({
     ...state,
-    buckets: {
+    bucket: {
       loading: false,
       error: action.payload,
       data: null

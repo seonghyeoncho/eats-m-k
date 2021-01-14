@@ -4,5 +4,7 @@ export const getBucket =  async (store:string | string[] | null, table: string |
      
 }
 export interface  Buckets {
-    bucket:[]
+    bucket : [] | any,
+    check:boolean,
+    orderState:boolean;
 }

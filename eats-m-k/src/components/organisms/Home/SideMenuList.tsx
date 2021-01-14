@@ -9,11 +9,11 @@ const SideMenuList = ({sideMenus}:Props) => {
     return(
         <div>
             {
-                sideMenus?.map(((doc:any)=>{
+                sideMenus?.map((doc:any) => {
                     for(let i in doc){
                         return <div>{i}{doc[i]}원</div>
                     }
-                }))
+                })
                 
             }
 

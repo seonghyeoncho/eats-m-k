@@ -11,19 +11,23 @@ type Props = {
 }
 
 const MenuList = ({ menus }:Props ) => {
-
+    console.log(menus);
+    menus?.map((doc:any)=>
+        {for(let i in doc){
+            console.log(doc[i].price)
+        }}
+    )
 
     return(
  
         <div>
            
             {
-                menus?.map(((doc:any)=>{
+                menus?.map((doc:any)=>{
                     for(let i in doc){
-                        return <MenuListItem key={i} menu={i} price={doc[i].price}/>
+                        return <MenuListItem menu={i} price={doc[i].price}/>
                     }
-                }))
-                
+                })
             }
 
         </div>

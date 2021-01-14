@@ -6,8 +6,6 @@ type Props = {
 
 const CancleOrderButton = ({cancleOrders}:Props) => {
 
-
-
     return (
         <button onClick={cancleOrders}>X</button>
     );

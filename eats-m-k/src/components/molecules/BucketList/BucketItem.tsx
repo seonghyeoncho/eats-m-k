@@ -9,7 +9,7 @@ const BucketItem = ({item}:Props) => {
 
         <div>
             <div>{item.menu} X {item.count} {numberWithCommas(item.price)}원</div>
-            <CancleOrderButtonContainer item={item}/>
+            
         </div>
         
     );

@@ -6,11 +6,10 @@ import BucketButton from '../../atoms/BucketButton/BucketButton';
 type BoxProps = {
     store:string | string[] | null;
     table:string | string[] | null;
-    status:boolean;
-    orderList:any
+    
 }
 
-const StoreAndTableBox = ({store, table,status, orderList}:BoxProps) => {
+const StoreAndTableBox = ({store, table}:BoxProps) => {
 
     return(
         <div>
@@ -18,11 +17,9 @@ const StoreAndTableBox = ({store, table,status, orderList}:BoxProps) => {
                 <div>가게 이름 : {store}</div>
                 <div>테이블 : {table}</div>
             </div>
-            {orderList.length === 0 ?
-                    <></>
-                :
-                    <OrderStatusButtonContainer status={status}/>
-            }
+            
+              <OrderStatusButtonContainer/>
+            
 
             
             <hr/>

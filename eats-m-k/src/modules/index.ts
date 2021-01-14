@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux'; 
-import orderMenus from './orderMenus';
 import selectMenu from './selectMenu';
 import totalPrice from './totalPrice';
 import storeSet from './setStore';
@@ -12,7 +11,6 @@ import myBucket from './getBucket';
 
 const rootReducer = combineReducers({
     totalPrice,
-    orderMenus,
     selectMenu,
     storeSet,
     tableSet,  

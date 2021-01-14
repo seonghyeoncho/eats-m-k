@@ -1,7 +1,8 @@
-import {dbService} from '../firebase';
+import {DB, dbService} from '../firebase';
 
 export const getMenuList  = async (store:string | string[] | null) : Promise<any> => {
      return (await dbService.collection('store').doc(`${store}`).get()).data();
+     
       
 }
 

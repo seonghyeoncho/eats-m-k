@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import OrderButton from './OrderButton';
 import { dbService } from '../../../firebase';
 import { RootState } from '../../../modules';
-import { resetOrder } from '../../../modules/orderMenus';
 import { setState } from '../../../modules/orderState';
 import { resetPrice } from '../../../modules/totalPrice';
 

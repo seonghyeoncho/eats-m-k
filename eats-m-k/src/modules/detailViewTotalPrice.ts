@@ -42,7 +42,7 @@ const detailViewTotalPrice = (
 ): PriceState => {
   switch (action.type) {
     case ADD_PRICE: 
-      return { price: state.price + action.payload.price};
+      return { price: state.price + action.payload.price };
     case MI_PRICE:
       return { price: state.price - action.payload.price };
     case RESET:

@@ -14,7 +14,9 @@ export const getMenuThunk = (store: string | string[] | null): ThunkAction<Promi
             try {
 
                 const menus = await getMenuList(store);
-                console.log(getMenuList(store));
+                
+                
+                console.log(menus)
                 dispatch(success(menus));
 
             } catch (e) {

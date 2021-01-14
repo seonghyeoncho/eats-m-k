@@ -1,12 +1,18 @@
 const SET_STATE = 'orderState/SET_STATE' as const;
 const SET_STATUS = 'orderState/SET_STATUS' as const;
 
-export const setState = () => ({
-    type:SET_STATE
+export const setState = (state:boolean) => ({
+    type:SET_STATE,
+    payload:{
+        state
+    }
     
 });
-export const setStatus = () => ({
-    type:SET_STATUS
+export const setStatus = (orderStatus:boolean) => ({
+    type:SET_STATUS,
+    payload:{
+        orderStatus
+    }
     
 });
 
@@ -15,13 +21,13 @@ type StateAction =
     | ReturnType<typeof setStatus>;
 
 type StateState = {
-    orderState:boolean,
+    state:boolean,
     orderStatus:boolean
     
 };
 
 const initialState: StateState = {
-    orderState:false,
+    state:false,
     orderStatus:false
 };
 
@@ -33,12 +39,12 @@ const stateSet = (
         case SET_STATE:
             return{
                 ...state,
-                orderState: !state.orderState
+                state: action.payload.state
             };
         case SET_STATUS:
             return{
                 ...state,
-                orderStatus: !state.orderStatus
+                orderStatus: action.payload.orderStatus
             }
         default:
             return state;

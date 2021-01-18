@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import {Col} from "antd";
 import '../scss/Order.scss';
+import numberWithCommas from '../functions/addCommaFunc';
 
 const Order = (orders:any):any =>{
+
 
     const order:any[] = [];
   
@@ -26,8 +28,22 @@ const Order = (orders:any):any =>{
             <>
               <div className="orderDiv">
                   <div className="orderInfo">
-                      <h2 className="menuText" key={m.menu}><b>{m.menu}{m.n}</b></h2>
-                      <h2 className="countText" key={m.count}><b>{m.count}{m.n}개</b></h2>
+                      <h2 className="menuText" key={m.menu}><b>{m.menu}</b></h2>
+                      <h2 className="countText" key={m.count}><b>{m.count}개</b></h2>
+                      {
+                        m.more.length !== 0 ? 
+                          <>
+                            {
+                              m.more.map((doc:any)=>{
+                                for(let i in doc){
+                                  return <h2>{i}   {numberWithCommas(doc[i])}원</h2>
+                                }
+                              })
+                            }
+                          </>
+                        :
+                          <></>
+                      }
                       
                   </div>
               </div>

@@ -2,27 +2,17 @@ import React, { useEffect, useState } from 'react';
 import {Button, Menu, Radio} from 'antd';
 import queryString from 'query-string';
 import {dbService} from '../firebase';
-import Order from '../component/Order';
 import '../scss/App.scss';
-import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 import NewOrderList from './NewOrderList';
 import CompleteOrderList from './CompleteOrderList';
 import { Table } from '../types';
-
 import {LeftCircleOutlined, RightCircleOutlined} from "@ant-design/icons";
-
-  // 추가 메뉴는 more에 담김,
-  // 없을 수도 있음
-
-  // toString 오류는 99%로 null이라서 생김 ㅋㅋ
-
-
-
 
 const App = () => {
   const query = queryString.parse(window.location.search);
 
-  const [ table,setTable ] = useState<any>([]);
+  const [ newOrderList,setNewOrderList ] = useState<any>([]);
+  const [ comOrderList, setComOrderList ] = useState<any>([])
   const [ state,setState ] = useState<number>(0);
   const [radio,setRadio]=useState<any>(0);
   const [date, setDate] = useState<any>(new Date());
@@ -43,7 +33,7 @@ const App = () => {
 
   const toggleCheck = (t:string) => {
     
-    table.map((doc:Table)=>{
+    newOrderList.map((doc:Table)=>{
 
       if(doc.myTable === t){
 
@@ -55,27 +45,44 @@ const App = () => {
                   
   }
 
-
-  const getOrders = () => {
+  const getOrders = (orderState:string) => {
 
     dbService.collection(`${query.store}`)
-      .orderBy("orderAt")
+      .orderBy(`${orderState}`)
       .onSnapshot((snapshot:any)=>{
-        setTable([]);
+        setComOrderList([]);
+        setNewOrderList([]);
         snapshot.docs.map((doc:any)=>{
+          if(!doc.data().state){
+            const tableObj : Table = {
+
+              myTable:doc.id,
+              orderList:doc.data().bucket,
+              orderStatus:doc.data().orderStatus,
+              state:doc.data().state,
+              totalPrice:doc.data().totalPrice
+              
+            }
+            setNewOrderList((prev: any) => [tableObj, ...prev]);               
+            
+          } else {
+            const tableObj : Table = {
+
+              myTable:doc.id,
+              orderList:doc.data().bucket,
+              orderStatus:doc.data().orderStatus,
+              state:doc.data().state,
+              totalPrice:doc.data().totalPrice
+              
+            }
+            setComOrderList((prev: any) => [tableObj, ...prev]);   
+
+          }
           
 
-          const tableObj : Table = {
-            
-            myTable:doc.id,
-            orderList:doc.data().bucket,
-            orderStatus:doc.data().orderStatus,
-            state:doc.data().state,
-            totalPrice:doc.data().totalPrice
-            
-          }
+       
 
-          setTable((prev: any) => [tableObj, ...prev]);               
+                         
 
         })
 
@@ -83,23 +90,33 @@ const App = () => {
   }
 
   useEffect(()=>{
+    if(radio === 0){
+
+      getOrders('orderAt');
+
+    } else {
+      
+      getOrders('orderAt_R');
+    }
+
     
-    getOrders();
     let timerID =setInterval(()=>tick(),1000);
     return function cleanUp(){
       clearInterval(timerID);
     };
     
-  },[]);
+  },[radio]);
 
 
   
 
-  console.log(table);
+  console.log(newOrderList);
+  console.log(comOrderList)
   const listState = () => {
 
-      if(state === 0) return <NewOrderList table={table} toggleCheck={toggleCheck} indexNumber={page}/>
-      else return <CompleteOrderList table={table}/>
+    if(state === 0) return <NewOrderList table={newOrderList} toggleCheck={toggleCheck} indexNumber={page} store={query.store}/>
+    else return <CompleteOrderList table={comOrderList}/>
+
   }
  
   return (
@@ -143,9 +160,9 @@ const App = () => {
                   setPage(page-1);
               }
           }}/>
-          <h1>{page}/{table.length/3}</h1>
+          <h1>{page}/{newOrderList.length/3}</h1>
           <RightCircleOutlined className="circleButton" onClick={()=>{
-              if(page<table.length/3+1){
+              if(page<newOrderList.length/3+1){
                   setPage(page+1);
               }
           }}/>

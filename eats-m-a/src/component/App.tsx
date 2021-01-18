@@ -7,7 +7,15 @@ import '../scss/App.scss';
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 import NewOrderList from './NewOrderList';
 import CompleteOrderList from './CompleteOrderList';
+import { Table } from '../types';
+/*
 
+  추가 메뉴는 more에 담김,
+  없을 수도 있음
+
+  toString 오류는 99%로 null이라서 생김 ㅋㅋ
+
+*/
 
 
 const App = () => {
@@ -15,45 +23,59 @@ const App = () => {
 
   const [ table,setTable ] = useState<any>([]);
   const [ state,setState ] = useState<number>(0);
-  const [radio,setRadio]=useState<any>(1);
+  const [ radio,setRadio ] = useState<any>(1);
 
   const onChangeRadio= (e:any) => {
       console.log('radio checked', e.target.value);
       setRadio(e.target.value);
   };
+  // const tableDummy=[
+  //   {
+  //     check: false,
+  //     myTable: "6",
+  //     orders: [{
+  //         count:1,
+  //         menu:"가츠동",
+  //         price:5800
+  //     }]
+  //   },
+  //   {
+  //     check: false,
+  //     myTable: "3",
+  //     orders: [
+  //       {
+  //         count:4,
+  //         menu:"가츠동",
+  //         price:6500
+  //       },
+  //       {
+  //         count:4,
+  //         menu:"가츠동",
+  //         price:6500
+  //       }
+  //     ]
+  //   }
+  // ];
 
+  
+  // console.log('더미데이터');
+  // console.log(tableDummy);
+  // console.log("data");
+  //console.log(table);
 
   useEffect(()=>{
 
-    dbService.collection(`${query.store}`)
-      .orderBy("orderAt")
-      .onSnapshot((snapshot:any)=>{
-        setTable([]);
-        snapshot.docs.map((doc:any)=>{
-          console.log(doc.data().orderList);
-
-          const tableObj = {
-            
-            myTable:doc.id,
-            orders:doc.data().orderList,
-            check:doc.data().check
-          }
-
-          setTable((prev:any)=>[tableObj, ...prev]);
-
-        }
-      );
-    })
+    getOrders();
 
   },[]);
 
-  const toggleCheck = (t:number) => {
+  const toggleCheck = (t:string) => {
     
-    table.map((doc:any)=>{
+    table.map((doc:Table)=>{
 
       if(doc.myTable === t){
 
-        dbService.collection(`${query.store}`).doc(`${t}`).update({check:true})
+        dbService.collection(`${query.store}`).doc(`${t}`).update({state:true})
         
       }
       
@@ -62,40 +84,39 @@ const App = () => {
   }
 
 
-  const tableDummy=[
-          {
-          check: false,
-          myTable: "6",
-          orders: [{
-              count:1,
-              menu:"가츠동",
-              price:5800
-          }]
-      },
-      {
-          check: false,
-          myTable: "3",
-          orders: [{
-              count:4,
-              menu:"가츠동",
-              price:6500
-            },
-            {
-              count:4,
-              menu:"가츠동",
-              price:6500
-            }
-          ]
-      }
-  ];
-console.log('더미데이터');
-console.log(tableDummy);
-console.log("data");
-console.log(table);
+  const getOrders = () => {
 
+    dbService.collection(`${query.store}`)
+      .orderBy("orderAt")
+      .onSnapshot((snapshot:any)=>{
+        setTable([]);
+        snapshot.docs.map((doc:any)=>{
+          
+
+          const tableObj : Table = {
+            
+            myTable:doc.id,
+            orderList:doc.data().bucket,
+            orderStatus:doc.data().orderStatus,
+            state:doc.data().state,
+            totalPrice:doc.data().totalPrice
+            
+          }
+
+          setTable((prev:any)=>[tableObj, ...prev]);
+
+        }
+      );
+    })
+
+  }
+
+  
+
+  console.log(table);
   const listState = () => {
 
-      if(state === 0) return <NewOrderList table={tableDummy} toggleCheck={toggleCheck}/>
+      if(state === 0) return <NewOrderList table={table} toggleCheck={toggleCheck}/>
       else return <CompleteOrderList table={table}/>
   }
  

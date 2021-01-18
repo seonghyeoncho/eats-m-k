@@ -28,6 +28,7 @@ const Order = (orders:any):any =>{
                   <div className="orderInfo">
                       <h2 className="menuText" key={m.menu}><b>{m.menu}{m.n}</b></h2>
                       <h2 className="countText" key={m.count}><b>{m.count}{m.n}개</b></h2>
+                      
                   </div>
               </div>
             <hr/>

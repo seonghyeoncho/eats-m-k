@@ -16,8 +16,6 @@ const OrderStatusButton = ({orderStatus,state}:Props) => {
 
         text = '주문완료';
 
-    } else {
-        text = '주문중';
     }
 
     return<Link to="/orderstatus"><button>{text}</button></Link>

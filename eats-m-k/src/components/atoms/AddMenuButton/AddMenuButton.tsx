@@ -5,18 +5,15 @@ import { Link } from 'react-router-dom';
 
 
 type Props = {
-
-    count:number;
-    menu:string;
-    addOrders:(menu:string, count:number, id:string)=>void 
+    addOrders:()=>void 
     
 }
 
-const AddMenuButton = ({menu, count, addOrders}:Props) => {
-    const id = `${menu}/${count}/more.0`
+const AddMenuButton = ({addOrders}:Props) => {
+
     return(
 
-        <button onClick={()=>addOrders(menu, count, id)}>장바구니에 담기</button>
+        <button onClick={addOrders}>장바구니에 담기</button>
 
     );
 

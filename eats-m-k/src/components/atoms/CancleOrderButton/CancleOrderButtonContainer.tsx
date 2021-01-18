@@ -9,8 +9,9 @@ import { dbService } from '../../../firebase';
 interface Props {
     id:string
     price:number
+    bucket: any
 }
-const CancleOrderButtonContainer = ({id,price}:Props) => {
+const CancleOrderButtonContainer = ({id,price,bucket}:Props) => {
 
     const {buckets,store, table} = useSelector((state:RootState)=>({
         buckets:state.myBucket.bucket.data?.bucket,
@@ -22,7 +23,7 @@ const CancleOrderButtonContainer = ({id,price}:Props) => {
     const dispatch = useDispatch();
 
     const cancleOrders = () => {
-        const bucket = buckets.filter((doc:any)=> doc.id !== id )
+        const buckett = bucket?.filter((doc:any)=> doc.id !== id )
         console.log(bucket);
         
         dispatch(decrease(price));
@@ -30,7 +31,7 @@ const CancleOrderButtonContainer = ({id,price}:Props) => {
         dbService.collection(`${store}`).doc(`${table}`).update({
 
             bucket:[
-               ...bucket
+               ...buckett
                 
             ]
 

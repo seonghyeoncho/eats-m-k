@@ -1,4 +1,5 @@
 import React from 'react';
+import numberWithCommas from '../../../functions/addCommaFunc';
 
 interface Props {
     more:[]
@@ -12,13 +13,14 @@ const MoreMenuListInBucket = ({more}:Props) => {
             console.log(i, doc[i])
         }
     });
+    console.log(more)
 
     return (
         <div>
             {
                 more.map((doc:any)=>{
                     for(let i in doc){
-                        return <div>{i}{doc[i]}</div>
+                        return <div>{i}   {numberWithCommas(doc[i])}원</div>
                     }
                 })
                 

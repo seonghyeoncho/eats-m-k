@@ -12,7 +12,17 @@ const OrderStatusButtonContainer = () => {
     }))
 
 
-    return <OrderStatusButton orderStatus={orderStatus} state={state}/>
+    return (
+        <div>
+            { 
+                !orderStatus ? 
+
+                    <></> 
+                : 
+                    <OrderStatusButton orderStatus={orderStatus} state={state}/>
+            }
+        </div>
+    );
 }
 
 export default OrderStatusButtonContainer;

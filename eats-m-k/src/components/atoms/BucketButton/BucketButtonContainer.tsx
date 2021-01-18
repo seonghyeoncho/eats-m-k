@@ -7,15 +7,15 @@ import BucketButton from './BucketButton';
 
 const BucketButtonContainer = () => {
 
-    const {orderState, store, table} = useSelector((state:RootState)=>({
+    const { store, table} = useSelector((state:RootState)=>({
 
-        orderState:state.stateSet.orderState,
+
         store:state.storeSet.store,
         table:state.tableSet.table,
         
     }));
 
-    console.log(orderState);
+
 
     return(
 

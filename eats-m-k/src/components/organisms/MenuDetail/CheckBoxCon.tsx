@@ -2,27 +2,33 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../modules';
 
+
 interface Props {
+    addMoreMenu: ( m:string, p:number ) => void;
 
-    onClick: (doc:any) => void
 }
+const CheckBoxCon = ({ addMoreMenu }:Props) => {
 
+    const { AC } = useSelector((state:RootState)=> ({
 
-const CheckBoxCon = ({onClick}:Props) => {
-
-
-
-    const { sideMenus } = useSelector((state:RootState)=>({
-        sideMenus: state.myBase.menus.data?.sidemenu
-    }))
+        AC:state.myBase.menus.data?.AC
+        
+    }));
+    console.log(AC);
+    AC?.map((doc:any)=>{
+        for(let i in doc){
+           
+            console.log(doc,doc[i],i);
+        }
+    })
 
 
     return (
         <div>
             {
-                sideMenus?.map((doc:any)=>{
+                AC?.map((doc:any)=>{
                     for(let i in doc){
-                        return <div onClick={()=>onClick(doc)}>{i}</div>
+                        return <div onClick={()=>addMoreMenu(doc, doc[i])}>{i}<div>+{doc[i]}원</div> </div>
                     }
                 })
             }

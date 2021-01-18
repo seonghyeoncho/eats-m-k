@@ -12,25 +12,27 @@ interface Props {
 
 const OrderContainer = ({text}:Props) => {
 
-    const {store, table } = useSelector((state:RootState)=>({
+    const {store, table, totalPrice, id } = useSelector((state:RootState)=>({
         
         store:state.storeSet.store,
         table:state.tableSet.table,
-        
+        totalPrice:state.totalPrice.price,
+        id:state.idSet.id
 
+        
     }));
 
     const dispatch = useDispatch();
 
     const onSubmit = () => {
-  
-
           
         dbService.collection(`${store}`).doc(`${table}`)
           .update({
 
             'orderAt' : Date.now(),
-            'orderStatus' : true 
+            'orderStatus' : true ,
+            totalPrice : totalPrice,
+            
       
           })
           .then(function() {

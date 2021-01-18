@@ -5,14 +5,14 @@ import { RootState } from '../../../modules';
 import SideMenuList from './SideMenuList';
 
 const SideMenuListContainer = () => {
-    const { sideMenus } = useSelector((state:RootState)=>({
-        sideMenus:state.myBase.menus.data?.sidemenu
+    const { AC } = useSelector((state:RootState)=>({
+        AC:state.myBase.menus.data?.AC
 
     }))
-    console.log(sideMenus);
+    console.log(AC);
 
     return(
-        <SideMenuList sideMenus={sideMenus}/>
+        <SideMenuList AC={AC}/>
     );
 }
 export default SideMenuListContainer;

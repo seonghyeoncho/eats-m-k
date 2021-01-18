@@ -5,37 +5,51 @@ import BackButton from '../../atoms/BackButton/BackButton';
 import CancleOrderButtonContainer from '../../atoms/CancleOrderButton/CancleOrderButtonContainer';
 import OrderContainer from '../../atoms/Order/OrderContainer';
 import MoreMenuListInBucket from '../MenuDetail/MoreMenuListInBucket';
-
+import ModifCount from './ModifCount';
 
 interface Props {
-    bucket: any
-    handleClick: () => void
 
-    
+    bucket: any
+
 }
 const BucketView = ({bucket}:Props) => {
-    const [set,forceUpdate] = useState(1);
-    console.log(bucket);
-
-    function handleClick() {
-        forceUpdate(0);
-        console.log('111')
-      }
-    
 
     return (
         <div>
             
-            
             {
                 bucket.length === 0 ? 
-                    <div>메뉴를 추가해 주세요</div>
+                    <>
+
+                        <div>메뉴를 추가해 주세요</div>
+                        <BackButton text={'추가하기'}/>
+
+                    </>
+
                 :
+
                     bucket?.map((doc:any)=>{
+
                         for(let i in doc){
+
                             return (
+
                                 <div>
-                                    <div>{doc.menu}{numberWithCommas(doc.price)}원</div>
+
+                                    <div>{doc.menu}{numberWithCommas(doc.itemTotalPrice)}원</div>
+
+                                    {/* 개수 수정 컴포넌트 */}
+                                    <ModifCount 
+
+                                        c={doc.count} 
+                                        id={doc.id} 
+                                        menu={doc.menu} 
+                                        price={doc.price} 
+                                        more={doc.more} 
+                                        itemTotalPrice={doc.itemTotalPrice}
+                                        
+                                    />
+
                                     {
                                         doc.more !== undefined ? 
                                             
@@ -44,20 +58,22 @@ const BucketView = ({bucket}:Props) => {
                                             <div>추가사항 없음</div>
                                     }
                                     
-                                    <div onClick={handleClick}><CancleOrderButtonContainer id={doc.id} price={doc.price * doc.count}/></div>
+                                    <CancleOrderButtonContainer id={doc.id} price={doc.price * doc.count} bucket={bucket}/>
 
                                     <hr/>
                                 </div>
+
                             );
+
                         }
+
                     })
                 
-
-                
             }
+
+            <BackButton text={'뒤로가기'}/>
             
-            <OrderContainer text={"더담기"}/>
-            
+            {/* 장바구니 안에서 주문 기능이랑 장바구니 상태에 따른 버튼 표현 구현하기 */}
             
         </div>
     );

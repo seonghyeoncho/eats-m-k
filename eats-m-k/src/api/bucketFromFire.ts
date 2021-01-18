@@ -5,6 +5,8 @@ export const getBucket =  async (store:string | string[] | null, table: string |
 }
 export interface  Buckets {
     bucket : [] | any,
-    check:boolean,
-    orderState:boolean;
+    state:boolean,
+    orderStatus:boolean,
+    clientId:string,
+    totalPrice:number
 }

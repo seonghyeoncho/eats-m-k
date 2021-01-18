@@ -10,12 +10,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../modules';
 import { getMenuThunk } from '../../../modules/getMenus/thunks';
 import { useCookies } from 'react-cookie';
+import OrderStatus from '../OrderStatus';
+import BucketPreview from '../MenuDetail/BukcetPreview';
 
 
 //파이어 베이스에서 데이터를 받아오는 형태라서 계속 리슨함. api로 한번만 받아오기를 해야할 듯.
 
 const AppRouter = () =>{
-    const [cookies, setCookies,removeCookies ] = useCookies(['buckets']);
+
     
     
     return(
@@ -36,18 +38,22 @@ const AppRouter = () =>{
 
                     />
                     <Route exact path="/bucket"
-                        component={()=><BucketViewContainer/>}
+                        component={(props:any)=><BucketViewContainer {...props}/>}
                     />
-                   
+                    <Route exact path="/orderstatus"
+                        component={()=><OrderStatus/>}
+                    />
 
                     <Route exact path="/detail" 
 
-                        component={(props:any)=><DetailView setCookies={setCookies} cookies={cookies} {...props}/>}
+                        component={(props:any)=><DetailView {...props}/>}
 
                     />
+
                     <Route exact path="/complete"
                         component={()=><CompleteView />}
                     />
+                    
                 
 
                 </Switch>

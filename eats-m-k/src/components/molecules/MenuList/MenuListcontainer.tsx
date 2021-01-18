@@ -10,11 +10,6 @@ const MenuListContainer = () => {
         menus:state.myBase.menus.data?.menu
     }));
     
-    
-
-
-    
-
     return <MenuList menus={menus}/>
 }
 

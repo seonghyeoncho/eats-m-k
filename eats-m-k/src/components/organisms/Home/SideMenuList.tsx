@@ -1,15 +1,15 @@
 import React from 'react';
 interface Props {
-    sideMenus: [] | undefined
+    AC: [] | undefined
 }
 
-const SideMenuList = ({sideMenus}:Props) => {
+const SideMenuList = ({AC}:Props) => {
 
 
     return(
         <div>
             {
-                sideMenus?.map((doc:any) => {
+                AC?.map((doc:any) => {
                     for(let i in doc){
                         return <div>{i}{doc[i]}원</div>
                     }

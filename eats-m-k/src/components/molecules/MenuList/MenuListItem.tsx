@@ -14,7 +14,7 @@ const MenuListItem = ({menu,price}:Props) => {
 
 
     return (
-        <Link to={`/detail/?menu=${menu}`}>
+        <Link to={`/detail/?menu=${menu}&price=${price}`}>
             <div>{menu}</div>
             <div>{numberWithCommas(price)}원</div>
             <div>사진</div>

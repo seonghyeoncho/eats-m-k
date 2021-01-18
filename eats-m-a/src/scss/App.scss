@@ -7,10 +7,18 @@ body{
 
 
 .Menu{
-    height:8vh;
     font-size:1rem;
 }
 
+.infoBar{
+    margin: 1vh 3vh 0 3vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.infoHr{
+    margin:0;
+}
 
 .orderButtonClass{
     margin:0;
@@ -32,4 +40,21 @@ body{
     background-color: #ff1b6d;
     border:none;
     color:white;
+}
+
+
+.radioDiv {
+    margin-top:1vh;
+}
+
+
+.pageButton{
+    display: flex;
+    flex-direction: Row;
+    justify-content: center;
+    font-size: 1rem;
+}
+
+.circleButton{
+    font-size: 3rem;
 }

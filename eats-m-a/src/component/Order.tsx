@@ -27,16 +27,19 @@ const Order = (orders:any):any =>{
         {order.map((m:any)=>
             <>
               <div className="orderDiv">
-                  <div className="orderInfo">
-                      <h2 className="menuText" key={m.menu}><b>{m.menu}</b></h2>
-                      <h2 className="countText" key={m.count}><b>{m.count}개</b></h2>
+                  <div className="tatalInfo">
+                      <div className="orderInfo">
+                          <h2 className="menuText" key={m.menu}><b>{m.menu}</b></h2>
+                          <h2 className="countText" key={m.count}><b>{m.count}개</b></h2>
+                      </div>
+                      <div className="orderDetail">
                       {
                         m.more.length !== 0 ? 
                           <>
                             {
                               m.more.map((doc:any)=>{
                                 for(let i in doc){
-                                  return <div>{i}</div>
+                                  return <h4>|{i}</h4>
                                 }
                               })
                             }
@@ -44,6 +47,7 @@ const Order = (orders:any):any =>{
                         :
                           <></>
                       }
+                      </div>
                       
                   </div>
               </div>

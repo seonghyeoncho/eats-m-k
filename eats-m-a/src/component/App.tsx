@@ -160,7 +160,7 @@ const App = () => {
                   setPage(page-1);
               }
           }}/>
-          <h1>{page}/{newOrderList.length/3}</h1>
+          <h1>{page}/{Math.ceil(newOrderList.length/3)}</h1>
           <RightCircleOutlined className="circleButton" onClick={()=>{
               if(page<newOrderList.length/3+1){
                   setPage(page+1);

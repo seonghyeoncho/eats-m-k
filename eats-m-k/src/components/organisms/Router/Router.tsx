@@ -14,6 +14,7 @@ import OrderStatus from '../OrderStatus';
 import BucketPreview from '../MenuDetail/BukcetPreview';
 
 
+
 //파이어 베이스에서 데이터를 받아오는 형태라서 계속 리슨함. api로 한번만 받아오기를 해야할 듯.
 
 const AppRouter = () =>{
@@ -51,8 +52,9 @@ const AppRouter = () =>{
                     />
 
                     <Route exact path="/complete"
-                        component={()=><CompleteView />}
-                    />
+                        component={(props:any)=><CompleteView {...props}/>}
+                    /> 
+
                     
                 
 

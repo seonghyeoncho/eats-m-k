@@ -1,8 +1,10 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { dbService } from '../../../firebase';
 import { RootState } from '../../../modules';
 import { increase } from '../../../modules/totalPrice';
+import OrderButton from '../../atoms/OrderButton/OrderButton';
 import OrderButtonContainer from '../../atoms/OrderButton/OrderButtonContainer';
 
 interface Props {
@@ -49,7 +51,7 @@ const OrderButtonDirect = ({select}:Props) => {
 
         dbService.collection(`${store}`).doc(`${table}`).update({
             'bucket':Obj,
-            'totalPrice': select.price,
+            'totalPrice': select.itemTotalPrice,
 
         })
         
@@ -60,7 +62,12 @@ const OrderButtonDirect = ({select}:Props) => {
     return(
         <div>
 
-            <div onClick={onClick}><OrderButtonContainer /></div>
+            <div onClick={onClick}>
+                <Link to='/orderlist'>
+                        <button>주문하기</button>
+                </Link>
+            
+            </div>
 
         </div>
     );

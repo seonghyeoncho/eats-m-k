@@ -3,16 +3,19 @@ import { useSelector } from 'react-redux';
 import numberWithCommas from '../../../functions/addCommaFunc';
 import { RootState } from '../../../modules';
 import OrderContainer from '../../atoms/Order/OrderContainer';
-import OrderItem from '../../atoms/OrderList/OrderItem';
+interface Props {
 
-const OrderListView = (props:any) => {
+    totalPrice:number
+}
 
-    const { orderStatus,store,table,totalPrice,bucket} = useSelector((state:RootState)=> ({
+const Test = ({totalPrice}:Props) => {
+
+    const { orderStatus,store,table,bucket} = useSelector((state:RootState)=> ({
          
         orderStatus:state.stateSet.orderStatus,
         store:state.storeSet.store,
         table:state.tableSet.table,
-        totalPrice:state.myBucket.bucket.data?.totalPrice,
+
         bucket:state.myBucket.bucket.data?.bucket
         
     }));
@@ -21,8 +24,6 @@ const OrderListView = (props:any) => {
     console.log(bucket);
     
     console.log(totalPrice);
-  
-
 
     return (
         <div>
@@ -65,7 +66,6 @@ const OrderListView = (props:any) => {
             <OrderContainer text={"취소하기"}/>
             
         </div>
-    );
+    )
 }
-
-export default OrderListView;
+export default Test;

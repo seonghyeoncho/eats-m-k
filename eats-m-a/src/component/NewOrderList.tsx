@@ -31,7 +31,7 @@ const NewOrderList = ({table,toggleCheck,indexNumber,store}:Props) => {
       }
   }
 
-  console.log(tables);
+
 
   useEffect(()=>{
     const data = dbService.collection(`${store}`).where('state','==','false').get();

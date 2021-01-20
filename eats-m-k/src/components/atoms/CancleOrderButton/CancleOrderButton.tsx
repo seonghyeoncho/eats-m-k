@@ -1,4 +1,5 @@
 import React from 'react';
+import Trashcon from '../../../images/icon_delete@3x.png';
 
 type Props = {
     cancleOrders:()=>void
@@ -7,7 +8,7 @@ type Props = {
 const CancleOrderButton = ({cancleOrders}:Props) => {
 
     return (
-        <button onClick={cancleOrders}>X</button>
+        <button onClick={cancleOrders}><img src={Trashcon}></img></button>
     );
 }
 

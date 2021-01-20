@@ -1,19 +1,22 @@
 import React from 'react';
+import Ready from '../../../graphics/graphic_ready.png';
 interface Props {
-    AC: [] | undefined
+    sideMenu: [] | undefined
 }
 
-const SideMenuList = ({AC}:Props) => {
+const SideMenuList = ({sideMenu}:Props) => {
 
 
     return(
         <div>
             {
-                AC?.map((doc:any) => {
-                    for(let i in doc){
-                        return <div>{i}{doc[i]}원</div>
-                    }
-                })
+                sideMenu?.values.length === 0 ? 
+                <>
+                    <img src={Ready}/>
+                    <div>메뉴 준비중입니다</div>
+                </>
+            :
+                <div>세트메뉴입니다!</div>
                 
             }
 

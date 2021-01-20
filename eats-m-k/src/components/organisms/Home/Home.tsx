@@ -32,7 +32,7 @@ const Home = ( props: any ) => {
     //props의 type을 왜 any로 주는지 잘 모르겠는데 object로 주면 읽지를 못함
     //type을 object로 정하면 props를 받아올 수가 없음 ㅋㅋ
 
-    const [ cookies, setCookie, removeCookie ] = useCookies(['clientId']);
+    const [ cookies, setCookie, removeCookie ] = useCookies(['clientId', 'bucket']);
     //쿠키를 통해서 새로운 고객을 구별하도록 함
     //쿠키는 접속시 있으면 버킷이랑 비교해서 같으면 설정하지 않고 다르면 설정함. 없을 경우는 바로 설정함
     
@@ -89,7 +89,7 @@ const Home = ( props: any ) => {
 
     },[id]);
     
-    //스프레드를 바꾸는 함수
+    //리스트를 바꾸는 함수
 
     const changeList = (n:number) => {
 
@@ -99,24 +99,14 @@ const Home = ( props: any ) => {
 
     }
 
-    // setCookie('clientId', clientId);
-    //         dispatch(setId(clientId));
-    //         dbService.collection(`${store}`).doc(`${table}`).update({
-    //             'bucket':[],
-    //             orderStatus:false,
-    //             state:false,
-    //             clientId:clientId,
-    //             totalPrice:0
-                
-
-    //         })
-
     const onCookie = () => {
 
         if( cookies.clientId === undefined ) {
+
             console.log('쿠키가 없으면 이게 나옵니다.');
 
             setCookie('clientId', clientId);
+
         
             dbService.collection(`${store}`).doc(`${table}`).update({
 
@@ -129,13 +119,18 @@ const Home = ( props: any ) => {
             })
 
         } else {
+
             console.log('쿠키가 있으면 이게 나오고')
+
             if(cookies.clientId === id ){
-                console.log('전 사용자의 아이디와 현 사용자의 아이디가 같다면 이게 나옵니다.')
+
+                console.log('전 사용자의 아이디와 현 사용자의 아이디가 같다면 이게 나옵니다.');
+
             } else if (cookies.clientId !== id && state) {
+
                 console.log('전 사용자의 아이디와 현 사용자의 아이디가 다르다고 주문 접수된 상태라면 이게 나옵니다.');
                 setCookie('clientId', clientId);
-        
+
                 dbService.collection(`${store}`).doc(`${table}`).update({
 
                     'bucket':[],
@@ -156,6 +151,7 @@ const Home = ( props: any ) => {
     console.log('id',id);
     console.log('totalPrice', totalPrice);
     console.log('bucket', buckets);
+    console.log("totalPrice",totalPrice)
 
     return (
         <>
@@ -179,7 +175,7 @@ const Home = ( props: any ) => {
 
             {/*단품메뉴, 세트메뉴, 사이드메뉴 */}
             
-            <button onClick={()=>setMenuListState(0)}>단품메뉴</button>
+            <button onClick={()=>setMenuListState(0)} style={{fontSize:'13px'}}>단품메뉴</button>
             <button onClick={()=>setMenuListState(1)}>세트메뉴</button>
             <button onClick={()=>setMenuListState(2)}>사이드메뉴</button>
 
@@ -187,7 +183,7 @@ const Home = ( props: any ) => {
             {changeList(menuListState)}
 
             {/* 주문하기 버튼*/}
-            { totalPrice === 0 ? <></> : <OrderButtonContainer/>}
+            { totalPrice === 0 ? <></> : <OrderButtonContainer />}
             {/*추가 주문 생각해보기 */}
             {/* totalPrice를 불러오는 시간때문에 처음에는 보여주고 시작함. 나쁜 환경을 제공할 수 있음 */}
         

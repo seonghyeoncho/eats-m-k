@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../modules';
 
@@ -8,6 +8,7 @@ interface Props {
 
 }
 const CheckBoxCon = ({ addMoreMenu }:Props) => {
+    const [state, setState] = useState<boolean>(false);
 
     const { AC } = useSelector((state:RootState)=> ({
 

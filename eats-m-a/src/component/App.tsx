@@ -6,7 +6,7 @@ import '../scss/App.scss';
 import NewOrderList from './NewOrderList';
 import CompleteOrderList from './CompleteOrderList';
 import { Table } from '../types';
-import {LeftCircleOutlined, RightCircleOutlined} from "@ant-design/icons";
+import { LeftCircleOutlined, RightCircleOutlined } from "@ant-design/icons";
 
 const App = () => {
   const query = queryString.parse(window.location.search);
@@ -21,8 +21,8 @@ const App = () => {
 
 
   const onChangeRadio= (e:any) => {
-      console.log('radio checked', e.target.value);
-      setRadio(e.target.value);
+
+    setRadio(e.target.value);
   };
 
   
@@ -78,11 +78,6 @@ const App = () => {
             setComOrderList((prev: any) => [tableObj, ...prev]);   
 
           }
-          
-
-       
-
-                         
 
         })
 
@@ -110,8 +105,7 @@ const App = () => {
 
   
 
-  console.log(newOrderList);
-  console.log(comOrderList)
+
   const listState = () => {
 
     if(state === 0) return <NewOrderList table={newOrderList} toggleCheck={toggleCheck} indexNumber={page} store={query.store}/>

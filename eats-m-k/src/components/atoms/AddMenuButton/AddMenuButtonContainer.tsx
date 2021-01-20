@@ -51,13 +51,15 @@ const AddMenuContainer = ({ select, history }:Props) => {
     const addOrders = () => {
         //for id data
         var a = '0'
-        if( select.more === undefined) { a = '1' } 
+        console.log(select.more)
+        if( select.more.length !== 0) { a = '1' } 
         const Obj = buckets.concat({
             ...select,
             id:`${select.menu}/${count}/${a}`,
             
         })
         console.log(Obj);
+        console.log(select.itemTotalPrice);
         //set Total price
         dispatch(increase(select.itemTotalPrice));
         
@@ -67,10 +69,9 @@ const AddMenuContainer = ({ select, history }:Props) => {
                ...Obj,
                 
             ],
-            'totalPrice': totalPrice + (select.price * count)   
-
+            'totalPrice': totalPrice + select.itemTotalPrice  
+        });
         
-        })
 
         dispatch(resetCount());
         history.goBack();

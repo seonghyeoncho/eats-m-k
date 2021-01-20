@@ -10,9 +10,10 @@ import ModifCount from './ModifCount';
 interface Props {
 
     bucket: any
+    totalPrice:number
 
 }
-const BucketView = ({bucket}:Props) => {
+const BucketView = ({bucket,totalPrice}:Props) => {
 
     return (
         <div>
@@ -39,16 +40,7 @@ const BucketView = ({bucket}:Props) => {
                                     <div>{doc.menu}{numberWithCommas(doc.itemTotalPrice)}원</div>
 
                                     {/* 개수 수정 컴포넌트 */}
-                                    <ModifCount 
-
-                                        c={doc.count} 
-                                        id={doc.id} 
-                                        menu={doc.menu} 
-                                        price={doc.price} 
-                                        more={doc.more} 
-                                        itemTotalPrice={doc.itemTotalPrice}
-                                        
-                                    />
+                                    
 
                                     {
                                         doc.more !== undefined ? 
@@ -57,8 +49,20 @@ const BucketView = ({bucket}:Props) => {
                                         :
                                             <div>추가사항 없음</div>
                                     }
+                                    <hr></hr>
+                                    <ModifCount 
+
+                                        c={doc.count} 
+                                        id={doc.id} 
+                                        menu={doc.menu} 
+                                        price={doc.price} 
+                                        more={doc.more} 
+                                        itemTotalPrice={doc.itemTotalPrice}
+                                        totalPrice={totalPrice}
+
+                                    />
                                     
-                                    <CancleOrderButtonContainer id={doc.id} price={doc.price * doc.count} bucket={bucket}/>
+                                    <CancleOrderButtonContainer id={doc.id} price={doc.itemTotalPrice} bucket={bucket}/>
 
                                     <hr/>
                                 </div>

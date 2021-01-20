@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CancleOrderButton from './CancleOrderButton';
 import { decrease } from '../../../modules/totalPrice';
@@ -13,10 +13,11 @@ interface Props {
 }
 const CancleOrderButtonContainer = ({id,price,bucket}:Props) => {
 
-    const {buckets,store, table} = useSelector((state:RootState)=>({
+    const {buckets,store, table,totalPrice} = useSelector((state:RootState)=>({
         buckets:state.myBucket.bucket.data?.bucket,
         store:state.storeSet.store,
-        table:state.tableSet.table
+        table:state.tableSet.table,
+        totalPrice:state.totalPrice.price
 
     }))
     
@@ -33,7 +34,8 @@ const CancleOrderButtonContainer = ({id,price,bucket}:Props) => {
             bucket:[
                ...buckett
                 
-            ]
+            ],
+            totalPrice: totalPrice - price
 
         
         })

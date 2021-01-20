@@ -11,6 +11,8 @@ import numberWithCommas from '../../../functions/addCommaFunc';
 import OrderButtonDirect from './OrderButtonDirect';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../modules';
+import { Route } from 'react-router-dom';
+import Test from './Test';
 
 const DetailView = (props:any) => {
 
@@ -42,7 +44,7 @@ const DetailView = (props:any) => {
         }
         setSelect(Obj);
 
-    },[more,menu]);
+    },[more,menu,count]);
 
     const addMoreMenu = (m:any, p:number) => {
 
@@ -72,6 +74,7 @@ const DetailView = (props:any) => {
            <hr/>
            <AddMenuContainer select={select} history={props.history}/>
            <OrderButtonDirect select={select}/>
+           
           
 
            

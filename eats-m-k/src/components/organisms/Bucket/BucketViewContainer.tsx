@@ -5,6 +5,7 @@ import { RootState } from '../../../modules';
 import { dbService } from '../../../firebase';
 import numberWithCommas from '../../../functions/addCommaFunc';
 import { resetPrice } from '../../../modules/totalPrice';
+import OrderButton from '../../atoms/OrderButton/OrderButton';
 
 const BucketViewContainer = (props:any) => {
 
@@ -17,20 +18,21 @@ const BucketViewContainer = (props:any) => {
     
     }))
     const [ buckets,setBuckets ] = useState([]);
-    const [totalPrice, setTotalPrice] = useState<number>(p);
+    const [ totalPrice, setTotalPrice ] = useState<number>(p);
 
     const dispatch = useDispatch();
 
     useEffect(()=>{
 
         dbService.collection(`${store}`).doc(`${table}`)
-        .onSnapshot(snapShot=>{
-            console.log(snapShot.data()?.bucket);
-            setBuckets(snapShot.data()?.bucket);
-            setTotalPrice(snapShot.data()?.totalPrice);
+            .onSnapshot(snapShot=>{
+                console.log(snapShot.data()?.bucket);
+                setBuckets(snapShot.data()?.bucket);
+                setTotalPrice(snapShot.data()?.totalPrice);
         })
         
-    },[totalPrice]);
+    },[]);
+    console.log('totalPrice',totalPrice);
 
     const resetBucket = () => {
 
@@ -39,6 +41,7 @@ const BucketViewContainer = (props:any) => {
             'totalPrice':0
         });
         dispatch(resetPrice());
+        
         props.history.goBack();
 
     }
@@ -51,14 +54,15 @@ const BucketViewContainer = (props:any) => {
                     <div>
                         <div>{store}</div>
                         <div>테이블 {table}</div>
-                        <div>{numberWithCommas(totalPrice)}</div>
+                        <div>{numberWithCommas(p)}</div>
                         <button onClick={resetBucket}>전체 삭제</button>
                     </div>
                 :
                     <></>
             }
 
-            <BucketView bucket={buckets} />
+            <BucketView bucket={buckets} totalPrice ={p}/>
+            <OrderButton/>
         </div>
     );
 

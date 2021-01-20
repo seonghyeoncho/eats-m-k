@@ -30,6 +30,7 @@ const OrderContainer = ({text}:Props) => {
           .update({
 
             'orderAt' : Date.now(),
+            'orderAt_R' : -Date.now(),
             'orderStatus' : true ,
             totalPrice : totalPrice,
             

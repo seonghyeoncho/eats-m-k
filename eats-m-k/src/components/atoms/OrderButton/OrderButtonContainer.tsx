@@ -6,16 +6,12 @@ import { RootState } from '../../../modules';
 import { setState } from '../../../modules/orderState';
 import { resetPrice } from '../../../modules/totalPrice';
 
+
 const OrderButtonContainer = () => {
 
-    const {totalPrice} = useSelector((state:RootState) => ({
-
-        totalPrice: state.totalPrice.price,
-        
-    }));
 
     return(
-        <OrderButton totalPrice={totalPrice}/>
+        <OrderButton />
     );
 }
 

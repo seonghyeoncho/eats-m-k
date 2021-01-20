@@ -16,7 +16,7 @@ interface Props {
 const NewOrderList = ({table,toggleCheck,indexNumber}:Props) => {
   const query = queryString.parse(window.location.search);
   const [select,setSelect] = useState<any>();
-  const [popoverVisible,setPopoverVisible]=useState<boolean>(false);
+  const [popoverVisible,setPopoverVisible]=useState<any>({tableNum:0,visible:false});
 
   const onClick = (menu:any) => {
     setSelect(menu);
@@ -53,7 +53,12 @@ const NewOrderList = ({table,toggleCheck,indexNumber}:Props) => {
                                       <Order orders={m.orderList}/>
                                       <div className='totalPriceDiv'><hr className='coloredHr'/><h3>총 가격 : {numberWithCommas(m.totalPrice)}</h3></div>
                                       <div>
-                                          <Button className="orderCancelButton" onClick={() => dbService.collection(`${query.store}`).doc(`${m.myTable}`).update({bucket:[]})}>
+                                          <Button className="orderCancelButton" onClick={() => {
+                                              dbService.collection(`${query.store}`).doc(`${m.myTable}`).update({bucket:[]})
+                                              dbService.collection(`${query.store}`).doc(`${m.myTable}`).update({totalPrice:0})
+                                              dbService.collection(`${query.store}`).doc(`${m.myTable}`).update({orderStatus:false})
+
+                                          }}>
                                             <h1>주문취소</h1>
                                           </Button>
                                           <Button className="orderFinishedButton" onClick={() => toggleCheck(m.myTable)}>
@@ -65,6 +70,9 @@ const NewOrderList = ({table,toggleCheck,indexNumber}:Props) => {
                                       {
                                           <>
                                               <Order orders={m.orderList.slice(0,4)}/>
+                                              <h1>
+                                                 상위 4개의 메뉴만 출력됩니다. 주문상세보기를 눌러 전체 메뉴를 확인해 주세요
+                                              </h1>
                                               <div className='totalPriceDiv'><hr className='coloredHr'/><h3>총 가격 : {numberWithCommas(m.totalPrice)}</h3></div>
 
                                               <Popover
@@ -72,7 +80,12 @@ const NewOrderList = ({table,toggleCheck,indexNumber}:Props) => {
                                                       <div className='menuPopover'>
                                                           <Order orders={m.orderList}/>
                                                           <div className='totalPriceDiv'><hr className='coloredHr'/><h3>총 가격 : {numberWithCommas(m.totalPrice)}</h3></div>
-                                                          <Button className="orderCancelButton" onClick={() => dbService.collection(`${query.store}`).doc(`${m.myTable}`).update({bucket:[]})}>
+                                                          <Button className="orderCancelButton" onClick={() => {
+                                                              dbService.collection(`${query.store}`).doc(`${m.myTable}`).update({bucket:[]})
+                                                              dbService.collection(`${query.store}`).doc(`${m.myTable}`).update({totalPrice:0})
+                                                              dbService.collection(`${query.store}`).doc(`${m.myTable}`).update({orderStatus:false})
+
+                                                          }}>
                                                               <h1>주문취소</h1>
                                                           </Button>
                                                           <Button className="orderFinishedButton" onClick={() => toggleCheck(m.myTable)}>
@@ -83,16 +96,16 @@ const NewOrderList = ({table,toggleCheck,indexNumber}:Props) => {
                                                   }
                                                   title={<>
 
-                                                          <Button onClick={()=>setPopoverVisible(false)}>닫기</Button>
+                                                          <Button onClick={()=>setPopoverVisible({table:m.myTable,visible:false})}>닫기</Button>
                                                           <h1 className='cardTitle'>{m.myTable}번 테이블</h1>
                                                           <></>
                                                       </>
                                                   }
                                                   trigger="click"
-                                                  visible={popoverVisible}
+                                                  visible={m.myTable==popoverVisible.table && popoverVisible.visible}
 
                                               >
-                                                  <Button className="orderMoreDetailButton" onClick={() => setPopoverVisible(true)}>
+                                                  <Button className="orderMoreDetailButton" onClick={() => setPopoverVisible({table:m.myTable,visible:true})}>
                                                       <h1>주문 상세보기</h1>
                                                   </Button>
                                               </Popover>

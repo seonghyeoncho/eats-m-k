@@ -6,12 +6,27 @@ import { RootState } from '../../../modules';
 import { setState } from '../../../modules/orderState';
 import { resetPrice } from '../../../modules/totalPrice';
 
+interface Props {
 
-const OrderButtonContainer = () => {
+    totalPrice:number | undefined
+
+}
+
+const OrderButtonContainer = ({totalPrice}:Props) => {
 
 
     return(
-        <OrderButton />
+        <>
+
+            { 
+                totalPrice === 0 ? 
+
+                    <></> 
+                : 
+                <OrderButton />
+                
+            }
+        </>
     );
 }
 

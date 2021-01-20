@@ -3,6 +3,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import numberWithCommas from '../../../functions/addCommaFunc';
 import MenuListItem from './MenuListItem';
+import Ready from '../../../graphics/graphic_ready.png';
+
 
 type Props = {
     
@@ -11,24 +13,33 @@ type Props = {
 }
 
 const MenuList = ({ menus }:Props ) => {
-    console.log(menus);
-    menus?.map((doc:any)=>
-        {for(let i in doc){
-            console.log(doc[i].price)
-        }}
-    )
-
+  
     return(
  
         <div>
-           
             {
-                menus?.map((doc:any)=>{
-                    for(let i in doc){
-                        return <MenuListItem menu={i} price={doc[i].price}/>
-                    }
-                })
+                menus?.length === 0 ? 
+
+                    <div className="ready-img">
+                        <div className="ready-content">
+                            <img src={Ready}/>
+                            <div>메뉴 준비중입니다</div>
+                        </div>
+
+                    </div >
+                :
+                    <>
+                        {  
+                            menus?.map((doc:any)=>{
+                                for(let i in doc){
+                                    return <MenuListItem menu={i} price={doc[i].price}/>
+                                }
+                            })
+                        }
+                    </>
+
             }
+           
 
         </div>
 

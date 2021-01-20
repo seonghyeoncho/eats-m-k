@@ -25,11 +25,17 @@ const CheckBoxCon = ({ addMoreMenu }:Props) => {
 
 
     return (
-        <div>
+        <div className="checkbox-con">
+
             {
                 AC?.map((doc:any)=>{
                     for(let i in doc){
-                        return <div onClick={()=>addMoreMenu(doc, doc[i])}>{i}<div>+{doc[i]}원</div> </div>
+                        return (
+                            <div onClick={()=>addMoreMenu(doc, doc[i])} className="checkbox-item">
+                                <div>{i}</div>
+                                <div>+{doc[i]}원</div>
+                            </div>
+                        )
                     }
                 })
             }

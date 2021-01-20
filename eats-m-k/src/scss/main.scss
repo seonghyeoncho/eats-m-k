@@ -1,0 +1,258 @@
+@import '../scss/mixin';
+@include mobile {
+    background-color: #{$base-color};
+  
+    
+
+}
+@include tablet {
+    
+}
+@include desktop {
+
+}
+
+.store-nav-con{
+    background-color: $base-color;
+    color: #ffffff;
+
+}
+body{
+    margin:0px;
+    font-family: NotoSansCJkkr-Regular;
+    
+}
+Link{
+    text-decoration: none;
+}
+.menulist-nav{
+    
+   display: flex;
+   flex-direction: row;
+   height: 40px;
+
+  
+
+}
+.store-nav-con{
+    display: flex;
+    justify-content: space-between;
+
+    .store-nav-store{
+        font-family: NotoSansCJkkr-Bold;
+        font-size: $store-bold-font-size;
+        margin-left: $breakpoint-mobile/10;
+        margin-top: 568/83px;
+    }
+    .store-nav-table{
+        font-family: NotoSansCJkkr-Bold;
+        font-size: $table-bold-font-size;
+        margin-left: $breakpoint-mobile/10;
+    
+    }
+    .order-status-bt{
+        
+    }
+
+}
+.main-content{
+    .main-order-bt{
+
+
+
+        background-color: $base-color;
+        font-family: NotoSansCJkkr-Bold;
+        color: #ffffff;
+    
+        
+        border-radius: 38px;
+        border: none;
+        text-align: center;
+    
+    
+    }
+
+}
+
+.ready-img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.item-con{
+    display: flex;
+    justify-content:space-between;
+    margin: 10px;
+    color: black;
+
+    
+    .item-content{
+        
+
+        .item-menu{
+            
+            font-family: NotoSansCJkkr-Bold;
+            font-size: 25px;
+        }
+        .item-price{
+            font-family: NotoSansCJkkr-Regular;
+            font-size: 19px;
+        }
+
+    }
+    .item-img{}
+
+}
+.bucket-nav{
+    display: flex;
+    justify-content: space-between;
+}
+.bucket-info-con{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .bucket-info{
+        flex-direction: column;
+        text-align: center;
+
+    }
+
+}
+.bucket-item-con{
+    .bucket-item{
+        margin-left: 10px;
+        margin-right: 10px;
+        .bucket-item-info{}
+
+        .modif-bucket{
+            display: flex;
+            justify-content: space-between;
+            .modif-bucket-counter-con{
+                
+            
+        
+                .modif-bucket-counter{
+                    display: flex;
+                    div{ 
+                        margin:10px;
+                    }
+                    
+
+                
+                }
+                
+                
+            }
+
+        }
+        
+
+    }
+
+}
+.order-bt-dir{
+    background-color: $base-color;
+
+    border-radius: 30px;
+    color:white;
+    width: 140px;
+    text-align: center;
+}
+.addmenu-bt{
+    border: solid 1px $base-color;
+    border-radius: 30px;
+    color: $base-color;
+    width: 140px;
+    text-align: center;
+}
+.counter-con{
+    .counter-content{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        
+        .counter-bt-con{
+            display: flex;
+            div{ 
+                margin:10px;
+            }
+
+        }
+    }
+}
+.middle{
+    height: 10px;
+    background-color: #e6e6e6;
+
+}
+.orderlist-con{
+
+    .orderlist-info{
+        
+        justify-content: center;
+        align-items: center;
+        .orderlist-info-store{
+            font-family: NotoSansCJkkr-Bold;
+            
+        }
+
+    }
+}
+.detail{
+    .detail-con{
+        margin: 10px;
+        .detail-nav{
+            display: flex;
+            
+            
+    
+        }
+        .detail-content-con{
+    
+            .detail-info-con{
+                display: flex;
+                justify-content: space-between;
+                .detail-info{
+    
+                }
+            }
+            .checkbox-con{
+                .checkbox-item{
+                    display: flex;
+                    justify-content: space-between;
+                }
+
+            }
+            .detail-bt-con{
+
+                .detail-bt{
+                    display: flex;
+                    justify-content: space-between;
+                    
+
+                }
+            }
+        }
+
+    }
+   
+}
+
+a {
+    text-decoration: none;
+    :link{
+        color: black;
+    }
+    :visited{
+        color: black;
+
+    }
+    :hover{
+        color: black;
+    }
+    :active{
+        color: black;
+
+    }
+}
+

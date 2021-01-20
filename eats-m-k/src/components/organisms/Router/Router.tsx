@@ -5,7 +5,7 @@ import DetailView from '../MenuDetail/DetailView';
 import OrderListView from '../OrderList/OrderListView';
 import CompleteView from '../Complete/CompleteView';
 import BucketViewContainer from '../Bucket/BucketViewContainer';
-import OrderStatus from '../OrderStatus';
+import OrderStatus from '../../atoms/OrderStatus/OrderStatus';
 import OrderListD from '../OrderList/OrderListD';
 
 

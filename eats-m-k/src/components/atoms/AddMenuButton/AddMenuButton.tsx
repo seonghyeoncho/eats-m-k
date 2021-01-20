@@ -13,7 +13,7 @@ const AddMenuButton = ({addOrders}:Props) => {
 
     return(
 
-        <button onClick={addOrders}>장바구니에 담기</button>
+        <div onClick={addOrders} className="addmenu-bt">장바구니 담기</div>
 
     );
 

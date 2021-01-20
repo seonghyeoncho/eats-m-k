@@ -8,7 +8,7 @@ type Props = {
 const CancleOrderButton = ({cancleOrders}:Props) => {
 
     return (
-        <button onClick={cancleOrders}><img src={Trashcon}></img></button>
+        <div onClick={cancleOrders}><img src={Trashcon}></img>삭제하기</div>
     );
 }
 

@@ -12,18 +12,17 @@ type BoxProps = {
 const StoreAndTableBox = ({store, table}:BoxProps) => {
 
     return(
-        <div>
-            <div>
-                <div>가게 이름 : {store}</div>
-                <div>테이블 : {table}</div>
+        <div className="store-nav-con">
+
+            <div className="store-nav">
+                <div className="store-nav-store">{store}</div>
+                <div className="store-nav-table">테이블 {table}</div>
+                
             </div>
-            
-              <OrderStatusButtonContainer/>
-            
-
-            
-            <hr/>
-
+            <div className="order-status-bt">
+                <OrderStatusButtonContainer/>
+            </div>
+           
             
         </div>
     );

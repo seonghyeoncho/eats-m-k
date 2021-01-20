@@ -1,7 +1,4 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import OrderContainer from '../AddMenuButton/AddMenuButtonContainer';
-import '../../../scss/Counter.scss';
+import React from 'react';
 
 type Props = {
   count:number
@@ -23,11 +20,12 @@ const Counter = ({count,onIncrease,onDecrease}:Props) => {
 
         <div className="counter-bt-con">
 
-          <button onClick={onDecrease}>-1</button>     
+          <div onClick={onDecrease}>-</div>     
           
           <div>{count}</div>
           
-          <button onClick={onIncrease}>+1</button><br/>
+          <div onClick={onIncrease}>+</div>
+          <br/>
 
         </div>
 

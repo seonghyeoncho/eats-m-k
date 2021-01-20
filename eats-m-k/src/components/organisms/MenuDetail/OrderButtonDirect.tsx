@@ -66,7 +66,7 @@ const OrderButtonDirect = ({select}:Props) => {
 
             <div onClick={onClick}>
                 <Link to='/orderlistd'>
-                        <button>주문하기</button>
+                        <div className="order-bt-dir">주문하기</div>
                 </Link>
             
             </div>

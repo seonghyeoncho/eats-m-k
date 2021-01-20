@@ -25,10 +25,7 @@ const ModifCount = ({c,id, menu, price, more,itemTotalPrice,totalPrice}:Props) =
     }));
     
     const [ bucket, setBucekt ] = useState<any>([]);
-    const [total, setTotal] = useState<number>();
-
-
-
+    const [total, setTotal] = useState<number>(p);
 
     useEffect(()=>{
 
@@ -44,13 +41,13 @@ const ModifCount = ({c,id, menu, price, more,itemTotalPrice,totalPrice}:Props) =
                 setTotal(totalP);
 
             }
-        )
+        );
+
 
     },[]);
 
     const dispatch = useDispatch();
-    console.log(bucket);
-    console.log(p);
+
     const modifBucket = (i:number) => {
 
         const Obj = {
@@ -63,12 +60,13 @@ const ModifCount = ({c,id, menu, price, more,itemTotalPrice,totalPrice}:Props) =
             itemTotalPrice: itemTotalPrice  
 
         }
-        console.log(id)
+
         const modifBuc = bucket.map((item:any) => item.id == id 
-        ? 
-            Obj
-        :
-            item);
+            ? 
+                Obj
+            :
+                item
+        );
 
         console.log(totalPrice);
 
@@ -76,7 +74,7 @@ const ModifCount = ({c,id, menu, price, more,itemTotalPrice,totalPrice}:Props) =
             'bucket':[
                 ...modifBuc
             ],
-            totalPrice:p
+            'totalPrice':p
 
 
         });
@@ -108,9 +106,6 @@ const ModifCount = ({c,id, menu, price, more,itemTotalPrice,totalPrice}:Props) =
     
     const onIncrease = () => {
 
-
-
-
         dispatch(increase(price));
         modifMenuCount('in')
 
@@ -120,24 +115,20 @@ const ModifCount = ({c,id, menu, price, more,itemTotalPrice,totalPrice}:Props) =
         
         if(c !== 1) {
 
-
-
             dispatch(decrease(price));
             modifMenuCount('de')
+
         }
 
     }
 
-    useEffect(()=>{
-
-
-    },[]);
-
     return (
-        <div>
-            <button onClick={onDecrease}>-</button>
-            <div>{c}</div>
-            <button onClick={onIncrease}>+</button>
+        <div className="modif-bucket-counter-con">
+            <div className="modif-bucket-counter">
+                <div onClick={onDecrease}>-</div>
+                <div>{c}</div>
+                <div onClick={onIncrease}>+</div>
+            </div>
             {/* */}
         </div>
         

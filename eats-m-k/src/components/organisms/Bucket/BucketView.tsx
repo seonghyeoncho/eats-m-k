@@ -4,7 +4,7 @@ import numberWithCommas from '../../../functions/addCommaFunc';
 import BackButton from '../../atoms/BackButton/BackButton';
 import CancleOrderButtonContainer from '../../atoms/CancleOrderButton/CancleOrderButtonContainer';
 import OrderContainer from '../../atoms/Order/OrderContainer';
-import MoreMenuListInBucket from '../MenuDetail/MoreMenuListInBucket';
+import MoreMenuList from '../MenuDetail/MoreMenuList';
 import ModifCount from './ModifCount';
 
 interface Props {
@@ -17,6 +17,7 @@ const BucketView = ({bucket,totalPrice}:Props) => {
 
     return (
         <div>
+           
             
             {
                 bucket.length === 0 ? 
@@ -35,36 +36,41 @@ const BucketView = ({bucket,totalPrice}:Props) => {
 
                             return (
 
-                                <div>
+                                <div className="bucket-item-con">
+                                    <div className="bucket-item"> 
 
-                                    <div>{doc.menu}{numberWithCommas(doc.itemTotalPrice)}원</div>
+                                        <div className="bucket-item-info">{doc.menu}{numberWithCommas(doc.itemTotalPrice)}원</div>
 
-                                    {/* 개수 수정 컴포넌트 */}
+                                        {
+                                            doc.more !== undefined ? 
+                                                
+                                                <MoreMenuList more={doc.more}/>
+                                            :
+                                                <div>추가사항 없음</div>
+                                        }
+                                        <hr/>
+                                        <div className="modif-bucket">
+                                            <CancleOrderButtonContainer id={doc.id} price={doc.itemTotalPrice} bucket={bucket}/>
+
+                                            <ModifCount 
+
+                                                c={doc.count} 
+                                                id={doc.id} 
+                                                menu={doc.menu} 
+                                                price={doc.price} 
+                                                more={doc.more} 
+                                                itemTotalPrice={doc.itemTotalPrice}
+                                                totalPrice={totalPrice}
+
+                                            />
+                                        </div>
+                                       
+
+                                    </div>
                                     
+                                    <div className="middle"/>
 
-                                    {
-                                        doc.more !== undefined ? 
-                                            
-                                            <MoreMenuListInBucket more={doc.more}/>
-                                        :
-                                            <div>추가사항 없음</div>
-                                    }
-                                    <hr></hr>
-                                    <ModifCount 
-
-                                        c={doc.count} 
-                                        id={doc.id} 
-                                        menu={doc.menu} 
-                                        price={doc.price} 
-                                        more={doc.more} 
-                                        itemTotalPrice={doc.itemTotalPrice}
-                                        totalPrice={totalPrice}
-
-                                    />
-                                    
-                                    <CancleOrderButtonContainer id={doc.id} price={doc.itemTotalPrice} bucket={bucket}/>
-
-                                    <hr/>
+                                
                                 </div>
 
                             );
@@ -75,7 +81,7 @@ const BucketView = ({bucket,totalPrice}:Props) => {
                 
             }
 
-            <BackButton text={'뒤로가기'}/>
+            
             
             {/* 장바구니 안에서 주문 기능이랑 장바구니 상태에 따른 버튼 표현 구현하기 */}
             

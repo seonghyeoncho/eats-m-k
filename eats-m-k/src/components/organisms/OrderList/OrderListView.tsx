@@ -1,37 +1,48 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { dbService } from '../../../firebase';
 import numberWithCommas from '../../../functions/addCommaFunc';
 import { RootState } from '../../../modules';
 import OrderContainer from '../../atoms/Order/OrderContainer';
-import OrderItem from '../../atoms/OrderList/OrderItem';
+
 
 const OrderListView = (props:any) => {
+    
+    const [ buckets,setBuckets ] = useState([]);
+    const [ totalPrice, setTotalPrice ] = useState<number>(0);
 
-    const { orderStatus,store,table,totalPrice,bucket} = useSelector((state:RootState)=> ({
+    const { orderStatus,store,table } = useSelector((state:RootState)=> ({
          
         orderStatus:state.stateSet.orderStatus,
         store:state.storeSet.store,
         table:state.tableSet.table,
-        totalPrice:state.myBucket.bucket.data?.totalPrice,
-        bucket:state.myBucket.bucket.data?.bucket
+
+
         
     }));
 
-    console.log(orderStatus);
-    console.log(bucket);
-    
-    console.log(totalPrice);
-  
+    useEffect(()=>{
 
+        dbService.collection(`${store}`).doc(`${table}`)
+            .onSnapshot(snapShot=>{
+                console.log(snapShot.data()?.bucket);
+                setBuckets(snapShot.data()?.bucket);
+                setTotalPrice(snapShot.data()?.totalPrice);
+        })
+        
+    },[]);
 
     return (
-        <div>
+        <div className="orderlist-con">
+            <div className="orderlist-info">
+                <h1 className="orderlist-info-store">{store}</h1>
+                <h2>테이블 {table}</h2>
+                <h3>{numberWithCommas(Number(totalPrice))}원</h3>
+            </div>
             
-            <h1>{store}</h1>
-            <h2>테이블 {table}</h2>
-            <h3>{numberWithCommas(Number(totalPrice))}원</h3>
+            
             {
-                bucket.map((doc:any)=>{
+                buckets.map((doc:any)=>{
                     for(let i in doc){
                         return (
                             <>

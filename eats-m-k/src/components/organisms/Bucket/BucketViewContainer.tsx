@@ -6,6 +6,7 @@ import { dbService } from '../../../firebase';
 import numberWithCommas from '../../../functions/addCommaFunc';
 import { resetPrice } from '../../../modules/totalPrice';
 import OrderButton from '../../atoms/OrderButton/OrderButton';
+import BackButton from '../../atoms/BackButton/BackButton';
 
 const BucketViewContainer = (props:any) => {
 
@@ -48,18 +49,29 @@ const BucketViewContainer = (props:any) => {
 
     return (
         <div>
+            <div className="bucket-nav">
+                <BackButton text={'<'}/>
+                <div>장바구니</div>
+                <div onClick={resetBucket}>전체 삭제</div>
+             </div>
             
             { 
                 buckets.length !== 0 ? 
-                    <div>
-                        <div>{store}</div>
-                        <div>테이블 {table}</div>
-                        <div>{numberWithCommas(p)}</div>
-                        <button onClick={resetBucket}>전체 삭제</button>
+
+                    <div className="bucket-info-con">
+
+                        <div className="bucket-info">
+                            <div>{store}</div>
+                            <div>테이블 {table}</div>
+                            <div>{numberWithCommas(p)}원</div>
+                        </div>
+                       
                     </div>
                 :
                     <></>
             }
+           
+            
 
             <BucketView bucket={buckets} totalPrice ={p}/>
             <OrderButton/>

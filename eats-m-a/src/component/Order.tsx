@@ -36,7 +36,7 @@ const Order = (orders:any):any =>{
                             {
                               m.more.map((doc:any)=>{
                                 for(let i in doc){
-                                  return <h2>{i}   {numberWithCommas(doc[i])}원</h2>
+                                  return <div>{i}</div>
                                 }
                               })
                             }

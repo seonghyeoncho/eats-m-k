@@ -108,7 +108,7 @@ const App = () => {
 
   const listState = () => {
 
-    if(state === 0) return <NewOrderList table={newOrderList} toggleCheck={toggleCheck} indexNumber={page} store={query.store}/>
+    if(state === 0) return <NewOrderList table={newOrderList} toggleCheck={toggleCheck} indexNumber={page}/>
     else return <CompleteOrderList table={comOrderList}/>
 
   }

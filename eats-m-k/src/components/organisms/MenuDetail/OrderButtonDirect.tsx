@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { dbService } from '../../../firebase';
 import { RootState } from '../../../modules';
+import { resetCount } from '../../../modules/counters';
 import { increase } from '../../../modules/totalPrice';
 import OrderButton from '../../atoms/OrderButton/OrderButton';
 import OrderButtonContainer from '../../atoms/OrderButton/OrderButtonContainer';
@@ -54,6 +55,7 @@ const OrderButtonDirect = ({select}:Props) => {
             'totalPrice': select.itemTotalPrice,
 
         })
+        dispatch(resetCount());
         
     }
 
@@ -63,7 +65,7 @@ const OrderButtonDirect = ({select}:Props) => {
         <div>
 
             <div onClick={onClick}>
-                <Link to='/orderlist'>
+                <Link to='/orderlistd'>
                         <button>주문하기</button>
                 </Link>
             

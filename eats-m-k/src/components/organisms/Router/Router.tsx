@@ -12,6 +12,7 @@ import { getMenuThunk } from '../../../modules/getMenus/thunks';
 import { useCookies } from 'react-cookie';
 import OrderStatus from '../OrderStatus';
 import BucketPreview from '../MenuDetail/BukcetPreview';
+import OrderListD from '../OrderList/OrderListD';
 
 
 
@@ -38,6 +39,12 @@ const AppRouter = () =>{
                         component={(props:any)=><OrderListView {...props}/>}
 
                     />
+
+                    <Route exact path="/orderlistd" 
+
+                        component={(props:any)=><OrderListD {...props}/>}
+
+                    />
                     <Route exact path="/bucket"
                         component={(props:any)=><BucketViewContainer {...props}/>}
                     />
@@ -54,6 +61,7 @@ const AppRouter = () =>{
                     <Route exact path="/complete"
                         component={(props:any)=><CompleteView {...props}/>}
                     /> 
+                    
 
                     
                 

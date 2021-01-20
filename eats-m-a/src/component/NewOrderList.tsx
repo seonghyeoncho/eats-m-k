@@ -39,35 +39,40 @@ const NewOrderList = ({table,toggleCheck,indexNumber,store}:Props) => {
   },[])
 
 
-
   return (
 
     <div className="row">
-      {tables.map((m:any)=>{
-        if(m.orderStatus && m.totalPrice !== 0){
-            for(let i=0; i<indexNumber*3;i++) {
-                return (
-                    <Col span={8}>
-                        <Card className="orderCard" onClick={() => onClick(m.orders)}>
-                            <h1>{`${m.myTable}번 테이블`}</h1>
-                            <hr/>
-                            <Order orders={m.orderList}/>
-                            <Button className="orderFinishedButton" onClick={() => toggleCheck(m.myTable)}><h1>주문완료</h1>
-                            </Button>
-                        </Card>
-                    </Col>
-                )
+      {
+        tables.length !== 0 ? 
+          <>
+            {
+              tables.map((m:any)=>{
+                if(m.orderStatus && m.totalPrice !== 0){
+                    for(let i=0; i<indexNumber*3;i++) {
+                        return (
+                            <Col span={8}>
+                                <Card className="orderCard" onClick={() => onClick(m.orders)}>
+                                    <h1>{`${m.myTable}번 테이블`}</h1>
+                                    <hr/>
+                                    <Order orders={m.orderList}/>
+                                    <Button className="orderFinishedButton" onClick={() => toggleCheck(m.myTable)}><h1>주문완료</h1>
+                                    </Button>
+                                </Card>
+                            </Col>
+                        )
+                    }
+                }
+              }
+              )
             }
-        }else{
-            return(
-                <div>
-                    <h1>새로운 주문이 없습니다</h1>
-                </div>
-            )
-        }
             
-
-      })}
+          </>
+        : 
+          <div>
+            <h1>새로운 주문이 없습니다</h1>
+          </div>
+      }
+    
 
 
     </div>

@@ -53,7 +53,7 @@ const App = () => {
         setComOrderList([]);
         setNewOrderList([]);
         snapshot.docs.map((doc:any)=>{
-          if(!doc.data().state){
+          if(!doc.data().state && doc.data().orderStatus){
             const tableObj : Table = {
 
               myTable:doc.id,

@@ -3,6 +3,7 @@ import {Col, Card} from 'antd';
 import Order from './Order';
 import '../scss/CompleteOrderList.scss';
 import numberWithCommas from '../functions/addCommaFunc';
+import { createTempVariable } from 'typescript';
 
 
 interface Props {

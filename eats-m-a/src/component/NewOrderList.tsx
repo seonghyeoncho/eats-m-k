@@ -72,7 +72,7 @@ const NewOrderList = ({table,toggleCheck,indexNumber}:Props) => {
                                                       <div className='menuPopover'>
                                                           <Order orders={m.orderList}/>
                                                           <div className='totalPriceDiv'><hr className='coloredHr'/><h3>총 가격 : {numberWithCommas(m.totalPrice)}</h3></div>
-                                                          <Button className="orderCancelButton" onClick={() => toggleCheck(m.myTable)}>
+                                                          <Button className="orderCancelButton" onClick={() => dbService.collection(`${query.store}`).doc(`${m.myTable}`).update({bucket:[]})}>
                                                               <h1>주문취소</h1>
                                                           </Button>
                                                           <Button className="orderFinishedButton" onClick={() => toggleCheck(m.myTable)}>
@@ -93,7 +93,7 @@ const NewOrderList = ({table,toggleCheck,indexNumber}:Props) => {
 
                                               >
                                                   <Button className="orderMoreDetailButton" onClick={() => setPopoverVisible(true)}>
-                                                      <h1>더보기</h1>
+                                                      <h1>주문 상세보기</h1>
                                                   </Button>
                                               </Popover>
                                           </>

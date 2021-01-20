@@ -7,6 +7,7 @@ import NewOrderList from './NewOrderList';
 import CompleteOrderList from './CompleteOrderList';
 import { Table } from '../types';
 import { LeftCircleOutlined, RightCircleOutlined } from "@ant-design/icons";
+import { Link } from 'react-router-dom';
 
 const App = () => {
   const query = queryString.parse(window.location.search);
@@ -23,6 +24,7 @@ const App = () => {
   const onChangeRadio= (e:any) => {
 
     setRadio(e.target.value);
+
   };
 
   
@@ -44,6 +46,7 @@ const App = () => {
     })
                   
   }
+
 
   const getOrders = (orderState:string) => {
 
@@ -121,6 +124,9 @@ const App = () => {
                   <h1>{query.store}</h1>
               </Menu.Item>
           </Menu>
+      </div>
+      <div>
+        <Link to={`/setting/?store=${query.store}`}><button>메뉴관리</button></Link>
       </div>
 
       <div className="orderButtonClass">

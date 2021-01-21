@@ -3,11 +3,15 @@ import { dbService } from '../firebase';
 import queryString from 'query-string';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import MenuSetting from './MenuSetting';
+import InfoSetting from './InfoSetting';
+import StoreSetting from './StoreSetting';
 
 const Settings = () => {
     const store = queryString.parse(window.location.search).store;
 
     const [ data, setData ] = useState<any>([]);
+    const [ state, setState ] = useState<number>(0);
 
     const getStoreInfo = async () => {
 
@@ -19,6 +23,18 @@ const Settings = () => {
         getStoreInfo();
     },[]);
     console.log(data);
+    const changePage = (n:number) => {
+        if ( n === 0 ){
+            return <InfoSetting/>
+
+        } else if ( n === 1 ) {
+            return <MenuSetting menu={data.menu} store={store}/>
+
+        } else {
+            return <StoreSetting/>
+
+        }
+    }
 
 
 
@@ -26,16 +42,14 @@ const Settings = () => {
     return (
         <div>
             <Link to={`/?store=${store}`}><button>뒤로가기</button></Link>
-            대표 메뉴관리
-            {
-                data.menu?.map((doc:any)=>{
-                    for(let i in doc){
-                        return <div>{i}{doc[i].price}</div>
-                    }
-
-                })
-            }
-
+            <div>
+                <div onClick={()=>setState(0)}>개인 정보 관리</div>
+                <div onClick={()=>setState(1)}>메뉴 관리</div>
+                <div onClick={()=>setState(2)}>가게 관리</div>
+            </div>
+            <div>
+                {changePage(state)}
+            </div>
         </div>
     );
 }

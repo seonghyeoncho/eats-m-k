@@ -25,11 +25,12 @@ interface Props {
 
 const OrderButtonDirect = ({select}:Props) => {
 
-    const { store, table, count,totalPrice} = useSelector((state:RootState)=>({
+    const { store, table, count,bucket } = useSelector((state:RootState)=>({
         store:state.storeSet.store,
         table:state.tableSet.table,
         count:state.counters.count,
-        totalPrice:state.totalPrice.price
+        bucket:state.myBucket.bucket.data?.bucket
+
     }))
 
     const dispatch = useDispatch();
@@ -40,14 +41,12 @@ const OrderButtonDirect = ({select}:Props) => {
         var a = '0'
         if( select.more === undefined) { a = '1' } 
 
-        const Obj:any = [
-            {
-                ...select,
-                count:count,
-                id:`${select.menu}/${count}/${a}`,
-            }
-
-        ];
+        const Obj:any = bucket.concat({
+            ...select,
+            count:count,
+            id:`${select.menu}/${count}/${a}`,
+            
+        })
         dispatch(increase(select.itemTotalPrice));
 
         dbService.collection(`${store}`).doc(`${table}`).update({

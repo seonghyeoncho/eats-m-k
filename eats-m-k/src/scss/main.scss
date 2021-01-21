@@ -13,6 +13,9 @@
 }
 
 .store-nav-con{
+    position: -webkit-sticky;
+    position: sticky;
+    top:0px;
     background-color: $base-color;
     color: #ffffff;
 
@@ -20,16 +23,21 @@
 body{
     margin:0px;
     font-family: NotoSansCJkkr-Regular;
-    
+    background-color: $base-color;
 }
 Link{
     text-decoration: none;
 }
 .menulist-nav{
+
+    position: -webkit-sticky;
+    position: sticky;
+    top:53px;
     
    display: flex;
    flex-direction: row;
    height: 40px;
+   background-color: white;
 
   
 
@@ -56,21 +64,26 @@ Link{
 
 }
 .main-content{
-    .main-order-bt{
+    background-color: white;
+    
+
+}
+.main-order-bt{
 
 
 
-        background-color: $base-color;
-        font-family: NotoSansCJkkr-Bold;
-        color: #ffffff;
-    
-        
-        border-radius: 38px;
-        border: none;
-        text-align: center;
+    background-color: $base-color;
+    font-family: NotoSansCJkkr-Bold;
+    color: #ffffff;
+    position: -webkit-sticky;
+    position: sticky;
+    bottom:10px;
     
     
-    }
+    border-radius: 38px;
+    border: none;
+    text-align: center;
+
 
 }
 

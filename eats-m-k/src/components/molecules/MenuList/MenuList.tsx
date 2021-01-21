@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import numberWithCommas from '../../../functions/addCommaFunc';
 import MenuListItem from './MenuListItem';
 import Ready from '../../../graphics/graphic_ready.png';
+import { disconnect } from 'process';
 
 
 type Props = {
@@ -31,9 +32,9 @@ const MenuList = ({ menus }:Props ) => {
                     <>
                         {  
                             menus?.map((doc:any)=>{
-                                for(let i in doc){
-                                    return <MenuListItem menu={i} price={doc[i].price}/>
-                                }
+                                
+                                return <MenuListItem menu={doc.menu} price={doc.price}/>
+                                
                             })
                         }
                     </>

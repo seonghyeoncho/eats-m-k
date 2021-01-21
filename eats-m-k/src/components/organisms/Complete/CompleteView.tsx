@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { RootState } from '../../../modules';
-import stateSet from '../../../modules/orderState';
 import BackButton from '../../atoms/BackButton/BackButton';
 
 
@@ -34,7 +32,7 @@ const CompleteView = (props:any) => {
     return (
         <div>
             <div>주문완료!</div>
-            <div>{time}후에 뒤 메뉴판으로 이동합니다.</div>
+            <div>{time}초 후에 메뉴판으로 이동합니다.</div>
             <BackButton text={'홈으로'}/>
         </div>
 

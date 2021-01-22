@@ -15,6 +15,7 @@ body{
     margin:0px;
     font-family: NotoSansCJkkr-Regular;
 
+
     
 }
 Link{
@@ -30,8 +31,9 @@ Link{
 
     width: 100%;
     background-color: white;
-    height: 55px;
+    height: 67px;
     border-radius: 40px 40px 0px 0px;
+
     .menulist-bts{
         margin-left: 36px;
         margin-top: 20px;
@@ -39,6 +41,10 @@ Link{
         display: flex;
         flex-direction: row;
 
+    }
+    .bucket-img{
+        align-items: center;
+       
     }
 
 
@@ -50,6 +56,7 @@ Link{
 
 }
 .store-nav-con{
+
     z-index: 1;
     position: fixed;
     top:0px;
@@ -57,7 +64,6 @@ Link{
     width: 100%;
     background-color: $base-color;
     color: #ffffff;
-
     display: flex;
     justify-content: space-between;
 
@@ -141,11 +147,12 @@ Link{
 .item-con{
     display: flex;
     justify-content:space-between;
-    margin: 10px;
+    margin: 16px;
     color: black;
 
     margin-left: 35px;
     margin-right: 35px;
+    border-bottom: solid 1px black;
     
     .item-content{
         
@@ -159,6 +166,7 @@ Link{
         .item-price{
             font-family: NotoSansCJkkr-Regular;
             font-size: 19px;
+            margin-bottom: 16px;
         }
 
     }

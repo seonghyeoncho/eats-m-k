@@ -56,6 +56,7 @@ Link{
 
 }
 .store-nav-con{
+    
 
     z-index: 1;
     position: fixed;
@@ -68,15 +69,18 @@ Link{
     justify-content: space-between;
 
     .store-nav-store{
+        margin-top: 17px;
         font-family: NotoSansCJkkr-Bold;
         font-size: $store-bold-font-size;
         margin-left: $breakpoint-mobile/10;
-        margin-top: 568/83px;
+        margin-bottom: 4px;
+    
     }
     .store-nav-table{
         font-family: NotoSansCJkkr-Bold;
         font-size: $table-bold-font-size;
         margin-left: $breakpoint-mobile/10;
+        margin-bottom: 25px;
     
     }
     .order-status-bt{
@@ -100,7 +104,7 @@ Link{
     color: #ffffff;
     position: -webkit-sticky;
     position: sticky;
-    bottom:10px;
+    bottom:20px;
     
     
     border-radius: 38px;
@@ -285,7 +289,9 @@ Link{
     border: solid 1px $base-color;
     border-radius: 30px;
     color: $base-color;
-    width: 140px;
+    
+    width: auto;
+    height: 60px;
     text-align: center;
 }
 .counter-con{
@@ -381,16 +387,45 @@ Link{
 
 }
 .detail{
+    z-index: 2;
+
     background-color:white;
-    .detail-con{
-        margin: 10px;
-        .detail-nav{
+    .detail-nav{
+        z-index: 3;
+
+        
+        position: fixed;
+        top:104px;
+
+        
+        
+        width: 100%;
+        background-color: white;
+        height: 67px;
+        
+        border-radius: 40px 40px 0px 0px;
+        .detail-nav-content{
             display: flex;
-            
-            
-    
+            justify-content:space-between;
+            margin-top: 17px;
         }
+        
+        
+
+    }
+
+    .detail-con{
+
+
+        z-index: 3;
+
+       
+        margin-top: 171px;
+
+        
         .detail-content-con{
+            margin-left: 35px;
+            margin-right: 35px;
     
             .detail-info-con{
                 display: flex;
@@ -409,8 +444,9 @@ Link{
             .detail-bt-con{
 
                 .detail-bt{
-                    display: flex;
-                    justify-content: space-between;
+
+
+
                     
 
                 }

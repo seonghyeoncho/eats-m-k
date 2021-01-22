@@ -129,7 +129,6 @@ const Home = ( props: any ) => {
                         
                     </div>
                     <BucketButtonContainer orderStatus={orderStatus}/>
-
                 </div>
 
                 {changeList(menuListState)}

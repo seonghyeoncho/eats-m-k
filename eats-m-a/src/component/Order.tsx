@@ -2,29 +2,20 @@ import React, { useState } from 'react';
 import {Col} from "antd";
 import '../scss/Order.scss';
 import numberWithCommas from '../functions/addCommaFunc';
+import { disconnect } from 'process';
 
-const Order = (orders:any):any =>{
+interface Props {
+  orders:any
+}
 
+const Order = ({orders}:Props) =>{
 
-    const order:any[] = [];
+    console.log(orders)
   
-    const filterData = () =>{
-  
-      for(let i in orders){
-        for(let k in orders[i]){
-          order.push(orders[i][k]);
-        }
-      }
-  
-    }
-    
-    filterData();
-    
-
     return(
       <div>
         
-        {order.map((m:any)=>
+        {orders.map((m:any)=>
             <>
               <div className="orderDiv">
                   <div className="tatalInfo">
@@ -34,13 +25,13 @@ const Order = (orders:any):any =>{
                       </div>
                       <div className="orderDetail">
                       {
-                        m.more.length !== 0 ? 
+                        m.more !== undefined ? 
                           <>
                             {
                               m.more.map((doc:any)=>{
-                                for(let i in doc){
-                                  return <h4>|{i}</h4>
-                                }
+                                
+                                  return <h4>| {doc} </h4>
+                                
                               })
                             }
                           </>

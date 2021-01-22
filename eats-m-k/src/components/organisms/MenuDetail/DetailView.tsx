@@ -56,16 +56,17 @@ const DetailView = (props:any) => {
         <div className="detail">
 
             <StoreAndTableBoxContainer/>
-            <div className="detail-con">
-                <div className="detail-nav">
+            <div className="detail-nav">
 
-                    
-                    <BackButton text={'<'}/>
-                    <div>{menu}</div>
+                <div className="detail-nav-content">
+                    <div style={{marginLeft:"34px"}}><BackButton text={'<'}/></div>
+                    <div>MENU</div>
                     <BucketButtonContainer orderStatus={orderStatus}/>
-
-
                 </div>
+
+            </div>
+            <div className="detail-con">
+            
 
                 <div className="detail-content-con">
 

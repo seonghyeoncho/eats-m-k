@@ -131,10 +131,13 @@ const Home = ( props: any ) => {
 
                 </div>
 
+
                 {changeList(menuListState)}
+                <div className="block"></div>
                 <OrderButtonContainer totalPrice={totalPrice}/>
 
             </div>
+           
             <footer/>
 
            

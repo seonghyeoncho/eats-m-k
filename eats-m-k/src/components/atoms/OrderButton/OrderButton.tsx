@@ -8,7 +8,9 @@ const OrderButton = () => {
     return(
         <>
             <Link to='/orderlist'>
-                 <div className="main-order-bt">주문하기</div>
+                 <div className="main-order-bt">
+                     <div className="main-order-bt-text">주문하기</div>
+                 </div>
             </Link>
         </>
     );

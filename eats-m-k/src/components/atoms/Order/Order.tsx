@@ -18,9 +18,10 @@ const Order = ({store, table,onSubmit,text}:Props) => {
 
     return ( 
         <div>
-            <Link to="/complete"><button onClick={onSubmit}>주문하기</button></Link>
-            <Link to={`/menu/?store=${store}&table=${table}`}><button>{text}</button></Link>
 
+            <Link to={`/menu/?store=${store}&table=${table}`}><button>{text}</button></Link>
+            <Link to="/complete"><button onClick={onSubmit}>주문하기</button></Link>
+            
         </div>
     );
 }

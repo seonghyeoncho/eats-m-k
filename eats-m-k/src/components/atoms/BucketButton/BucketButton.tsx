@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { RootState } from '../../../modules';
-import Cart from '../../../images/icon_cart@3x.png';
-import Gif from '../../../graphics/loading_1_solid.gif';
+import Cart from '../../../graphics/graphic_cart_x3.png';
+
 
 type Props = {
     store :string | string[] | null;
@@ -16,7 +16,7 @@ const BucketButton = ({store,table}:Props) => {
         <div>
             <Link to={`/bucket/?store=${store}&table=${table}`}>
                 
-                    <img src={Cart} width="40px" height="40px"/>
+                    <img src={Cart} width="37px" />
 
                 
             </Link>

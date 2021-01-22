@@ -28,6 +28,10 @@ const DetailView = (props:any) => {
     const [ morePrice,setMorePrice] = useState<number>(0);
 
     const addMoreMenu = (m:any, p:number) => {
+        m = {
+            menu:m.menu,
+            price:m.price
+        }
 
         setMore( (prev:any) => [m,...prev]);
         setMorePrice(morePrice + p);

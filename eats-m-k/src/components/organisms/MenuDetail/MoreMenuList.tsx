@@ -17,12 +17,17 @@ const MoreMenuList = ({more}:Props) => {
     console.log(more)
 
     return (
-        <div>
+        <div className="moremenulist-con">
             {
                 more.map((doc:any)=>{
-                    for(let i in doc){
-                        return <div>{i}   {numberWithCommas(doc[i])}원</div>
-                    }
+                   
+                    return (
+                        <div className="moremenulist-content-con">
+                            <div className="moremenulist-content-menu">{doc.menu}</div>
+                            <div className="moremenulist-content-price">{numberWithCommas(doc.price)}원</div>
+                        </div>
+                    )
+                    
                 })
                 
             }

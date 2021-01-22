@@ -7,6 +7,9 @@ import numberWithCommas from '../../../functions/addCommaFunc';
 import { resetPrice } from '../../../modules/totalPrice';
 import OrderButton from '../../atoms/OrderButton/OrderButton';
 import BackButton from '../../atoms/BackButton/BackButton';
+import { Link } from 'react-router-dom';
+import Arrow from '../../../icons/icon_arrow_back_black_x3.png'
+
 
 const BucketViewContainer = (props:any) => {
 
@@ -49,27 +52,34 @@ const BucketViewContainer = (props:any) => {
 
     return (
         <div>
-            <div className="bucket-nav">
-                <BackButton text={'<'}/>
-                <div>장바구니</div>
-                <div onClick={resetBucket}>전체 삭제</div>
-             </div>
             
-            { 
-                buckets.length !== 0 ? 
+            
+            <div className="bucket-nav" style={{}}>
+                <Link to={`/menu/?store=${store}&table=${table}`}><img src={Arrow} width="7.5px"/></Link>
+                <div style={{margin:"0 auto", paddingLeft:"44px"}}>장바구니</div>
+                <div onClick={resetBucket} style={{opacity:"0.54", fontSize:"13px"}}>전체 삭제</div>
+            </div>
+            
 
-                    <div className="bucket-info-con">
+            <div className="bucket-con">
+                { 
+                    buckets.length !== 0 ? 
 
-                        <div className="bucket-info">
-                            <div>{store}</div>
-                            <div>테이블 {table}</div>
-                            <div>{numberWithCommas(p)}원</div>
+                        <div className="bucket-info-con">
+
+                            <div className="bucket-info">
+                                <div>{store}</div>
+                                <div>테이블 {table}</div>
+                                <div>{numberWithCommas(p)}원</div>
+                            </div>
+                        
                         </div>
-                       
-                    </div>
-                :
-                    <></>
-            }
+                    :
+                        <></>
+                }
+            </div>
+
+
            
             
 

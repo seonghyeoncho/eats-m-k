@@ -29,6 +29,7 @@ const BucketView = ({bucket,totalPrice}:Props) => {
                     </>
 
                 :
+                    
 
                     bucket?.map((doc:any)=>{
 
@@ -39,16 +40,21 @@ const BucketView = ({bucket,totalPrice}:Props) => {
                                 <div className="bucket-item-con">
                                     <div className="bucket-item"> 
 
-                                        <div className="bucket-item-info">{doc.menu}{numberWithCommas(doc.itemTotalPrice)}원</div>
+                                        <div className="bucket-item-info">
+                                            <div>{doc.menu}</div>
+                                            <div>{numberWithCommas(doc.itemTotalPrice)}원</div>
+                                        </div>
+                                        <div>
 
-                                        {
-                                            doc.more !== undefined ? 
-                                                
-                                                <MoreMenuList more={doc.more}/>
-                                            :
-                                                <div>추가사항 없음</div>
-                                        }
-                                        <hr/>
+                                            {
+                                                doc.more !== undefined ? 
+
+                                                    <MoreMenuList more={doc.more}/>
+                                                :
+                                                    <div>추가사항 없음</div>
+                                            }
+                                        </div>
+                                        <hr />
                                         <div className="modif-bucket">
                                             <CancleOrderButtonContainer id={doc.id} price={doc.itemTotalPrice} bucket={bucket}/>
 
@@ -78,6 +84,7 @@ const BucketView = ({bucket,totalPrice}:Props) => {
                         }
 
                     })
+                    
                 
             }
 

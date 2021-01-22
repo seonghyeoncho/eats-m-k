@@ -11,38 +11,53 @@
 @include desktop {
 
 }
-
-.store-nav-con{
-    position: -webkit-sticky;
-    position: sticky;
-    top:0px;
-    background-color: $base-color;
-    color: #ffffff;
-
-}
 body{
     margin:0px;
     font-family: NotoSansCJkkr-Regular;
-    background-color: $base-color;
+
+    
 }
 Link{
     text-decoration: none;
 }
 .menulist-nav{
+    z-index: 2;
 
-    position: -webkit-sticky;
-    position: sticky;
-    top:53px;
-    
-   display: flex;
-   flex-direction: row;
-   height: 40px;
-   background-color: white;
+    // position: -webkit-sticky;
+    // position: sticky;
+    position: fixed;
+    top:104px;
+
+    width: 100%;
+    background-color: white;
+    height: 55px;
+    border-radius: 40px 40px 0px 0px;
+    .menulist-bts{
+        margin-left: 36px;
+        margin-top: 20px;
+        margin-bottom: 28px;
+        display: flex;
+        flex-direction: row;
+
+    }
+
 
   
 
 }
+.menulist-content{
+    z-index: 4;
+
+}
 .store-nav-con{
+    z-index: 1;
+    position: fixed;
+    top:0px;
+    height: 155px;
+    width: 100%;
+    background-color: $base-color;
+    color: #ffffff;
+
     display: flex;
     justify-content: space-between;
 
@@ -64,9 +79,11 @@ Link{
 
 }
 .main-content{
-    background-color: white;
-    
 
+    background-color: white;
+    margin-top: 169px;
+    z-index: 3;
+    
 }
 .main-order-bt{
 
@@ -86,7 +103,36 @@ Link{
 
 
 }
+.orderstatus-con{
+    .orderstatus-nav-con{
+        display: flexd;
+        
+        .orderstatus-nav-text{
+            margin-left: auto;
+            margin-right: auto;
 
+        }
+        
+
+    }
+    .orderstatus-state-info-con{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .orderstatus-content-con{
+        
+        .orderstatus-content{
+            
+            display: flex;
+            justify-content: space-between;
+
+        }
+
+    }
+
+}
 .ready-img{
     display: flex;
     justify-content: center;
@@ -98,8 +144,11 @@ Link{
     margin: 10px;
     color: black;
 
+    margin-left: 35px;
+    margin-right: 35px;
     
     .item-content{
+        
         
 
         .item-menu{
@@ -116,38 +165,90 @@ Link{
     .item-img{}
 
 }
+
 .bucket-nav{
-    display: flex;
-    justify-content: space-between;
+    z-index: 3;
+
+
+    top:0px;
+
+    display: flex; 
+    justify-content:space-between;
+    position: -webkit-sticky;
+    position: sticky;
+    width: auto;
+    height: 44px;
+    padding-left: 36px;
+    padding-right: 36px;
+    
+
+    padding-top: 15px;
+    // margin-bottom: 15px;
+    background-color: white;
+
 }
-.bucket-info-con{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    .bucket-info{
-        flex-direction: column;
-        text-align: center;
+.bucket-con{
+    z-index: 2;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 59px;
+    
+    background-color: white;
+    .bucket-info-con{
+
+
+        display: flex;
+        justify-content: center;
+        padding-top: 20px;
+        padding-bottom: 20px;
+
+
+
+
+        .bucket-info{
+
+            
+
+            flex-direction: column;
+            text-align: center;
+
+        }
 
     }
-
 }
 .bucket-item-con{
+    z-index: 1;
+
     .bucket-item{
-        margin-left: 10px;
-        margin-right: 10px;
-        .bucket-item-info{}
+        margin-top:12px ;
+        margin-left: 36px;
+        margin-right: 36px;
+        .bucket-item-info{
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 15px;
+        }
 
         .modif-bucket{
             display: flex;
             justify-content: space-between;
             .modif-bucket-counter-con{
+                border: solid 1px black;
+                border-radius: 50px;
+                width: 90px;
+                height: 26px;
+                margin-bottom: 14px;
                 
             
         
                 .modif-bucket-counter{
+                    
+
                     display: flex;
                     div{ 
-                        margin:10px;
+                        margin-left:10px;
+                        margin-right:10px;
                     }
                     
 
@@ -170,6 +271,7 @@ Link{
     color:white;
     width: 140px;
     text-align: center;
+    
 }
 .addmenu-bt{
     border: solid 1px $base-color;
@@ -201,17 +303,77 @@ Link{
 .orderlist-con{
 
     .orderlist-info{
-        
+
+        display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         .orderlist-info-store{
+            margin: 5px;
             font-family: NotoSansCJkkr-Bold;
+            
+        }
+        .orderlist-info-table{
+            margin: 5px;
+            font-family: NotoSansCJkkr-Regula;
+            
+        }
+        .orderlist-info-price{
+            margin: 5px;
+            
             
         }
 
     }
+    .orderlist-content-con{
+        margin: 10px;
+        
+        
+       
+        
+        .orderlist-content-info-con{
+            display: flex;
+            justify-content: space-between;
+
+            
+            
+
+
+        }
+        
+        
+        .orderlist-menu-con{
+
+            .orderlist-menu{
+                display: flex;
+                justify-content: space-between;
+
+            }
+        }
+            
+
+           
+            
+        
+
+    }
+}
+.moremenulist-con{
+    font-size: 11px;
+    .moremenulist-content-con{
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5px;
+        .moremenulist-content-menu{}
+        .moremenulist-content-price{}
+
+
+
+    }
+
 }
 .detail{
+    background-color:white;
     .detail-con{
         margin: 10px;
         .detail-nav{
@@ -267,5 +429,8 @@ a {
         color: black;
 
     }
+}
+footer{
+    background-color: white;
 }
 

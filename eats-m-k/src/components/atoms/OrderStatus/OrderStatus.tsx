@@ -45,20 +45,31 @@ const OrderStatus = () => {
 
 
     return (
-        <div>
-            <BackButton text={'<'}/>
-            <div>주문현황</div>
-            <div>{text}</div>
-            <h1>{store}</h1>
-            <h3>{table}</h3>
-            <h3>{numberWithCommas(totalPrice)}</h3>
+        <div className="orderstatus-con">
+            <div className="orderstatus-nav-con">
+                <BackButton text={'<'}/>
+                <div className="orderstatus-nav-text">주문현황</div>
+            </div>
+            
+            <div className="orderstatus-state-text">{text}</div>
+            <div className="orderstatus-state-info-con">
+                <h1>{store}</h1>
+                <h3>테이블 {table}</h3>
+                <h3>{numberWithCommas(totalPrice)}원</h3>
+            </div>
+            
 
             {
                 bucket?.map((doc:any)=>{
                         for(let i in doc){
                             return (
-                                <div>
-                                    <div>{doc.menu}{numberWithCommas(doc.itemTotalPrice)}원</div>
+                                <div className="orderstatus-content-con">
+
+                                    <div className="orderstatus-content">
+                                        <div>{doc.menu}</div>
+                                        <div>{numberWithCommas(doc.itemTotalPrice)}원</div>
+                                    </div>
+
                                     {
                                         doc.more !== undefined ? 
                                             

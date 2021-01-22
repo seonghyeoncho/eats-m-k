@@ -4,6 +4,8 @@ import { dbService } from '../../../firebase';
 import numberWithCommas from '../../../functions/addCommaFunc';
 import { RootState } from '../../../modules';
 import { decrease, increase } from '../../../modules/totalPrice';
+import P_img from '../../../icons/icon_plus_x3.png';
+import M_img from '../../../icons/icon_minus_x3.png';
 
 interface Props {
     c:number;
@@ -125,9 +127,9 @@ const ModifCount = ({c,id, menu, price, more,itemTotalPrice,totalPrice}:Props) =
     return (
         <div className="modif-bucket-counter-con">
             <div className="modif-bucket-counter">
-                <div onClick={onDecrease}>-</div>
+                <div onClick={onDecrease}><img src={M_img} width="10px"/></div>
                 <div>{c}</div>
-                <div onClick={onIncrease}>+</div>
+                <div onClick={onIncrease}><img src={P_img} width="10px"/></div>
             </div>
             {/* */}
         </div>

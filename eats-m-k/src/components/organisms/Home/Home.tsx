@@ -117,15 +117,17 @@ const Home = ( props: any ) => {
     },[id]);
 
     return (
-        <>
+        <div>
             <StoreAndTableBoxContainer/>
             <div className="main-content">
                 <div className="menulist-nav">
+                    <div className="menulist-bts">
                 
-                    <div onClick={()=>setMenuListState(0)} >단품메뉴</div>
-                    <div onClick={()=>setMenuListState(1)}>세트메뉴</div>
-                    <div onClick={()=>setMenuListState(2)}>사이드메뉴</div>
-                    <BucketButtonContainer orderStatus={orderStatus}/>
+                        <div onClick={()=>setMenuListState(0)} style={{margin:"5px"}}>단품메뉴</div>
+                        <div onClick={()=>setMenuListState(1)} style={{margin:"5px"}}>세트메뉴</div>
+                        <div onClick={()=>setMenuListState(2)} style={{margin:"5px"}}>사이드메뉴</div>
+                        <BucketButtonContainer orderStatus={orderStatus}/>
+                    </div>
 
                 </div>
 
@@ -133,11 +135,12 @@ const Home = ( props: any ) => {
                 <OrderButtonContainer totalPrice={totalPrice}/>
 
             </div>
+            <footer/>
 
            
         
     
-        </>
+        </div>
     );
 
 }

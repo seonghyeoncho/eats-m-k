@@ -26,7 +26,7 @@ const BucketButtonContainer = ({orderStatus}:Props) => {
     return(
         <>
             {
-                orderStatus || totalPrice === 0 ? 
+                orderStatus ? 
 
                     <></> 
 

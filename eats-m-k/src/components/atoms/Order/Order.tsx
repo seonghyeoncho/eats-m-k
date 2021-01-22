@@ -17,10 +17,16 @@ const Order = ({store, table,onSubmit,text}:Props) => {
     console.log('sdfsdf',store,table);
 
     return ( 
-        <div>
+        <div className="order-bt-con">
+            
 
-            <Link to={`/menu/?store=${store}&table=${table}`}><button>{text}</button></Link>
-            <Link to="/complete"><button onClick={onSubmit}>주문하기</button></Link>
+            <Link to={`/menu/?store=${store}&table=${table}`} >
+                <div className="order-bt-cancle">{text}</div>
+            </Link>
+
+            <Link to="/complete">
+                <div onClick={onSubmit} className="order-bt">주문하기</div>
+            </Link>
             
         </div>
     );

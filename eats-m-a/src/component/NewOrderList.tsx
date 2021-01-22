@@ -59,7 +59,7 @@ const NewOrderList = ({table,toggleCheck,indexNumber}:Props) => {
                                               dbService.collection(`${query.store}`).doc(`${m.myTable}`).update({orderStatus:false})
 
                                           }}>
-                                            <h1>주문취소</h1>
+                                            <h1>주문거부</h1>
                                           </Button>
                                           <Button className="orderFinishedButton" onClick={() => toggleCheck(m.myTable)}>
                                             <h1>주문완료</h1>

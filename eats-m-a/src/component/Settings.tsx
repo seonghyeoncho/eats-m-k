@@ -13,10 +13,13 @@ const Settings = () => {
     const [ data, setData ] = useState<any>([]);
     const [ state, setState ] = useState<number>(0);
 
-    const getStoreInfo = async () => {
+    const getStoreInfo = () => {
 
-        const dataRef = await dbService.collection('store').doc(`${store}`).get();
-        setData(dataRef.data());
+        dbService.collection('store').doc(`${store}`).onSnapshot((snapShot:any)=>{
+            const data = snapShot.data();
+            setData(data);
+        });
+        
 
     }
     useEffect(()=>{

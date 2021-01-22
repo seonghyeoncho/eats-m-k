@@ -73,8 +73,9 @@ const OrderListView = (props:any) => {
                                         </div>
                                         
                                     </div>
-                                    <hr></hr>
+                                    
                                 </div>
+                                <div className="line"></div>
                                
                             </>
                         )
@@ -82,7 +83,7 @@ const OrderListView = (props:any) => {
                 })
             }
             
-            <OrderContainer text={"취소하기"}/>
+            <OrderContainer text={"취소"}/>
             
         </div>
     );

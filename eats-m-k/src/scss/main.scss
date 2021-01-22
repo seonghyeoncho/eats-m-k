@@ -1,6 +1,6 @@
 @import '../scss/mixin';
 @include mobile {
-    background-color: #{$base-color};
+
   
     
 
@@ -14,6 +14,7 @@
 body{
     margin:0px;
     font-family: NotoSansCJkkr-Regular;
+
 
     
 }
@@ -30,26 +31,41 @@ Link{
 
     width: 100%;
     background-color: white;
-    height: 55px;
+    height: 67px;
     border-radius: 40px 40px 0px 0px;
+    display: flex;
+    justify-content: space-between;
+
     .menulist-bts{
+        font-size: 13px;
         margin-left: 36px;
-        margin-top: 20px;
+        margin-top: 15px;
         margin-bottom: 28px;
         display: flex;
         flex-direction: row;
 
+    }
+    .bucket-img{
+
+        margin-right: 35px;
+        margin-top: 10px;
+       
     }
 
 
   
 
 }
+.bt{
+    
+}
 .menulist-content{
     z-index: 4;
 
 }
 .store-nav-con{
+    
+
     z-index: 1;
     position: fixed;
     top:0px;
@@ -57,20 +73,22 @@ Link{
     width: 100%;
     background-color: $base-color;
     color: #ffffff;
-
     display: flex;
     justify-content: space-between;
 
     .store-nav-store{
+        margin-top: 17px;
         font-family: NotoSansCJkkr-Bold;
         font-size: $store-bold-font-size;
         margin-left: $breakpoint-mobile/10;
-        margin-top: 568/83px;
+        margin-bottom: 4px;
+    
     }
     .store-nav-table{
         font-family: NotoSansCJkkr-Bold;
         font-size: $table-bold-font-size;
         margin-left: $breakpoint-mobile/10;
+        margin-bottom: 25px;
     
     }
     .order-status-bt{
@@ -86,6 +104,16 @@ Link{
     
 }
 .main-order-bt{
+    
+
+
+
+
+    position: fixed;
+    bottom: 20px;
+    right: 15px;
+    left: 15px;
+
 
     display: flex;
     justify-content: center;
@@ -93,15 +121,15 @@ Link{
     background-color: $base-color;
     font-family: NotoSansCJkkr-Bold;
     color: #ffffff;
-    position: -webkit-sticky;
-    position: sticky;
-    bottom:20px;
-
+    
     border-radius: 38px;
     border: none;
     height: 60px;
-    margin-left: 15px;
-    margin-right: 15px;
+
+
+
+
+
 
     .main-order-bt-text{
         
@@ -153,13 +181,12 @@ Link{
 .item-con{
     display: flex;
     justify-content:space-between;
-    margin: 10px;
+    margin: 16px;
     color: black;
 
     margin-left: 35px;
     margin-right: 35px;
-    padding:16px;z
-
+   
     
     .item-content{
         
@@ -168,16 +195,33 @@ Link{
         .item-menu{
             
             font-family: NotoSansCJkkr-Bold;
-            font-size: 25px;
+            font-size: 15px;
+            margin-bottom: 1px;
+        }
+        .item-speci{
+            font-size: 11px;
+            opacity: 0.68;
+            font-family: NotoSansCJkkr-Regular;
+            margin-bottom: 6px;
         }
         .item-price{
             font-family: NotoSansCJkkr-Regular;
-            font-size: 19px;
+            font-size: 15px;
+
         }
 
     }
     .item-img{}
+    
 
+}
+.line{
+    width: auto;
+    height: 0px;
+    border: solid 1px black;
+    margin-left: 35px;
+    margin-right: 35px;
+    opacity: 0.2;
 }
 
 .bucket-nav{
@@ -279,20 +323,36 @@ Link{
 
 }
 .order-bt-dir{
+    position: fixed;
+    right: 35px;
+    width: 155px;
+    height: 60px;
+    bottom: 20px;
     background-color: $base-color;
 
     border-radius: 30px;
     color:white;
-    width: 140px;
+
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     
 }
 .addmenu-bt{
+    position: fixed;
+    left: 35px;
+    width: 153px;
+    bottom: 20px;
+
     border: solid 1px $base-color;
     border-radius: 30px;
     color: $base-color;
-    width: 140px;
-    text-align: center;
+
+    height: 58px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .counter-con{
     .counter-content{
@@ -314,7 +374,39 @@ Link{
     background-color: #e6e6e6;
 
 }
+.order-bt-con{
+    display: flex;
+    justify-content:space-between;
+    margin-left: 15px;
+    margin-right: 15px;
+    .order-bt-cancle{
+        position: fixed;
+        bottom: 20px;
+        left: 15px;
+        display: flex;
+        height: 68px;
+        border: solid 1px $base-color;
+        width: 82px;
+        border-radius: 38px;
+        justify-content: center;
+        align-items: center;
+        color: black;
+       
+
+
+    }
+    .order-bt{
+        position: fixed;
+        right: 15px;
+        bottom: 20px;
+        color: black;
+        height: 60px;
+        background-color: $base-color;
+
+    }
+}
 .orderlist-con{
+    margin-top: 40px;
 
     .orderlist-info{
 
@@ -323,24 +415,38 @@ Link{
         justify-content: center;
         align-items: center;
         .orderlist-info-store{
-            margin: 5px;
+            margin-top: 0px;
+            margin-bottom: 4px;
             font-family: NotoSansCJkkr-Bold;
+            font-size: 24px;
             
         }
         .orderlist-info-table{
-            margin: 5px;
-            font-family: NotoSansCJkkr-Regula;
+            margin-top: 0px;
+            margin-bottom: 10px;
+            font-family: NotoSansCJkkr-Regular;
+            font-size: 15px;
+            opacity: 0.68;
             
         }
         .orderlist-info-price{
-            margin: 5px;
+            margin-top: 0px;
+            margin-bottom: 7px;
+            font-family: NotoSansCJkkr-Regular;
+            font-size: 24px;
+            color: $base-color;
+
+
             
             
         }
 
     }
     .orderlist-content-con{
-        margin: 10px;
+        margin-left: 35px;
+        margin-right: 35px;
+        margin-top: 13px;
+        margin-bottom: 13px;
         
         
        
@@ -348,6 +454,8 @@ Link{
         .orderlist-content-info-con{
             display: flex;
             justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 15px;
 
             
             
@@ -357,10 +465,15 @@ Link{
         
         
         .orderlist-menu-con{
+            
 
             .orderlist-menu{
+                margin-top: 0px;
+                margin-bottom: 5px;
                 display: flex;
                 justify-content: space-between;
+                font-size: 11px;
+                opacity: 0.87;
 
             }
         }
@@ -387,16 +500,48 @@ Link{
 
 }
 .detail{
+    z-index: 2;
+
     background-color:white;
-    .detail-con{
-        margin: 10px;
-        .detail-nav{
+    .detail-nav{
+        z-index: 3;
+
+        
+        position: fixed;
+        top:104px;
+
+        
+        
+        width: 100%;
+        background-color: white;
+        height: 67px;
+        
+        border-radius: 40px 40px 0px 0px;
+        .detail-nav-content{
             display: flex;
-            
-            
-    
+            justify-content:space-between;
+            margin-top: 17px;
         }
+        .bucket-img{
+            margin-right: 35px;
+        }
+        
+        
+
+    }
+
+    .detail-con{
+
+
+        z-index: 3;
+
+       
+        margin-top: 171px;
+
+        
         .detail-content-con{
+            margin-left: 35px;
+            margin-right: 35px;
     
             .detail-info-con{
                 display: flex;
@@ -415,8 +560,9 @@ Link{
             .detail-bt-con{
 
                 .detail-bt{
-                    display: flex;
-                    justify-content: space-between;
+
+
+
                     
 
                 }

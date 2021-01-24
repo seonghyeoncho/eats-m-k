@@ -15,7 +15,9 @@ const BackButton = ({text}:Props) => {
         table:state.tableSet.table
     }))
     return (
-        <Link to={`/menu/?store=${store}&table=${table}`}>{text}</Link>
+        <Link to={`/menu/?store=${store}&table=${table}`} className="back-bt">
+            <div>{text}</div>
+        </Link>
     )
 }
 

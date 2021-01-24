@@ -3,8 +3,11 @@ import { Buckets } from '../../../api/bucketFromFire';
 import numberWithCommas from '../../../functions/addCommaFunc';
 import BackButton from '../../atoms/BackButton/BackButton';
 import CancleOrderButtonContainer from '../../atoms/CancleOrderButton/CancleOrderButtonContainer';
+import OrderButton from '../../atoms/OrderButton/OrderButton';
 import MoreMenuList from '../MenuDetail/MoreMenuList';
 import ModifCount from './ModifCount';
+import Cart from '../../../graphics/graphic_cart_x3.png';
+
 
 interface Props {
 
@@ -20,12 +23,13 @@ const BucketView = ({bucket,totalPrice}:Props) => {
             
             {
                 bucket.length === 0 ? 
-                    <>
+                    <div className="ready-bucket-con">
+                        <img src={Cart}/>
 
-                        <div>메뉴를 추가해 주세요</div>
+                        <div className="ready-bucket-text">메뉴를 추가해 주세요</div>
                         <BackButton text={'추가하기'}/>
 
-                    </>
+                    </div>
 
                 :
                     
@@ -74,6 +78,8 @@ const BucketView = ({bucket,totalPrice}:Props) => {
                                     </div>
                                     
                                     <div className="middle"/>
+
+                                    <OrderButton/>
 
                                 
                                 </div>

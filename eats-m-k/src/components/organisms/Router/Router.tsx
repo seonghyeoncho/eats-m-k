@@ -38,7 +38,7 @@ const AppRouter = () =>{
                         component={(props:any)=><BucketViewContainer {...props}/>}
                     />
                     <Route exact path="/orderstatus"
-                        component={()=><OrderStatus/>}
+                        component={(props:any)=><OrderStatus {...props}/>}
                     />
 
                     <Route exact path="/detail" 

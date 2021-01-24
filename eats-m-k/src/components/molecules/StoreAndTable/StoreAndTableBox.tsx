@@ -1,7 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import OrderStatusButtonContainer from '../../atoms/OrderStatusButton/OrderStatusButtonContainer';
-import BucketButton from '../../atoms/BucketButton/BucketButton';
+
 
 type BoxProps = {
     store:string | string[] | null;

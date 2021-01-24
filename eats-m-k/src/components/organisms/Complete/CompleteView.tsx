@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../modules';
 import BackButton from '../../atoms/BackButton/BackButton';
+import Finish from '../../../graphics/graphic_finish_x3.png';
 
 
 
@@ -30,10 +31,20 @@ const CompleteView = (props:any) => {
 
 
     return (
-        <div>
-            <div>주문완료!</div>
-            <div>{time}초 후에 메뉴판으로 이동합니다.</div>
-            <BackButton text={'홈으로'}/>
+        <div className="complete-con">
+            <div className="complete-conetent">
+                <img src={Finish}/>
+                <div className="complete-content-text">
+                    주문이 완료되었습니다
+                </div>
+                <div className="complete-content-text-2">
+                    사이트 재방문을 통해<br/>
+                    주문 현황을 확인하실 수 있습니다.
+                </div>
+                
+                <div className="complete-content-timer">{time}초 후에 메뉴판으로 이동합니다.</div>
+                <BackButton text={'주문 현황 확인'}/>
+            </div>
         </div>
 
     )

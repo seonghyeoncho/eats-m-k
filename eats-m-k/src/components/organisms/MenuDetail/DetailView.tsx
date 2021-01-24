@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import queryString from 'query-string';
 import CounterContainer from '../../atoms/Counter/CounterContainer';
 import StoreAndTableBoxContainer from '../../molecules/StoreAndTable/StoreAndTableBoxContainer';
-import BackButton from '../../atoms/BackButton/BackButton';
 import AddMenuContainer from '../../atoms/AddMenuButton/AddMenuButtonContainer';
 import CheckBoxCon from './CheckBoxCon';
 import numberWithCommas from '../../../functions/addCommaFunc';
@@ -74,8 +73,8 @@ const DetailView = (props:any) => {
                     <div className="detail-info-con">
 
                         <div className="detail-info">
-                            <div>{menu}</div>
-                            <div>추가설명</div>
+                            <div className="detail-info-menu">{menu}</div>
+                            <div className="detail-info-sp">추가설명</div>
                         </div>
                         
                         <div>{numberWithCommas(price)}원</div>

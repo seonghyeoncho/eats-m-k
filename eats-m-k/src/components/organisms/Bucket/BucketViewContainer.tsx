@@ -1,13 +1,10 @@
-import React, { useEffect, useReducer, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import BucketView from './BucketView';
 import { RootState } from '../../../modules';
 import { dbService } from '../../../firebase';
 import numberWithCommas from '../../../functions/addCommaFunc';
 import { resetPrice } from '../../../modules/totalPrice';
-import OrderButton from '../../atoms/OrderButton/OrderButton';
-import BackButton from '../../atoms/BackButton/BackButton';
-import { Link } from 'react-router-dom';
 import Arrow from '../../../icons/icon_arrow_back_black_x3.png'
 
 
@@ -57,10 +54,10 @@ const BucketViewContainer = (props:any) => {
 
         <div>
             
-            <div className="bucket-nav" style={{}}>
+            <div className="bucket-nav" >
                 <div className="div1"><img src={Arrow} width="12px" onClick={goBack}/></div>
-                <div style={{margin:"0 auto"}} className="div2"> 장바구니</div>
-                <div onClick={resetBucket} style={{opacity:"0.54", fontSize:"13px"}} className="div3">전체 삭제</div>
+                <div className="div2"> 장바구니</div>
+                <div onClick={resetBucket} className="div3">전체 삭제</div>
             </div>
             
 
@@ -83,7 +80,7 @@ const BucketViewContainer = (props:any) => {
             </div>
 
             <BucketView bucket={buckets} totalPrice ={p}/>
-            <OrderButton/>
+            
         </div>
     );
 

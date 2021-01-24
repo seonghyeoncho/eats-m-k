@@ -28,7 +28,7 @@ const BucketButtonContainer = ({orderStatus}:Props) => {
             {
                 orderStatus ? 
 
-                    <></> 
+                    <div className="bucket-block"></div>
 
                 :
 

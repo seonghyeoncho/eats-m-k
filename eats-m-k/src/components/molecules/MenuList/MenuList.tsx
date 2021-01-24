@@ -31,9 +31,9 @@ const MenuList = ({ menus }:Props ) => {
                 :
                     <>
                         {  
-                            menus?.map((doc:any)=>{
+                            menus?.map((doc:any) => {
                                 
-                                return <MenuListItem menu={doc.menu} price={doc.price}/>
+                                return <MenuListItem menu={doc.menu} price={doc.price} state={doc.state}/>
                                 
                             })
                         }

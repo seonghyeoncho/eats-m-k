@@ -29,6 +29,9 @@ const Home = ( props: any ) => {
     const [ cookies, setCookie, removeCookie ] = useCookies(['clientId', 'bucket']);
     const [id, setId] = useState<any>(null);
     const [ menuListState,setMenuListState ] = useState<number>(0);
+    const [ color1, setColor1 ] = useState('#ff1b6d');
+    const [ color2, setColor2 ] = useState('#999999');
+    const [ color3, setColor3 ] = useState('#999999');
     const dispatch = useDispatch();
     const today = new Date();
     const time = `[${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}]`;
@@ -101,6 +104,9 @@ const Home = ( props: any ) => {
 
         }
     }
+    const underLine = () => {
+        return <div style={{width:"auto", height:"1px", background:"#ff1b6d", margin:"0 8px"}}></div>
+    }
 
     useEffect(()=>{
         
@@ -122,10 +128,22 @@ const Home = ( props: any ) => {
             <div className="main-content">
                 <div className="menulist-nav">
                     <div className="menulist-bts">
+
+                        <div>
+                            <div onClick={()=>{setMenuListState(0);setColor1('#ff1b6d');setColor2('#999999');setColor3('#999999')}} className="text" style={{color:`${color1}`}}>단품메뉴</div>
+                            { menuListState === 0 ? underLine() : <></> }
+
+                        </div>
                 
-                        <div onClick={()=>setMenuListState(0)} style={{margin:"5px"}}>단품메뉴</div>
-                        <div onClick={()=>setMenuListState(1)} style={{margin:"5px"}}>세트메뉴</div>
-                        <div onClick={()=>setMenuListState(2)} style={{margin:"5px"}}>사이드메뉴</div>
+                        <div>
+                            <div onClick={()=>{setMenuListState(1);setColor1('#999999');setColor2('#ff1b6d');setColor3('#999999')}} className="text" style={{color:`${color2}`}}>세트메뉴</div>
+                            { menuListState === 1 ? underLine() : <></> }
+                        </div>
+
+                        <div>
+                            <div onClick={()=>{setMenuListState(2);setColor1('#999999');setColor2('#999999');setColor3('#ff1b6d')}} className="text" style={{color:`${color3}`}}>사이드메뉴</div>
+                            { menuListState === 2 ? underLine() : <></> }
+                        </div>
                         
                     </div>
                     <BucketButtonContainer orderStatus={orderStatus}/>

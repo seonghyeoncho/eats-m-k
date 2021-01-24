@@ -10,6 +10,7 @@ import OrderButtonDirect from './OrderButtonDirect';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../modules';
 import BucketButtonContainer from '../../atoms/BucketButton/BucketButtonContainer';
+import Arrow from '../../../icons/icon_arrow_back_black_x3.png'
 
 const DetailView = (props:any) => {
 
@@ -59,8 +60,8 @@ const DetailView = (props:any) => {
             <div className="detail-nav">
 
                 <div className="detail-nav-content">
-                    <div style={{marginLeft:"34px"}}><BackButton text={'<'}/></div>
-                    <div>MENU</div>
+                    <img onClick={props.history.goBack} src={Arrow} width="12px" height="18px"/>    
+                    <div className="detail-nav-content-text">MENU</div>
                     <BucketButtonContainer orderStatus={orderStatus}/>
                 </div>
 

@@ -49,15 +49,18 @@ const BucketViewContainer = (props:any) => {
         props.history.goBack();
 
     }
+    const goBack = () => {
+        props.history.goBack();
+    }
 
     return (
+
         <div>
             
-            
             <div className="bucket-nav" style={{}}>
-                <Link to={`/menu/?store=${store}&table=${table}`}><img src={Arrow} width="7.5px"/></Link>
-                <div style={{margin:"0 auto", paddingLeft:"44px"}}>장바구니</div>
-                <div onClick={resetBucket} style={{opacity:"0.54", fontSize:"13px"}}>전체 삭제</div>
+                <div className="div1"><img src={Arrow} width="12px" onClick={goBack}/></div>
+                <div style={{margin:"0 auto"}} className="div2"> 장바구니</div>
+                <div onClick={resetBucket} style={{opacity:"0.54", fontSize:"13px"}} className="div3">전체 삭제</div>
             </div>
             
 
@@ -68,9 +71,9 @@ const BucketViewContainer = (props:any) => {
                         <div className="bucket-info-con">
 
                             <div className="bucket-info">
-                                <div>{store}</div>
-                                <div>테이블 {table}</div>
-                                <div>{numberWithCommas(p)}원</div>
+                                <div className="bucket-info-store">{store}</div>
+                                <div className="bucket-info-table">테이블 {table}</div>
+                                <div className="bucket-info-price">{numberWithCommas(p)}원</div>
                             </div>
                         
                         </div>
@@ -78,10 +81,6 @@ const BucketViewContainer = (props:any) => {
                         <></>
                 }
             </div>
-
-
-           
-            
 
             <BucketView bucket={buckets} totalPrice ={p}/>
             <OrderButton/>

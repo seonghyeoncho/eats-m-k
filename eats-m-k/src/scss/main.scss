@@ -38,11 +38,17 @@ Link{
 
     .menulist-bts{
         font-size: 13px;
-        margin-left: 36px;
+        margin-left: 28px;
         margin-top: 15px;
         margin-bottom: 28px;
         display: flex;
         flex-direction: row;
+        .text{
+            margin:5px 8px;
+            font-size: 13px;
+            font-family: NotoSansCJkkr-Bold;
+
+        }
 
     }
     .bucket-img{
@@ -57,6 +63,7 @@ Link{
 
 }
 .bt{
+    color: white;
     
 }
 .menulist-content{
@@ -174,7 +181,16 @@ Link{
     display: flex;
     justify-content: center;
     align-items: center;
+    
     .ready-content{
+        img{
+            margin-top: 90px;
+        }
+        .ready-text{
+            margin-top: 28px;
+            font-size: 17px;
+            font-family: NotoSansCJkkr-Bold;
+        }
 
     }
 }
@@ -217,68 +233,129 @@ Link{
 }
 .line{
     width: auto;
-    height: 0px;
-    border: solid 1px black;
+    height: 1px;
+    background-color: black;
     margin-left: 35px;
     margin-right: 35px;
     opacity: 0.2;
 }
 
 .bucket-nav{
-    z-index: 3;
 
-
-    top:0px;
-
-    display: flex; 
-    justify-content:space-between;
-    position: -webkit-sticky;
-    position: sticky;
+    display: flex;
+    position: fixed;
     width: auto;
-    height: 44px;
-    padding-left: 36px;
+    flex-wrap: wrap;
+    top: 0px;
+    left: 0px;
+    right:0px;
+    height: 22px;
+    padding-top: 11px;
+    padding-bottom: 11px;
     padding-right: 36px;
+    padding-left: 36px;
+    background-color: white;
+
+    z-index: 3;
+    
+    // top:0px;
+    // display: flex; 
+    // justify-content:space-between;
+    // position: -webkit-sticky;
+    // position: sticky;
+    // width: auto;
+    // height: 44px;
+    // padding-left: 36px;
+    // padding-right: 36px;
     
 
-    padding-top: 15px;
-    // margin-bottom: 15px;
-    background-color: white;
+    // padding-top: 15px;
+    //margin-bottom: 15px;
+    // background-color: white;
+
+    
+    div{
+        flex: 1 1 30%;
+    }
+
+
+    .div1{
+        text-align: left;
+        margin-top: 2px;
+    }
+
+    .div2{
+        text-align: center;
+        font-size: 18px;
+        font-family: NotoSansCJkkr-Bold;
+    }
+
+    .div3{
+        text-align: right;
+        margin-top: 2px;
+    }
 
 }
 .bucket-con{
-    z-index: 2;
-    position: -webkit-sticky;
-    position: sticky;
-    top: 59px;
-    
+    z-index: 3;
+    top: 44px;
+    position: fixed;
+    left: 0px;
+    right: 0px;
+
+    display: flex;
     background-color: white;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 38px;
+    padding-top: 9px;
+
+
     .bucket-info-con{
-
-
-        display: flex;
-        justify-content: center;
-        padding-top: 20px;
-        padding-bottom: 20px;
-
-
-
+        
+        
+        
+ 
 
         .bucket-info{
 
             
 
-            flex-direction: column;
             text-align: center;
+            .bucket-info-store{
+                font-size: 24px;
+                font-family: NotoSansCJkkr-Bold;
+                margin-bottom: 4px;
+            }
+            
+            .bucket-info-table{
+                font-size: 15px;
+                opacity: 0.68;                
+                font-family: NotoSansCJkkr-Regular;
+                margin-bottom: 10px;
+                
+            }
+            .bucket-info-price{
+                font-size: 24px;
+                font-family: NotoSansCJkkr-Regular;
+                color: $base-color;
+                
+            }
+            
 
         }
 
     }
 }
+.bucket-content-con{
+    margin-top:214px;
+}
 .bucket-item-con{
     z-index: 1;
+    margin-top: 12px;
 
     .bucket-item{
-        margin-top:12px ;
+        margin-top: 12px;
         margin-left: 36px;
         margin-right: 36px;
         .bucket-item-info{
@@ -323,8 +400,9 @@ Link{
 
 }
 .order-bt-dir{
+
     position: fixed;
-    right: 35px;
+    right: 24px;
     width: 155px;
     height: 60px;
     bottom: 20px;
@@ -341,7 +419,7 @@ Link{
 }
 .addmenu-bt{
     position: fixed;
-    left: 35px;
+    left: 24px;
     width: 153px;
     bottom: 20px;
 
@@ -353,6 +431,7 @@ Link{
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: white;
 }
 .counter-con{
     .counter-content{
@@ -362,6 +441,19 @@ Link{
         
         .counter-bt-con{
             display: flex;
+            border: solid 1px black;
+            border-radius: 50px;
+            height: 30px;
+            .counter-bt-text{
+                margin: 0 13px;
+            }
+            img{
+
+                margin: 9.2px 16px;
+                width: 11.7px;
+                height: 11.7px;
+                
+            }
             div{ 
                 margin:10px;
             }
@@ -384,24 +476,35 @@ Link{
         bottom: 20px;
         left: 15px;
         display: flex;
-        height: 68px;
+        height: 58px;
         border: solid 1px $base-color;
         width: 82px;
         border-radius: 38px;
         justify-content: center;
         align-items: center;
-        color: black;
+        color: $base-color;
+        font-family: NotoSansCJkkr-Bold;
+        font-size: 17px;
+        background-color: white;
        
 
 
     }
     .order-bt{
         position: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         right: 15px;
         bottom: 20px;
+        width: 245px;
+        border-radius: 50px;
         color: black;
         height: 60px;
         background-color: $base-color;
+        color: white;
+        font-family: NotoSansCJkkr-Bold;
+        font-size: 17px;
 
     }
 }
@@ -521,6 +624,14 @@ Link{
             display: flex;
             justify-content:space-between;
             margin-top: 17px;
+            img{
+                margin-left: 36px;
+
+            }
+            .detail-nav-content-text{
+                padding-left: 20px;
+                
+            }
         }
         .bucket-img{
             margin-right: 35px;
@@ -573,7 +684,7 @@ Link{
    
 }
 .block{
-    height: 30px;
+    height: 100px;
 }
 
 a {

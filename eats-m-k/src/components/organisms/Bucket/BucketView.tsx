@@ -3,7 +3,6 @@ import { Buckets } from '../../../api/bucketFromFire';
 import numberWithCommas from '../../../functions/addCommaFunc';
 import BackButton from '../../atoms/BackButton/BackButton';
 import CancleOrderButtonContainer from '../../atoms/CancleOrderButton/CancleOrderButtonContainer';
-import OrderContainer from '../../atoms/Order/OrderContainer';
 import MoreMenuList from '../MenuDetail/MoreMenuList';
 import ModifCount from './ModifCount';
 
@@ -16,7 +15,7 @@ interface Props {
 const BucketView = ({bucket,totalPrice}:Props) => {
 
     return (
-        <div>
+        <div className="bucket-content-con">
            
             
             {
@@ -87,6 +86,7 @@ const BucketView = ({bucket,totalPrice}:Props) => {
                     
                 
             }
+            <div className="block"></div>
 
             
             

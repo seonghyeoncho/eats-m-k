@@ -24,7 +24,7 @@ const MenuList = ({ menus }:Props ) => {
                     <div className="ready-img">
                         <div className="ready-content">
                             <img src={Ready} width="133px"/>
-                            <div>메뉴 준비중입니다</div>
+                            <div className="ready-text">메뉴 준비중입니다</div>
                         </div>
 
                     </div >

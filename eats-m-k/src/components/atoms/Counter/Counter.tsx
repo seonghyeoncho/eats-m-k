@@ -1,4 +1,6 @@
 import React from 'react';
+import P_img from '../../../icons/icon_plus_x3.png';
+import M_img from '../../../icons/icon_minus_x3.png';
 
 type Props = {
   count:number
@@ -20,11 +22,11 @@ const Counter = ({count,onIncrease,onDecrease}:Props) => {
 
         <div className="counter-bt-con">
 
-          <div onClick={onDecrease}>-</div>     
+          <img onClick={onDecrease} src={M_img}/>   
           
-          <div>{count}</div>
+          <div className="counter-bt-text">{count}</div>
           
-          <div onClick={onIncrease}>+</div>
+          <img onClick={onIncrease} src={P_img}/>
           <br/>
 
         </div>

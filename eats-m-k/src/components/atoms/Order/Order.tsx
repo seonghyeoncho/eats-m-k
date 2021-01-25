@@ -20,7 +20,7 @@ const Order = ({store, table,onSubmit,text}:Props) => {
         <div className="order-bt-con">
             
 
-            <Link to={`/menu/?store=${store}&table=${table}`} >
+            <Link to={`/menu/?store=${store}&table=${table}`}>
                 <div className="order-bt-cancle">{text}</div>
             </Link>
 

@@ -50,18 +50,19 @@ const App = () => {
 
   const getOrders = (orderState:string) => {
 
-    setComOrderList([]);
-    setNewOrderList([]);
+    
     
     dbService.collection(`${query.store}`)
       .orderBy(`${orderState}`)
       .onSnapshot((snapShot:any)=>{
+        setComOrderList([]);
+        setNewOrderList([])
 
         snapShot.forEach((doc:any)=>{
           console.log(doc.data());
 
           if(!doc.data().state && doc.data().orderStatus){
-            const tableObj : Table = {
+            const tableObj = {
 
               myTable:doc.id,
               orderList:doc.data().bucket,
@@ -75,7 +76,7 @@ const App = () => {
             setNewOrderList((prev: any) => [tableObj, ...prev]);               
             
           } else {
-            const tableObj : Table = {
+            const tableObj = {
 
               myTable:doc.id,
               orderList:doc.data().bucket,

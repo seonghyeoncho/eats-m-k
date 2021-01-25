@@ -327,12 +327,39 @@ Link{
         left: 0px;
         right: 0px;
 
-        top: 200px;
+        top: 280px;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         background-color: white;
+
+        .zigzag-con{
+            z-index: 4;
+            padding: 0 15px;
+            position: fixed;
+            top: 200px;
+            left: 15px;
+            right: 15px;
+
+            
+        
+            .zigzag{
+                border: none;
+                width: 100%;
+                height: 40px;
+                background:
+                linear-gradient(135deg, #fff 49%, transparent 20%) -20px 0,
+                linear-gradient(225deg, #fff 49%, transparent 20%) -20px 0,
+                linear-gradient(315deg, #fff 25%, transparent 20%),
+                linear-gradient(45deg, #fff 25%, transparent 20%);
+                background-size: 40px 40px;
+                background-color: #000;
+            }
+        
+        
+        }
+
         .orderstatus-state-info-store{
             font-size: 24px;
             font-family: NotoSansCJkkr-Bold;
@@ -875,12 +902,13 @@ Link{
             display: flex;
             justify-content:space-between;
             margin-top: 17px;
+            
             img{
                 margin-left: 35px;
 
             }
             .detail-nav-content-text{
-                padding-left: 20px;
+                padding-left: 50px;
                 
             }
         }
@@ -904,6 +932,9 @@ Link{
         .detail-content-con{
             margin-left: 35px;
             margin-right: 35px;
+            .line{
+                margin: 15px 0;
+            }
     
             .detail-info-con{
                 display: flex;
@@ -1022,6 +1053,9 @@ Link{
             
         }
     }
+}
+.cancleorder-popover{
+    z-index: 4;
 }
 .block{
     height: 100px;

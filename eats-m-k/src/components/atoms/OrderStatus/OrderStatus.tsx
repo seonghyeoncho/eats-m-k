@@ -165,6 +165,7 @@ const OrderStatus = (props:any) => {
             
 
             <div className="orderstatus-state-info-con">
+                <div className="zigzag-con"><hr className="zigzag"></hr></div>
                 <div className="orderstatus-state-info-store">{store}</div >
                 <div className="orderstatus-state-info-table">테이블 {table}</div >
                 <div className="orderstatus-state-info-totalprice">{numberWithCommas(totalPrice)}원</div >

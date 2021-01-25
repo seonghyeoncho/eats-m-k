@@ -16,10 +16,12 @@ type Props = {
 }
 
 const MenuList = ({ menus, store, table }:Props ) => {
+    console.log(menus);
   
     return(
  
-        <div className="menulist-content" >
+        <div className="menulist-content">
+
             {
                 menus?.length === 0 ? 
 
@@ -35,14 +37,13 @@ const MenuList = ({ menus, store, table }:Props ) => {
                         {  
                             menus?.map((doc:any)=>{
                                 
-                                return <MenuListItem menu={doc.menu} price={doc.price} store={store} table={table}/>
+                                return <MenuListItem menu={doc.menu} price={doc.price} store={store} table={table} state={doc.state}/>
                                 
                             })
                         }
                     </>
 
             }
-           
 
         </div>
 

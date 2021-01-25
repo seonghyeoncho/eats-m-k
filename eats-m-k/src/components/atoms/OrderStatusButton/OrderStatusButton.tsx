@@ -31,9 +31,9 @@ const OrderStatusButton = ({orderStatus,state, store, table}:Props) => {
         <Link to={`/orderstatus/?store=${store}&table=${table}`}>
             {   
                 state ? 
-                    <img src={Complete}/>
-                :
                     <img src={Reception}/>
+                :
+                    <img src={Complete}/>
             }
            
             <div>{text}</div>

@@ -92,14 +92,14 @@ const DetailView = (props:any) => {
 
                     </div>
 
-                    <hr/>
+                    <div className="line"/>
                     <div>추가선택</div>
                     <CheckBoxCon moreMenuHandler={moreMenuHandler} store={store}/>
 
                     {/* 추가 선택할 컴포넌트가 있어야 함. 아마 체크 박스로 선택 할 수 있게 해서 useState로 추가 할 수 있게 해야 할 듯 */}
-                    <hr/>
+                    <div className="line"/>
                     <CounterContainer/>
-                    <hr/>
+                    <div className="line"/>
                     <div className="detail-bt-con">
                         <div className="detail-bt">
                             <AddMenuContainer select={select} history={props.history} store={store} table={table}/>

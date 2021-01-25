@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Buckets } from '../../../api/bucketFromFire';
 import numberWithCommas from '../../../functions/addCommaFunc';
 import BackButton from '../../atoms/BackButton/BackButton';
 import CancleOrderButtonContainer from '../../atoms/CancleOrderButton/CancleOrderButtonContainer';
@@ -7,7 +6,8 @@ import OrderButton from '../../atoms/OrderButton/OrderButton';
 import MoreMenuList from '../MenuDetail/MoreMenuList';
 import ModifCount from './ModifCount';
 import Cart from '../../../graphics/graphic_cart_x3.png';
-import { useCookies } from 'react-cookie';
+
+
 
 
 interface Props {

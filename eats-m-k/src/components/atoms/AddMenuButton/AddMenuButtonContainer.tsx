@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import AddMenuButton from './AddMenuButton';
 import { RootState } from '../../../modules';
@@ -18,23 +18,24 @@ type Props = {
 
     };
     
-    history: any
+    history: any;
+    store: string | string[] | null
+    table: string | string[] | null
     
 
 }
 
-const AddMenuContainer = ({ select, history }:Props) => {
+const AddMenuContainer = ({ select, history, store, table }:Props) => {
 
-    const {count,store, table,buckets,totalPrice} = useSelector((state:RootState) => ({
+    const {count} = useSelector((state:RootState) => ({
 
         count:state.counters.count,
-        store:state.storeSet.store,
-        table:state.tableSet.table,
-        buckets:state.myBucket.bucket.data?.bucket,
         totalPrice:state.totalPrice.price
         
 
     }));
+    const [ buckets, setBuckets ] = useState<any>([]);
+    const [ totalPrice, setTotalPrice ] = useState<number>(0);
 
     const dispatch = useDispatch();
 
@@ -45,6 +46,14 @@ const AddMenuContainer = ({ select, history }:Props) => {
         console.log(buckets[i]);
         
     }
+    useEffect(()=>{
+
+        dbService.collection(`${store}`).doc(`${table}`).get().then((doc:any)=>{
+            setBuckets(doc.data().bucket);
+            setTotalPrice(doc.data().totalPrice);
+
+        })
+    },[])
 
     
 

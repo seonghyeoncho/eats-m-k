@@ -8,13 +8,21 @@ import MoreMenuList from '../../organisms/MenuDetail/MoreMenuList';
 import Arrow from '../../../icons/icon_arrow_back_black_x3.png'
 import Complete from '../../../icons/icon_OrderCompleted_x3.png';
 import Reception from '../../../icons/icon_ReceptionCompleted_x3.png';
+import queryString from 'query-string';
+
+
 const OrderStatus = (props:any) => {
 
     const [totalPrice, setTotalPrice] = useState(0);
+    const [bucket, setBucekt] = useState<any>();
+    const [stat, setStat ] = useState<boolean>();
+    const query = queryString.parse(props.location.search);
+    const store = query.store;
+    const table = query.table;
     
-    const { bucket, state, orderStatus,store, table} = useSelector((state:RootState)=>({
+    const { state, orderStatus} = useSelector((state:RootState)=>({
 
-        bucket:state.myBucket.bucket.data?.bucket,
+
         orderStatus:state.stateSet.orderStatus,
         state:state.stateSet.state,
         store:state.storeSet.store,
@@ -24,10 +32,10 @@ const OrderStatus = (props:any) => {
     }));
 
     let text:string = '';
-    if(state && orderStatus){
+    if(stat && orderStatus){
         text = '접수완료';
 
-    } else if(!state && orderStatus){
+    } else if(!stat && orderStatus){
 
         text = '주문완료';
 
@@ -39,6 +47,9 @@ const OrderStatus = (props:any) => {
         dbService.collection(`${store}`).doc(`${table}`).get().then(
             (doc:any)=>{
                 setTotalPrice(doc.data().totalPrice);
+                setBucekt(doc.data().bucket);
+                setStat(doc.data().state);
+                
             }
         )
         
@@ -58,9 +69,11 @@ const OrderStatus = (props:any) => {
             </div>
             
             {
-                !state ? 
-
+                !stat ? 
+                
+                
                     <div className="orderstatus-state-con">
+                        <div className="orderstatus-line"/>
                         
                         <div className="orderstatus-state-complete"> 
 
@@ -78,6 +91,7 @@ const OrderStatus = (props:any) => {
                             </div>
 
                         </div>
+                        
                         <div className="orderstatus-state-reception"> 
 
                             <div className="orderstatus-state-reception-circle-1-1"> 
@@ -93,53 +107,57 @@ const OrderStatus = (props:any) => {
                             </div>
 
                         </div>
+                        
 
 
                         
                     </div>
 
                 :
-                <div className="orderstatus-state-con">
-                        
-                    <div className="orderstatus-state-complete"> 
-
-                        <div className="orderstatus-state-complete-circle-1"> 
-                            <img src={Complete}/>
-
-
-                        </div>
-
-                        <div className="orderstatus-state-complete-circle-2">
+                    <div className="orderstatus-state-con">
+                        <div className="orderstatus-line"/>
                             
+                        <div className="orderstatus-state-complete"> 
+
+                            <div className="orderstatus-state-complete-circle-1"> 
+                                <img src={Complete}/>
+
+
+                            </div>
+
+                            <div className="orderstatus-state-complete-circle-2">
+                                
+
+                            </div>
+
+                            <div className="orderstatus-state-complete-text">
+                                주문완료  
+                            </div>
+
+                        </div>
+                       
+                        <div className="orderstatus-state-reception"> 
+
+                            <div className="orderstatus-state-reception-circle-1-2"> 
+                                <img src={Reception}/>
+
+
+                            </div>
+
+                            <div className="orderstatus-state-reception-circle-2-2">
+
+                            </div>
+
+                            <div className="orderstatus-state-reception-text-2">
+                                접수완료  
+                            </div>
 
                         </div>
 
-                        <div className="orderstatus-state-complete-text">
-                            주문완료  
-                        </div>
 
+
+                        
                     </div>
-                    <div className="orderstatus-state-reception"> 
-
-                        <div className="orderstatus-state-reception-circle-1-2"> 
-                            <img src={Reception}/>
-
-
-                        </div>
-
-                        <div className="orderstatus-state-reception-circle-2-2">
-
-                        </div>
-
-                        <div className="orderstatus-state-reception-text-2">
-                            접수완료  
-                        </div>
-
-                    </div>
-
-
-                    
-                </div>
                     
                 
 
@@ -147,39 +165,49 @@ const OrderStatus = (props:any) => {
             
 
             <div className="orderstatus-state-info-con">
-                <h1>{store}</h1>
-                <h3>테이블 {table}</h3>
-                <h3>{numberWithCommas(totalPrice)}원</h3>
+                <div className="orderstatus-state-info-store">{store}</div >
+                <div className="orderstatus-state-info-table">테이블 {table}</div >
+                <div className="orderstatus-state-info-totalprice">{numberWithCommas(totalPrice)}원</div >
             </div>
-            
+            <div className="orderstatus-content-con">
 
-            {
-                bucket?.map((doc:any)=>{
-                        for(let i in doc){
-                            return (
-                                <div className="orderstatus-content-con">
-                                    {/* <img src={Bg}/> */}
+                {
+                    bucket?.map((doc:any)=>{
+                            for(let i in doc){
+                                return (
+                                    <>
+                                        <div className="orderstatus-content">
+                                            {/* <img src={Bg}/> */}
 
-                                    <div className="orderstatus-content">
-                                        <div>{doc.menu}</div>
-                                        <div>{numberWithCommas(doc.itemTotalPrice)}원</div>
-                                    </div>
+                                            <div className="orderstatus-content-title">
+                                                <div>{doc.menu}</div>
+                                                <div>{numberWithCommas(doc.itemTotalPrice)}원</div>
+                                            </div>
+                                            <div className="orderstatus-content-sub">
+                                                <div>개수 : {doc.count}개</div>
+                                                <div>{numberWithCommas(doc.price)}원</div>
+                                            </div>
 
-                                    {
-                                        doc.more !== undefined ? 
+                                            {
+                                                doc.more !== undefined ? 
+                                                    <>
+                                                    
+                                                        <MoreMenuList more={doc.more}/>
+                                                    </>
+                                                :
+                                                    <div>추가사항 없음</div>
+                                            }
                                             
-                                            <MoreMenuList more={doc.more}/>
-                                        :
-                                            <div>추가사항 없음</div>
-                                    }
-                                    
 
-                                    <hr/>
-                                </div>
-                            );
-                        }
-                    })
-            }
+                                            
+                                        </div>
+                                        <div className="line"/>
+                                    </>
+                                );
+                            }
+                        })
+                }
+            </div>
             
 
         </div>

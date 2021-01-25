@@ -5,9 +5,12 @@ import Reception from '../../../icons/icon_ReceptionCompleted_x3.png';
 
 interface Props {
     orderStatus:boolean
-    state:boolean
+    state:boolean;
+    store: string | string[] | null,
+    table: string | string[] | null
+
 }
-const OrderStatusButton = ({orderStatus,state}:Props) => {
+const OrderStatusButton = ({orderStatus,state, store, table}:Props) => {
 
     let text:string = '';
     if(state && orderStatus){
@@ -25,7 +28,7 @@ const OrderStatusButton = ({orderStatus,state}:Props) => {
     
 
     return (
-        <Link to="/orderstatus">
+        <Link to={`/orderstatus/?store=${store}&table=${table}`}>
             {   
                 state ? 
                     <img src={Complete}/>

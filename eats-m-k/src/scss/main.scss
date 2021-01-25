@@ -193,18 +193,38 @@ Link{
 
     }
     .orderstatus-state-con{
+        z-index: 2;
 
         display: flex;
         position: fixed;
-        top: 83px;
+        top: 44px;
         left: 0px;
         right: 0px;
+        padding-top: 28px;
+        padding-bottom: 52px;
 
         align-items: flex-end;
         justify-content: center;
+        background-color: white;
+        
+        .orderstatus-line{
+            z-index: 3;
+            
+            position: fixed;
+            left: 86px;
+            right: 86px;
+            top: 155px;
+
+            height: 2px;
+            background-color: #ff80ad;
+            
+
         
 
+        }
+
         .orderstatus-state-complete{
+            
             .orderstatus-state-complete-circle-1{
                 width: 72px;
                 height: 72px;
@@ -225,10 +245,12 @@ Link{
                 border-radius: 50px;
                 background-color: $base-color;
                 margin-left: 32px;
+                margin-bottom: 8px;
+                z-index: 2;
 
             }
             .orderstatus-state-complete-text{
-                font-size: 13px;
+                font-size: 15px;
                 font-family: NotoSansCJkkr-Bold;
                 margin-left:11px;
 
@@ -243,6 +265,8 @@ Link{
                 background-color: #ff80ad;
                 border-radius: 50px;
                 margin-bottom: 8px;
+                margin-left: 17px;
+
                 
             }
             .orderstatus-state-reception-circle-2-1{
@@ -250,11 +274,15 @@ Link{
                 height: 8px;
                 border-radius: 50px;
                 background-color: #ff80ad;
+                margin-left: 25px;
+                margin-bottom: 8px;
+                z-index: 2;
+
 
 
             }
             .orderstatus-state-reception-text-1{
-                font-size: 13px;
+                font-size: 15px;
                 font-family: NotoSansCJkkr-Bold;
                 opacity: 0.54;
 
@@ -279,10 +307,12 @@ Link{
                 border-radius: 50px;
                 background-color: $base-color;
                 margin-left: 32px;
+                margin-bottom: 8px;
+                z-index: 2;
 
             }
             .orderstatus-state-reception-text-2{
-                font-size: 13px;
+                font-size: 15px;
                 font-family: NotoSansCJkkr-Bold;
                 margin-left:11px;
                 
@@ -291,6 +321,7 @@ Link{
         }
     }
     .orderstatus-state-info-con{
+        z-index: 3;
         
         position: fixed;
         left: 0px;
@@ -301,20 +332,63 @@ Link{
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        background-color: white;
+        .orderstatus-state-info-store{
+            font-size: 24px;
+            font-family: NotoSansCJkkr-Bold;
+
+        }
+        .orderstatus-state-info-table{
+            margin-top: 4px;
+            font-size: 15px;
+            font-family: NotoSansCJkkr-Regular;
+            opacity: 0.68;
+
+        }
+        .orderstatus-state-info-totalprice{
+            margin-top: 10px;
+            font-size: 24px;
+            font-family: NotoSansCJkkr-Regular;
+            line-height: 1.5;
+            color: $base-color;
+
+        }
+    
     }
     .orderstatus-content-con{
-
-
-        
+        z-index: 1;
         margin-top: 400px;
+        margin-bottom: 12px;
+        
+
         .orderstatus-content{
+            margin-top: 12px;
+            margin-left: 36px;
+            margin-right: 36px;
             
-            display: flex;
-            justify-content: space-between;
+            .orderstatus-content-title{
+                
+                display: flex;
+                justify-content: space-between;
+
+            }
+            .orderstatus-content-sub{
+                
+                display: flex;
+                justify-content: space-between;
+                font-size: 13px;
+                opacity: 0.87;
+                margin-bottom: 17px;
+
+            }
 
         }
 
     }
+
+
+        
+        
 
 }
 .ready-img{
@@ -851,10 +925,30 @@ Link{
                 }
             }
             .checkbox-con{
-                .checkbox-item{
+                .checkbox-item-con{
                     display: flex;
                     justify-content: space-between;
-                }
+                    .checkbox-item{
+                        display: flex;
+                        
+                        input{
+                            margin: 0px;
+                            margin-top:9px;
+                            margin-right: 7px;
+                           
+
+                        }
+                        div{
+                            margin-top:6px;
+                            font-size: 13px;
+                            font-family: NotoSansCJKkr-Regular;
+                            line-height: 1.46;
+                        }
+                        
+                        
+                    }
+                }   
+                
 
             }
             .detail-bt-con{

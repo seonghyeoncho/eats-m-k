@@ -6,33 +6,35 @@ import { dbService } from '../../../firebase';
 import numberWithCommas from '../../../functions/addCommaFunc';
 import { resetPrice } from '../../../modules/totalPrice';
 import Arrow from '../../../icons/icon_arrow_back_black_x3.png'
+import queryString from 'query-string';
 
 
 const BucketViewContainer = (props:any) => {
 
+    const query = queryString.parse(props.location.search);
+    const store = query.store;
+    const table = query.table;
 
-    const { store, table,p } = useSelector((state:RootState)=>({
-
-        store:state.storeSet.store,
-        table:state.tableSet.table,
-        p:state.totalPrice.price,
-    
-    }))
     const [ buckets,setBuckets ] = useState([]);
-    const [ totalPrice, setTotalPrice ] = useState<number>(p);
+    const [ totalPrice, setTotalPrice ] = useState<number>(0);
 
     const dispatch = useDispatch();
 
+    console.log(store)
+
     useEffect(()=>{
+        console.log('hello')
 
         dbService.collection(`${store}`).doc(`${table}`)
             .onSnapshot(snapShot=>{
                 console.log(snapShot.data()?.bucket);
                 setBuckets(snapShot.data()?.bucket);
                 setTotalPrice(snapShot.data()?.totalPrice);
+                
         })
         
-    },[]);
+        
+    },[totalPrice]);
     console.log('totalPrice',totalPrice);
 
     const resetBucket = () => {
@@ -70,7 +72,7 @@ const BucketViewContainer = (props:any) => {
                             <div className="bucket-info">
                                 <div className="bucket-info-store">{store}</div>
                                 <div className="bucket-info-table">테이블 {table}</div>
-                                <div className="bucket-info-price">{numberWithCommas(p)}원</div>
+                                <div className="bucket-info-price">{numberWithCommas(totalPrice)}원</div>
                             </div>
                         
                         </div>
@@ -79,7 +81,7 @@ const BucketViewContainer = (props:any) => {
                 }
             </div>
 
-            <BucketView bucket={buckets} totalPrice ={p}/>
+            <BucketView bucket={buckets} totalPrice = {totalPrice} store={store} table={table}/>
             
         </div>
     );

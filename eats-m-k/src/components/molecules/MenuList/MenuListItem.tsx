@@ -6,15 +6,17 @@ import numberWithCommas from '../../../functions/addCommaFunc';
 interface Props {
 
     price:number;
-    menu:string
+    menu:string;
+    store: string | string[] | null
+    table: string | string[] | null
 }
 
-const MenuListItem = ({menu,price}:Props) => {
+const MenuListItem = ({menu,price, store, table}:Props) => {
 
 
 
     return (
-        <Link to={`/detail/?menu=${menu}&price=${price}`} >
+        <Link to={`/detail/?menu=${menu}&price=${price}&store=${store}&table=${table}`} >
             
             <div className="item-con">
                 <div className="item-content">

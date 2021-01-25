@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { dbService } from '../../../firebase';
-import numberWithCommas from '../../../functions/addCommaFunc';
 import { RootState } from '../../../modules';
 import { decrease, increase } from '../../../modules/totalPrice';
 import P_img from '../../../icons/icon_plus_x3.png';
@@ -14,20 +13,21 @@ interface Props {
     price:any;
     more:any;
     itemTotalPrice:number;
-    totalPrice:number
+    totalPrice:number;
+    store:string | string[] | null
+    table:string | string[] | null
     
 }
 
-const ModifCount = ({c,id, menu, price, more,itemTotalPrice,totalPrice}:Props) => {
-    const { store, table, p} = useSelector((state:RootState)=>({
+const ModifCount = ({c,id, menu, price, more,itemTotalPrice,totalPrice, store, table}:Props) => {
+    const { p} = useSelector((state:RootState)=>({
 
-        store:state.storeSet.store,
-        table:state.tableSet.table,
+        
         p:state.totalPrice.price,
     }));
     
     const [ bucket, setBucekt ] = useState<any>([]);
-    const [total, setTotal] = useState<number>(p);
+    const [total, setTotal] = useState<number>(totalPrice);
 
     useEffect(()=>{
 
@@ -76,7 +76,7 @@ const ModifCount = ({c,id, menu, price, more,itemTotalPrice,totalPrice}:Props) =
             'bucket':[
                 ...modifBuc
             ],
-            'totalPrice':p
+            'totalPrice':total
 
 
         });

@@ -4,21 +4,15 @@ import { RootState } from '../../../modules';
 import BucketButton from './BucketButton';
 interface Props {
 
-    orderStatus:boolean | undefined
+    orderStatus:boolean | undefined;
+    store: string | string[] | null;
+    table: string | string[] | null;
 
 }
 
 
-const BucketButtonContainer = ({orderStatus}:Props) => {
+const BucketButtonContainer = ({orderStatus, store, table}:Props) => {
 
-    const { store, table,totalPrice} = useSelector((state:RootState)=>({
-
-
-        store:state.storeSet.store,
-        table:state.tableSet.table,
-        totalPrice:state.totalPrice.price
-        
-    }));
     console.log(orderStatus);
 
 

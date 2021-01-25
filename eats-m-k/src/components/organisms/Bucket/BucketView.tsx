@@ -7,15 +7,19 @@ import OrderButton from '../../atoms/OrderButton/OrderButton';
 import MoreMenuList from '../MenuDetail/MoreMenuList';
 import ModifCount from './ModifCount';
 import Cart from '../../../graphics/graphic_cart_x3.png';
+import { useCookies } from 'react-cookie';
 
 
 interface Props {
 
     bucket: any
     totalPrice:number
+    store:string | string[] | null
+    table:string | string[] | null
 
 }
-const BucketView = ({bucket,totalPrice}:Props) => {
+const BucketView = ({bucket,totalPrice,store, table}:Props) => {
+
 
     return (
         <div className="bucket-content-con">
@@ -70,6 +74,8 @@ const BucketView = ({bucket,totalPrice}:Props) => {
                                                 more={doc.more} 
                                                 itemTotalPrice={doc.itemTotalPrice}
                                                 totalPrice={totalPrice}
+                                                store={store}
+                                                table={table}
 
                                             />
                                         </div>

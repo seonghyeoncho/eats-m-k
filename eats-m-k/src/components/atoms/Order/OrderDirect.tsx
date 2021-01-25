@@ -3,6 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 
 
 interface Props {
+    
     store: string | string[] | null;
     table: string | string[] | null;
     text: string;

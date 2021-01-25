@@ -6,21 +6,25 @@ import numberWithCommas from '../../../functions/addCommaFunc';
 import { RootState } from '../../../modules';
 import OrderD from '../../atoms/Order/OrderD';
 import MoreMenuList from '../MenuDetail/MoreMenuList';
+import queryString from 'query-string';
 
 
-const OrderListD = () => {
+const OrderListD = (props:any) => {
 
     const [ bucket, setBucket ] = useState<any>([]);
     const [ totalPrice, setTotalPrice ] = useState<number>();
-    const { orderStatus,store,table} = useSelector((state:RootState)=> ({
+    const { orderStatus} = useSelector((state:RootState)=> ({
          
         orderStatus:state.stateSet.orderStatus,
-        store:state.storeSet.store,
-        table:state.tableSet.table,
 
 
         
     }));
+
+    const query = queryString.parse(props.location.search);
+    const store = query.store;
+    const table = query.table
+
     useEffect(()=>{
         dbService.collection(`${store}`).doc(`${table}`).get().then((doc:any)=>{
             const data = doc.data().bucket
@@ -80,7 +84,7 @@ const OrderListD = () => {
                 })
             }
             
-            <OrderD text={"취소"}/>
+            <OrderD text={"취소"} totalPrice={totalPrice}/>
         </div>
 
     );

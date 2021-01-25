@@ -8,16 +8,17 @@ import OrderDirect from './OrderDirect';
 interface Props {
 
     text: string;
+    totalPrice:number | undefined
 
 }
 
-const OrderD = ({text}:Props) => {
+const OrderD = ({text,totalPrice}:Props) => {
 
-    const {store, table, totalPrice } = useSelector((state:RootState)=>({
+    const {store, table } = useSelector((state:RootState)=>({
         
         store:state.storeSet.store,
         table:state.tableSet.table,
-        totalPrice:state.totalPrice.price,
+
 
     }));
 

@@ -5,22 +5,17 @@ import numberWithCommas from '../../../functions/addCommaFunc';
 import { RootState } from '../../../modules';
 import OrderContainer from '../../atoms/Order/OrderContainer';
 import MoreMenuList from '../MenuDetail/MoreMenuList';
+import queryString from 'query-string';
 
 
 const OrderListView = (props:any) => {
     
     const [ buckets,setBuckets ] = useState([]);
     const [ totalPrice, setTotalPrice ] = useState<number>(0);
+    const query = queryString.parse(props.location.search);
+    const store = query.store;
+    const table = query.table;
 
-    const { orderStatus,store,table } = useSelector((state:RootState)=> ({
-         
-        orderStatus:state.stateSet.orderStatus,
-        store:state.storeSet.store,
-        table:state.tableSet.table,
-
-
-        
-    }));
 
     useEffect(()=>{
 

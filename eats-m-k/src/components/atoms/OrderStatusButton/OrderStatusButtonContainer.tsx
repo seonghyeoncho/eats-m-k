@@ -6,9 +6,11 @@ import { RootState } from '../../../modules';
 
 const OrderStatusButtonContainer = () => {
 
-    const {orderStatus,state} = useSelector((state:RootState)=>({
+    const {orderStatus,state,store,table} = useSelector((state:RootState)=>({
         orderStatus:state.stateSet.orderStatus,
-        state:state.stateSet.state
+        state:state.stateSet.state,
+        store:state.storeSet.store,
+        table:state.tableSet.table
     }))
 
 
@@ -19,7 +21,7 @@ const OrderStatusButtonContainer = () => {
 
                     <></> 
                 : 
-                    <OrderStatusButton orderStatus={orderStatus} state={state}/>
+                    <OrderStatusButton orderStatus={orderStatus} state={state} store={store} table={table}/>
             }
         </div>
     );

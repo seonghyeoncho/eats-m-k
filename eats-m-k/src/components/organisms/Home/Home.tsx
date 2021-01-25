@@ -7,16 +7,22 @@ import { setStore } from '../../../modules/setStore';
 import { setTable } from '../../../modules/setTable';
 import StoreAndTableBoxContainer from '../../molecules/StoreAndTable/StoreAndTableBoxContainer';
 import BucketButtonContainer from '../../atoms/BucketButton/BucketButtonContainer';
-import { useCookies } from 'react-cookie';
+
 import { getMenuThunk } from '../../../modules/getMenus';
 import MenuListContainer from '../../molecules/MenuList/MenuListcontainer';
 import { getBucketThunk } from '../../../modules/getBucket/thunks';
 import { dbService } from '../../../firebase';
 import { setState, setStatus } from '../../../modules/orderState';
 import '../../../scss/main.scss';
+import { useCookies } from 'react-cookie';
 
+
+interface Props {
+    
+}
 
 const Home = ( props: any ) => {
+    const [ cookies, setCookie, removeCookie ] = useCookies(['clientId', 'bucket', 'store', 'table']);
     
     const {totalPrice, menu, state,orderStatus} = useSelector((state:RootState)=>({
 
@@ -26,7 +32,7 @@ const Home = ( props: any ) => {
         orderStatus:state.myBucket.bucket.data?.orderStatus
 
     }));
-    const [ cookies, setCookie, removeCookie ] = useCookies(['clientId', 'bucket']);
+
     const [id, setId] = useState<any>(null);
     const [ menuListState,setMenuListState ] = useState<number>(0);
     const [ color1, setColor1 ] = useState('#ff1b6d');
@@ -55,7 +61,7 @@ const Home = ( props: any ) => {
 
     const changeList = (n:number) => {
 
-        return <MenuListContainer state={n}/>
+        return <MenuListContainer state={n} store={store} table={table}/>
 
     }
 
@@ -124,7 +130,7 @@ const Home = ( props: any ) => {
 
     return (
         <div>
-            <StoreAndTableBoxContainer/>
+            <StoreAndTableBoxContainer store={store} table={table}/>
             <div className="main-content">
                 <div className="menulist-nav">
                     <div className="menulist-bts">
@@ -146,7 +152,7 @@ const Home = ( props: any ) => {
                         </div>
                         
                     </div>
-                    <BucketButtonContainer orderStatus={orderStatus}/>
+                    <BucketButtonContainer orderStatus={orderStatus} store={store} table={table}/>
                 </div>
 
 

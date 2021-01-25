@@ -7,9 +7,12 @@ import CompleteView from '../Complete/CompleteView';
 import BucketViewContainer from '../Bucket/BucketViewContainer';
 import OrderStatus from '../../atoms/OrderStatus/OrderStatus';
 import OrderListD from '../OrderList/OrderListD';
+import {useCookies} from 'react-cookie';
 
 
 const AppRouter = () =>{
+    const [ cookies, setCookie, removeCookie ] = useCookies(['clientId', 'bucket', 'store', 'table']);
+    console.log('cookies', cookies.clientId)
     
     return(
 

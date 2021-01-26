@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import numberWithCommas from '../../../functions/addCommaFunc';
-import BackButton from '../../atoms/BackButton/BackButton';
 import CancleOrderButtonContainer from '../../atoms/CancleOrderButton/CancleOrderButtonContainer';
-import OrderButton from '../../atoms/OrderButton/OrderButton';
 import MoreMenuList from '../MenuDetail/MoreMenuList';
 import ModifCount from './ModifCount';
 import Cart from '../../../graphics/graphic_cart_x3.png';
@@ -31,7 +29,6 @@ const BucketView = ({bucket,totalPrice,store, table}:Props) => {
                         <img src={Cart}/>
 
                         <div className="ready-bucket-text">메뉴를 추가해 주세요</div>
-                        <BackButton text={'추가하기'}/>
 
                     </div>
 
@@ -85,7 +82,7 @@ const BucketView = ({bucket,totalPrice,store, table}:Props) => {
                                     
                                     <div className="middle"/>
 
-                                    <OrderButton/>
+                                    
 
                                 
                                 </div>

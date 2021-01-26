@@ -32,7 +32,7 @@ const OrderD = ({text,totalPrice}:Props) => {
             'orderAt' : Date.now(),
             'orderAt_R' : -Date.now(),
             'orderStatus' : true ,
-            totalPrice : totalPrice,
+
       
           })
           .then(() => {

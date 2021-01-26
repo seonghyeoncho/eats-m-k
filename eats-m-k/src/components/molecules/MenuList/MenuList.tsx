@@ -16,7 +16,6 @@ type Props = {
 }
 
 const MenuList = ({ menus, store, table }:Props ) => {
-    console.log(menus);
   
     return(
  

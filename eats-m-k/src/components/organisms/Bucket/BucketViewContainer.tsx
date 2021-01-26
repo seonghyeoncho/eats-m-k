@@ -7,6 +7,8 @@ import numberWithCommas from '../../../functions/addCommaFunc';
 import { resetPrice } from '../../../modules/totalPrice';
 import Arrow from '../../../icons/icon_arrow_back_black_x3.png'
 import queryString from 'query-string';
+import OrderButton from '../../atoms/OrderButton/OrderButton';
+import BackButton from '../../atoms/BackButton/BackButton';
 
 
 const BucketViewContainer = (props:any) => {
@@ -23,7 +25,6 @@ const BucketViewContainer = (props:any) => {
     console.log(store)
 
     useEffect(()=>{
-        console.log('hello')
 
         dbService.collection(`${store}`).doc(`${table}`)
             .onSnapshot(snapShot=>{
@@ -35,7 +36,6 @@ const BucketViewContainer = (props:any) => {
         
         
     },[totalPrice]);
-    console.log('totalPrice',totalPrice);
 
     const resetBucket = () => {
 
@@ -48,13 +48,14 @@ const BucketViewContainer = (props:any) => {
         props.history.goBack();
 
     }
+
     const goBack = () => {
         props.history.goBack();
     }
 
     return (
 
-        <div>
+        <div className="bucket">
             
             <div className="bucket-nav" >
                 <div className="div1"><img src={Arrow} width="12px" onClick={goBack}/></div>
@@ -82,6 +83,13 @@ const BucketViewContainer = (props:any) => {
             </div>
 
             <BucketView bucket={buckets} totalPrice = {totalPrice} store={store} table={table}/>
+            { 
+                buckets.length !== 0 ? 
+                    <OrderButton/>
+                :
+                    <BackButton text={'추가하기'}/>
+            }
+            
             
         </div>
     );

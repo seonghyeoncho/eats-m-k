@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import numberWithCommas from '../../../functions/addCommaFunc';
 import BackButton from '../../atoms/BackButton/BackButton';
 import CancleOrderButtonContainer from '../../atoms/CancleOrderButton/CancleOrderButtonContainer';
@@ -6,9 +6,10 @@ import OrderButton from '../../atoms/OrderButton/OrderButton';
 import MoreMenuList from '../MenuDetail/MoreMenuList';
 import ModifCount from './ModifCount';
 import Cart from '../../../graphics/graphic_cart_x3.png';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../modules';
 
-
-
+import { useCookies } from 'react-cookie';
 
 interface Props {
 
@@ -20,6 +21,28 @@ interface Props {
 }
 const BucketView = ({bucket,totalPrice,store, table}:Props) => {
 
+
+    const [ cookies, setCookie, removeCookie ] = useCookies(['clientId', 'bucket', 'store', 'table']);
+    const [ Test , setTest ] = useState<any>([]);
+
+    const { test } = useSelector((state:RootState)=>({
+        test:state.myBucket.bucket.data?.bucket
+    }));
+    console.log(test);
+    console.log('bucket',cookies.bucket);
+    console.log('clientId', cookies.clientId);
+
+    useEffect(()=>{
+        if( test === undefined ){
+            setTest(cookies.bucket);
+        } else {
+            setTest(test);
+        }
+    
+
+    },[])
+
+    
 
     return (
         <div className="bucket-content-con">
@@ -38,7 +61,7 @@ const BucketView = ({bucket,totalPrice,store, table}:Props) => {
                 :
                     
 
-                    bucket?.map((doc:any)=>{
+                    Test?.map((doc:any)=>{
 
                         for(let i in doc){
 
@@ -67,6 +90,7 @@ const BucketView = ({bucket,totalPrice,store, table}:Props) => {
 
                                             <ModifCount 
 
+                                        
                                                 c={doc.count} 
                                                 id={doc.id} 
                                                 menu={doc.menu} 

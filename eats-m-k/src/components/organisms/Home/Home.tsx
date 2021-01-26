@@ -50,7 +50,8 @@ const Home = ( props: any ) => {
     const clientId = `${today.getMonth()+1}/${today.getDate()}/${time}`;
     const query = queryString.parse(props.location.search);
     const store = query.store;
-    const table = query.table
+    const table = query.table;
+
 
     const getStateFormFire = () => {
 
@@ -77,7 +78,7 @@ const Home = ( props: any ) => {
 
             console.log('쿠키가 없으면 이게 나옵니다.');
 
-            setCookie('clientId', clientId);
+            setCookie('clientId', clientId, {path:'/'});
 
         
             dbService.collection(`${store}`).doc(`${table}`).update({
@@ -132,7 +133,7 @@ const Home = ( props: any ) => {
             onCookie();
         }
 
-    },[id]);
+    },[]);
 
     return (
         <div>

@@ -44,6 +44,7 @@ const AddMenuContainer = ({ select, history, store, table }:Props) => {
 
     console.log(select);
     console.log('bucket',buckets);
+    console.log('cookie bucket test', cookies.bucket)
 
     for(let i in buckets){
         console.log(buckets[i]);
@@ -83,15 +84,29 @@ const AddMenuContainer = ({ select, history, store, table }:Props) => {
             ],
             'totalPrice': totalPrice + select.itemTotalPrice  
         });
-        const arrayObj2 = [
-            ...cookies.bucket,
-            {
-                ...select,
-                id:`${select.menu}/${count}/${a}`
+        if(cookies.bucket === undefined){
+            const arrayObj2 = [
+                {
+                    ...select,
+                    id:`${select.menu}/${count}/${a}`
+    
+                }
+            ]
+            setCookie('bucket', arrayObj2, {path:'/'});
 
-            }
-        ]
-        setCookie('bucket', arrayObj2);
+        } else {
+            const arrayObj2 = [
+                ...cookies.bucket,
+                {
+                    ...select,
+                    id:`${select.menu}/${count}/${a}`
+    
+                }
+            ]
+            setCookie('bucket', arrayObj2,  {path:'/'});
+
+        }
+       
 
         console.log('cookie bucket test',cookies.bucket)
         

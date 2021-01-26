@@ -10,14 +10,18 @@ import { disconnect } from 'process';
 type Props = {
     
     menus: [] | undefined
+    store: string | string[] | null
+    table: string | string[] | null
 
 }
 
-const MenuList = ({ menus }:Props ) => {
+const MenuList = ({ menus, store, table }:Props ) => {
+    console.log(menus);
   
     return(
  
-        <div className="menulist-content" >
+        <div className="menulist-content">
+
             {
                 menus?.length === 0 ? 
 
@@ -33,14 +37,13 @@ const MenuList = ({ menus }:Props ) => {
                         {  
                             menus?.map((doc:any) => {
                                 
-                                return <MenuListItem menu={doc.menu} price={doc.price} state={doc.state}/>
+                                return <MenuListItem menu={doc.menu} price={doc.price} store={store} table={table} state={doc.state}/>
                                 
                             })
                         }
                     </>
 
             }
-           
 
         </div>
 

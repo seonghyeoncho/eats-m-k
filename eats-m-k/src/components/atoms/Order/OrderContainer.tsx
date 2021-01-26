@@ -5,6 +5,8 @@ import { RootState } from '../../../modules';
 import { setState } from '../../../modules/orderState';
 import { resetPrice } from '../../../modules/totalPrice';
 import Order from './Order';
+import queryString from 'query-string';
+
 interface Props {
 
     text: string;
@@ -12,13 +14,14 @@ interface Props {
 
 const OrderContainer = ({text}:Props) => {
 
-    const {store, table, totalPrice, id } = useSelector((state:RootState)=>({
+    const query = queryString.parse(window.location.search);
+    const store = query.store;
+    const table = query.table;
+
+    const { totalPrice, id } = useSelector((state:RootState)=>({
         
-        store:state.storeSet.store,
-        table:state.tableSet.table,
         totalPrice:state.totalPrice.price,
         id:state.idSet.id
-
         
     }));
 

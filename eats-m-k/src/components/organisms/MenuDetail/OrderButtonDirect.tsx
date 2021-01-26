@@ -5,8 +5,6 @@ import { dbService } from '../../../firebase';
 import { RootState } from '../../../modules';
 import { resetCount } from '../../../modules/counters';
 import { increase } from '../../../modules/totalPrice';
-import OrderButton from '../../atoms/OrderButton/OrderButton';
-import OrderButtonContainer from '../../atoms/OrderButton/OrderButtonContainer';
 
 interface Props {
 
@@ -19,15 +17,16 @@ interface Props {
         itemTotalPrice: number
 
     };
+    store:string | string[] | null
+    table:string | string[] | null
 
 }
 
 
-const OrderButtonDirect = ({select}:Props) => {
+const OrderButtonDirect = ({select, store, table}:Props) => {
 
-    const { store, table, count,bucket } = useSelector((state:RootState)=>({
-        store:state.storeSet.store,
-        table:state.tableSet.table,
+    const { count,bucket } = useSelector((state:RootState)=>({
+
         count:state.counters.count,
         bucket:state.myBucket.bucket.data?.bucket
 
@@ -64,7 +63,7 @@ const OrderButtonDirect = ({select}:Props) => {
         <div>
 
             <div onClick={onClick}>
-                <Link to='/orderlistd'>
+                <Link to={`/orderlistd/?store=${store}&table=${table}`}>
                         <div className="order-bt-dir">주문하기</div>
                 </Link>
             

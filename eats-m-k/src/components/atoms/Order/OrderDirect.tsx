@@ -3,6 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 
 
 interface Props {
+    
     store: string | string[] | null;
     table: string | string[] | null;
     text: string;
@@ -18,9 +19,14 @@ const OrderDirect = ({store, table,onSubmit,text,cancle}:Props) => {
     console.log('sdfsdf',store,table);
 
     return ( 
-        <div>
-            <Link to="/complete"><button onClick={onSubmit}>주문하기</button></Link>
-            <Link to={`/menu/?store=${store}&table=${table}`}><button onClick={cancle}>{text}</button></Link>
+        <div className="order-bt-con">
+            <Link to={`/menu/?store=${store}&table=${table}`}>
+                <div className="order-bt-cancle">{text}</div>
+            </Link>
+
+            <Link to="/complete">
+                <div onClick={cancle} className="order-bt">주문하기</div>
+            </Link>
 
         </div>
     );

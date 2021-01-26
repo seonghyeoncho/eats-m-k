@@ -1,29 +1,25 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../modules';
+import React, { useEffect, useState } from 'react';
+import { dbService } from '../../../firebase';
+import CheckItem from './CheckItem';
 
 
 interface Props {
-    addMoreMenu: ( m:string, p:number ) => void;
+    moreMenuHandler: ( m:any, checked:boolean ) => void;
+    store: string | string[] | null
+
 
 }
-const CheckBoxCon = ({ addMoreMenu }:Props) => {
-    const [state, setState] = useState<boolean>(false);
+const CheckBoxCon = ({ moreMenuHandler, store}:Props) => {
+    
+    const [AC, setAC] = useState<any>([]);
 
-    const { AC } = useSelector((state:RootState)=> ({
-
-        AC:state.myBase.menus.data?.AC
-        
-    }));
-    console.log(AC);
-    AC?.map((doc:any)=>{
-        for(let i in doc){
-           
-            console.log(doc[i],i);
-            
-        }
-    })
-
+    useEffect(()=>{
+        dbService.collection('store').doc(`${store}`).get().then(
+            (doc:any) => {
+                setAC(doc.data().AC);
+            }
+        )
+    },[]);
 
     return (
         <div className="checkbox-con">
@@ -31,13 +27,7 @@ const CheckBoxCon = ({ addMoreMenu }:Props) => {
             {
                 AC?.map((doc:any)=>{
                    
-                        return (
-                            <div onClick={()=>addMoreMenu(doc, doc.price)} className="checkbox-item">
-                                <div>{doc.menu}</div>
-                                <div>+{doc.price}원</div>
-                            </div>
-                        )
-                    
+                        return <CheckItem menu={doc }moreMenuHandler={moreMenuHandler} />
                 })
             }
         </div>

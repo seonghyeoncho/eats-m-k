@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import queryString from 'query-string';
 import CounterContainer from '../../atoms/Counter/CounterContainer';
 import StoreAndTableBoxContainer from '../../molecules/StoreAndTable/StoreAndTableBoxContainer';
-import BackButton from '../../atoms/BackButton/BackButton';
 import AddMenuContainer from '../../atoms/AddMenuButton/AddMenuButtonContainer';
 import CheckBoxCon from './CheckBoxCon';
 import numberWithCommas from '../../../functions/addCommaFunc';
@@ -14,28 +13,39 @@ import Arrow from '../../../icons/icon_arrow_back_black_x3.png'
 
 const DetailView = (props:any) => {
 
-    const { count,orderStatus  } = useSelector((state:RootState) => ({
+    const { count,orderStatus,b  } = useSelector((state:RootState) => ({
 
         count:state.counters.count,
-        orderStatus:state.myBucket.bucket.data?.orderStatus
+        orderStatus:state.myBucket.bucket.data?.orderStatus,
+        b:state.myBucket.bucket.data?.bucket
 
     }));
 
     const query = queryString.parse(props.location.search);
     const menu = query.menu;
     const price = Number(query.price);
+    const store = query.store;
+    const table = query.table;
     const [ select, setSelect ] = useState<any>({});
     const [ more, setMore ] = useState<any>([]);
     const [ morePrice,setMorePrice] = useState<number>(0);
+    
 
-    const addMoreMenu = (m:any, p:number) => {
-        m = {
-            menu:m.menu,
-            price:m.price
+    const moreMenuHandler = (m:any, isChecked:boolean) => {
+        console.log(m)
+
+        if(isChecked) {
+            
+            setMore( (prev:any) => [m,...prev]);
+            setMorePrice(morePrice + m.price);
+
+        } else if(!isChecked) {
+            
+            setMore( (prev:any) => prev.filter((doc:any)=> m.menu !== doc.menu));
+            setMorePrice(morePrice + m.price);
+
         }
-
-        setMore( (prev:any) => [m,...prev]);
-        setMorePrice(morePrice + p);
+        
 
 
     }
@@ -52,17 +62,19 @@ const DetailView = (props:any) => {
         setSelect(Obj);
 
     },[more,menu,count]);
+    console.log(select);
+    console.log('b',b);
 
     return (
         <div className="detail">
 
-            <StoreAndTableBoxContainer/>
+            <StoreAndTableBoxContainer store={store} table={table}/>
             <div className="detail-nav">
 
                 <div className="detail-nav-content">
                     <img onClick={props.history.goBack} src={Arrow} width="12px" height="18px"/>    
                     <div className="detail-nav-content-text">MENU</div>
-                    <BucketButtonContainer orderStatus={orderStatus}/>
+                    <BucketButtonContainer orderStatus={orderStatus} store={store} table={table}/>
                 </div>
 
             </div>
@@ -74,26 +86,26 @@ const DetailView = (props:any) => {
                     <div className="detail-info-con">
 
                         <div className="detail-info">
-                            <div>{menu}</div>
-                            <div>추가설명</div>
+                            <div className="detail-info-menu">{menu}</div>
+                            <div className="detail-info-sp">추가설명</div>
                         </div>
                         
                         <div>{numberWithCommas(price)}원</div>
 
                     </div>
 
-                    <hr/>
+                    <div className="line"/>
                     <div>추가선택</div>
-                    <CheckBoxCon addMoreMenu={addMoreMenu}/>
+                    <CheckBoxCon moreMenuHandler={moreMenuHandler} store={store}/>
 
                     {/* 추가 선택할 컴포넌트가 있어야 함. 아마 체크 박스로 선택 할 수 있게 해서 useState로 추가 할 수 있게 해야 할 듯 */}
-                    <hr/>
+                    <div className="line"/>
                     <CounterContainer/>
-                    <hr/>
+                    <div className="line"/>
                     <div className="detail-bt-con">
                         <div className="detail-bt">
-                            <AddMenuContainer select={select} history={props.history}/>
-                            <OrderButtonDirect select={select}/>
+                            <AddMenuContainer select={select} history={props.history} store={store} table={table}/>
+                            <OrderButtonDirect select={select} store={store} table={table}/>
                         </div>
                     </div>
 

@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import {Button, Menu, Radio} from 'antd';
 import queryString from 'query-string';
@@ -54,16 +55,16 @@ const App = () => {
     
     dbService.collection(`${query.store}`)
       .orderBy(`${orderState}`)
-      .onSnapshot((snapShot:any)=>{
-        setComOrderList([]);
-        setNewOrderList([])
+      .onSnapshot((snapShot) => { 
+        snapShot.forEach((doc:any)=>{ 
+          setNewOrderList([]);
+          setComOrderList([]);
+        
 
-        snapShot.forEach((doc:any)=>{
-          console.log(doc.data());
 
           if(!doc.data().state && doc.data().orderStatus){
-            const tableObj = {
 
+            const tableObj = {
 
               myTable:doc.id,
               orderList:doc.data().bucket,
@@ -72,8 +73,8 @@ const App = () => {
               totalPrice:doc.data().totalPrice
               
             }
-            console.log(tableObj)
-            setNewOrderList((prev: any) => [tableObj, ...prev]);               
+
+            setNewOrderList((prev:any) => [tableObj, ...prev]);               
             
           } else {
             const tableObj = {
@@ -115,7 +116,8 @@ const App = () => {
   },[radio]);
 
 
-  
+  console.log(newOrderList);
+  console.log(comOrderList);
 
 
   const listState = () => {

@@ -23,6 +23,22 @@ const MenuSetting = ({menu,store}:Props) => {
             setPrice(value);
         }
     };
+    const toggleState = (m:any) => {
+        console.log(!m.state)
+
+        const toggleObj = {
+            menu:m.menu,
+            price:m.price,
+            state:!m.state
+
+        }
+        
+       const toggledMenu = menu.map((doc:any) => doc.menu === m.menu ? toggleObj : doc);
+        dbService.collection('store').doc(`${store}`).update({
+            'menu':toggledMenu
+        })
+        
+    }
 
     const onSubmit = (event:any) => {
         event.preventDefault();
@@ -54,13 +70,14 @@ const MenuSetting = ({menu,store}:Props) => {
                                 <div>
                                     {
                                         doc.state ?
-                                            <div>주문 가능</div>
+                                            <button onClick={()=>toggleState(doc)}>주문 가능</button>
                                         :
-                                            <div>주문 불가</div>
+                                            <button onClick={()=>toggleState(doc)}>주문 불가</button>
 
                                     }
 
                                 </div>
+                                <hr/>
                             </div>
                         )
                     

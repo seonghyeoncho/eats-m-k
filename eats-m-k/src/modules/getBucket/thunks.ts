@@ -6,7 +6,8 @@ import { dbService } from '../../firebase';
 
 export const getBucketThunk = (store: string | string[] | null, table: string | string[] | null): ThunkAction<Promise<void>, RootState, null, BucketAction> => {
 
-        return async dispatch => {
+        return async dispatch => { 
+            
 
             const { request, success, failure } = getBucketAsync;
             dispatch(request());

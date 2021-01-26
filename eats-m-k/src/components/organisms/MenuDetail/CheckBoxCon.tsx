@@ -27,7 +27,7 @@ const CheckBoxCon = ({ moreMenuHandler, store}:Props) => {
             {
                 AC?.map((doc:any)=>{
                    
-                        return <CheckItem menu={doc }moreMenuHandler={moreMenuHandler} />
+                        return <CheckItem key={doc.menu} menu={doc} moreMenuHandler={moreMenuHandler} />
                 })
             }
         </div>

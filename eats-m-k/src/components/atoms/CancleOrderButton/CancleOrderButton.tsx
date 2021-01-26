@@ -9,7 +9,6 @@ type Props = {
 const CancleOrderButton = ({cancleOrders}:Props) => {
 
     const [ popOverVisible, setPopOverVisible ] = useState<any>({visible:false});
-    console.log(popOverVisible.visible)
 
     return (
         // <Popover

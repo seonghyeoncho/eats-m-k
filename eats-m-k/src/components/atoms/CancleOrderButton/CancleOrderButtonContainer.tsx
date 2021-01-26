@@ -14,8 +14,7 @@ interface Props {
     bucket: any
 }
 const CancleOrderButtonContainer = ({id,price,bucket}:Props) => {
-
-    const [ cookies, setCookie, removeCookie ] = useCookies(['clientId', 'bucket', 'store', 'table']);
+    console.log(price);
    
 
     const {buckets,store, table,totalPrice} = useSelector((state:RootState)=>({
@@ -30,7 +29,6 @@ const CancleOrderButtonContainer = ({id,price,bucket}:Props) => {
 
     const cancleOrders = () => {
         const buckett = bucket?.filter((doc:any)=> doc.id !== id )
-        console.log(bucket);
         
         dispatch(decrease(price));
 
@@ -44,9 +42,7 @@ const CancleOrderButtonContainer = ({id,price,bucket}:Props) => {
 
         
         })
-        const test = cookies.bucket.filter((doc:any) => doc.id!== id);
-        setCookie('bucket', test);
-        console.log('cookie bucket test', cookies.bucket)
+        
     }
 
     return (

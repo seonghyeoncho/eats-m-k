@@ -1,22 +1,30 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../modules';
+import React, { useEffect, useState } from 'react';
+import { dbService } from '../../../firebase';
 import BucketButton from './BucketButton';
 interface Props {
 
-    orderStatus:boolean | undefined;
     store: string | string[] | null;
     table: string | string[] | null;
+
 
 }
 
 
-const BucketButtonContainer = ({orderStatus, store, table}:Props) => {
+const BucketButtonContainer = ({ store, table, }:Props) => {
+
+    const [ totalPrice, setTotalPrice ] = useState<number>();
+
+    useEffect(()=>{
+
+        dbService.collection(`${store}`).doc(`${table}`).onSnapshot((snapShot:any)=>{
+            setTotalPrice(snapShot.data().totalPrice);
+        });
+    },[]);
 
     return(
         <>
             {
-                orderStatus ? 
+                totalPrice === 0  ? 
 
                     <div className="bucket-block"></div>
 

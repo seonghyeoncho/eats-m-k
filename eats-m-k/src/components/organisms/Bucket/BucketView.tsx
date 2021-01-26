@@ -5,9 +5,6 @@ import MoreMenuList from '../MenuDetail/MoreMenuList';
 import ModifCount from './ModifCount';
 import Cart from '../../../graphics/graphic_cart_x3.png';
 
-
-
-
 interface Props {
 
     bucket: any
@@ -16,6 +13,7 @@ interface Props {
     table:string | string[] | null
 
 }
+
 const BucketView = ({bucket,totalPrice,store, table}:Props) => {
 
 
@@ -41,7 +39,7 @@ const BucketView = ({bucket,totalPrice,store, table}:Props) => {
 
                             return (
 
-                                <div className="bucket-item-con">
+                                <div className="bucket-item-con" key={doc.menu}>
                                     <div className="bucket-item"> 
 
                                         <div className="bucket-item-info">

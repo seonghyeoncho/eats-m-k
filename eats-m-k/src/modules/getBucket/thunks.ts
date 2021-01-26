@@ -14,11 +14,10 @@ export const getBucketThunk = (store: string | string[] | null, table: string | 
             try {
 
                 dbService.collection(`${store}`).doc(`${table}`).onSnapshot((snapShot:any)=>{
-                    console.log(snapShot.data())
 
                     dispatch(success(snapShot.data()));
 
-                })
+                });
                 
 
             } catch (e) {

@@ -19,7 +19,7 @@ const StoreAndTableBox = ({store, table}:BoxProps) => {
                 
             </div>
             <div className="order-status-bt">
-                <OrderStatusButtonContainer/>
+                <OrderStatusButtonContainer store={store} table={table}/>
             </div>
            
             

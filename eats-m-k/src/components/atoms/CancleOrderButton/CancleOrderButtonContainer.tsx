@@ -4,9 +4,6 @@ import CancleOrderButton from './CancleOrderButton';
 import { decrease } from '../../../modules/totalPrice';
 import { RootState } from '../../../modules';
 import { dbService } from '../../../firebase';
-import { useCookies } from 'react-cookie';
-
-
 
 interface Props {
     id:string
@@ -14,21 +11,16 @@ interface Props {
     bucket: any
 }
 const CancleOrderButtonContainer = ({id,price,bucket}:Props) => {
-    console.log(price);
-   
 
-    const {buckets,store, table,totalPrice} = useSelector((state:RootState)=>({
-        buckets:state.myBucket.bucket.data?.bucket,
-        store:state.storeSet.store,
-        table:state.tableSet.table,
-        totalPrice:state.totalPrice.price
-
-    }))
+    const store = window.localStorage.getItem('store');
+    const table = window.localStorage.getItem('table');
+    const totalPrice = window.localStorage.getItem('totalPrice');
     
     const dispatch = useDispatch();
 
     const cancleOrders = () => {
-        const buckett = bucket?.filter((doc:any)=> doc.id !== id )
+        const buckett = bucket?.filter((doc:any)=> doc.id !== id );
+        console.log(totalPrice);
         
         dispatch(decrease(price));
 
@@ -38,10 +30,12 @@ const CancleOrderButtonContainer = ({id,price,bucket}:Props) => {
                ...buckett
                 
             ],
-            totalPrice: totalPrice - price
+            totalPrice: Number(totalPrice) - price
 
         
-        })
+        });
+        window.localStorage.setItem('totalPrice', (Number(totalPrice) - price).toString());
+
         
     }
 

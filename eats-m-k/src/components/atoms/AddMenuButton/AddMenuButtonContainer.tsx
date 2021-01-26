@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import AddMenuButton from './AddMenuButton';
-import { RootState } from '../../../modules';
 import { dbService } from '../../../firebase';
 import { resetCount } from '../../../modules/counters';
-import { increase } from '../../../modules/totalPrice';
+import { compareAndMerge } from '../../../functions/compareAndMerge';
 
 
 type Props = {
@@ -28,15 +27,6 @@ type Props = {
 
 const AddMenuContainer = ({ select, history, store, table }:Props) => {
 
-
-
-    const {count} = useSelector((state:RootState) => ({
-
-        count:state.counters.count,
-        totalPrice:state.totalPrice.price
-        
-
-    }));
     const [ buckets, setBuckets ] = useState<any>([]);
     const [ totalPrice, setTotalPrice ] = useState<number>(0);
 
@@ -47,38 +37,43 @@ const AddMenuContainer = ({ select, history, store, table }:Props) => {
             setBuckets(doc.data().bucket);
             setTotalPrice(doc.data().totalPrice);
 
-        })
+        });
+
     },[store, table]);
 
-    const processA = (a:string) => {
+    const processA = ( a:string ) : void => {
+
         const Obj = buckets.concat({
                 
             ...select,
-            id:`${select.menu}/${select.count}/${a}`
+            id:`${select.menu}/${select.count}/${JSON.stringify(select.more)}`
             
-        })
-        dispatch(increase(select.itemTotalPrice));
+        });
     
         dbService.collection(`${store}`).doc(`${table}`).update({
 
             bucket:[
-            ...Obj,
+                ...Obj,
                 
             ],
             'totalPrice': totalPrice + select.itemTotalPrice  
         });
+        window.localStorage.setItem('totalPrice', (totalPrice + select.itemTotalPrice).toString() );
 
     }
-    const processM = (a:string) => {
+
+    const processM = ( a:string ) => {
+
+        console.log('process Merge')
 
         const Obj = buckets.map( (doc:any) =>
-            doc.menu === select.menu ? 
+            doc.menu === select.menu && compareAndMerge(doc.more, select.more) ? 
 
                 {
                     ...select,
                     count:doc.count + select.count,
                     itemTotalPrice: Number(doc.itemTotalPrice) + Number(select.itemTotalPrice),
-                    id:`${select.menu}/${doc.count + select.count}/${a}`,
+                    id:`${select.menu}/${doc.count + select.count}/${JSON.stringify(select.more)}`,
                     
                 }
 
@@ -87,26 +82,25 @@ const AddMenuContainer = ({ select, history, store, table }:Props) => {
                 doc
 
         );
-        
+        console.log("Obj",Obj);
         var p:number = 0;
         Obj.map((doc:any) => 
             p += doc.itemTotalPrice
         );
-           
-        dispatch(increase(select.itemTotalPrice));
+        console.log("Obj",Obj);
     
         dbService.collection(`${store}`).doc(`${table}`).update({
 
             bucket:[
-            ...Obj,
+
+                ...Obj,
                 
             ],
             'totalPrice': p
         });
+        console.log("Obj",...Obj);
 
     }
-
-    
 
     const addOrders = () => {
 
@@ -114,25 +108,31 @@ const AddMenuContainer = ({ select, history, store, table }:Props) => {
 
         if( select.more.length !== 0) { a = '1' } 
         if( buckets.length !== 0 ) {
+            const c = buckets.length;
+            var flag = 0;
 
-            buckets.forEach((doc:any) => {
-                console.log(doc.menu)
+            for( let i=0 ; i<buckets.length ; i++ ) {
+                
+                console.log(buckets[i], i)
+                if( buckets[i].menu === select.menu && compareAndMerge(buckets[i].more, select.more) ) {
 
-                if(doc.menu === select.menu){
-                    if( doc.more.length === 0 && select.more.length === 0 ){
-                        console.log('TEST')
-                        processM(a);
-                        
-                    } else{}
+                    console.log(compareAndMerge(buckets[i].more, select.more));
 
-                } else {
-                    processA(a);
+                    processM(a);
+
+                    break;
+
                 }
-
-            });
+                flag++;
+                
+            }; 
+            console.log(flag)
+            if(flag === c ) processA(a);
 
         } else {
+
             processA(a);
+
         }
 
         dispatch(resetCount());

@@ -16,7 +16,7 @@ import '../../../scss/main.scss';
 
 const Home = ( props: any ) => {
     
-    const {totalPrice, menu, state,orderStatus,bucket} = useSelector((state:RootState)=>({
+    const { totalPrice, menu, state } = useSelector((state:RootState)=>({
 
         totalPrice:state.myBucket.bucket.data?.totalPrice,
         menu:state.myBase.menus.data?.menu,
@@ -25,9 +25,6 @@ const Home = ( props: any ) => {
         bucket:state.myBucket.bucket.data?.bucket
 
     }));
-    
-    console.log('bucket',bucket);
-    console.log('totalPrice', totalPrice);
 
     const [id, setId] = useState<any>(null);
     const [ menuListState,setMenuListState ] = useState<number>(0);
@@ -43,6 +40,8 @@ const Home = ( props: any ) => {
     const store = query.store;
     const table = query.table;
     const localStorageClientId = window.localStorage.getItem('clientId');
+   
+
 
     const getStateFormFire = () => {
 
@@ -114,9 +113,15 @@ const Home = ( props: any ) => {
 
 
     useEffect(()=>{
-        
-        dispatch(setStore(store));
-        dispatch(setTable(table));
+
+        if( store !== null ) {
+
+            const s:any = store;
+            const t:any = table
+            window.localStorage.setItem('store',s);
+            window.localStorage.setItem('table',t);
+
+        }
 
         if(menu === undefined) dispatch(getMenuThunk(store));
         dispatch(getBucketThunk(store, table));

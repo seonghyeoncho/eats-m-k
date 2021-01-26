@@ -20,27 +20,16 @@ interface Props {
 }
 
 const ModifCount = ({c,id, menu, price, more, itemTotalPrice, totalPrice, store, table}:Props) => {
-    const { p} = useSelector((state:RootState)=>({
-
-        
-        p:state.totalPrice.price,
-    }));
     
     const [ bucket, setBucekt ] = useState<any>([]);
-
 
     useEffect(()=>{
 
         dbService.collection(`${store}`).doc(`${table}`).onSnapshot(
+
             (snapShot:any)=>{
                 const buckets = snapShot.data().bucket;
-                const totalP = snapShot.data().totalPrice;
-                console.log(buckets);
-
-
-                
                 setBucekt(buckets);
-
 
             }
         );

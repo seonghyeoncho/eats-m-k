@@ -13,13 +13,13 @@ interface Props {
     price:any;
     more:any;
     itemTotalPrice:number;
-    totalPrice:number;
     store:string | string[] | null
     table:string | string[] | null
+    totalPrice:number
     
 }
 
-const ModifCount = ({c,id, menu, price, more,itemTotalPrice,totalPrice, store, table}:Props) => {
+const ModifCount = ({c,id, menu, price, more, itemTotalPrice, totalPrice, store, table}:Props) => {
     const { p} = useSelector((state:RootState)=>({
 
         
@@ -27,7 +27,7 @@ const ModifCount = ({c,id, menu, price, more,itemTotalPrice,totalPrice, store, t
     }));
     
     const [ bucket, setBucekt ] = useState<any>([]);
-    const [total, setTotal] = useState<number>(totalPrice);
+
 
     useEffect(()=>{
 
@@ -36,11 +36,11 @@ const ModifCount = ({c,id, menu, price, more,itemTotalPrice,totalPrice, store, t
                 const buckets = snapShot.data().bucket;
                 const totalP = snapShot.data().totalPrice;
                 console.log(buckets);
-                console.log(total)
+
 
                 
                 setBucekt(buckets);
-                setTotal(totalP);
+
 
             }
         );
@@ -50,7 +50,7 @@ const ModifCount = ({c,id, menu, price, more,itemTotalPrice,totalPrice, store, t
 
     const dispatch = useDispatch();
 
-    const modifBucket = (i:number) => {
+    const modifBucket = (i:number,totalPrice:number) => {
 
         const Obj = {
 
@@ -59,29 +59,30 @@ const ModifCount = ({c,id, menu, price, more,itemTotalPrice,totalPrice, store, t
             count: c,
             more: more,
             id:`${menu}/${c}/${i}`,
-            itemTotalPrice: itemTotalPrice  
+            itemTotalPrice: itemTotalPrice 
 
         }
 
-        const modifBuc = bucket.map((item:any) => item.id == id 
+        const modifBuc = bucket.map((item:any) => item.id === id 
             ? 
                 Obj
             :
                 item
         );
 
-        console.log(totalPrice);
+
 
         dbService.collection(`${store}`).doc(`${table}`).update({
             'bucket':[
                 ...modifBuc
             ],
-            'totalPrice':total
+            'totalPrice':totalPrice 
 
 
         });
         
-    }
+    };
+
 
     const modifMenuCount = (type:string) => {
 
@@ -89,19 +90,26 @@ const ModifCount = ({c,id, menu, price, more,itemTotalPrice,totalPrice, store, t
 
             c += 1
             itemTotalPrice += price
+            totalPrice += price
+
 
         } else {
+
             c -= 1
-            itemTotalPrice -= price
+            itemTotalPrice -= price;
+            totalPrice -= price
+
 
         }
-        console.log(more.length);
 
         if(more.length === 0 ){
             
-            modifBucket(0);
+           modifBucket(0,totalPrice);
+
         } else {
-            modifBucket(1);
+
+            modifBucket(1,totalPrice);
+
         }
 
     }

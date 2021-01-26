@@ -15,12 +15,10 @@ interface Props {
 
 const NewOrderList = ({table,toggleCheck,indexNumber}:Props) => {
   const query = queryString.parse(window.location.search);
-  const [select,setSelect] = useState<any>();
+
   const [popoverVisible,setPopoverVisible]=useState<any>({tableNum:0,visible:false});
 
-  const onClick = (menu:any) => {
-    setSelect(menu);
-  }
+  
 
   let tables:any=[];
   let i=indexNumber*3-3;
@@ -29,6 +27,8 @@ const NewOrderList = ({table,toggleCheck,indexNumber}:Props) => {
           tables.push(table[i]);
       }
   }
+
+  console.log(tables);
 
 
 
@@ -44,8 +44,8 @@ const NewOrderList = ({table,toggleCheck,indexNumber}:Props) => {
                 for(let i=0; i<indexNumber*3;i++) {
                   return (
                     <Col span={8}>
-                      <Card className="orderCard" onClick={() => onClick(m.orders)}>
-                        <h1>{`${m.myTable}번 테이블`}</h1>
+                      <Card className="orderCard" >
+                        <h1 key={m.myTable}>{m.myTable}번 테이블</h1>
                         <hr/>
                           {
                               (m.orderlist<6)?
@@ -54,9 +54,11 @@ const NewOrderList = ({table,toggleCheck,indexNumber}:Props) => {
                                       <div className='totalPriceDiv'><hr className='coloredHr'/><h3>총 가격 : {numberWithCommas(m.totalPrice)}</h3></div>
                                       <div>
                                           <Button className="orderCancelButton" onClick={() => {
-                                              dbService.collection(`${query.store}`).doc(`${m.myTable}`).update({bucket:[]})
-                                              dbService.collection(`${query.store}`).doc(`${m.myTable}`).update({totalPrice:0})
-                                              dbService.collection(`${query.store}`).doc(`${m.myTable}`).update({orderStatus:false})
+                                              dbService.collection(`${query.store}`).doc(`${m.myTable}`).update({
+                                                bucket:[],
+                                                totalPrice:0,
+                                                orderStatus:false
+                                              })
 
                                           }}>
                                             <h1>주문거부</h1>
@@ -81,12 +83,14 @@ const NewOrderList = ({table,toggleCheck,indexNumber}:Props) => {
                                                           <Order orders={m.orderList}/>
                                                           <div className='totalPriceDiv'><hr className='coloredHr'/><h3>총 가격 : {numberWithCommas(m.totalPrice)}</h3></div>
                                                           <Button className="orderCancelButton" onClick={() => {
-                                                              dbService.collection(`${query.store}`).doc(`${m.myTable}`).update({bucket:[]})
-                                                              dbService.collection(`${query.store}`).doc(`${m.myTable}`).update({totalPrice:0})
-                                                              dbService.collection(`${query.store}`).doc(`${m.myTable}`).update({orderStatus:false})
+                                                              dbService.collection(`${query.store}`).doc(`${m.myTable}`).update({
+                                                                bucket:[],
+                                                                totalPrice:0,
+                                                                orderStatus:false
+                                                              })
 
                                                           }}>
-                                                              <h1>주문취소</h1>
+                                                              <h1>주문거부</h1>
                                                           </Button>
                                                           <Button className="orderFinishedButton" onClick={() => toggleCheck(m.myTable)}>
                                                               <h1>주문완료</h1>
@@ -96,13 +100,13 @@ const NewOrderList = ({table,toggleCheck,indexNumber}:Props) => {
                                                   }
                                                   title={<>
 
-                                                          <Button onClick={()=>setPopoverVisible({table:m.myTable,visible:false})}>닫기</Button>
+                                                          <Button onClick={()=>setPopoverVisible({ table:m.myTable, visible:false})}>닫기</Button>
                                                           <h1 className='cardTitle'>{m.myTable}번 테이블</h1>
                                                           <></>
                                                       </>
                                                   }
                                                   trigger="click"
-                                                  visible={m.myTable==popoverVisible.table && popoverVisible.visible}
+                                                  visible={m.myTable === popoverVisible.table && popoverVisible.visible}
 
                                               >
                                                   <Button className="orderMoreDetailButton" onClick={() => setPopoverVisible({table:m.myTable,visible:true})}>

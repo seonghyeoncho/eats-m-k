@@ -5,7 +5,7 @@ import { getMenuList } from '../../api/menuFromFire';
 import { getMenuAsync } from './actions';
 
 export const getMenuThunk = (store: string | string[] | null): ThunkAction<Promise<void>, RootState, null, MenuAction> => {
-        console.log('2');
+
         return async dispatch => {
 
             const { request, success, failure } = getMenuAsync;
@@ -14,9 +14,6 @@ export const getMenuThunk = (store: string | string[] | null): ThunkAction<Promi
             try {
 
                 const menus = await getMenuList(store);
-                
-                
-                console.log(menus)
                 dispatch(success(menus));
 
             } catch (e) {

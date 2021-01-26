@@ -46,7 +46,6 @@ const OrderButtonDirect = ({select, store, table}:Props) => {
             id:`${select.menu}/${count}/${a}`,
             
         })
-        dispatch(increase(select.itemTotalPrice));
 
         dbService.collection(`${store}`).doc(`${table}`).update({
             'bucket':Obj,

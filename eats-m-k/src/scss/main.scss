@@ -525,56 +525,155 @@ Link{
     }
 
 }
-.bucket-con{
-    z-index: 3;
-    top: 44px;
-    position: fixed;
-    left: 0px;
-    right: 0px;
+.bucket{
+    
+    .bucket-con{
+        z-index: 3;
+        top: 44px;
+        position: fixed;
+        left: 0px;
+        right: 0px;
 
-    display: flex;
-    background-color: white;
-    align-items: center;
-    justify-content: center;
-    padding-bottom: 38px;
-    padding-top: 9px;
+        display: flex;
+        background-color: white;
+        align-items: center;
+        justify-content: center;
+        padding-bottom: 38px;
+        padding-top: 9px;
 
 
-    .bucket-info-con{
-        
-        
-        
- 
-
-        .bucket-info{
-
+        .bucket-info-con{
             
+            
+            
+    
 
-            text-align: center;
-            .bucket-info-store{
-                font-size: 24px;
+            .bucket-info{
+
+                
+
+                text-align: center;
+                .bucket-info-store{
+                    font-size: 24px;
+                    font-family: NotoSansCJkkr-Bold;
+                    margin-bottom: 4px;
+                }
+                
+                .bucket-info-table{
+                    font-size: 15px;
+                    opacity: 0.68;                
+                    font-family: NotoSansCJkkr-Regular;
+                    margin-bottom: 10px;
+                    
+                }
+                .bucket-info-price{
+                    font-size: 24px;
+                    font-family: NotoSansCJkkr-Regular;
+                    color: $base-color;
+                    
+                }
+                
+
+            }
+
+
+        }
+    }
+    .bucket-content-con{
+        margin-top:214px;
+
+        .ready-bucket-con{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            img{
+                width: 133px;
+                padding-right: 10px;
+
+                
+            }
+            .ready-bucket-text{
+                margin-top: 17px;
                 font-family: NotoSansCJkkr-Bold;
-                margin-bottom: 4px;
-            }
-            
-            .bucket-info-table{
-                font-size: 15px;
-                opacity: 0.68;                
-                font-family: NotoSansCJkkr-Regular;
-                margin-bottom: 10px;
-                
-            }
-            .bucket-info-price{
-                font-size: 24px;
-                font-family: NotoSansCJkkr-Regular;
-                color: $base-color;
-                
-            }
-            
+                font-size: 17px;
 
+                
+                
+            }
+            
         }
 
 
+        .bucket-item-con{
+            z-index: 1;
+            margin-top: 12px;
+
+            .bucket-item{
+                margin-top: 12px;
+                margin-left: 36px;
+                margin-right: 36px;
+                .bucket-item-info{
+                    display: flex;
+                    justify-content: space-between;
+                    margin-bottom: 5px;
+                    font-size: 15px;
+                }
+
+                .modif-bucket{
+                    display: flex;
+                    justify-content: space-between;
+                    .modif-bucket-counter-con{
+                        border: solid 1px black;
+                        border-radius: 50px;
+                        width: 90px;
+                        height: 26px;
+                        margin-bottom: 14px;
+                        
+                    
+                
+                        .modif-bucket-counter{
+                            
+
+                            display: flex;
+                            div{ 
+                                margin-left:10px;
+                                margin-right:10px;
+                            }
+                            
+
+                        
+                        }
+                        
+                        
+                    }
+
+                }
+                
+
+            }
+
+        }
+       
+    }
+    .back-bt{
+        text-align: center;
+        div{
+            padding-top: 17px;
+            color: white;
+            font-size: 17px;
+            font-family: NotoSansCJkkr-Bold;
+        }
+
+        position: fixed;
+        
+        left: 15px;
+        right: 15px;
+        bottom: 20px;
+        height: 60px;
+        border-radius: 50px;
+        background-color: $base-color;
+        
     }
 }
 .bucket-block{
@@ -582,100 +681,6 @@ Link{
     height: 37px;
     margin-right: 36px;
     background-color: transparent;
-}
-.bucket-content-con{
-    margin-top:214px;
-
-    .ready-bucket-con{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        img{
-            width: 133px;
-            padding-right: 10px;
-
-            
-        }
-        .ready-bucket-text{
-            margin-top: 17px;
-            font-family: NotoSansCJkkr-Bold;
-            font-size: 17px;
-
-            
-            
-        }
-        .back-bt{
-            text-align: center;
-            div{
-                padding-top: 17px;
-                color: white;
-                font-size: 17px;
-                font-family: NotoSansCJkkr-Bold;
-            }
-
-            position: fixed;
-            
-            left: 15px;
-            right: 15px;
-            bottom: 20px;
-            height: 60px;
-            border-radius: 50px;
-            background-color: $base-color;
-            
-        }
-    }
-
-
-    .bucket-item-con{
-        z-index: 1;
-        margin-top: 12px;
-
-        .bucket-item{
-            margin-top: 12px;
-            margin-left: 36px;
-            margin-right: 36px;
-            .bucket-item-info{
-                display: flex;
-                justify-content: space-between;
-                margin-bottom: 5px;
-                font-size: 15px;
-            }
-
-            .modif-bucket{
-                display: flex;
-                justify-content: space-between;
-                .modif-bucket-counter-con{
-                    border: solid 1px black;
-                    border-radius: 50px;
-                    width: 90px;
-                    height: 26px;
-                    margin-bottom: 14px;
-                    
-                
-            
-                    .modif-bucket-counter{
-                        
-
-                        display: flex;
-                        div{ 
-                            margin-left:10px;
-                            margin-right:10px;
-                        }
-                        
-
-                    
-                    }
-                    
-                    
-                }
-
-            }
-            
-
-        }
-
-    }
 }
 .order-bt-dir{
 

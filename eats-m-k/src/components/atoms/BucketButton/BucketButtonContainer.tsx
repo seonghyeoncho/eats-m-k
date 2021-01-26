@@ -13,10 +13,6 @@ interface Props {
 
 const BucketButtonContainer = ({orderStatus, store, table}:Props) => {
 
-    console.log(orderStatus);
-
-
-
     return(
         <>
             {

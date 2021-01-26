@@ -9,9 +9,12 @@ import Arrow from '../../../icons/icon_arrow_back_black_x3.png'
 import Complete from '../../../icons/icon_OrderCompleted_x3.png';
 import Reception from '../../../icons/icon_ReceptionCompleted_x3.png';
 import queryString from 'query-string';
+import { useCookies } from 'react-cookie';
 
 
 const OrderStatus = (props:any) => {
+
+    const [ cookies, setCookie, removeCookie ] = useCookies(['clientId', 'bucket', 'store', 'table']);
 
     const [totalPrice, setTotalPrice] = useState(0);
     const [bucket, setBucekt] = useState<any>();
@@ -55,11 +58,8 @@ const OrderStatus = (props:any) => {
         
     },[]);
 
-    console.log(bucket)
-    console.log(totalPrice);
 
-
-
+    console.log('cookie clientId test', cookies.clientId)
     return (
         <div className="orderstatus-con">
 

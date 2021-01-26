@@ -50,7 +50,9 @@ const Home = ( props: any ) => {
     const clientId = `${today.getMonth()+1}/${today.getDate()}/${time}`;
     const query = queryString.parse(props.location.search);
     const store = query.store;
-    const table = query.table
+    const table = query.table;
+    window.localStorage.setItem('test',clientId);
+    console.log(window.localStorage.getItem('test'));
 
     const getStateFormFire = () => {
 
@@ -72,6 +74,7 @@ const Home = ( props: any ) => {
     }
 
     const onCookie = () => {
+        console.log('cookie clientId test', cookies.clientId)
 
         if( cookies.clientId === undefined ) {
 

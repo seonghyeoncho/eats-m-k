@@ -5,6 +5,8 @@ import { RootState } from '../../../modules';
 import { dbService } from '../../../firebase';
 import { resetCount } from '../../../modules/counters';
 import { increase } from '../../../modules/totalPrice';
+import { compareAndMerge } from '../../../functions/compareAndMerge';
+import { disconnect } from 'process';
 
 type Props = {
 
@@ -38,14 +40,6 @@ const AddMenuContainer = ({ select, history, store, table }:Props) => {
     const [ totalPrice, setTotalPrice ] = useState<number>(0);
 
     const dispatch = useDispatch();
-
-    console.log(select);
-    console.log('bucket',buckets);
-
-    for(let i in buckets){
-        console.log(buckets[i]);
-        
-    }
     useEffect(()=>{
 
         dbService.collection(`${store}`).doc(`${table}`).get().then((doc:any)=>{
@@ -53,38 +47,96 @@ const AddMenuContainer = ({ select, history, store, table }:Props) => {
             setTotalPrice(doc.data().totalPrice);
 
         })
-    },[])
+    },[store, table]);
 
-    
-
-    const addOrders = () => {
-        //for id data
-        var a = '0'
-        console.log(select.more)
-        if( select.more.length !== 0) { a = '1' } 
+    const processA = (a:string) => {
         const Obj = buckets.concat({
+                
             ...select,
-            id:`${select.menu}/${count}/${a}`,
+            id:`${select.menu}/${select.count}/${a}`
             
         })
-        console.log(Obj);
-        console.log(select.itemTotalPrice);
-        //set Total price
         dispatch(increase(select.itemTotalPrice));
-        
+    
         dbService.collection(`${store}`).doc(`${table}`).update({
 
             bucket:[
-               ...Obj,
+            ...Obj,
                 
             ],
             'totalPrice': totalPrice + select.itemTotalPrice  
         });
+
+    }
+    const processM = (a:string) => {
+
+        const Obj = buckets.map( (doc:any) =>
+            doc.menu === select.menu ? 
+
+                {
+                    ...select,
+                    count:doc.count + select.count,
+                    itemTotalPrice: Number(doc.itemTotalPrice) + Number(select.itemTotalPrice),
+                    id:`${select.menu}/${doc.count + select.count}/${a}`,
+                    
+                }
+
+            :
+
+                doc
+
+        );
         
+        var p:number = 0;
+        Obj.map((doc:any) => 
+            p += doc.itemTotalPrice
+        );
+           
+        dispatch(increase(select.itemTotalPrice));
+    
+        dbService.collection(`${store}`).doc(`${table}`).update({
+
+            bucket:[
+            ...Obj,
+                
+            ],
+            'totalPrice': p
+        });
+
+    }
+
+    
+
+    const addOrders = () => {
+
+        var a = '0'
+
+        if( select.more.length !== 0) { a = '1' } 
+        if( buckets.length !== 0 ) {
+
+            buckets.forEach((doc:any) => {
+                console.log(doc.menu)
+
+                if(doc.menu === select.menu){
+                    if( doc.more.length === 0 && select.more.length === 0 ){
+                        console.log('TEST')
+                        processM(a);
+                        
+                    } else{}
+
+                } else {
+                    processA(a);
+                }
+
+            });
+
+        } else {
+            processA(a);
+        }
 
         dispatch(resetCount());
         history.goBack();
-        
+
     }
 
     return <AddMenuButton  addOrders={addOrders}/>

@@ -13,11 +13,10 @@ import Arrow from '../../../icons/icon_arrow_back_black_x3.png'
 
 const DetailView = (props:any) => {
 
-    const { count,orderStatus  } = useSelector((state:RootState) => ({
+    const { count  } = useSelector((state:RootState) => ({
 
         count:state.counters.count,
-        orderStatus:state.myBucket.bucket.data?.orderStatus
-
+        
     }));
 
     const query = queryString.parse(props.location.search);
@@ -29,9 +28,7 @@ const DetailView = (props:any) => {
     const [ more, setMore ] = useState<any>([]);
     const [ morePrice,setMorePrice] = useState<number>(0);
     
-
     const moreMenuHandler = (m:any, isChecked:boolean) => {
-        console.log(m)
 
         if(isChecked) {
             
@@ -44,38 +41,42 @@ const DetailView = (props:any) => {
             setMorePrice(morePrice + m.price);
 
         }
-        
-
 
     }
 
     useEffect(()=>{
 
         const Obj = {
+
             menu:menu,
             price:price,
             more:more,
             count:count,
             itemTotalPrice: (price * count) + morePrice
+
         }
+
         setSelect(Obj);
 
     },[more,menu,count]);
-    console.log(select);
+
 
     return (
+        
         <div className="detail">
 
             <StoreAndTableBoxContainer store={store} table={table}/>
+
             <div className="detail-nav">
 
                 <div className="detail-nav-content">
                     <img onClick={props.history.goBack} src={Arrow} width="12px" height="18px"/>    
                     <div className="detail-nav-content-text">MENU</div>
-                    <BucketButtonContainer orderStatus={orderStatus} store={store} table={table}/>
+                    <BucketButtonContainer store={store} table={table}/>
                 </div>
 
             </div>
+
             <div className="detail-con">
             
 

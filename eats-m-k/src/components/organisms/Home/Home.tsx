@@ -7,22 +7,14 @@ import { setStore } from '../../../modules/setStore';
 import { setTable } from '../../../modules/setTable';
 import StoreAndTableBoxContainer from '../../molecules/StoreAndTable/StoreAndTableBoxContainer';
 import BucketButtonContainer from '../../atoms/BucketButton/BucketButtonContainer';
-
 import { getMenuThunk } from '../../../modules/getMenus';
 import MenuListContainer from '../../molecules/MenuList/MenuListcontainer';
 import { getBucketThunk } from '../../../modules/getBucket/thunks';
 import { dbService } from '../../../firebase';
 import { setState, setStatus } from '../../../modules/orderState';
 import '../../../scss/main.scss';
-import { useCookies } from 'react-cookie';
-
-
-interface Props {
-    
-}
 
 const Home = ( props: any ) => {
-    const [ cookies, setCookie, removeCookie ] = useCookies(['clientId', 'bucket', 'store', 'table']);
     
     const {totalPrice, menu, state,orderStatus} = useSelector((state:RootState)=>({
 
@@ -39,14 +31,14 @@ const Home = ( props: any ) => {
     const [ color2, setColor2 ] = useState('#999999');
     const [ color3, setColor3 ] = useState('#999999');
     const dispatch = useDispatch();
+
     const today = new Date();
     const time = `[${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}]`;
     const clientId = `${today.getMonth()+1}/${today.getDate()}/${time}`;
     const query = queryString.parse(props.location.search);
     const store = query.store;
     const table = query.table;
-    window.localStorage.setItem('test',clientId);
-    console.log(window.localStorage.getItem('test'));
+    const localStorageClientId = window.localStorage.getItem('clientId');
 
     const getStateFormFire = () => {
 
@@ -68,15 +60,11 @@ const Home = ( props: any ) => {
     }
 
     const onCookie = () => {
-        console.log('cookie clientId test', cookies.clientId)
 
-        if( cookies.clientId === undefined ) {
+        if( localStorageClientId === null ) {
 
-            console.log('쿠키가 없으면 이게 나옵니다.');
+            window.localStorage.setItem('clientId',clientId);
 
-            setCookie('clientId', clientId);
-
-        
             dbService.collection(`${store}`).doc(`${table}`).update({
 
                 'bucket':[],
@@ -85,37 +73,41 @@ const Home = ( props: any ) => {
                 clientId:clientId,
                 totalPrice:0
         
-            })
+            });
 
         } else {
 
-            console.log('쿠키가 있으면 이게 나오고')
 
-            if(cookies.clientId === id ){
 
-                console.log('전 사용자의 아이디와 현 사용자의 아이디가 같다면 이게 나옵니다.');
+            if(localStorageClientId === id ){
 
-            } else if (cookies.clientId !== id && state) {
 
-                console.log('전 사용자의 아이디와 현 사용자의 아이디가 다르다고 주문 접수된 상태라면 이게 나옵니다.');
-                setCookie('clientId', clientId);
 
-                dbService.collection(`${store}`).doc(`${table}`).update({
+            } else if (id !== null) {
+                if (localStorageClientId !== id && state) {
 
-                    'bucket':[],
-                    orderStatus:false,
-                    state:false,
-                    clientId:clientId,
-                    totalPrice:0
-            
-                })
+                    window.localStorage.setItem('clientId',clientId);
+
+                    dbService.collection(`${store}`).doc(`${table}`).update({
+
+                        'bucket':[],
+                        orderStatus:false,
+                        state:false,
+                        clientId:clientId,
+                        totalPrice:0
+                
+                    });
+                }
             }
 
         }
     }
+
     const underLine = () => {
+
         return <div style={{width:"auto", height:"1px", background:"#ff1b6d", margin:"0 8px"}}></div>
     }
+
 
     useEffect(()=>{
         
@@ -125,11 +117,10 @@ const Home = ( props: any ) => {
         if(menu === undefined) dispatch(getMenuThunk(store));
         dispatch(getBucketThunk(store, table));
         getStateFormFire();
-        if(id !== null) {
-            onCookie();
-        }
-
-    },[id]);
+        
+        onCookie();
+        
+    },[ id ]);
 
     return (
         <div>
@@ -155,7 +146,7 @@ const Home = ( props: any ) => {
                         </div>
                         
                     </div>
-                    <BucketButtonContainer orderStatus={orderStatus} store={store} table={table}/>
+                    <BucketButtonContainer store={store} table={table}/>
                 </div>
 
 

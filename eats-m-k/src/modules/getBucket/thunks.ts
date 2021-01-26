@@ -1,8 +1,8 @@
 import { ThunkAction } from 'redux-thunk';
 import { RootState } from '..';
 import { BucketAction } from './types';
-import { Buckets, getBucket } from '../../api/bucketFromFire';
 import { getBucketAsync } from './actions';
+import { dbService } from '../../firebase';
 
 export const getBucketThunk = (store: string | string[] | null, table: string | string[] | null): ThunkAction<Promise<void>, RootState, null, BucketAction> => {
 
@@ -13,10 +13,12 @@ export const getBucketThunk = (store: string | string[] | null, table: string | 
 
             try {
 
-                const buckets = await getBucket(store, table);
+                dbService.collection(`${store}`).doc(`${table}`).onSnapshot((snapShot:any)=>{
 
-            
-                dispatch(success(buckets));
+                    dispatch(success(snapShot.data()));
+
+                });
+                
 
             } catch (e) {
 

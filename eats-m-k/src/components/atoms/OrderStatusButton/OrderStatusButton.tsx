@@ -4,8 +4,8 @@ import Complete from '../../../icons/icon_OrderCompleted_x3.png';
 import Reception from '../../../icons/icon_ReceptionCompleted_x3.png';
 
 interface Props {
-    orderStatus:boolean
-    state:boolean;
+    orderStatus:boolean | undefined
+    state:boolean | undefined;
     store: string | string[] | null,
     table: string | string[] | null
 

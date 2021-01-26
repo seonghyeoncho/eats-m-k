@@ -8,5 +8,7 @@ export interface  Buckets {
     state:boolean,
     orderStatus:boolean,
     clientId:string,
-    totalPrice:number
+    totalPrice:number,
+    orderAt: number
+    orderAt_R: number
 }

@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import numberWithCommas from '../../../functions/addCommaFunc';
 import MenuListItem from './MenuListItem';
 import Ready from '../../../graphics/gaphic_ready_x3.png';
-import { disconnect } from 'process';
 
 
 type Props = {
@@ -36,7 +35,7 @@ const MenuList = ({ menus, store, table }:Props ) => {
                         {  
                             menus?.map((doc:any)=>{
                                 
-                                return <MenuListItem menu={doc.menu} price={doc.price} store={store} table={table} state={doc.state}/>
+                                return <MenuListItem key={doc.menu} menu={doc.menu} price={doc.price} store={store} table={table} state={doc.state}/>
                                 
                             })
                         }

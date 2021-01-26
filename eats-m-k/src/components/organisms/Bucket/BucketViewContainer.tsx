@@ -22,13 +22,10 @@ const BucketViewContainer = (props:any) => {
 
     const dispatch = useDispatch();
 
-    console.log(store)
-
     useEffect(()=>{
 
         dbService.collection(`${store}`).doc(`${table}`)
             .onSnapshot(snapShot=>{
-                console.log(snapShot.data()?.bucket);
                 setBuckets(snapShot.data()?.bucket);
                 setTotalPrice(snapShot.data()?.totalPrice);
                 

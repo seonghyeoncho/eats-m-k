@@ -13,6 +13,7 @@ interface Props {
     bucket: any
 }
 const CancleOrderButtonContainer = ({id,price,bucket}:Props) => {
+    console.log(price);
    
 
     const {buckets,store, table,totalPrice} = useSelector((state:RootState)=>({
@@ -27,7 +28,6 @@ const CancleOrderButtonContainer = ({id,price,bucket}:Props) => {
 
     const cancleOrders = () => {
         const buckett = bucket?.filter((doc:any)=> doc.id !== id )
-        console.log(bucket);
         
         dispatch(decrease(price));
 
@@ -41,6 +41,7 @@ const CancleOrderButtonContainer = ({id,price,bucket}:Props) => {
 
         
         })
+        
     }
 
     return (

@@ -73,7 +73,7 @@ const OrderStatus = (props:any) => {
                 
                 
                     <div className="orderstatus-state-con">
-                        <div className="orderstatus-line"/>
+                        
                         
                         <div className="orderstatus-state-complete"> 
 
@@ -107,6 +107,7 @@ const OrderStatus = (props:any) => {
                             </div>
 
                         </div>
+                        <div className="orderstatus-line"/>
                         
 
 
@@ -115,7 +116,7 @@ const OrderStatus = (props:any) => {
 
                 :
                     <div className="orderstatus-state-con">
-                        <div className="orderstatus-line"/>
+                        
                             
                         <div className="orderstatus-state-complete"> 
 
@@ -153,6 +154,7 @@ const OrderStatus = (props:any) => {
                             </div>
 
                         </div>
+                        <div className="orderstatus-line"/>
 
 
 

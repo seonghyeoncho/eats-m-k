@@ -1,8 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { dbService } from '../../../firebase';
+import React from 'react';
 import numberWithCommas from '../../../functions/addCommaFunc';
-import { RootState } from '../../../modules';
 import OrderContainer from '../../atoms/Order/OrderContainer';
 import MoreMenuList from '../MenuDetail/MoreMenuList';
 import queryString from 'query-string';
@@ -10,35 +7,23 @@ import queryString from 'query-string';
 
 const OrderListView = (props:any) => {
     
-    const [ buckets,setBuckets ] = useState([]);
-    const [ totalPrice, setTotalPrice ] = useState<number>(0);
-    const query = queryString.parse(props.location.search);
-    const store = query.store;
-    const table = query.table;
-
-
-    useEffect(()=>{
-
-        dbService.collection(`${store}`).doc(`${table}`)
-            .onSnapshot(snapShot=>{
-                console.log(snapShot.data()?.bucket);
-                setBuckets(snapShot.data()?.bucket);
-                setTotalPrice(snapShot.data()?.totalPrice);
-        })
-        
-    },[]);
+    const bucket = JSON.parse(window.localStorage.getItem('bucket')!);
+    const totalPrice = Number(window.localStorage.getItem('totalPrice'));
+    const store = window.localStorage.getItem('store')
+    const table= window.localStorage.getItem('table')
+    console.log(bucket, totalPrice,store, table);
 
     return (
         <div className="orderlist-con">
             <div className="orderlist-info">
                 <h1 className="orderlist-info-store">{store}</h1>
                 <h2 className="orderlist-info-table">테이블 {table}</h2>
-                <h3 className="orderlist-info-price">{numberWithCommas(Number(totalPrice))}원</h3>
+                <h3 className="orderlist-info-price">{numberWithCommas(totalPrice)}원</h3>
             </div>
             
             
             {
-                buckets.map((doc:any)=>{
+                bucket.map((doc:any)=>{
                     for(let i in doc){
                         return (
                             <>
@@ -81,6 +66,7 @@ const OrderListView = (props:any) => {
             <OrderContainer text={"취소"}/>
             
         </div>
+        
     );
 }
 

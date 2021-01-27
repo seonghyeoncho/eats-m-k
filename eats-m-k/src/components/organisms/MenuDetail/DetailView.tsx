@@ -27,6 +27,16 @@ const DetailView = (props:any) => {
     const [ select, setSelect ] = useState<any>({});
     const [ more, setMore ] = useState<any>([]);
     const [ morePrice,setMorePrice] = useState<number>(0);
+    const [ state, setState ] = useState<boolean>();
+    const [ orderStatus, setOrderStatus ] = useState<boolean>();
+
+    useEffect(() => {
+
+        setState(JSON.parse(window.localStorage.getItem('state')!));
+        setOrderStatus(JSON.parse(window.localStorage.getItem('orderStatus')!));
+
+
+    },[state, orderStatus]);
     
     const moreMenuHandler = (m:any, isChecked:boolean) => {
 
@@ -57,14 +67,16 @@ const DetailView = (props:any) => {
         }
 
         setSelect(Obj);
+        setState(JSON.parse(window.localStorage.getItem('state')!));
+        setOrderStatus(JSON.parse(window.localStorage.getItem('orderStatus')!));
 
-    },[more,menu,count]);
+    },[more,menu,count, state, orderStatus]);
 
     return (
         
         <div className="detail">
 
-            <StoreAndTableBoxContainer store={store} table={table}/>
+            <StoreAndTableBoxContainer store={store} table={table} state={state} orderStatus={orderStatus}/>
 
             <div className="detail-nav">
 

@@ -1,10 +1,8 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { dbService } from '../../../firebase';
 import { RootState } from '../../../modules';
-import { resetCount } from '../../../modules/counters';
-import { increase } from '../../../modules/totalPrice';
 
 interface Props {
 
@@ -25,34 +23,46 @@ interface Props {
 
 const OrderButtonDirect = ({select, store, table}:Props) => {
 
-    const { count,bucket } = useSelector((state:RootState)=>({
+    const bucket:any = JSON.parse(window.localStorage.getItem('bucket')!);
+    const totalPrice = Number(window.localStorage.getItem('totalPrice'));
+
+    const { count  } = useSelector((state:RootState) => ({
 
         count:state.counters.count,
-        bucket:state.myBucket.bucket.data?.bucket
-
-    }))
-
-    const dispatch = useDispatch();
-
+        
+    }));
 
     const onClick = () => {
 
         var a = '0'
         if( select.more === undefined) { a = '1' } 
 
-        const Obj:any = bucket.concat({
-            ...select,
-            count:count,
-            id:`${select.menu}/${count}/${a}`,
+        if( bucket === null ) {
+            const Obj = [
+                {
+                    ...select,
+                    id:`${select.menu}/${select.count}/${JSON.stringify(select.more)}`
+                }
+                
+            ];
+            window.localStorage.setItem('bucket', JSON.stringify(Obj));
+            window.localStorage.setItem('totalPrice', (totalPrice + select.itemTotalPrice).toString());
+
+        } else {
             
-        })
+            const Obj:any = bucket.concat({
+                ...select,
+                count:count,
+                id:`${select.menu}/${count}/${a}`,
+                
+            })
+    
+            window.localStorage.setItem('bucket', JSON.stringify(Obj));
+            window.localStorage.setItem('totalPrice', (select.itemTotalPrice).toString());
 
-        dbService.collection(`${store}`).doc(`${table}`).update({
-            'bucket':Obj,
-            'totalPrice': select.itemTotalPrice,
+        }
 
-        })
-        dispatch(resetCount());
+        
         
     }
 

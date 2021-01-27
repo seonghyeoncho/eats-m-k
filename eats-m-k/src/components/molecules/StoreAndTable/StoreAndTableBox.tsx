@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import OrderStatusButtonContainer from '../../atoms/OrderStatusButton/OrderStatusButtonContainer';
 
 
 type BoxProps = {
     store:string | string[] | null;
     table:string | string[] | null;
-    
+    state: boolean | undefined
+    orderStatus: boolean | undefined
 }
 
-const StoreAndTableBox = ({store, table}:BoxProps) => {
+const StoreAndTableBox = ({store, table, state, orderStatus}:BoxProps) => {
 
     return(
         <div className="store-nav-con">
@@ -19,7 +20,7 @@ const StoreAndTableBox = ({store, table}:BoxProps) => {
                 
             </div>
             <div className="order-status-bt">
-                <OrderStatusButtonContainer store={store} table={table}/>
+                <OrderStatusButtonContainer store={store} table={table} state={state} orderStatus={orderStatus}/>
             </div>
            
             

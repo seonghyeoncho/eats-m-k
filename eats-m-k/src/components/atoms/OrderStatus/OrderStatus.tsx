@@ -14,52 +14,36 @@ import { useCookies } from 'react-cookie';
 
 const OrderStatus = (props:any) => {
 
-    const [ cookies, setCookie, removeCookie ] = useCookies(['clientId', 'bucket', 'store', 'table']);
-
-    const [totalPrice, setTotalPrice] = useState(0);
-    const [bucket, setBucekt] = useState<any>();
-    const [stat, setStat ] = useState<boolean>();
     const query = queryString.parse(props.location.search);
     const store = query.store;
     const table = query.table;
-    
-    const { state, orderStatus} = useSelector((state:RootState)=>({
-
-
-        orderStatus:state.stateSet.orderStatus,
-        state:state.stateSet.state,
-        store:state.storeSet.store,
-        table:state.tableSet.table
-
-        
-    }));
+    const bucket:any = JSON.parse(window.localStorage.getItem('bucket')!);
+    const totalPrice = Number(window.localStorage.getItem('totalPrice'));
+    const [ state, setState ] = useState<boolean>();
+    const [ orderStatus, setOrderStatus ] = useState<boolean>();
 
     let text:string = '';
-    if(stat && orderStatus){
+
+    if(state && orderStatus){
         text = '접수완료';
 
-    } else if(!stat && orderStatus){
+    } else if(!state && orderStatus){
 
         text = '주문완료';
 
     }
+
     const goBack = () => {
         props.history.goBack();
     }
+
     useEffect(()=>{
-        dbService.collection(`${store}`).doc(`${table}`).get().then(
-            (doc:any)=>{
-                setTotalPrice(doc.data().totalPrice);
-                setBucekt(doc.data().bucket);
-                setStat(doc.data().state);
-                
-            }
-        )
+
+        setState(JSON.parse(window.localStorage.getItem('state')!));
+        setOrderStatus(JSON.parse(window.localStorage.getItem('orderStatus')!));
         
-    },[]);
+    },[state, orderStatus]);
 
-
-    console.log('cookie clientId test', cookies.clientId)
     return (
         <div className="orderstatus-con">
 
@@ -69,7 +53,7 @@ const OrderStatus = (props:any) => {
             </div>
             
             {
-                !stat ? 
+                !state ? 
                 
                 
                     <div className="orderstatus-state-con">

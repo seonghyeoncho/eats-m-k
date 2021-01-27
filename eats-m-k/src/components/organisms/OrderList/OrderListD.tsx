@@ -11,28 +11,11 @@ import queryString from 'query-string';
 
 const OrderListD = (props:any) => {
 
-    const [ bucket, setBucket ] = useState<any>([]);
-    const [ totalPrice, setTotalPrice ] = useState<number>();
-    const { orderStatus} = useSelector((state:RootState)=> ({
-         
-        orderStatus:state.stateSet.orderStatus,
-
-
-        
-    }));
-
+    const bucket:any = JSON.parse(window.localStorage.getItem('bucket')!);
+    const totalPrice = Number(window.localStorage.getItem('totalPrice'));
     const query = queryString.parse(props.location.search);
     const store = query.store;
     const table = query.table
-
-    useEffect(()=>{
-        dbService.collection(`${store}`).doc(`${table}`).get().then((doc:any)=>{
-            const data = doc.data().bucket
-            const totalPrice = doc.data().totalPrice
-            setTotalPrice(totalPrice);
-            setBucket(data);
-        })
-    },[]);
 
     return (
         <div className="orderlist-con">

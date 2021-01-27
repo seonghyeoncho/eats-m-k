@@ -1,10 +1,10 @@
 import React from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 interface Props {
-    store: string | string[] | null;
-    table: string | string[] | null;
+    store: any
+    table: any
     text: string;
     onSubmit: ()=> void
     
@@ -12,9 +12,6 @@ interface Props {
 
 const Order = ({store, table,onSubmit,text}:Props) => {
 
-
-    //if(n === 0)  return <Redirect to={`/menu/?store=${store}&table=${table}`}/>
-    console.log('sdfsdf',store,table);
 
     return ( 
         <div className="order-bt-con">

@@ -1,58 +1,37 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import BucketView from './BucketView';
-import { RootState } from '../../../modules';
-import { dbService } from '../../../firebase';
 import numberWithCommas from '../../../functions/addCommaFunc';
-import { resetPrice } from '../../../modules/totalPrice';
 import Arrow from '../../../icons/icon_arrow_back_black_x3.png'
 import queryString from 'query-string';
-import { useCookies } from 'react-cookie';
 import OrderButton from '../../atoms/OrderButton/OrderButton';
 import BackButton from '../../atoms/BackButton/BackButton';
 
 
 const BucketViewContainer = (props:any) => {
 
-    const [ cookies, setCookie, removeCookie ] = useCookies(['clientId', 'bucket', 'store', 'table']);
-
     const query = queryString.parse(props.location.search);
     const store = query.store;
     const table = query.table;
-
-    const [ buckets,setBuckets ] = useState([]);
+    const [ bucket, setBucket ] = useState([]);
     const [ totalPrice, setTotalPrice ] = useState<number>(0);
-
-    const dispatch = useDispatch();
-
-    useEffect(()=>{
-
-        dbService.collection(`${store}`).doc(`${table}`)
-            .onSnapshot(snapShot=>{
-                setBuckets(snapShot.data()?.bucket);
-                setTotalPrice(snapShot.data()?.totalPrice);
-                
-        })
-        
-        
-    },[totalPrice]);
 
     const resetBucket = () => {
 
-        dbService.collection(`${store}`).doc(`${table}`).update({
-            'bucket':[],
-            'totalPrice':0
-        });
-        dispatch(resetPrice());
-        setCookie('bucket', []);
+        window.localStorage.removeItem('totalPrice');
+        window.localStorage.removeItem('bucket');
         props.history.goBack();
-        window.localStorage.setItem('totalPrice', '0');
 
     }
 
     const goBack = () => {
         props.history.goBack();
     }
+    useEffect(()=>{
+
+        setBucket(JSON.parse(window.localStorage.getItem('bucket')!))
+        setTotalPrice(Number(window.localStorage.getItem('totalPrice')))
+
+    },[bucket, totalPrice]);
 
     return (
 
@@ -67,7 +46,7 @@ const BucketViewContainer = (props:any) => {
 
             <div className="bucket-con">
                 { 
-                    buckets.length !== 0 ? 
+                    bucket !== null ? 
 
                         <div className="bucket-info-con">
 
@@ -83,9 +62,9 @@ const BucketViewContainer = (props:any) => {
                 }
             </div>
 
-            <BucketView bucket={buckets} totalPrice = {totalPrice} store={store} table={table}/>
+            <BucketView bucket={bucket} totalPrice = {totalPrice} store={store} table={table}/>
             { 
-                buckets.length !== 0 ? 
+                bucket !== null ? 
                     <OrderButton/>
                 :
                     <BackButton text={'추가하기'}/>

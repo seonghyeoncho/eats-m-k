@@ -1,33 +1,17 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import OrderStatusButton from './OrderStatusButton';
-import { RootState } from '../../../modules';
 import { dbService } from '../../../firebase';
 import { useState } from 'react';
 
 interface Props {
 
-    store:string | string[] | null;
-    table:string | string[] | null;
+    store: string | string[] | null;
+    table: string | string[] | null;
+    state: boolean | undefined;
+    orderStatus: boolean | undefined;
 
 }
-const OrderStatusButtonContainer = ({store, table}:Props) => {
-
-    const [ orderStatus, setOrderStatus ] = useState<boolean>();
-    const [ state, setState ] = useState<boolean>();
-    
-
-
-    useEffect(()=>{
-
-        dbService.collection(`${store}`).doc(`${table}`).onSnapshot((snapShot:any)=>{
-
-            setOrderStatus(snapShot.data().orderStatus);
-            setState(snapShot.data().state);
-
-        });
-
-    },[]);
+const OrderStatusButtonContainer = ({store, table, state, orderStatus}:Props) => {
 
     return (
 

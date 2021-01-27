@@ -22,7 +22,7 @@ const BucketView = ({bucket,totalPrice,store, table}:Props) => {
            
             
             {
-                bucket.length === 0 ? 
+                bucket === null ? 
                     <div className="ready-bucket-con">
                         <img src={Cart}/>
 
@@ -71,6 +71,7 @@ const BucketView = ({bucket,totalPrice,store, table}:Props) => {
                                                 totalPrice={totalPrice}
                                                 store={store}
                                                 table={table}
+                                                bucket={bucket}
 
                                             />
                                         </div>

@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../modules';
 import BackButton from '../../atoms/BackButton/BackButton';
 import Finish from '../../../graphics/graphic_finish_x3.png';
 
@@ -8,11 +6,14 @@ import Finish from '../../../graphics/graphic_finish_x3.png';
 
 
 const CompleteView = (props:any) => {
-    const [ time, setTime ] = useState<number>(3);
+    
+    
     const store = window.localStorage.getItem('store');
     const table = window.localStorage.getItem('table');
+    const [ time, setTime ] = useState<number>(3);
 
     useEffect(()=>{
+
         if(time === 0 ){
             props.history.push(`/menu/?store=${store}&table=${table}`)
 
@@ -22,6 +23,7 @@ const CompleteView = (props:any) => {
                 setTime(time-1);
             }
         }, 1000);
+        
         return () => clearInterval(countdown);
 
         

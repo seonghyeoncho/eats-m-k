@@ -8,7 +8,7 @@ import { resetPrice } from '../../../modules/totalPrice';
 
 interface Props {
 
-    totalPrice:number | undefined
+    totalPrice:number
 
 }
 

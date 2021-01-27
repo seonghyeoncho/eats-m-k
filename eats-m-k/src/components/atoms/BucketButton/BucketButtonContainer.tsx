@@ -12,14 +12,7 @@ interface Props {
 
 const BucketButtonContainer = ({ store, table, }:Props) => {
 
-    const [ totalPrice, setTotalPrice ] = useState<number>();
-
-    useEffect(()=>{
-
-        dbService.collection(`${store}`).doc(`${table}`).onSnapshot((snapShot:any)=>{
-            setTotalPrice(snapShot.data().totalPrice);
-        });
-    },[]);
+    const totalPrice = Number(window.localStorage.getItem('totalPrice'));
 
     return(
         <>

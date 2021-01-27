@@ -3,27 +3,17 @@ import queryString from 'query-string';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../modules';
 import OrderButtonContainer from '../../atoms/OrderButton/OrderButtonContainer';
-import { setStore } from '../../../modules/setStore';
-import { setTable } from '../../../modules/setTable';
 import StoreAndTableBoxContainer from '../../molecules/StoreAndTable/StoreAndTableBoxContainer';
 import BucketButtonContainer from '../../atoms/BucketButton/BucketButtonContainer';
 import { getMenuThunk } from '../../../modules/getMenus';
 import MenuListContainer from '../../molecules/MenuList/MenuListcontainer';
-import { getBucketThunk } from '../../../modules/getBucket/thunks';
 import { dbService } from '../../../firebase';
-import { setState, setStatus } from '../../../modules/orderState';
 import '../../../scss/main.scss';
 
 const Home = ( props: any ) => {
     
-    const { totalPrice, menu, state } = useSelector((state:RootState)=>({
-
-        totalPrice:state.myBucket.bucket.data?.totalPrice,
+    const { menu } = useSelector((state:RootState)=>({
         menu:state.myBase.menus.data?.menu,
-        state:state.myBucket.bucket.data?.state,
-        orderStatus:state.myBucket.bucket.data?.orderStatus,
-        bucket:state.myBucket.bucket.data?.bucket
-
     }));
 
     const [id, setId] = useState<any>(null);
@@ -31,6 +21,8 @@ const Home = ( props: any ) => {
     const [ color1, setColor1 ] = useState('#ff1b6d');
     const [ color2, setColor2 ] = useState('#999999');
     const [ color3, setColor3 ] = useState('#999999');
+    const [ state, setState ] = useState<boolean>();
+    const [ orderStatus, setOrderStatus ] = useState<boolean>();
     const dispatch = useDispatch();
 
     const today = new Date();
@@ -40,23 +32,35 @@ const Home = ( props: any ) => {
     const store = query.store;
     const table = query.table;
     const localStorageClientId = window.localStorage.getItem('clientId');
+    const totalPrice = Number(window.localStorage.getItem('totalPrice'));
+    
    
     const getStateFormFire = () => {
 
         dbService.collection(`${store}`).doc(`${table}`).onSnapshot(snapShot=>{
 
             const data = snapShot.data();
-            dispatch(setState(data?.state));
-            dispatch(setStatus(data?.orderStatus));
-
             setId(data?.clientId);
+            window.localStorage.setItem('state', data?.state.toString());
+            window.localStorage.setItem('orderStatus', data?.orderStatus.toString());
 
-        })
+        });
     }
 
     const changeList = (n:number) => {
 
         return <MenuListContainer state={n} store={store} table={table}/>
+
+    }
+    const setInfo = () => {
+
+        dbService.collection(`${store}`).doc(`${table}`).update({
+
+            orderStatus:false,
+            state:false,
+            clientId:clientId,
+    
+        });
 
     }
 
@@ -66,15 +70,10 @@ const Home = ( props: any ) => {
 
             window.localStorage.setItem('clientId',clientId);
 
-            dbService.collection(`${store}`).doc(`${table}`).update({
+            setInfo();
 
-                'bucket':[],
-                orderStatus:false,
-                state:false,
-                clientId:clientId,
-                totalPrice:0
-        
-            });
+            window.localStorage.removeItem('bucket');
+            window.localStorage.removeItem('totalPrice');
 
         } else {
 
@@ -85,21 +84,15 @@ const Home = ( props: any ) => {
 
                     window.localStorage.setItem('clientId',clientId);
 
-                    dbService.collection(`${store}`).doc(`${table}`).update({
+                    setInfo();
 
-                        'bucket':[],
-                        orderStatus:false,
-                        state:false,
-                        clientId:clientId,
-                        totalPrice:0
-                
-                    });
+                    window.localStorage.removeItem('bucket');
+                    window.localStorage.removeItem('totalPrice');
                 }
             }
 
         }
-    }
-    console.log('localStorage Test', window.localStorage.getItem('bucket'));
+    };
 
     const underLine = () => {
 
@@ -119,16 +112,17 @@ const Home = ( props: any ) => {
         }
 
         if(menu === undefined) dispatch(getMenuThunk(store));
-        dispatch(getBucketThunk(store, table));
+
         getStateFormFire();
-        
         onCookie();
+        setState(JSON.parse(window.localStorage.getItem('state')!));
+        setOrderStatus(JSON.parse(window.localStorage.getItem('orderStatus')!));
         
-    },[ id ]);
+    },[ id, window.localStorage.getItem('state'), window.localStorage.getItem('orderStatus')]);
 
     return (
         <div>
-            <StoreAndTableBoxContainer store={store} table={table}/>
+            <StoreAndTableBoxContainer store={store} table={table} state={state} orderStatus={orderStatus}/>
             <div className="main-content">
                 <div className="menulist-nav">
                     <div className="menulist-bts">

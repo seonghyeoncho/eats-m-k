@@ -16,30 +16,15 @@ interface Props {
     store:string | string[] | null
     table:string | string[] | null
     totalPrice:number
+    bucket:any
     
 }
 
-const ModifCount = ({c,id, menu, price, more, itemTotalPrice, totalPrice, store, table}:Props) => {
-    
-    const [ bucket, setBucekt ] = useState<any>([]);
-
-    useEffect(()=>{
-
-        dbService.collection(`${store}`).doc(`${table}`).onSnapshot(
-
-            (snapShot:any)=>{
-                const buckets = snapShot.data().bucket;
-                setBucekt(buckets);
-
-            }
-        );
-
-
-    },[]);
-
-    const dispatch = useDispatch();
+const ModifCount = ({c,id, menu, price, more, itemTotalPrice, totalPrice,bucket}:Props) => {
 
     const modifBucket = (i:number,totalPrice:number) => {
+        console.log(c);
+        console.log(bucket);
 
         const Obj = {
 
@@ -47,28 +32,21 @@ const ModifCount = ({c,id, menu, price, more, itemTotalPrice, totalPrice, store,
             price: price,
             count: c,
             more: more,
-            id:`${menu}/${c}/${i}`,
+            id:`${menu}/${c}/${more}`,
             itemTotalPrice: itemTotalPrice 
 
         }
 
         const modifBuc = bucket.map((item:any) => item.id === id 
+
             ? 
                 Obj
             :
                 item
+
         );
 
-
-
-        dbService.collection(`${store}`).doc(`${table}`).update({
-            'bucket':[
-                ...modifBuc
-            ],
-            'totalPrice':totalPrice 
-
-
-        });
+        window.localStorage.setItem('bucket', JSON.stringify(modifBuc));
         window.localStorage.setItem('totalPrice', totalPrice.toString() );
         
     };
@@ -106,7 +84,6 @@ const ModifCount = ({c,id, menu, price, more, itemTotalPrice, totalPrice, store,
     
     const onIncrease = () => {
 
-        dispatch(increase(price));
         modifMenuCount('in')
 
     }
@@ -115,7 +92,6 @@ const ModifCount = ({c,id, menu, price, more, itemTotalPrice, totalPrice, store,
         
         if(c !== 1) {
 
-            dispatch(decrease(price));
             modifMenuCount('de')
 
         }

@@ -29,6 +29,7 @@ const AddMenuContainer = ({ select, history, store, table }:Props) => {
 
     const [ buckets, setBuckets ] = useState<any>([]);
     const [ totalPrice, setTotalPrice ] = useState<number>(0);
+    const test = window.localStorage.getItem('bucket');
 
     const dispatch = useDispatch();
     useEffect(()=>{
@@ -58,7 +59,8 @@ const AddMenuContainer = ({ select, history, store, table }:Props) => {
             ],
             'totalPrice': totalPrice + select.itemTotalPrice  
         });
-        window.localStorage.setItem('totalPrice', (totalPrice + select.itemTotalPrice).toString() );
+        window.localStorage.setItem('bucket', Obj);
+        window.localStorage.setItem('totalPrice', (totalPrice + select.itemTotalPrice).toString());
 
     }
 

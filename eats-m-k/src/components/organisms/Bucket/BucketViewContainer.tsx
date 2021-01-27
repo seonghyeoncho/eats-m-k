@@ -46,6 +46,7 @@ const BucketViewContainer = (props:any) => {
         dispatch(resetPrice());
         setCookie('bucket', []);
         props.history.goBack();
+        window.localStorage.setItem('totalPrice', '0');
 
     }
 

@@ -69,6 +69,7 @@ const ModifCount = ({c,id, menu, price, more, itemTotalPrice, totalPrice, store,
 
 
         });
+        window.localStorage.setItem('totalPrice', totalPrice.toString() );
         
     };
 

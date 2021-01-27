@@ -41,8 +41,6 @@ const Home = ( props: any ) => {
     const table = query.table;
     const localStorageClientId = window.localStorage.getItem('clientId');
    
-
-
     const getStateFormFire = () => {
 
         dbService.collection(`${store}`).doc(`${table}`).onSnapshot(snapShot=>{
@@ -80,11 +78,7 @@ const Home = ( props: any ) => {
 
         } else {
 
-
-
             if(localStorageClientId === id ){
-
-
 
             } else if (id !== null) {
                 if (localStorageClientId !== id && state) {
@@ -105,6 +99,7 @@ const Home = ( props: any ) => {
 
         }
     }
+    console.log('localStorage Test', window.localStorage.getItem('bucket'));
 
     const underLine = () => {
 

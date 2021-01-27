@@ -9,10 +9,9 @@ import Finish from '../../../graphics/graphic_finish_x3.png';
 
 const CompleteView = (props:any) => {
     const [ time, setTime ] = useState<number>(3);
-    const { store, table } = useSelector((state:RootState)=>({
-        store:state.storeSet.store,
-        table:state.tableSet.table
-    }))
+    const store = window.localStorage.getItem('store');
+    const table = window.localStorage.getItem('table');
+
     useEffect(()=>{
         if(time === 0 ){
             props.history.push(`/menu/?store=${store}&table=${table}`)

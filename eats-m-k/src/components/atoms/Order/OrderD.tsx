@@ -14,13 +14,8 @@ interface Props {
 
 const OrderD = ({text,totalPrice}:Props) => {
 
-    const {store, table } = useSelector((state:RootState)=>({
-        
-        store:state.storeSet.store,
-        table:state.tableSet.table,
-
-
-    }));
+    const store = window.localStorage.getItem('store');
+    const table = window.localStorage.getItem('table');
 
     const dispatch = useDispatch();
 

@@ -18,7 +18,7 @@ const CancleOrderButtonContainer = ({id,price,bucket}:Props) => {
         } else {
             const buckett = bucket?.filter((doc:any)=> doc.id !== id );
             window.localStorage.setItem('totalPrice', (Number(totalPrice) - price).toString());
-            window.localStorage.setItem('bucket', buckett.toString());
+            window.localStorage.setItem('bucket', JSON.stringify(buckett));
 
         }
         

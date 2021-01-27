@@ -1,0 +1,69 @@
+.setting-con{
+    display: flex;
+    .setting-nav-con{
+        position: fixed;
+        background-color: black;
+        color: white;
+        width: 256px;
+        height: 100%;
+        padding-top:38px;
+
+    }
+    .setting-content-con{
+        margin-left: 256px;
+        margin-top: 126px;
+        .menusetting-con{
+            .menusetting-nav-con{
+                .background-box-menusetting{
+                    background-color: black;
+                    position: fixed;
+                    right: 0px;
+                    height: 57px;
+                    width: 100%;
+                    left: 256px;
+                    top: 27px;
+                    opacity: 0.8;
+                    z-index: 1;
+                }
+                display: flex;
+                position: fixed;
+                top:27px;
+                font-size: 15px;
+                
+
+                
+                .menusetting-nav-main{
+
+                    height: 57px;
+                    color: white;
+                    background-color: black;
+                    padding: 0px 20px;
+                    z-index: 2;
+
+                }
+                .menusetting-nav-set{
+                    padding: 0px 20px;
+                    color: white;
+                    background-color: black;
+                    z-index: 2;
+
+                }
+                .menusetting-nav-side{
+                    padding: 0px 20px;
+                    color: white;
+                    background-color: black;
+                    z-index: 2;
+
+                }
+
+
+                
+            }
+            .menusetting-content-con{
+                margin-left: 20px;
+            }
+
+        }
+
+    }
+}

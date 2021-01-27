@@ -48,7 +48,7 @@ const DetailView = (props:any) => {
         } else if(!isChecked) {
             
             setMore( (prev:any) => prev.filter((doc:any)=> m.menu !== doc.menu));
-            setMorePrice(morePrice + m.price);
+            setMorePrice(morePrice - m.price);
 
         }
 

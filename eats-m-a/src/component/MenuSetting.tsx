@@ -11,10 +11,11 @@ const MenuSetting = ({store}:Props) => {
     const s = Number(window.localStorage.getItem('state'));
     const [ data, setData ] = useState<any>({});
     const [ addMenu, setAddMenu ] = useState<string>('');
-    const [ price, setPrice ] = useState<number>(0);
+    const [ price, setPrice ] = useState<number>();
     const [ state, setState ] = useState<number>(s);
-    const [ menu, setMenu ] = useState<any>();
-    console.log(data);
+    const [ menu, setMenu ] = useState<any>([]);
+    console.log(s, state)
+    console.log(menu);
     
     const onChange = ( event:any ) => {
 
@@ -36,7 +37,6 @@ const MenuSetting = ({store}:Props) => {
     };
 
     const toggleState = (m:any) => {
-        console.log(m);
 
         const toggleObj = {
 
@@ -94,13 +94,14 @@ const MenuSetting = ({store}:Props) => {
             price:Number(price),
             state:true
         });
-        if(state === 0) {
+
+        if(s === 0) {
 
             dbService.collection('store').doc(`${store}`).update({
                 'menu':array
             });
 
-        } else if(state === 1) {
+        } else if(s === 1) {
 
             dbService.collection('store').doc(`${store}`).update({
                 'setmenu':array
@@ -129,37 +130,43 @@ const MenuSetting = ({store}:Props) => {
             else if(s === 1)setMenu(data.setmenu);
             else setMenu(data.sidemenu);
         });
-    },[]);
+    },[s]);
 
     return (
         <div className="menusetting-con">
             <div className="menusetting-nav-con">
 
-                { state === 0 ? <button className="menusetting-nav-main-a">단품 메뉴</button>
+                { s === 0 ? <button className="menusetting-nav-main-a">단품 메뉴</button>
                     : <button className="menusetting-nav-main" onClick={() => {setState(0);setMenu(data.menu);setS(0)}}>단품 메뉴</button> }
-                { state === 1 ? <button className="menusetting-nav-set-a" >세트 메뉴</button>
+                { s === 1 ? <button className="menusetting-nav-set-a" >세트 메뉴</button>
                     : <button className="menusetting-nav-set" onClick={() => {setState(1);setMenu(data.setmenu);setS(1)}}>세트 메뉴</button>}
-                { state === 2 ?  <button className="menusetting-nav-side-a" >사이드 메뉴</button>
+                { s === 2 ?  <button className="menusetting-nav-side-a" >사이드 메뉴</button>
                     :  <button className="menusetting-nav-side" onClick={() => {setState(2);setMenu(data.sidemenu);setS(2)}}>사이드 메뉴</button>}
                 
                 <div className="background-box-menusetting"></div>
-                <div className="background-box-menusetting-1"></div>
+
             </div>
+
             <div className="menusetting-title-con">
                 <div className="menusetting-title-state">상태</div>
                 <div className="menusetting-title-menu">메뉴명</div>
                 <div className="menusetting-title-price">가격</div>
             </div>
+
             {changeMenuList(s)}
+
             <div className="menusetting-content-con">
                 
                 <div>메뉴 추가</div>
+
                 <form onSubmit={onSubmit}>
+
                     <input name="menu" placeholder="메뉴 이름" value={addMenu} onChange={onChange} required></input>
                     <input name="price" placeholder="가격" value={price} onChange={onChange} required></input>
-                    
                     <input type='submit'></input>
+
                 </form>
+
             </div>
 
         </div>

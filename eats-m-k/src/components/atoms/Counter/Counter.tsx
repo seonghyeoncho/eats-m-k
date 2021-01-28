@@ -18,7 +18,7 @@ const Counter = ({count,onIncrease,onDecrease}:Props) => {
 
       <div className="counter-content">
 
-        <div>수량</div>
+        <div className="counter-content-text">수량</div>
 
         <div className="counter-bt-con">
 

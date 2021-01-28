@@ -1,16 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
+import PopUp from '../../organisms/PopUp';
 import CancleOrderButton from './CancleOrderButton';
 
 interface Props {
-    id:string
-    price:number
-    bucket: any
+    id:string;
+    price:number;
+    reRednder:()=>void
+    bucket:any
+    
 }
-const CancleOrderButtonContainer = ({id,price,bucket}:Props) => {
+const CancleOrderButtonContainer = ({id,reRednder, price,bucket}:Props) => {
 
     const totalPrice = window.localStorage.getItem('totalPrice');
+    const [ popUpState, setPopUpState ] = useState<boolean>(false);
+
+    const content = '선택한 메뉴를 장바구니에서 삭제하시겠습니까?';
+
+    const popUpTrigger = () => {
+     
+         setPopUpState(!popUpState);
+
+        
+            
+    };
 
     const cancleOrders = () => {
+        
 
         if (bucket.length === 1 ){
             window.localStorage.setItem('totalPrice', (Number(totalPrice) - price).toString());
@@ -21,12 +36,15 @@ const CancleOrderButtonContainer = ({id,price,bucket}:Props) => {
             window.localStorage.setItem('bucket', JSON.stringify(buckett));
 
         }
+        reRednder();
         
     }
 
     return (
-
-        <CancleOrderButton cancleOrders={cancleOrders}/>
+        <>
+            { popUpState ? <PopUp title={'메뉴삭제'} content={content} func={cancleOrders} popUpTrigger={popUpTrigger} />: null}
+            <CancleOrderButton popUpTrigger={popUpTrigger}/>
+        </>
 
     );
 }

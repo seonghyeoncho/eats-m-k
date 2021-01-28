@@ -31,32 +31,32 @@ Link{
 
     width: 100%;
     background-color: white;
-    height: 67px;
+    height: 56px;
     border-radius: 40px 40px 0px 0px;
     display: flex;
     justify-content: space-between;
+    margin-bottom: 12px;
 
     .menulist-bts{
-        font-size: 13px;
+        font-size: 14px;
         margin-left: 28px;
         margin-top: 15px;
-        margin-bottom: 28px;
+        margin-bottom: 16px;
         display: flex;
         flex-direction: row;
         .text{
             margin:5px 8px;
-            font-size: 13px;
+            font-size: 14px;
             font-family: NotoSansCJkkr-Bold;
 
         }
 
     }
     .bucket-img{
+        padding-top:12px;
 
-        margin-right: 35px;
-        margin-top: 10px;
-       
     }
+    
 
 
   
@@ -439,14 +439,13 @@ Link{
     }
 }
 .item-con{
+
     display: flex;
     justify-content:space-between;
     margin: 16px;
     color: black;
-
     margin-left: 35px;
     margin-right: 35px;
-   
     
     .item-content{
         
@@ -455,7 +454,7 @@ Link{
         .item-menu{
             
             font-family: NotoSansCJkkr-Bold;
-            font-size: 15px;
+            font-size: 16px;
             margin-bottom: 1px;
         }
         .item-speci{
@@ -465,19 +464,24 @@ Link{
             margin-bottom: 6px;
         }
         .item-price{
+            margin-top: 8px;
             font-family: NotoSansCJkkr-Regular;
-            font-size: 15px;
+            font-size: 16px;
 
         }
 
     }
-    .item-img{}
+    .item-img{
+        width: 64px;
+        height: 64px;
+        margin-left: 16px;
+    }
     
 
 }
 .line{
     width: auto;
-    height: 1px;
+    height: 2px;
     background-color: black;
     margin-left: 35px;
     margin-right: 35px;
@@ -622,21 +626,32 @@ Link{
                     margin-bottom: 5px;
                     font-size: 15px;
                 }
-
-                .modif-bucket{
+                .bucket-item-count{
                     display: flex;
                     justify-content: space-between;
+                    font-size: 13px;
+                    font-family: NotoSansCJkkr-Regular;
+                    opacity: 0.87;
+                    color: black;
+
+                }
+
+                .modif-bucket{
+
+                    display: flex;
+                    justify-content: space-between;
+
                     .modif-bucket-counter-con{
+
                         display: flex;
                         border: solid 1px black;
                         border-radius: 50px;
-
                         height: 26px;
                         margin-bottom: 14px;
                         
-                    
-                
                         .modif-bucket-counter{
+
+                            
                             
 
                             display: flex;
@@ -732,20 +747,26 @@ Link{
         display: flex;
         align-items: center;
         justify-content: space-between;
+        .counter-content-text{
+            font-size: 17px;
+            font-family: NotoSansCJKkr-Bold;
+        }
         
         .counter-bt-con{
             display: flex;
             border: solid 1px black;
             border-radius: 50px;
-            height: 30px;
+            height: 40px;
             .counter-bt-text{
-                margin: 0 13px;
+                margin: auto 13px;
+                font-size: 15px;
+                font-family: NotoSansCJkkr-Regular;
             }
             img{
 
-                margin: 9.2px 16px;
-                width: 11.7px;
-                height: 11.7px;
+                padding: 13px 14px;
+                width: 14px;
+                height: 14px;
                 
             }
             div{ 
@@ -911,30 +932,41 @@ Link{
         
         width: 100%;
         background-color: white;
-        height: 67px;
+        height: 54px;
         
         border-radius: 40px 40px 0px 0px;
         .detail-nav-content{
             display: flex;
             justify-content:space-between;
-            margin-top: 17px;
+            margin-top: 10px;
             
-            img{
-                margin-left: 35px;
+            .back-bt{
+                margin-left: 15px;
+                padding: 8px 20px;
+                width: 12px;
+                height: 21px;
+                
+               
 
             }
+            .bucket-img{
+                padding-top: 2px;
+            }
             .detail-nav-content-text{
-                padding-left: 50px;
+                margin-left: 6px;
+                margin-top: 4px;
+                margin-bottom: 4px;
+                font-family: NotoSansCJkkr-Bold;
+                font-size: 18px;
                 
             }
         }
-        .bucket-img{
-            margin-right: 35px;
-        }
+        
         
         
 
     }
+    
 
     .detail-con{
 
@@ -949,7 +981,7 @@ Link{
             margin-left: 35px;
             margin-right: 35px;
             .line{
-                margin: 15px 0;
+                margin: 16px 0;
             }
     
             .detail-info-con{
@@ -958,7 +990,7 @@ Link{
                 .detail-info{
                     .detail-info-menu{
                         font-family: NotoSansCJkkr-Bold;
-                        font-size: 15px;
+                        font-size: 17px;
 
                     }
                     .detail-info-sp{
@@ -971,10 +1003,40 @@ Link{
     
                 }
             }
+            .detail-addmenu{
+                font-size: 17px;
+                font-family: NotoSansCJkkr-Bold;
+            }
+            .detail-totalprice-con{
+                display: flex;
+                justify-content: space-between;
+                font-size: 17px;
+                font-family: NotoSansCJkkr-Bold;
+                .detail-totalprice-text{
+                    
+
+                }
+                .detail-totalprice-price{
+
+                }
+            }
             .checkbox-con{
                 .checkbox-item-con{
                     display: flex;
                     justify-content: space-between;
+                    padding: 15px 0px;
+                    font-size: 16px;
+                    .info{
+                        display: flex;
+                        img{
+                            width: 24px;
+                            height: 24px;
+                            margin-right: 8px;
+                            margin-top: 3px;
+                        }
+
+                    }
+                    
                     .checkbox-item{
                         display: flex;
                         
@@ -986,10 +1048,10 @@ Link{
 
                         }
                         div{
-                            margin-top:6px;
-                            font-size: 13px;
+                            
+                            margin: auto 0px;
                             font-family: NotoSansCJKkr-Regular;
-                            line-height: 1.46;
+                           
                         }
                         
                         
@@ -1069,6 +1131,86 @@ Link{
             
         }
     }
+}
+.popup-con{
+    z-index: 5;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background-color: rgba(0,0,0, 0.5);
+
+    .popup-inner-con{
+        border-radius: 20px;
+        position: absolute;
+        left: 0px;
+        right: 0px;
+        top: 25%;
+        bottom: 25%;
+        margin: auto;
+        background: white;
+        width: 302px;
+        height: 184px;
+        
+        .popup-title{
+            font-size: 19px;
+            margin-top: 24px;
+            text-align: center;
+            margin-bottom: 12px;
+
+        }
+        .popup-content{
+            text-align: center;
+            margin:  0px 68px;
+            font-size: 15px;
+            font-family: NotoSansCJKkr-Regular;
+            margin-bottom: 34px;
+
+
+        }
+        .popup-bt-con{
+            
+            display: flex;
+            .popup-bt-cancle{
+                
+                width: 112px;
+                height: 28px;
+                border-radius: 0 0 0 20px;
+                background-color: #cccccc;
+                font-size: 18px;
+                color: #525252;
+                font-family: NotoSansCJKkr-Bold;
+                text-align: center;
+                padding: 10px 39px; 
+               
+
+
+            }
+            .popup-bt-delete{
+                width: 190px;
+                height: 28px;
+                border-radius: 0 0 20px 0;
+                background-color: $base-color;
+                color: white;
+                font-size: 18px;
+                font-family: NotoSansCJKkr-Bold;
+                text-align: center;
+                padding: 10px 39px; 
+               
+               
+
+            }
+        }
+    }
+
+}
+.bucket-img{
+    margin-right: 35px;
+    width: 40px;
 }
 .cancleorder-popover{
     z-index: 4;

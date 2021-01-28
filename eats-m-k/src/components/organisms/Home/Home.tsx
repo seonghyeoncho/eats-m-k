@@ -65,8 +65,10 @@ const Home = ( props: any ) => {
     }
 
     const onCookie = () => {
+        console.log('1')
 
         if( localStorageClientId === null ) {
+            console.log('2')
 
             window.localStorage.setItem('clientId',clientId);
 
@@ -76,6 +78,7 @@ const Home = ( props: any ) => {
             window.localStorage.removeItem('totalPrice');
 
         } else {
+            console.log('3')
 
             if(localStorageClientId === id ){
 
@@ -88,7 +91,7 @@ const Home = ( props: any ) => {
 
                     window.localStorage.removeItem('bucket');
                     window.localStorage.removeItem('totalPrice');
-                }
+                } 
             }
 
         }
@@ -144,15 +147,14 @@ const Home = ( props: any ) => {
                         </div>
                         
                     </div>
-                    <BucketButtonContainer store={store} table={table}/>
+                    <BucketButtonContainer store={store} table={table} orderStatus={orderStatus}/>
                 </div>
-
 
                 {changeList(menuListState)}
                 <div className="block"></div>
 
                 <div className="bt">
-                    <OrderButtonContainer totalPrice={totalPrice}/>
+                    <OrderButtonContainer totalPrice={totalPrice} orderStatus={orderStatus}/>
                 </div>
             </div>
            

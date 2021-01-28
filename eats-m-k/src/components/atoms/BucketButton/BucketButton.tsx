@@ -14,7 +14,7 @@ const BucketButton = ({store,table}:Props) => {
         <div>
             <Link to={`/bucket/?store=${store}&table=${table}`}>
                 
-                    <img className="bucket-img" src={Cart} width="37px" />
+                    <img className="bucket-img" src={Cart} />
 
                 
             </Link>

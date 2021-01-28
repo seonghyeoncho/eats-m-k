@@ -5,27 +5,28 @@ interface Props {
 
     store: string | string[] | null;
     table: string | string[] | null;
-
+    orderStatus: boolean | undefined
 
 }
 
 
-const BucketButtonContainer = ({ store, table, }:Props) => {
+const BucketButtonContainer = ({ store, table, orderStatus}:Props) => {
 
     const totalPrice = Number(window.localStorage.getItem('totalPrice'));
+    
 
     return(
         <>
             {
-                totalPrice === 0  ? 
+                totalPrice === 0 || orderStatus ? 
 
                     <div className="bucket-block"></div>
 
                 :
-
                     <BucketButton store={store} table={table} />
 
             }
+
         </>
 
        

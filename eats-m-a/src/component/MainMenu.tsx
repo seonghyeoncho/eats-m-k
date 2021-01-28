@@ -1,6 +1,6 @@
 import React from 'react';
-import numberWithCommas from '../functions/addCommaFunc';
 import MenuList from './MenuList';
+
 interface Props {
     menu:any
     toggleState: (doc:any) => void

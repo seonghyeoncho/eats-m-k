@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import { dbService } from '../firebase';
+import React from 'react';
 import queryString from 'query-string';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -11,8 +10,6 @@ import '../scss/Setting.scss';
 const Settings = () => {
 
     const store = queryString.parse(window.location.search).store;
-
-    const [ data, setData ] = useState<any>([]);
     const [ state, setState ] = useState<number>(1);
 
     const changePage = (n:number) => {
@@ -21,7 +18,7 @@ const Settings = () => {
 
         } else if ( n === 1 ) {
 
-            if(data !== undefined) return <MenuSetting store={store}/>
+            return <MenuSetting store={store}/>
 
         } else {
             return <StoreSetting/>
@@ -40,10 +37,10 @@ const Settings = () => {
                 </Link>
                 {state === 1 ? <div className="setting-nav-menu-a" onClick={()=>setState(1)}><div>메뉴 관리</div></div>
                     : <div className="setting-nav-menu" onClick={()=>setState(1)}><div>메뉴 관리</div></div>}
-                {state === 2 ? <div className="setting-nav-store-a" onClick={()=>setState(2)}><div>가게 관리</div></div>
+                {/* {state === 2 ? <div className="setting-nav-store-a" onClick={()=>setState(2)}><div>가게 관리</div></div>
                     : <div className="setting-nav-store" onClick={()=>setState(2)}><div>가게 관리</div></div>}
                 {state === 0 ? <div className="setting-nav-info-a" onClick={()=>setState(0)}><div>개인 정보 관리</div></div>
-                    : <div className="setting-nav-info" onClick={()=>setState(0)}><div>개인 정보 관리</div></div>}
+                    : <div className="setting-nav-info" onClick={()=>setState(0)}><div>개인 정보 관리</div></div>} */}
                 
             </div>
             <div className="setting-content-con">

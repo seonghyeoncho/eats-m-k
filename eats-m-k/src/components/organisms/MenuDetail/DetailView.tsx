@@ -6,10 +6,11 @@ import AddMenuContainer from '../../atoms/AddMenuButton/AddMenuButtonContainer';
 import CheckBoxCon from './CheckBoxCon';
 import numberWithCommas from '../../../functions/addCommaFunc';
 import OrderButtonDirect from './OrderButtonDirect';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../modules';
 import BucketButtonContainer from '../../atoms/BucketButton/BucketButtonContainer';
 import Arrow from '../../../icons/icon_arrow_back_black_x3.png'
+import { resetCount } from '../../../modules/counters';
 
 const DetailView = (props:any) => {
 
@@ -30,13 +31,7 @@ const DetailView = (props:any) => {
     const [ state, setState ] = useState<boolean>();
     const [ orderStatus, setOrderStatus ] = useState<boolean>();
 
-    useEffect(() => {
-
-        setState(JSON.parse(window.localStorage.getItem('state')!));
-        setOrderStatus(JSON.parse(window.localStorage.getItem('orderStatus')!));
-
-
-    },[state, orderStatus]);
+    const dispatch = useDispatch();
     
     const moreMenuHandler = (m:any, isChecked:boolean) => {
 
@@ -62,7 +57,7 @@ const DetailView = (props:any) => {
             price:price,
             more:more,
             count:count,
-            itemTotalPrice: (price * count) + morePrice
+            itemTotalPrice: (price + morePrice) * count
 
         }
 
@@ -81,9 +76,9 @@ const DetailView = (props:any) => {
             <div className="detail-nav">
 
                 <div className="detail-nav-content">
-                    <img onClick={props.history.goBack} src={Arrow} width="12px" height="18px"/>    
+                    <img  className="back-bt" onClick={()=>{props.history.goBack();dispatch(resetCount());}} src={Arrow}/>    
                     <div className="detail-nav-content-text">MENU</div>
-                    <BucketButtonContainer store={store} table={table}/>
+                    <BucketButtonContainer store={store} table={table} orderStatus={orderStatus}/>
                 </div>
 
             </div>
@@ -97,7 +92,6 @@ const DetailView = (props:any) => {
 
                         <div className="detail-info">
                             <div className="detail-info-menu">{menu}</div>
-                            <div className="detail-info-sp">추가설명</div>
                         </div>
                         
                         <div>{numberWithCommas(price)}원</div>
@@ -105,12 +99,19 @@ const DetailView = (props:any) => {
                     </div>
 
                     <div className="line"/>
-                    <div>추가선택</div>
+                    <div className="detail-addmenu">추가선택</div>
                     <CheckBoxCon moreMenuHandler={moreMenuHandler} store={store}/>
 
                     {/* 추가 선택할 컴포넌트가 있어야 함. 아마 체크 박스로 선택 할 수 있게 해서 useState로 추가 할 수 있게 해야 할 듯 */}
                     <div className="line"/>
                     <CounterContainer/>
+                    <div className="line"/>
+
+                    <div className="detail-totalprice-con">
+                        <div className="datail-totalprice-text">합계</div>
+                        <div className="detail-totalprice-price">{numberWithCommas((price + morePrice)*count)}원</div>
+                    </div>
+
                     <div className="line"/>
                     <div className="detail-bt-con">
                         <div className="detail-bt">

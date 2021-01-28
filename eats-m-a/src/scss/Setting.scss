@@ -25,15 +25,17 @@ button:focus {
         color: white;
         width: 256px;
         height: 100%;
-        padding-top:38px;
+        padding-top:27px;
         
         display: flex;
         flex-direction: column;
         font-size: 15px;
         font-family: NotoSansCJKkr-Regular;
         .back-bt{
-            margin-bottom: 10px;
+            padding-top: 20px;
+
             padding-left: 30px;
+            height: 57px;
         }
         
         .setting-nav-menu{
@@ -81,28 +83,20 @@ button:focus {
         margin-top: 126px;
         .menusetting-con{
             .menusetting-nav-con{
+                background-color: white;
+                z-index: 3;
                 
                 .background-box-menusetting{
-                    background-color: black;
+                    background-color: #333333;
                     position: fixed;
                     right: 0px;
                     height: 57px;
                     width: 100%;
                     left: 256px;
                     top: 27px;
-                    opacity: 0.8;
                     z-index: 1;
                 }
-                .background-box-menusetting-1{
-                    background-color: white;
-                    position: fixed;
-                    right: 0px;
-                    height: 57px;
-                    width: 100%;
-                    left: 256px;
-                    top: 27px;
-                    z-index: 0;
-                }
+               
                 display: flex;
                 position: fixed;
                 top:27px;
@@ -116,26 +110,24 @@ button:focus {
                 .menusetting-nav-main{
 
                     height: 57px;
-                    color: white;
-                    background-color: black;
-                    opacity: 0.68;
+                    color: #dedede;
+                    background-color: #525252;
+
                     padding: 0px 20px;
                     z-index: 2;
 
                 }
                 .menusetting-nav-set{
                     padding: 0px 20px;
-                    color: white;
-                    background-color: black;
-                    opacity: 0.68;
+                    color: #dedede;
+                    background-color: #525252;
                     z-index: 2;
 
                 }
                 .menusetting-nav-side{
                     padding: 0px 20px;
-                    color: white;
-                    background-color: black;
-                    opacity: 0.68;
+                    color: #dedede;
+                    background-color: #525252;
                     z-index: 2;
 
                 }
@@ -170,12 +162,18 @@ button:focus {
 
                 
             }
+
             .menusetting-title-con{
+                position: fixed;
+                top: 84px;
                 display: flex;
-                margin-left: 20px;
+                padding-left: 20px;
                 font-size: 15px;
-                margin-bottom: 16px;
+                padding-bottom: 16px;
                 font-family: NotoSansCJKkr-bold;
+                padding-top: 20px;
+                padding-right: 34px;
+                background-color: white;
 
                 .menusetting-title-state{
                     margin-right: 92px;
@@ -185,7 +183,9 @@ button:focus {
                 }
                 .menusetting-title-price{}
             }
+
             .mainmenu-con{
+                margin-top: 20px;
                 .mainmenu-item-con{
                     margin-left: 20px;
                     display: flex;
@@ -204,6 +204,7 @@ button:focus {
                         width: 100%;
                         display: flex;
                         justify-content: space-between;
+                        width: 516px;
                         .mainmenu-item-menu{
                             font-size: 13px;
                             font-family: NotoSansCJKkr-bold;

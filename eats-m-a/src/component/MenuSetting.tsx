@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { dbService } from '../firebase';
-import numberWithCommas from '../functions/addCommaFunc';
-
+import MainMenu from './MainMenu';
+import SetMenu from './SetMenu';
+import SideMenu from './SideMenu';
 interface Props {
-    data:any
-    store:any
+    store: string | string[] | null
 }
+const MenuSetting = ({store}:Props) => {
 
-const MenuSetting = ({data,store}:Props) => {
-
+    const s = Number(window.localStorage.getItem('state'));
+    const [ data, setData ] = useState<any>({});
     const [ addMenu, setAddMenu ] = useState<string>('');
     const [ price, setPrice ] = useState<number>(0);
-    const [ state, setState ] = useState<number>(0);
-    const [ menu, setMenu ] = useState<any>([]);
-
+    const [ state, setState ] = useState<number>(s);
+    const [ menu, setMenu ] = useState<any>();
+    console.log(data);
+    
     const onChange = ( event:any ) => {
 
         const {
@@ -34,8 +36,7 @@ const MenuSetting = ({data,store}:Props) => {
     };
 
     const toggleState = (m:any) => {
-
-        console.log(!m.state)
+        console.log(m);
 
         const toggleObj = {
 
@@ -47,13 +48,13 @@ const MenuSetting = ({data,store}:Props) => {
 
         const toggledMenu = menu.map((doc:any) => doc.menu === m.menu ? toggleObj : doc);
 
-        if(state === 0) {
+        if(s === 0) {
 
             dbService.collection('store').doc(`${store}`).update({
                 'menu':toggledMenu
             });
 
-        } else if(state === 1) {
+        } else if(s === 1) {
 
             dbService.collection('store').doc(`${store}`).update({
                 'setmenu':toggledMenu
@@ -76,21 +77,11 @@ const MenuSetting = ({data,store}:Props) => {
     //     })
     // };
 
-    useEffect(() => {
+    const changeMenuList = (s:number) => {
 
-        changeMenuList();
-
-    }, [state]);
-
-    const changeMenuList = () => {
-
-        if( state === 0 ) {
-            
-        } else if( state === 1 ) {
-            
-        } else {
-            
-        }
+        if( s === 0 ) return <MainMenu menu={menu} toggleState={toggleState}/>
+        else if( s === 1 ) return <SetMenu menu={menu} toggleState={toggleState}/>
+        else return <SideMenu menu={menu} toggleState={toggleState}/>
 
     };
 
@@ -126,49 +117,42 @@ const MenuSetting = ({data,store}:Props) => {
         setAddMenu('');
         setPrice(0);
 
+    };
+    const setS = (n:number) => {
+        window.localStorage.setItem('state',`${n}`);
     }
+
+    useEffect(()=>{
+        dbService.collection('store').doc(`${store}`).onSnapshot((snapShot:any)=>{
+            const data = snapShot.data();
+            if(s === 0)setMenu(data.menu);
+            else if(s === 1)setMenu(data.setmenu);
+            else setMenu(data.sidemenu);
+        });
+    },[]);
 
     return (
         <div className="menusetting-con">
             <div className="menusetting-nav-con">
+
+                { state === 0 ? <button className="menusetting-nav-main-a">단품 메뉴</button>
+                    : <button className="menusetting-nav-main" onClick={() => {setState(0);setMenu(data.menu);setS(0)}}>단품 메뉴</button> }
+                { state === 1 ? <button className="menusetting-nav-set-a" >세트 메뉴</button>
+                    : <button className="menusetting-nav-set" onClick={() => {setState(1);setMenu(data.setmenu);setS(1)}}>세트 메뉴</button>}
+                { state === 2 ?  <button className="menusetting-nav-side-a" >사이드 메뉴</button>
+                    :  <button className="menusetting-nav-side" onClick={() => {setState(2);setMenu(data.sidemenu);setS(2)}}>사이드 메뉴</button>}
                 
-                <div className="menusetting-nav-main" onClick={() => setState(0)}>단품 메뉴</div>
-                <div className="menusetting-nav-set" onClick={() => setState(1)}>세트 메뉴</div>
-                <div className="menusetting-nav-side" onClick={() => setState(2)}>사이드 메뉴</div>
                 <div className="background-box-menusetting"></div>
+                <div className="background-box-menusetting-1"></div>
             </div>
+            <div className="menusetting-title-con">
+                <div className="menusetting-title-state">상태</div>
+                <div className="menusetting-title-menu">메뉴명</div>
+                <div className="menusetting-title-price">가격</div>
+            </div>
+            {changeMenuList(s)}
             <div className="menusetting-content-con">
-                {
-                    menu?.map((doc:any)=>{
-                        
-                            return (
-                                <div>
-                                    <div>
-                                        {doc.menu}
-                                    </div>
-                                    <div>
-                                        {numberWithCommas(doc.price)}원
-                                    </div>
-                                    <div>
-                                        {
-                                            doc.state ?
-                                                <button onClick={()=>toggleState(doc)}>주문 가능</button>
-                                            :
-                                                <button onClick={()=>toggleState(doc)}>주문 불가</button>
-
-                                        }
-
-                                    </div>
-                                    <div>
-                                        {/* <button onClick={()=>removeMenu(doc.menu)}>삭제</button> */}
-                                    </div>
-                                    <hr/>
-                                </div>
-                            )
-                        
-
-                    })
-                }
+                
                 <div>메뉴 추가</div>
                 <form onSubmit={onSubmit}>
                     <input name="menu" placeholder="메뉴 이름" value={addMenu} onChange={onChange} required></input>

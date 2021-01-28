@@ -1,12 +1,79 @@
+@import './_variables.scss';
+
+button:focus {
+    outline: none;
+}
 .setting-con{
     display: flex;
+    .setting-box{
+        z-index: 2;
+        height: 27px;
+        position: fixed;
+        left: 0px;
+        right: 0px;
+        top:0px;
+        background-color: black;
+        color: white;
+        padding-left: 30px;
+        padding-top: 4px;
+        
+    }
     .setting-nav-con{
+        z-index: 1;
         position: fixed;
         background-color: black;
         color: white;
         width: 256px;
         height: 100%;
         padding-top:38px;
+        
+        display: flex;
+        flex-direction: column;
+        font-size: 15px;
+        font-family: NotoSansCJKkr-Regular;
+        .back-bt{
+            margin-bottom: 10px;
+            padding-left: 30px;
+        }
+        
+        .setting-nav-menu{
+            border: 0px;
+            margin: 9px 0px;
+            background-color: black;
+            padding-left: 30px;
+        }
+        .setting-nav-store{
+            border: 0px;
+            margin: 9px 0px;
+            background-color: black;
+            padding-left: 30px;
+        }
+        .setting-nav-info{
+            border: 0px;
+            margin: 9px 0px;
+            background-color: black;
+            padding-left: 30px;
+        }
+
+        .setting-nav-menu-a{
+            border: 0px;
+            padding: 9px 0px;
+            background-color: #ff1b6d;
+            padding-left: 30px;
+        }
+        .setting-nav-store-a{
+            border: 0px;
+            padding: 9px 0px;
+            background-color: #ff1b6d;
+            padding-left: 30px;
+        }
+        .setting-nav-info-a{
+            border: 0px;
+            padding: 9px 0px;
+            background-color: #ff1b6d;
+            padding-left: 30px;
+        }
+        
 
     }
     .setting-content-con{
@@ -14,6 +81,7 @@
         margin-top: 126px;
         .menusetting-con{
             .menusetting-nav-con{
+                
                 .background-box-menusetting{
                     background-color: black;
                     position: fixed;
@@ -25,11 +93,24 @@
                     opacity: 0.8;
                     z-index: 1;
                 }
+                .background-box-menusetting-1{
+                    background-color: white;
+                    position: fixed;
+                    right: 0px;
+                    height: 57px;
+                    width: 100%;
+                    left: 256px;
+                    top: 27px;
+                    z-index: 0;
+                }
                 display: flex;
                 position: fixed;
                 top:27px;
                 font-size: 15px;
-                
+                font-family: NotoSansCJKkr-Bold;
+                button{
+                    border: 0px;
+                }
 
                 
                 .menusetting-nav-main{
@@ -37,6 +118,7 @@
                     height: 57px;
                     color: white;
                     background-color: black;
+                    opacity: 0.68;
                     padding: 0px 20px;
                     z-index: 2;
 
@@ -45,6 +127,7 @@
                     padding: 0px 20px;
                     color: white;
                     background-color: black;
+                    opacity: 0.68;
                     z-index: 2;
 
                 }
@@ -52,12 +135,91 @@
                     padding: 0px 20px;
                     color: white;
                     background-color: black;
+                    opacity: 0.68;
+                    z-index: 2;
+
+                }
+
+                .menusetting-nav-main-a{
+
+                    height: 57px;
+                    color: #ff1b6d;
+                    background-color: white;
+
+                    padding: 0px 20px;
+                    z-index: 2;
+
+                }
+                .menusetting-nav-set-a{
+                    padding: 0px 20px;
+                    color: #ff1b6d;
+                    background-color: white;
+
+                    z-index: 2;
+
+                }
+                .menusetting-nav-side-a{
+                    padding: 0px 20px;
+                    color: #ff1b6d;
+                    background-color: white;
+
                     z-index: 2;
 
                 }
 
 
                 
+            }
+            .menusetting-title-con{
+                display: flex;
+                margin-left: 20px;
+                font-size: 15px;
+                margin-bottom: 16px;
+                font-family: NotoSansCJKkr-bold;
+
+                .menusetting-title-state{
+                    margin-right: 92px;
+                }
+                .menusetting-title-menu{
+                    margin-right: 413px;
+                }
+                .menusetting-title-price{}
+            }
+            .mainmenu-con{
+                .mainmenu-item-con{
+                    margin-left: 20px;
+                    display: flex;
+                    .mainmenu-item-state-bt{
+                        button{
+                            width: 100px;
+                            height: 32px;
+                            margin-bottom: 32px;
+                            margin-right: 20px;
+                            border: 0px;
+                        }
+                        
+
+                    }
+                    .mainmenu-item-info-con{
+                        width: 100%;
+                        display: flex;
+                        justify-content: space-between;
+                        .mainmenu-item-menu{
+                            font-size: 13px;
+                            font-family: NotoSansCJKkr-bold;
+    
+                        }
+                        .mainmenu-item-price{
+    
+                        }
+                    }
+                    
+                    .mainmenu-item-cancle-bt{
+
+                    }
+
+                }
+
             }
             .menusetting-content-con{
                 margin-left: 20px;

@@ -1,37 +1,25 @@
-import React, { useEffect, useState } from 'react';
-import { dbService } from '../../../firebase';
+import React from 'react';
 import BucketButton from './BucketButton';
+
 interface Props {
-
-    store: string | string[] | null;
-    table: string | string[] | null;
-
-
+    totalPrice: number;
 }
 
+const BucketButtonContainer = ({totalPrice}:Props) => {
 
-const BucketButtonContainer = ({ store, table, }:Props) => {
-
-    const totalPrice = Number(window.localStorage.getItem('totalPrice'));
+    const store = window.localStorage.getItem('store');
+    const table = window.localStorage.getItem('table');
 
     return(
         <>
             {
-                totalPrice === 0  ? 
-
+                totalPrice === 0 ? 
                     <div className="bucket-block"></div>
-
                 :
-
                     <BucketButton store={store} table={table} />
-
             }
-        </>
-
-       
-        
+        </> 
     );
-
 }
 
 export default BucketButtonContainer;

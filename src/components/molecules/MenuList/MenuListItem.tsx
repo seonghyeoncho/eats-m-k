@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import numberWithCommas from '../../../functions/addCommaFunc';
+import Default from '../../../graphics/graphic_DefaultImage.png';
 
 
 interface Props {
@@ -20,15 +21,15 @@ const MenuListItem = ({menu,price, store, table, state}:Props) => {
         <>
             {   
                 state ?
-                        <Link to={`/detail/?menu=${menu}&price=${price}&store=${store}&table=${table}`} >
+                        <Link to={`/detail/?menu=${menu}&price=${price}`} >
                             
                             <div className="item-con">
                                 <div className="item-content">
                                     <div className="item-menu">{menu}</div>
-                                    <div className="item-speci">상세 설명</div>
+
                                     <div className="item-price">{numberWithCommas(price)}원</div>
                                 </div>
-                                <div className="item-img">사진</div>
+                                <img className="item-img" src={Default}/>
                                 
                                 
                             </div>

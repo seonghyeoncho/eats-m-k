@@ -2,7 +2,7 @@ import { ThunkAction } from 'redux-thunk';
 import { RootState } from '..';
 import { BucketAction } from './types';
 import { getBucketAsync } from './actions';
-import { dbService } from '../../firebase';
+import { dbService } from '../../firebase/firebase';
 
 export const getBucketThunk = (store: string | string[] | null, table: string | string[] | null): ThunkAction<Promise<void>, RootState, null, BucketAction> => {
 

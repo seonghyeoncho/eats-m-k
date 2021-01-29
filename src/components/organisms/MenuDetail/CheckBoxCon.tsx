@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { dbService } from '../../../firebase';
+import { dbService } from '../../../firebase/firebase';
 import CheckItem from './CheckItem';
 
 
 interface Props {
+    
     moreMenuHandler: ( m:any, checked:boolean ) => void;
     store: string | string[] | null
-
 
 }
 const CheckBoxCon = ({ moreMenuHandler, store}:Props) => {

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { dbService } from '../../../firebase';
+import { dbService } from '../../../firebase/firebase';
 import { RootState } from '../../../modules';
 import { decrease, increase } from '../../../modules/totalPrice';
 import P_img from '../../../icons/icon_plus_x3.png';
 import M_img from '../../../icons/icon_minus_x3.png';
+import { updateBucket } from '../../../functions/updateBucket';
 
 interface Props {
     c:number;
@@ -18,13 +19,19 @@ interface Props {
     totalPrice:number
     bucket:any
     
+    
 }
 
-const ModifCount = ({c,id, menu, price, more, itemTotalPrice, totalPrice,bucket}:Props) => {
+const ModifCount = ({c,id, menu, price, more, itemTotalPrice, totalPrice,bucket, store, table}:Props) => {
+    var moreprice = price;
+    more.forEach((doc:any) => {
+        moreprice += doc.price;
+    });
 
     const modifBucket = (i:number,totalPrice:number) => {
         console.log(c);
         console.log(bucket);
+        console.log(more);
 
         const Obj = {
 
@@ -32,7 +39,7 @@ const ModifCount = ({c,id, menu, price, more, itemTotalPrice, totalPrice,bucket}
             price: price,
             count: c,
             more: more,
-            id:`${menu}/${c}/${more}`,
+            id:`${menu}/${c}/${JSON.stringify(more)}`,
             itemTotalPrice: itemTotalPrice 
 
         }
@@ -46,8 +53,7 @@ const ModifCount = ({c,id, menu, price, more, itemTotalPrice, totalPrice,bucket}
 
         );
 
-        window.localStorage.setItem('bucket', JSON.stringify(modifBuc));
-        window.localStorage.setItem('totalPrice', totalPrice.toString() );
+        updateBucket(store,table,modifBuc,totalPrice);
         
     };
 
@@ -57,16 +63,16 @@ const ModifCount = ({c,id, menu, price, more, itemTotalPrice, totalPrice,bucket}
         if(type === 'in'){
 
             c += 1
-            itemTotalPrice += price
-            totalPrice += price
+            itemTotalPrice += moreprice
+            totalPrice += moreprice
+
 
 
         } else {
 
             c -= 1
-            itemTotalPrice -= price;
-            totalPrice -= price
-
+            itemTotalPrice -= moreprice;
+            totalPrice -= moreprice
 
         }
 
@@ -101,9 +107,9 @@ const ModifCount = ({c,id, menu, price, more, itemTotalPrice, totalPrice,bucket}
     return (
         <div className="modif-bucket-counter-con">
             <div className="modif-bucket-counter">
-                <div onClick={onDecrease}><img src={M_img} width="10px"/></div>
+                <div onClick={()=>{onDecrease();}}><img src={M_img} width="10px"/></div>
                 <div>{c}</div>
-                <div onClick={onIncrease}><img src={P_img} width="10px"/></div>
+                <div onClick={()=>{onIncrease();}}><img src={P_img} width="10px"/></div>
             </div>
             {/* */}
         </div>

@@ -1,43 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { removeBucketItem } from '../../../functions/updateBucket';
+import PopUp from '../../organisms/PopUp';
 import CancleOrderButton from './CancleOrderButton';
 
 interface Props {
-    id:string
-    price:number
-    bucket: any
+    id:string;
+    itemTotalPrice:number
+    bucket:any
+    store:string | string[] | null
+    table:string | string[] | null
+    totalPrice:number | undefined
+    
 }
-const CancleOrderButtonContainer = ({id,price,bucket}:Props) => {
+const CancleOrderButtonContainer = ({id, itemTotalPrice,bucket,store, table, totalPrice}:Props) => {
 
-    const totalPrice = window.localStorage.getItem('totalPrice');
+    const [ popUpState, setPopUpState ] = useState<boolean>(false);
+    const content = '선택한 메뉴를 장바구니에서 삭제하시겠습니까?';
+
+    const popUpTrigger = () => {  
+         setPopUpState(!popUpState);
+    };
 
     const cancleOrders = () => {
+        removeBucketItem(id, store,table,bucket,(totalPrice!-itemTotalPrice));
 
-        if (bucket.length === 1 ){
-            window.localStorage.setItem('totalPrice', (Number(totalPrice) - price).toString());
-            window.localStorage.removeItem('bucket');
-        } else {
-            const buckett = bucket?.filter((doc:any)=> doc.id !== id );
-            window.localStorage.setItem('totalPrice', (Number(totalPrice) - price).toString());
-            window.localStorage.setItem('bucket', JSON.stringify(buckett));
-
-<<<<<<< HEAD
-        }
-=======
-            bucket:[
-               ...buckett
-                
-            ],
-            totalPrice: totalPrice - price
-
-        
-        })
->>>>>>> v2
-        
     }
 
     return (
-
-        <CancleOrderButton cancleOrders={cancleOrders}/>
+        <>
+            { popUpState ? <PopUp title={'메뉴삭제'} content={content} func={cancleOrders} popUpTrigger={popUpTrigger} />: null}
+            <CancleOrderButton popUpTrigger={popUpTrigger}/>
+        </>
 
     );
 }

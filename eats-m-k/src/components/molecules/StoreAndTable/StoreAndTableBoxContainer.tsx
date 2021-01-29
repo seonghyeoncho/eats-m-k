@@ -5,10 +5,12 @@ import { RootState } from '../../../modules';
 interface Props {
     store: string | string[] | null;
     table: string | string[] | null;
+    state: boolean | undefined
+    orderStatus: boolean | undefined
 }
 
-const StoreAndTableBoxContainer = ({store, table}:Props) => {
+const StoreAndTableBoxContainer = ({store, table, state, orderStatus}:Props) => {
 
-    return <StoreAndTableBox store={store} table={table}/>
+    return <StoreAndTableBox store={store} table={table} state={state} orderStatus={orderStatus}/>
 }
 export default StoreAndTableBoxContainer;

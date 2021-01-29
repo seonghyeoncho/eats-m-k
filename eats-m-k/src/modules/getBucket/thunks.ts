@@ -5,8 +5,9 @@ import { getBucketAsync } from './actions';
 import { dbService } from '../../firebase';
 
 export const getBucketThunk = (store: string | string[] | null, table: string | string[] | null): ThunkAction<Promise<void>, RootState, null, BucketAction> => {
-        console.log('3');
-        return async dispatch => {
+
+        return async dispatch => { 
+            
 
             const { request, success, failure } = getBucketAsync;
             dispatch(request());
@@ -14,11 +15,10 @@ export const getBucketThunk = (store: string | string[] | null, table: string | 
             try {
 
                 dbService.collection(`${store}`).doc(`${table}`).onSnapshot((snapShot:any)=>{
-                    console.log(snapShot.data())
 
                     dispatch(success(snapShot.data()));
 
-                })
+                });
                 
 
             } catch (e) {

@@ -57,6 +57,11 @@ const CompleteOrderList = ({table}:Props) => {
                                                 visible={m.myTable==popoverVisible.table && popoverVisible.visible}
 
                                             >
+                                                <div className='menuPopover'>
+                                                        <Order orders={m.orderList}/>
+                                                        <div className='totalPriceDiv'><hr className='coloredHr'/><h3>총 가격 : {numberWithCommas(m.totalPrice)}</h3></div>
+
+                                                </div>
                                                 <Button className="orderMoreDetailButton" onClick={() => setPopoverVisible({table:m.myTable,visible:true})}>
                                                     <h1>주문 상세보기</h1>
                                                 </Button>

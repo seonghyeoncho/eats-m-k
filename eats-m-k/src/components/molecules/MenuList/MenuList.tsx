@@ -4,26 +4,31 @@ import { Link } from 'react-router-dom';
 import numberWithCommas from '../../../functions/addCommaFunc';
 import MenuListItem from './MenuListItem';
 import Ready from '../../../graphics/gaphic_ready_x3.png';
-import { disconnect } from 'process';
 
 
 type Props = {
     
-    menus: [] | undefined
+    menus: any | undefined
     store: string | string[] | null
     table: string | string[] | null
 
 }
 
 const MenuList = ({ menus, store, table }:Props ) => {
-    console.log(menus);
+    var flag = 0;
+
+    if( menus !== undefined ) {
+        for(let i=0 ; i<menus.length ; i++ ) {
+            if( menus[i].state ) flag++;
+        }
+    }
   
     return(
  
         <div className="menulist-content">
 
             {
-                menus?.length === 0 ? 
+                flag === 0 ? 
 
                     <div className="ready-img">
                         <div className="ready-content">
@@ -37,7 +42,7 @@ const MenuList = ({ menus, store, table }:Props ) => {
                         {  
                             menus?.map((doc:any) => {
                                 
-                                return <MenuListItem menu={doc.menu} price={doc.price} store={store} table={table} state={doc.state}/>
+                                return <MenuListItem key={doc.menu} menu={doc.menu} price={doc.price} store={store} table={table} state={doc.state}/>
                                 
                             })
                         }

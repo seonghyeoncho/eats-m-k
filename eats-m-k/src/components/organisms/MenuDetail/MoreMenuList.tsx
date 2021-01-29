@@ -9,20 +9,13 @@ interface Props {
 
 const MoreMenuList = ({more}:Props) => {
 
-    more.map((doc:any)=>{
-        for(let i in doc){
-            console.log(i, doc[i])
-        }
-    });
-    console.log(more)
-
     return (
         <div className="moremenulist-con">
             {
                 more.map((doc:any)=>{
                    
                     return (
-                        <div className="moremenulist-content-con">
+                        <div className="moremenulist-content-con" key={doc.menu}>
                             <div className="moremenulist-content-menu">{doc.menu}</div>
                             <div className="moremenulist-content-price">{numberWithCommas(doc.price)}원</div>
                         </div>

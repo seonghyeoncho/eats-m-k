@@ -6,19 +6,19 @@ import AddMenuContainer from '../../atoms/AddMenuButton/AddMenuButtonContainer';
 import CheckBoxCon from './CheckBoxCon';
 import numberWithCommas from '../../../functions/addCommaFunc';
 import OrderButtonDirect from './OrderButtonDirect';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../modules';
 import BucketButtonContainer from '../../atoms/BucketButton/BucketButtonContainer';
 import Arrow from '../../../icons/icon_arrow_back_black_x3.png'
+import { resetCount } from '../../../modules/counters';
+import { dbService } from '../../../firebase';
 
 const DetailView = (props:any) => {
 
-    const { count,orderStatus,b  } = useSelector((state:RootState) => ({
+    const { count  } = useSelector((state:RootState) => ({
 
         count:state.counters.count,
-        orderStatus:state.myBucket.bucket.data?.orderStatus,
-        b:state.myBucket.bucket.data?.bucket
-
+        
     }));
 
     const query = queryString.parse(props.location.search);
@@ -29,10 +29,13 @@ const DetailView = (props:any) => {
     const [ select, setSelect ] = useState<any>({});
     const [ more, setMore ] = useState<any>([]);
     const [ morePrice,setMorePrice] = useState<number>(0);
-    
+    const [ state, setState ] = useState<boolean>();
+    const [ orderStatus, setOrderStatus ] = useState<boolean>();
+    const [ totalPrice, setTotalPrice ] = useState<number>(0);
 
+    const dispatch = useDispatch();
+    
     const moreMenuHandler = (m:any, isChecked:boolean) => {
-        console.log(m)
 
         if(isChecked) {
             
@@ -42,42 +45,50 @@ const DetailView = (props:any) => {
         } else if(!isChecked) {
             
             setMore( (prev:any) => prev.filter((doc:any)=> m.menu !== doc.menu));
-            setMorePrice(morePrice + m.price);
+            setMorePrice(morePrice - m.price);
 
         }
-        
-
 
     }
 
     useEffect(()=>{
 
         const Obj = {
+
             menu:menu,
             price:price,
             more:more,
             count:count,
-            itemTotalPrice: (price * count) + morePrice
-        }
-        setSelect(Obj);
+            itemTotalPrice: (price + morePrice) * count
 
-    },[more,menu,count]);
-    console.log(select);
-    console.log('b',b);
+        }
+
+        setSelect(Obj);
+        setState(JSON.parse(window.localStorage.getItem('state')!));
+        setOrderStatus(JSON.parse(window.localStorage.getItem('orderStatus')!));
+        dbService.collection(`${store}`).doc(`${table}`).onSnapshot((snapShot:any)=>{
+            const data = snapShot.data();
+            setTotalPrice(data.totalPrice);
+        });
+
+    },[more,menu,count, state, orderStatus]);
 
     return (
+        
         <div className="detail">
 
-            <StoreAndTableBoxContainer store={store} table={table}/>
+            <StoreAndTableBoxContainer store={store} table={table} state={state} orderStatus={orderStatus}/>
+
             <div className="detail-nav">
 
                 <div className="detail-nav-content">
-                    <img onClick={props.history.goBack} src={Arrow} width="12px" height="18px"/>    
+                    <img  className="back-bt" onClick={()=>{props.history.goBack();dispatch(resetCount());}} src={Arrow}/>    
                     <div className="detail-nav-content-text">MENU</div>
-                    <BucketButtonContainer orderStatus={orderStatus} store={store} table={table}/>
+                    <BucketButtonContainer store={store} table={table} orderStatus={orderStatus} totalPrice={totalPrice}/>
                 </div>
 
             </div>
+
             <div className="detail-con">
             
 
@@ -87,7 +98,6 @@ const DetailView = (props:any) => {
 
                         <div className="detail-info">
                             <div className="detail-info-menu">{menu}</div>
-                            <div className="detail-info-sp">추가설명</div>
                         </div>
                         
                         <div>{numberWithCommas(price)}원</div>
@@ -95,12 +105,19 @@ const DetailView = (props:any) => {
                     </div>
 
                     <div className="line"/>
-                    <div>추가선택</div>
+                    <div className="detail-addmenu">추가선택</div>
                     <CheckBoxCon moreMenuHandler={moreMenuHandler} store={store}/>
 
                     {/* 추가 선택할 컴포넌트가 있어야 함. 아마 체크 박스로 선택 할 수 있게 해서 useState로 추가 할 수 있게 해야 할 듯 */}
                     <div className="line"/>
                     <CounterContainer/>
+                    <div className="line"/>
+
+                    <div className="detail-totalprice-con">
+                        <div className="datail-totalprice-text">합계</div>
+                        <div className="detail-totalprice-price">{numberWithCommas((price + morePrice)*count)}원</div>
+                    </div>
+
                     <div className="line"/>
                     <div className="detail-bt-con">
                         <div className="detail-bt">

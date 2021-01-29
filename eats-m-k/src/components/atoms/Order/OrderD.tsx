@@ -1,8 +1,5 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { dbService } from '../../../firebase';
-import { RootState } from '../../../modules';
-import { resetPrice } from '../../../modules/totalPrice';
 import OrderDirect from './OrderDirect';
 
 interface Props {
@@ -14,32 +11,28 @@ interface Props {
 
 const OrderD = ({text,totalPrice}:Props) => {
 
-    const {store, table } = useSelector((state:RootState)=>({
-        
-        store:state.storeSet.store,
-        table:state.tableSet.table,
+    const store = window.localStorage.getItem('store');
+    const table = window.localStorage.getItem('table');
+    const bucket:any = JSON.parse(window.localStorage.getItem('bucket')!);
 
-
-    }));
-
-    const dispatch = useDispatch();
 
     const onSubmit = () => {
           
         dbService.collection(`${store}`).doc(`${table}`)
           .update({
 
+            'bucket':[
+              ...bucket
+            ],
             'orderAt' : Date.now(),
             'orderAt_R' : -Date.now(),
             'orderStatus' : true ,
-            totalPrice : totalPrice,
+
       
           })
           .then(() => {
 
             console.log("Document successfully written!");
-            
-            dispatch(resetPrice());
               
           })
           .catch((error) => {
@@ -49,24 +42,6 @@ const OrderD = ({text,totalPrice}:Props) => {
       }
 
       const cancle = () => {
-
-        dbService.collection(`${store}`).doc(`${table}`)
-          .update({
-
-            'bucket':[],
-            totalPrice:0
-            
-      
-          })
-          .then(function() {
-            console.log("Document successfully written!");
-            
-            dispatch(resetPrice());
-              
-          })
-          .catch(function(error) {
-              console.error("Error writing document: ", error);
-          });
       
       }
 

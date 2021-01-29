@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { Menu, Radio} from 'antd';
 import queryString from 'query-string';
@@ -50,30 +51,27 @@ const App = () => {
 
   const getOrders = (orderState:string) => {
 
-    
+    setNewOrderList([]);
+    setComOrderList([]);
     
     dbService.collection(`${query.store}`)
       .orderBy(`${orderState}`)
-      .onSnapshot((snapShot:any)=>{
-        setComOrderList([]);
-        setNewOrderList([])
-
-        snapShot.forEach((doc:any)=>{
-          console.log(doc.data());
+      .onSnapshot((snapShot) => { 
+        snapShot.forEach((doc:any)=>{         
 
           if(!doc.data().state && doc.data().orderStatus){
+
             const tableObj = {
 
               myTable:doc.id,
-              orderList:doc.data().bucket,
+              orderList:doc.data().receipt,
               orderStatus:doc.data().orderStatus,
               state:doc.data().state,
-              totalPrice:doc.data().totalPrice
+              totalPrice:doc.data().receipttotalprice
               
-            };
+            }
 
-            console.log(tableObj);
-            setNewOrderList((prev: any) => [tableObj, ...prev]);               
+            setNewOrderList((prev:any) => [tableObj, ...prev]);               
             
           } else {
             const tableObj = {
@@ -105,17 +103,12 @@ const App = () => {
       
       getOrders('orderAt_R');
     }
-
-    
-    let timerID =setInterval(()=>tick(),1000);
-    return function cleanUp(){
-      clearInterval(timerID);
-    };
     
   },[radio]);
 
 
-  
+  console.log(newOrderList);
+  console.log(comOrderList);
 
 
   const listState = () => {
@@ -153,9 +146,7 @@ const App = () => {
                   <Radio value={1}>과거 주문순</Radio>
               </Radio.Group>
           </div>
-          <div className="timer">
-              <h1>{date.toLocaleString('kr')}</h1>
-          </div>
+
 
       </div>
       <hr className="infoHr"/>

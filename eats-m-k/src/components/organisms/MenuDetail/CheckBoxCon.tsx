@@ -4,9 +4,9 @@ import CheckItem from './CheckItem';
 
 
 interface Props {
+    
     moreMenuHandler: ( m:any, checked:boolean ) => void;
     store: string | string[] | null
-
 
 }
 const CheckBoxCon = ({ moreMenuHandler, store}:Props) => {
@@ -27,7 +27,7 @@ const CheckBoxCon = ({ moreMenuHandler, store}:Props) => {
             {
                 AC?.map((doc:any)=>{
                    
-                        return <CheckItem menu={doc }moreMenuHandler={moreMenuHandler} />
+                        return <CheckItem key={doc.menu} menu={doc} moreMenuHandler={moreMenuHandler} />
                 })
             }
         </div>

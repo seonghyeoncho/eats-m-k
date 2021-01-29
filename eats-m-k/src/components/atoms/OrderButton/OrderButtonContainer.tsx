@@ -8,22 +8,23 @@ import { resetPrice } from '../../../modules/totalPrice';
 
 interface Props {
 
-    totalPrice:number | undefined
+    totalPrice:number
+    orderStatus:boolean | undefined
 
 }
 
-const OrderButtonContainer = ({totalPrice}:Props) => {
-
+const OrderButtonContainer = ({totalPrice,orderStatus}:Props) => {
 
     return(
         <>
 
             { 
-                totalPrice === 0 ? 
+                totalPrice === 0 || orderStatus  ? 
 
                     <></> 
                 : 
-                <OrderButton />
+                
+                    <OrderButton />
                 
             }
         </>

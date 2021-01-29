@@ -12,7 +12,7 @@ interface Props {
     
 }
 
-const OrderDirect = ({store, table,onSubmit,text,cancle}:Props) => {
+const OrderDirect = ({store, table,onSubmit,text }:Props) => {
 
 
     //if(n === 0)  return <Redirect to={`/menu/?store=${store}&table=${table}`}/>
@@ -25,7 +25,7 @@ const OrderDirect = ({store, table,onSubmit,text,cancle}:Props) => {
             </Link>
 
             <Link to="/complete">
-                <div onClick={cancle} className="order-bt">주문하기</div>
+                <div onClick={onSubmit} className="order-bt">주문하기</div>
             </Link>
 
         </div>

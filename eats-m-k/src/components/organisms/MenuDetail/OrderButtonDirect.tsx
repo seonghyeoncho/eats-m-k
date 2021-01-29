@@ -1,10 +1,8 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { dbService } from '../../../firebase';
 import { RootState } from '../../../modules';
-import { resetCount } from '../../../modules/counters';
-import { increase } from '../../../modules/totalPrice';
 
 interface Props {
 
@@ -25,50 +23,53 @@ interface Props {
 
 const OrderButtonDirect = ({select, store, table}:Props) => {
 
-    const { count,bucket } = useSelector((state:RootState)=>({
-
-        count:state.counters.count,
-        bucket:state.myBucket.bucket.data?.bucket
-
-    }))
-
-    const dispatch = useDispatch();
-
+    const [bucket, setBucket] = useState<any>([]);
+    const [totalPrice, setTotalPrice] = useState<number>(0);
+    const { count  } = useSelector((state:RootState) => ({
+        count:state.counters.count, 
+    }));
 
     const onClick = () => {
 
         var a = '0'
+
         if( select.more === undefined) { a = '1' } 
-
-        const Obj:any = bucket.concat({
-            ...select,
-            count:count,
-            id:`${select.menu}/${count}/${a}`,
-            
-        })
-        dispatch(increase(select.itemTotalPrice));
-
-        dbService.collection(`${store}`).doc(`${table}`).update({
-            'bucket':Obj,
-            'totalPrice': select.itemTotalPrice,
-
-        })
-        dispatch(resetCount());
-        
+        if( bucket === null ) {
+            const Obj = [
+                {
+                    ...select,
+                    id:`${select.menu}/${select.count}/${JSON.stringify(select.more)}`
+                } 
+            ];
+            window.localStorage.setItem('bucket', JSON.stringify(Obj));
+            window.localStorage.setItem('totalPrice', (totalPrice + select.itemTotalPrice).toString());
+        } else {
+            const Obj:any = bucket.concat({
+                ...select,
+                count:count,
+                id:`${select.menu}/${count}/${a}`, 
+            })
+            window.localStorage.setItem('bucket', JSON.stringify(Obj));
+            window.localStorage.setItem('totalPrice', (select.itemTotalPrice).toString());
+        }
     }
 
+    useEffect(()=>{
+        dbService.collection(`${store}`).doc(`${table}`).get().then((doc:any)=>{
+            const data = doc.data();
+            setBucket(data.bucket);
+            setTotalPrice(data.totalPrice);
 
+        })
+    },[]);
 
     return(
         <div>
-
             <div onClick={onClick}>
                 <Link to={`/orderlistd/?store=${store}&table=${table}`}>
                         <div className="order-bt-dir">주문하기</div>
                 </Link>
-            
             </div>
-
         </div>
     );
 }

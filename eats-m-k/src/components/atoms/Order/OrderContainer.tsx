@@ -1,58 +1,80 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
 import { dbService } from '../../../firebase';
-import { RootState } from '../../../modules';
-import { setState } from '../../../modules/orderState';
-import { resetPrice } from '../../../modules/totalPrice';
+import { compareAndMerge, processA, processM } from '../../../functions/compareAndMerge';
 import Order from './Order';
-import queryString from 'query-string';
 
 interface Props {
-
     text: string;
 }
 
 const OrderContainer = ({text}:Props) => {
 
-    const query = queryString.parse(window.location.search);
-    const store = query.store;
-    const table = query.table;
+  const store = window.localStorage.getItem('store');
+  const table= window.localStorage.getItem('table');
+  const [ receipt, setReceiptt ] = useState<any>([]);
+  const [ bucket, setBucket ] = useState<any>([]);
+  const [ totalPrice, setTotalPrice ] = useState<number>(0);
+  const [ receiptTotalPrice, setReceiptTotalPrice ] = useState<number>(0);
 
-    const { totalPrice, id } = useSelector((state:RootState)=>({
-        
-        totalPrice:state.totalPrice.price,
-        id:state.idSet.id
-        
-    }));
+  const MergeReceipt = ():any => {
 
-    const dispatch = useDispatch();
+    var obj:any = [];
+    console.log(receipt);
+    if(receipt.length !== 0){
+      for(let i=0 ; i<bucket.length ; i++){
+        if(compareAndMerge(receipt,bucket[i])) {
+          obj = obj.concat(processM(receipt,bucket[i])[0]);
+        } else {
+          obj = obj.concat(processA(receipt,bucket[i], bucket[i].totalPrice)[0]);
+        }
+      };
+    } else {
+      obj = obj.concat(processA(receipt,bucket[0],bucket[0].totalPrcie)[0]);
+    }
+    
 
-    const onSubmit = () => {
-          
-        dbService.collection(`${store}`).doc(`${table}`)
-          .update({
+    return obj
+  }
 
-            'orderAt' : Date.now(),
-            'orderAt_R' : -Date.now(),
-            'orderStatus' : true ,
-            totalPrice : totalPrice,
-            
-      
-          })
-          .then(function() {
-            console.log("Document successfully written!");
-            
-            dispatch(resetPrice());
-              
-          })
-          .catch(function(error) {
-              console.error("Error writing document: ", error);
-          });
-      
-      }
+  const onSubmit = () => {
+    const totalMenus = MergeReceipt();
+    console.log(totalMenus, receipt);
+    dbService.collection(`${store}`).doc(`${table}`)
+      .update({
+        'bucket':[],
+        'receipt':[
+          ...totalMenus
+        ],
+        'order':[
+          ...bucket,
+        ],
+        'orderAt' : Date.now(),
+        'orderAt_R' : -Date.now(),
+        'orderStatus' : true ,
+        receipttotalprice : receiptTotalPrice + totalPrice,
+        totalPrice:0
+      })
+      .then(function() {
+        console.log("Document successfully written!");
+      })
+      .catch(function(error) {
+          console.error("Error writing document: ", error);
+    });
 
+  };
 
-    return <Order store={store} table={table} text={text} onSubmit={onSubmit} />
+  useEffect(()=>{
+    dbService.collection(`${store}`).doc(`${table}`).get().then((doc:any)=>{
+      const data = doc.data();
+      setBucket(data.bucket);
+      setTotalPrice(data.totalPrice);
+      setReceiptTotalPrice(data.receipttotalprice);
+      setReceiptt(data.receipt);
+
+    })
+  },[]);
+
+  return <Order store={store} table={table} text={text} onSubmit={onSubmit} />
 }
 
 export default OrderContainer;

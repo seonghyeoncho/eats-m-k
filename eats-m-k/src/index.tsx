@@ -5,18 +5,15 @@ import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
 import rootReducer from './modules';
 import Thunk from 'redux-thunk';
-import { CookiesProvider } from 'react-cookie';
 
 const store = createStore(rootReducer, applyMiddleware(Thunk));
 
-
-
 ReactDOM.render(
-  <CookiesProvider>
+  
     <Provider store={store}>
       <AppRouter/>
-    </Provider>
-  </CookiesProvider>, 
+    </Provider>,
+ 
   
   document.getElementById('root')
 );

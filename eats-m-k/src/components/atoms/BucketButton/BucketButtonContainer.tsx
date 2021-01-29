@@ -1,34 +1,29 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../modules';
 import BucketButton from './BucketButton';
 interface Props {
 
-    orderStatus:boolean | undefined;
     store: string | string[] | null;
     table: string | string[] | null;
+    orderStatus: boolean | undefined;
+    totalPrice: number | undefined;
 
 }
 
 
-const BucketButtonContainer = ({orderStatus, store, table}:Props) => {
-
-    console.log(orderStatus);
-
-
+const BucketButtonContainer = ({ store, table, orderStatus,totalPrice}:Props) => {
 
     return(
         <>
             {
-                orderStatus ? 
+                totalPrice === 0 ? 
 
                     <div className="bucket-block"></div>
 
                 :
-
                     <BucketButton store={store} table={table} />
 
             }
+
         </>
 
        

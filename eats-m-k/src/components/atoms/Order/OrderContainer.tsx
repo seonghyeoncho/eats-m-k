@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { dbService } from '../../../firebase';
-import { compareAndMerge, processA, processM } from '../../../functions/compareAndMerge';
 import Order from './Order';
 
 interface Props {
-    text: string;
+  text: string;
 }
 
 const OrderContainer = ({text}:Props) => {
@@ -16,29 +15,8 @@ const OrderContainer = ({text}:Props) => {
   const [ totalPrice, setTotalPrice ] = useState<number>(0);
   const [ receiptTotalPrice, setReceiptTotalPrice ] = useState<number>(0);
 
-  const MergeReceipt = ():any => {
-
-    var obj:any = [];
-    console.log(receipt);
-    if(receipt.length !== 0){
-      for(let i=0 ; i<bucket.length ; i++){
-        if(compareAndMerge(receipt,bucket[i])) {
-          obj = obj.concat(processM(receipt,bucket[i])[0]);
-        } else {
-          obj = obj.concat(processA(receipt,bucket[i], bucket[i].totalPrice)[0]);
-        }
-      };
-    } else {
-      obj = obj.concat(processA(receipt,bucket[0],bucket[0].totalPrcie)[0]);
-    }
-    
-
-    return obj
-  }
-
   const onSubmit = () => {
-    const totalMenus = MergeReceipt();
-    console.log(totalMenus, receipt);
+    const totalMenus = receipt.concat(bucket);
     dbService.collection(`${store}`).doc(`${table}`)
       .update({
         'bucket':[],
@@ -51,6 +29,7 @@ const OrderContainer = ({text}:Props) => {
         'orderAt' : Date.now(),
         'orderAt_R' : -Date.now(),
         'orderStatus' : true ,
+        'state':false,
         receipttotalprice : receiptTotalPrice + totalPrice,
         totalPrice:0
       })
@@ -63,18 +42,20 @@ const OrderContainer = ({text}:Props) => {
 
   };
 
-  useEffect(()=>{
-    dbService.collection(`${store}`).doc(`${table}`).get().then((doc:any)=>{
+  useEffect(() => {
+
+    dbService.collection(`${store}`).doc(`${table}`).onSnapshot((doc:any)=>{
       const data = doc.data();
       setBucket(data.bucket);
       setTotalPrice(data.totalPrice);
       setReceiptTotalPrice(data.receipttotalprice);
       setReceiptt(data.receipt);
+    });
 
-    })
   },[]);
 
   return <Order store={store} table={table} text={text} onSubmit={onSubmit} />
+
 }
 
 export default OrderContainer;

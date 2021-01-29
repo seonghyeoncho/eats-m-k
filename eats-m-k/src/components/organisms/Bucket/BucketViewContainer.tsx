@@ -15,6 +15,7 @@ const BucketViewContainer = (props:any) => {
     const query = queryString.parse(props.location.search);
     const store = query.store;
     const table = query.table;
+    const [ orderStatus, setOrderStatus ] = useState<boolean>();
     const [ bucket, setBucket ] = useState([]);
     const [ totalPrice, setTotalPrice ] = useState<number>(0);
     const [ popUpState, setPopUpState ] = useState<boolean>(false);
@@ -34,7 +35,8 @@ const BucketViewContainer = (props:any) => {
             const data = snapShot.data();
             setBucket(data.bucket);
             setTotalPrice(data.totalPrice);
-        })
+        });
+        setOrderStatus(JSON.parse(window.localStorage.getItem('orderStatus')!));
         
     },[]);
 
@@ -74,19 +76,13 @@ const BucketViewContainer = (props:any) => {
                 <BucketView bucket={bucket} totalPrice = {totalPrice} store={store} table={table}/>
                 { 
                     bucket.length !== 0 ? 
-                        <OrderButton/>
+                        <OrderButton text={orderStatus  ? '추가 주문하기' :'주문하기' }/> 
                     :
-                        <BackButton text={'추가하기'}/>
+                        <BackButton text={bucket.length !== 0 ? '추가하기' : orderStatus  ? '추가 주문하기' : '주문하기'}/>
                 }
-
-            
-                
-                
             </div>
         </>
     );
-    
-
 }
 
 export default BucketViewContainer;

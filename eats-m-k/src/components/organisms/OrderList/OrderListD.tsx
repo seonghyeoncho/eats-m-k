@@ -16,7 +16,7 @@ const OrderListD = (props:any) => {
     const table = query.table;
 
     useEffect(()=>{
-        dbService.collection(`${store}`).doc(`${table}`).get().then((doc:any)=>{
+        dbService.collection(`${store}`).doc(`${table}`).onSnapshot((doc:any)=>{
             const data = doc.data();
             setBucket(data.bucket);
             setTotalPrice(data.totalPrice);

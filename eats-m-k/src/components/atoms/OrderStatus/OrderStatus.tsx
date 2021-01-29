@@ -52,57 +52,59 @@ const OrderStatus = (props:any) => {
             <div className="div1"><img src={Arrow} width="12px" onClick={goBack} alt="Arrow"/></div>
                 <div className="orderstatus-nav-text">주문현황</div>
             </div>
-            {
-                !state ?                 
-                    <div className="orderstatus-state-con">
-                        <div className="orderstatus-state-complete"> 
-                            <div className="orderstatus-state-complete-circle-1"> 
-                                <img src={Complete} alt="complete"/>
-                            </div>
-                            <div className="orderstatus-state-complete-circle-2">
-                            </div>
-                            <div className="orderstatus-state-complete-text">
-                                주문완료  
-                            </div>
-                        </div>
-                        <div className="orderstatus-state-reception"> 
-                            <div className="orderstatus-state-reception-circle-1-1"> 
-                            </div>
-                            <div className="orderstatus-state-reception-circle-2-1">
-                            </div>
-                            <div className="orderstatus-state-reception-text-1">
-                                접수완료  
-                            </div>
-                        </div>
-                        <div className="orderstatus-line"/>
+            {/* {
+                !state ?                  */}
+            <div className="orderstatus-state-con">
+                <div className="orderstatus-state-complete"> 
+                    <div className="orderstatus-state-complete-circle-1"> 
+                        <img src={Complete} alt="complete"/>
                     </div>
-                :
-                    <div className="orderstatus-state-con"> 
-                        <div className="orderstatus-state-complete"> 
-                            <div className="orderstatus-state-complete-circle-1"> 
-                                <img src={Complete}/>
-                            </div>
-                            <div className="orderstatus-state-complete-circle-2">
-                            </div>
-                            <div className="orderstatus-state-complete-text">
-                                주문완료  
-                            </div>
-                        </div>
-                        <div className="orderstatus-state-reception"> 
-                            <div className="orderstatus-state-reception-circle-1-2"> 
-                                <img src={Reception}/>
-                            </div>
-                            <div className="orderstatus-state-reception-circle-2-2">
-                            </div>
-                            <div className="orderstatus-state-reception-text-2">
-                                접수완료  
-                            </div>
-                        </div>
-                        <div className="orderstatus-line"/>
+                    <div className="orderstatus-state-complete-circle-2">
                     </div>
-            }
+                    <div className="orderstatus-state-complete-text">
+                        주문완료  
+                    </div>
+                </div>
+
+                <div className="orderstatus-state-reception"> 
+                    <div className={`orderstatus-state-reception-circle-1 ${!state ? '':'y'}`}>
+                        {state ?  <img src={Reception}/> : <></>}
+                    </div>
+                    <div className={`orderstatus-state-reception-circle-2 ${!state ? '':'y'}`}>
+                    </div>
+                    <div className={`orderstatus-state-reception-text ${!state ? '':'y'}`}>
+                        접수완료  
+                    </div>
+                </div>
+                <div className="orderstatus-line"/>
+            </div>
+            {/* //     :
+            //         <div className="orderstatus-state-con"> 
+            //             <div className="orderstatus-state-complete"> 
+            //                 <div className="orderstatus-state-complete-circle-1"> 
+            //                     <img src={Complete}/>
+            //                 </div>
+            //                 <div className="orderstatus-state-complete-circle-2">
+            //                 </div>
+            //                 <div className="orderstatus-state-complete-text">
+            //                     주문완료  
+            //                 </div>
+            //             </div>
+            //             <div className="orderstatus-state-reception"> 
+            //                 <div className="orderstatus-state-reception-circle-1-2"> 
+            //                     <img src={Reception}/>
+            //                 </div>
+            //                 <div className="orderstatus-state-reception-circle-2-2">
+            //                 </div>
+            //                 <div className="orderstatus-state-reception-text-2">
+            //                     접수완료  
+            //                 </div>
+            //             </div>
+            //             <div className="orderstatus-line"/>
+            //         </div>
+            // } */}
             <div className="orderstatus-state-info-con">
-                <div className="zigzag-con"><hr className="zigzag"></hr></div>
+                {/* <div className="zigzag-con"><hr className="zigzag"></hr></div> */}
                 <div className="orderstatus-state-info-store">{store}</div >
                 <div className="orderstatus-state-info-table">테이블 {table}</div >
                 <div className="orderstatus-state-info-totalprice">{numberWithCommas(receiptTotalPrice)}원</div >

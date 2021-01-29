@@ -82,7 +82,7 @@ const DetailView = (props:any) => {
             <div className="detail-nav">
 
                 <div className="detail-nav-content">
-                    <img  className="back-bt" onClick={()=>{props.history.goBack();dispatch(resetCount());}} src={Arrow}/>    
+                    <img  className="back-bt" onClick={()=>{props.history.goBack();dispatch(resetCount());}} src={Arrow} alt="Arrow"/>    
                     <div className="detail-nav-content-text">MENU</div>
                     <BucketButtonContainer store={store} table={table} orderStatus={orderStatus} totalPrice={totalPrice}/>
                 </div>
@@ -122,7 +122,7 @@ const DetailView = (props:any) => {
                     <div className="detail-bt-con">
                         <div className="detail-bt">
                             <AddMenuContainer select={select} history={props.history} store={store} table={table}/>
-                            <OrderButtonDirect select={select} store={store} table={table}/>
+                            <OrderButtonDirect select={select} store={store} table={table} orderStatus={orderStatus}/>
                         </div>
                     </div>
 

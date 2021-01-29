@@ -28,7 +28,6 @@ const Home = ( props: any ) => {
     const store = query.store;
     const table = query.table;
     const [ totalPrice, setTotalPrice ] = useState<number>(0);
-    const receipt = JSON.parse(window.localStorage.getItem('receipt')!);
    
     const getStateFormFire = () => {
 
@@ -59,14 +58,11 @@ const Home = ( props: any ) => {
             window.localStorage.setItem('store',s);
             window.localStorage.setItem('table',t);
         };
+
         if(menu === undefined) dispatch(getMenuThunk(store));
+
         getStateFormFire();
         getBucketThunk(store, table);
-        if(!state && !orderStatus) {
-            if( receipt !== null ) {
-                window.localStorage.removeItem('receipt');
-            }
-        }
     
     },[]);
 
@@ -101,7 +97,7 @@ const Home = ( props: any ) => {
                 <div className="block"></div>
 
                 <div className="bt">
-                    <OrderButtonContainer totalPrice={totalPrice} orderStatus={orderStatus}/>
+                    <OrderButtonContainer orderStatus={orderStatus} totalPrice={totalPrice}/>
                 </div>
             </div>
            

@@ -88,7 +88,8 @@ export const processA = (bucket:any, select:any, totalPrice:number): [any,number
         id:`${select.menu}/${select.count}/${JSON.stringify(select.more)}`
         
     });
-    const p = totalPrice! + select.itemTotalPrice;
+    const p = totalPrice + select.itemTotalPrice;
+    console.log(obj,p)
 
     return [obj, p];
 

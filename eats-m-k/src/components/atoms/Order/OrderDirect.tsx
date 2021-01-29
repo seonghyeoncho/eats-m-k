@@ -8,15 +8,11 @@ interface Props {
     table: string | string[] | null;
     text: string;
     onSubmit: ()=> void
-    cancle:()=>void
+    
     
 }
 
 const OrderDirect = ({store, table,onSubmit,text }:Props) => {
-
-
-    //if(n === 0)  return <Redirect to={`/menu/?store=${store}&table=${table}`}/>
-    console.log('sdfsdf',store,table);
 
     return ( 
         <div className="order-bt-con">

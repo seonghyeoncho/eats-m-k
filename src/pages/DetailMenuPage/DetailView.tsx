@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { dbService } from '../../firebase/firebase';
 import StoreAndTableBoxContainer from '../../components/molecules/StoreAndTable/StoreAndTableBoxContainer';
 import DetailViewNav from './DetailViewNav';
-import DetailContent from '../../graphics/DetailContent';
+import DetailContent from './DetailContent';
 
 const DetailView = (props:any) => {
 
@@ -55,7 +55,7 @@ const DetailView = (props:any) => {
 
     return (
         <div className="detail">
-            <StoreAndTableBoxContainer store={store} table={table} state={state} orderStatus={orderStatus}/>
+            <StoreAndTableBoxContainer store={store} table={table}/>
             <DetailViewNav totalPrice={totalPrice} history={props.history}/>
             <DetailContent 
                 menu={menu} 

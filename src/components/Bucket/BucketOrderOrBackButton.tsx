@@ -1,6 +1,6 @@
 import React from 'react'
-import BackButton from '../../components/atoms/BackButton/BackButton';
-import OrderButton from '../../components/atoms/OrderButton/OrderButton';
+import BackButton from '../atoms/BackButton/BackButton';
+import OrderButton from '../atoms/OrderButton/OrderButton';
 
 interface Props {
     length: number;

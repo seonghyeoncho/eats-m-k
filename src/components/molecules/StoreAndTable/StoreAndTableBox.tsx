@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { dbService } from '../../../firebase/firebase';
 import OrderStatusButtonContainer from '../../atoms/OrderStatusButton/OrderStatusButtonContainer';
 
 
@@ -7,9 +8,11 @@ type BoxProps = {
     table:string | string[] | null;
     state: boolean | undefined
     orderStatus: boolean | undefined
+    
 }
 
-const StoreAndTableBox = ({store, table, state, orderStatus}:BoxProps) => {
+const StoreAndTableBox = ({store, table, state, orderStatus }:BoxProps) => {
+
 
     return(
         <div className="store-nav-con">

@@ -1,6 +1,6 @@
 import React from 'react';
-import PopUp from '../components/organisms/PopUp';
-import { resetBucket } from '../functions/updateBucket';
+import PopUp from './PopUp';
+import { resetBucket } from '../../functions/updateBucket';
 
 interface Props {
     popUpState: boolean;

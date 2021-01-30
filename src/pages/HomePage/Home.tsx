@@ -50,11 +50,11 @@ const Home = ( props: any ) => {
         getStateFormFire();
         getBucketThunk(store, table);
     
-    },[]);
+    },[state, orderStatus]);
 
     return (
         <div>
-            <StoreAndTableBoxContainer store={store} table={table} state={state} orderStatus={orderStatus}/>
+            <StoreAndTableBoxContainer store={store} table={table}/>
             <div className="main-content">
                 <MenuListNav setMenuListState={setMenuListState} menuListState={menuListState} totalPrice={totalPrice}/>
                 <MenuListContainer state={menuListState} store={store} table={table}/>

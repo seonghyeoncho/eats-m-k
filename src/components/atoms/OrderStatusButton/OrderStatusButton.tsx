@@ -15,29 +15,24 @@ const OrderStatusButton = ({orderStatus,state, store, table}:Props) => {
     let text:string = '';
     if(state && orderStatus){
         text = '접수완료';
-
-
     } else if(!state && orderStatus){
-
         text = '주문완료';
-
-
     } else {
 
     }
     
-
     return (
         <Link to={`/orderstatus/?store=${store}&table=${table}`}>
+           
             {   
                 state ? 
                     <img src={Reception}/>
                 :
                     <img src={Complete}/>
             }
+            <div className="order-status-text">{text}</div>
            
-            <div>{text}</div>
         </Link>
     );
-}
+};
 export default OrderStatusButton;

@@ -1,9 +1,9 @@
 import React from 'react';
-import AddMenuButtonContainer from '../components/atoms/AddMenuButton/AddMenuButtonContainer';
-import CounterContainer from '../components/atoms/Counter/CounterContainer';
-import CheckBoxCon from '../components/organisms/MenuDetail/CheckBoxCon';
-import OrderButtonDirect from '../components/organisms/MenuDetail/OrderButtonDirect';
-import numberWithCommas from '../functions/addCommaFunc';
+import AddMenuButtonContainer from '../../components/atoms/AddMenuButton/AddMenuButtonContainer';
+import CounterContainer from '../../components/atoms/Counter/CounterContainer';
+import CheckBoxCon from '../../components/organisms/MenuDetail/CheckBoxCon';
+import OrderButtonDirect from '../../components/organisms/MenuDetail/OrderButtonDirect';
+import numberWithCommas from '../../functions/addCommaFunc';
 
 interface Props {
     menu: string;
@@ -13,7 +13,7 @@ interface Props {
     count: number;
     select: any;
     history: any
-}
+};
 
 const DetailContent = ({menu, price, moreMenuHandler, morePrice, count, select,history}:Props) => {
     

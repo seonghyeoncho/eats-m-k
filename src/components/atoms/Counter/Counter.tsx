@@ -27,7 +27,6 @@ const Counter = ({count,onIncrease,onDecrease}:Props) => {
           <div className="counter-bt-text">{count}</div>
           
           <img onClick={onIncrease} src={P_img}/>
-          <br/>
 
         </div>
 

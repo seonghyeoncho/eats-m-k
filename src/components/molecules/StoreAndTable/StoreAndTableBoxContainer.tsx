@@ -1,15 +1,29 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
 import StoreAndTableBox from './StoreAndTableBox';
-import { RootState } from '../../../modules';
+import { dbService } from '../../../firebase/firebase';
 interface Props {
     store: string | string[] | null;
     table: string | string[] | null;
-    state: boolean | undefined
-    orderStatus: boolean | undefined
 }
 
-const StoreAndTableBoxContainer = ({store, table, state, orderStatus}:Props) => {
+const StoreAndTableBoxContainer = ({store, table,}:Props) => {
+    const [ state, setState ] = useState<boolean>();
+    const [ orderStatus, setOrderStatus ] = useState<boolean>();
+
+    const getStateFormFire = () => {
+
+        dbService.collection(`${store}`).doc(`${table}`).onSnapshot((snapShot:any)=>{
+            const data = snapShot.data();
+            setState(data.state);
+            setOrderStatus(data.orderStatus);
+        });
+    };
+    
+    useEffect(()=>{
+       
+        getStateFormFire();
+    
+    },[state, orderStatus]);
 
     return <StoreAndTableBox store={store} table={table} state={state} orderStatus={orderStatus}/>
 }

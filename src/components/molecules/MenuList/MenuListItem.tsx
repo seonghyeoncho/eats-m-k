@@ -22,19 +22,19 @@ const MenuListItem = ({menu,price, store, table, state}:Props) => {
             {   
                 state ?
                         <Link to={`/detail/?menu=${menu}&price=${price}`} >
-                            
                             <div className="item-con">
-                                <div className="item-content">
-                                    <div className="item-menu">{menu}</div>
+                                <div className="item">
+                                    <div className="item-content">
+                                        <div className="item-menu">{menu}</div>
 
-                                    <div className="item-price">{numberWithCommas(price)}원</div>
+                                        <div className="item-price">{numberWithCommas(price)}원</div>
+                                    </div>
+                                    <img className="item-img" src={Default}/>
+                                    
+                                    
                                 </div>
-                                <img className="item-img" src={Default}/>
-                                
-                                
+                                <div className="line"></div>
                             </div>
-                            <div className="line"></div>
-
                         
                         </Link>
                     :

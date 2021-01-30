@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import OrderStatusButton from './OrderStatusButton';
 import { dbService } from '../../../firebase/firebase';
 import { useState } from 'react';
@@ -31,6 +31,6 @@ const OrderStatusButtonContainer = ({store, table, state, orderStatus}:Props) =>
 
     );
 
-}
+};
 
 export default OrderStatusButtonContainer;

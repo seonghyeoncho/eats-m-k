@@ -1,11 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { dbService } from '../../../firebase/firebase';
-import { RootState } from '../../../modules';
-import { decrease, increase } from '../../../modules/totalPrice';
-import P_img from '../../../icons/icon_plus_x3.png';
-import M_img from '../../../icons/icon_minus_x3.png';
-import { updateBucket } from '../../../functions/updateBucket';
+import React from 'react';
+import P_img from '../../icons/icon_plus_x3.png';
+import M_img from '../../icons/icon_minus_x3.png';
+import { updateBucket } from '../../functions/updateBucket';
 
 interface Props {
     c:number;
@@ -18,8 +14,6 @@ interface Props {
     table:string | string[] | null
     totalPrice:number
     bucket:any
-    
-    
 }
 
 const ModifCount = ({c,id, menu, price, more, itemTotalPrice, totalPrice,bucket, store, table}:Props) => {
@@ -107,9 +101,9 @@ const ModifCount = ({c,id, menu, price, more, itemTotalPrice, totalPrice,bucket,
     return (
         <div className="modif-bucket-counter-con">
             <div className="modif-bucket-counter">
-                <div onClick={()=>{onDecrease();}}><img src={M_img} width="10px"/></div>
-                <div>{c}</div>
-                <div onClick={()=>{onIncrease();}}><img src={P_img} width="10px"/></div>
+                <div onClick={()=>{onDecrease();}}><img src={M_img}/></div>
+                <div className="count">{c}</div>
+                <div onClick={()=>{onIncrease();}}><img src={P_img}/></div>
             </div>
             {/* */}
         </div>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { removeBucketItem } from '../../../functions/updateBucket';
-import PopUp from '../../organisms/PopUp';
+import PopUp from '../../Bucket/PopUp';
 import CancleOrderButton from './CancleOrderButton';
 
 interface Props {

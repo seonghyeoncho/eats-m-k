@@ -2,11 +2,11 @@ import React from 'react';
 import { BrowserRouter as Router, BrowserRouterProps, Route, Switch} from 'react-router-dom'
 import OrderListView from '../components/organisms/OrderList/OrderListView';
 import CompleteView from '../components/organisms/Complete/CompleteView';
-import BucketViewContainer from '../components/organisms/Bucket/BucketViewContainer';
 import OrderStatus from '../components/atoms/OrderStatus/OrderStatus';
 import OrderListD from '../components/organisms/OrderList/OrderListD';
 import Home from '../pages/HomePage/Home';
 import DetailView from '../pages/DetailMenuPage/DetailView';
+import BucketViewContainer from '../pages/BucketPage/BucketViewContainer';
 
 const AppRouter = () =>{
     

@@ -1,10 +1,9 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
-import 'firebase/database'
+
 const firebaseConfig = {
     apiKey: "AIzaSyBDhV4bO0tjwnYFtmRZLn1tI7Rkbb1g__U",
     authDomain: "eatsroad-bb1ef.firebaseapp.com",
-    databaseURL: "https://eatsroad-bb1ef-default-rtdb.firebaseio.com",
     projectId: "eatsroad-bb1ef",
     storageBucket: "eatsroad-bb1ef.appspot.com",
     messagingSenderId: "893303016474",
@@ -16,4 +15,3 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 export const firebaseInstance = firebase;
 export const dbService =firebase.firestore();
-export const DB = firebase.database();

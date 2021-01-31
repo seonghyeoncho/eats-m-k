@@ -1,12 +1,9 @@
 @import '../scss/mixin';
 @include mobile {
-
 }
 @include tablet {
-    
 }
 @include desktop {
-
 }
 body{
     margin:0px;
@@ -39,21 +36,16 @@ Link{
         .text{
             margin:0 6px;
             div{
-
             }
         }
         .selected{
             color: #ff1b6d;
-
             margin:0 6px;
             div{
                 border-bottom: solid 2px #ff1b6d;
                 padding-bottom: 4px;
             }
-            
         }
-        
-        
     }
     .bucket-img{
         padding-top:12px;
@@ -127,11 +119,9 @@ Link{
     .main-order-bt-text{  
         color: white;
         font-size: 19px;
-
     }
 }
 .orderstatus-con{
-   
     .orderstatus-nav-con{
         z-index: 3;
         display: flex;
@@ -181,7 +171,6 @@ Link{
             text-align: center;
             width: 72px;
             margin-right: 60px;
-            
             .orderstatus-state-complete-circle-1{
                 width: 72px;
                 height: 72px;
@@ -211,7 +200,6 @@ Link{
         .orderstatus-state-reception {
             text-align: center;
             width: 72px;
-            
             .circle1 {
                 width: 24px;
                 height: 24px;
@@ -219,7 +207,6 @@ Link{
                 border-radius: 50px;
                 // margin: 8px auto;
                 margin: 0 auto;
-                
             }
             .y1 {
                 width: 72px;
@@ -227,7 +214,6 @@ Link{
                 background-color: $base-color;
                 border-radius: 50px;
                 margin-bottom: 8px;
-
                 img{
                     width: 36px;
                     margin-top: 18px;
@@ -241,7 +227,6 @@ Link{
                 margin: auto;
                 margin-bottom: 8px;
                 margin: 8px auto;
-
             }
             .y2 {
                 width: 8px;
@@ -279,7 +264,6 @@ Link{
         background-position: bottom;
         background-size: 10px 1px;
         background-repeat: repeat-x;
-        
         .orderstatus-state-info-store{
             padding-top:20px;
             font-size: 24px;
@@ -319,7 +303,6 @@ Link{
                 opacity: 0.87;
                 margin-bottom: 6px;
             }
-            
         }
         .line{
             margin: 12px 21px;
@@ -372,7 +355,6 @@ Link{
             height: 64px;
             margin-left: 16px;
         }
-        
     }
     .line{
         margin: 0px 35px; 
@@ -506,18 +488,14 @@ Link{
                         opacity: 0.68;
                         display: flex;
                         margin: auto 0;
-
                         img{
                             width: 12px;
                             height: 12.5px;
                             margin: auto 0px;
-
                         }
                         div{
-
                             margin: auto 8px;
                         }
-                        
                     }
                     .modif-bucket-counter-con{
                         display: flex;
@@ -525,7 +503,6 @@ Link{
                         border-radius: 50px;
                         height: 40px;
                         width: 138px;
-                        
                         .modif-bucket-counter{
                             display: flex;
                             margin: 0 auto;
@@ -596,10 +573,7 @@ Link{
             font-size: 17px;
             font-family: NotoSansCJKkr-Bold;
         }
-        
         .counter-bt-con{
-
-
             width: 138px;
             display: flex;
             border: solid 1px black;
@@ -729,10 +703,8 @@ Link{
         justify-content: space-between;
         margin-bottom: 6px;
         .moremenulist-content-menu{}
-        .moremenulist-content-price{}
-        
-    }
-    
+        .moremenulist-content-price{}  
+    }  
 }
 .detail{
     z-index: 2;

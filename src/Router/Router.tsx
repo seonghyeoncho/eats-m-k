@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, BrowserRouterProps, Route, Switch} from 'react-router-dom'
-import OrderListView from '../components/organisms/OrderList/OrderListView';
-import CompleteView from '../components/organisms/Complete/CompleteView';
-import OrderStatus from '../components/atoms/OrderStatus/OrderStatus';
-import OrderListD from '../components/organisms/OrderList/OrderListD';
+import OrderListView from '../pages/OrderListView/OrderListView';
+import CompleteView from '../pages/CompleteView/CompleteView';
+import ReceiptView from '../pages/ReceiptPage/ReceiptView';
 import Home from '../pages/HomePage/Home';
 import DetailView from '../pages/DetailMenuPage/DetailView';
 import BucketViewContainer from '../pages/BucketPage/BucketViewContainer';
+import OrderListD from '../pages/OrderListView/OrderListD';
+import queryString from 'query-string';
+import { LocationAction, StoreAction } from '../redux/actions';
+import { useDispatch } from 'react-redux';
+import { cleanup } from '@testing-library/react';
 
 const AppRouter = () =>{
     
@@ -15,10 +19,10 @@ const AppRouter = () =>{
             <Switch>
 
                 <Route exact path="/menu" 
-                    component={(props:BrowserRouterProps)=><Home {...props}/>}
+                    component={(props:BrowserRouterProps) => <Home {...props}/>}
                 />
 
-                <Route exact path="/orderlist" 
+                {/* <Route exact path="/orderlist" 
                     component={(props:BrowserRouterProps)=><OrderListView {...props}/>}
                 />
 
@@ -31,7 +35,7 @@ const AppRouter = () =>{
                 />
 
                 <Route exact path="/orderstatus"
-                    component={(props:BrowserRouterProps)=><OrderStatus {...props}/>}
+                    component={(props:BrowserRouterProps)=><ReceiptView {...props}/>}
                 />
 
                 <Route exact path="/detail" 
@@ -40,7 +44,7 @@ const AppRouter = () =>{
 
                 <Route exact path="/complete"
                     component={(props:BrowserRouterProps)=><CompleteView {...props}/>}
-                /> 
+                />  */}
 
             </Switch>
         </Router>

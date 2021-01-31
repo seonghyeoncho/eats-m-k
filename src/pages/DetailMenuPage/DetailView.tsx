@@ -3,9 +3,9 @@ import queryString from 'query-string';
 import { RootState } from '../../modules';
 import { useSelector } from 'react-redux';
 import { dbService } from '../../firebase/firebase';
-import StoreAndTableBoxContainer from '../../components/molecules/StoreAndTable/StoreAndTableBoxContainer';
-import DetailViewNav from './DetailViewNav';
-import DetailContent from './DetailContent';
+import StoreAndTableBoxContainer from '../../component/Home/StoreAndTableBoxContainer';
+import DetailViewNav from '../../component/Detail/DetailViewNav';
+import DetailContent from '../../component/Detail/DetailContent';
 
 const DetailView = (props:any) => {
 

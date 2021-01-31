@@ -1,6 +1,6 @@
 import React from 'react';
-import ReadyBucket from '../../components/Bucket/ReadyBucket';
-import BucketItem from '../../components/Bucket/BucketItem';
+import ReadyBucket from '../../component/Bucket/ReadyBucket';
+import BucketItem from '../../component/Bucket/BucketItem';
 
 interface Props {
     bucket: any;

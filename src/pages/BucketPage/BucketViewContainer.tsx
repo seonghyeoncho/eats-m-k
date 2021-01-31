@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import BucketView from './BucketView';
 import queryString from 'query-string';
 import { dbService } from '../../firebase/firebase';
-import ResetBucketPopup from '../../components/Bucket/ResetBucketPopup';
-import BucketNav from '../../components/Bucket/BucektNav';
-import BucketOrderOrBackButton from '../../components/Bucket/BucketOrderOrBackButton';
-import BucketViewInfo from '../../components/Bucket/BucketViewInfo';
+import ResetBucketPopup from '../../component/Bucket/ResetBucketPopup';
+import BucketNav from '../../component/Bucket/BucektNav';
+import BucketOrderOrBackButton from '../../component/Bucket/BucketOrderOrBackButton';
+import BucketViewInfo from '../../component/Bucket/BucketViewInfo';
 
 const BucketViewContainer = (props:any) => {
 

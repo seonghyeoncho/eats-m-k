@@ -1,16 +1,16 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, BrowserRouterProps, Route, Switch} from 'react-router-dom'
-import OrderListView from '../pages/OrderListView/OrderListView';
-import CompleteView from '../pages/CompleteView/CompleteView';
-import ReceiptView from '../pages/ReceiptPage/ReceiptView';
+// import OrderListView from '../pages/OrderListView/OrderListView';
+// import CompleteView from '../pages/CompleteView/CompleteView';
+// import ReceiptView from '../pages/ReceiptPage/ReceiptView';
 import Home from '../pages/HomePage/Home';
-import DetailView from '../pages/DetailMenuPage/DetailView';
-import BucketViewContainer from '../pages/BucketPage/BucketViewContainer';
-import OrderListD from '../pages/OrderListView/OrderListD';
-import queryString from 'query-string';
-import { LocationAction, StoreAction } from '../redux/actions';
-import { useDispatch } from 'react-redux';
-import { cleanup } from '@testing-library/react';
+// import DetailView from '../pages/DetailMenuPage/DetailView';
+// import BucketViewContainer from '../pages/BucketPage/BucketViewContainer';
+// import OrderListD from '../pages/OrderListView/OrderListD';
+
+
+
+
 
 const AppRouter = () =>{
     

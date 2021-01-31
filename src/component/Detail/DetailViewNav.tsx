@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import BucketButtonContainer from '../BucketButton/BucketButtonContainer';
 import Arrow from '../../image/icons/icon_arrow_back_black_x3.png';
-import { resetCount } from '../../modules/counters';
+import { resetCount } from '../../redux/modules/counters';
 
 interface Props {
     totalPrice:number;

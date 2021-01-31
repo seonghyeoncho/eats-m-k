@@ -5,24 +5,18 @@ import numberWithCommas from '../../functions/addCommaFunc';
 import OrderD from '../../component/Order/OrderD';
 import MoreMenuList from '../../component/Detail/MoreMenuList';
 import queryString from 'query-string';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux';
 
 
 const OrderListD = (props:any) => {
 
-    const [bucket, setBucket] = useState<any>([]);
-    const [totalPrice, setTotalPrice] = useState<number>(0);
-    const query = queryString.parse(props.location.search);
-    const store = query.store;
-    const table = query.table;
-
-    useEffect(()=>{
-        dbService.collection(`${store}`).doc(`${table}`).onSnapshot((doc:any)=>{
-            const data = doc.data();
-            setBucket(data.bucket);
-            setTotalPrice(data.totalPrice);
-
-        })
-    },[]);
+    const { bucket, totalPrice, store, table } = useSelector((state:RootState)=>({
+        bucket:state.Data.data.bucket,
+        totalPrice:state.Data.data.totalPrice,
+        store:state.Store.information.name,
+        table:state.Location.table
+    }));
 
     return (
         <div className="orderlist-con">

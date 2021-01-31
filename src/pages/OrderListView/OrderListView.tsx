@@ -1,24 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import numberWithCommas from '../../functions/addCommaFunc';
 import OrderContainer from '../../component/Order/OrderContainer';
 import MoreMenuList from '../../component/Detail/MoreMenuList';
-import { dbService } from '../../firebase/firebase';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux';
 
 
 const OrderListView = (props:any) => {
     
-    const [bucket, setBucket] = useState<any>([]);
-    const [totalPrice, setTotalPrice] = useState<number>(0);
-    const store = window.localStorage.getItem('store');
-    const table= window.localStorage.getItem('table');
-
-    useEffect(()=>{
-        dbService.collection(`${store}`).doc(`${table}`).get().then((doc:any)=>{
-            const data = doc.data();
-            setBucket(data.bucket);
-            setTotalPrice(data.totalPrice);
-        })
-    },[]);
+    const { bucket, totalPrice, store, table } = useSelector((state:RootState)=>({
+        bucket:state.Data.data.bucket,
+        totalPrice:state.Data.data.totalPrice,
+        store:state.Store.information.name,
+        table:state.Location.table
+    }));
 
     return (
         <div className="orderlist-con">

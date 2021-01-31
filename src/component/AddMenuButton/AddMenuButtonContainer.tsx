@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import AddMenuButton from './AddMenuButton';
-import { resetCount } from '../../modules/counters';
+import { resetCount } from '../../redux/modules/counters';
 import { addOrdersFunc, addOrdersProcesser, compareAndMerge} from '../../functions/compareAndMerge';
 import { dbService } from '../../firebase/firebase';
 

@@ -23,6 +23,7 @@ export const StoreMiddleware = ({ dispatch, getState }: param) => (
       .then((querySnapshot) => { 
         console.log(querySnapshot.data());
         const data:any = querySnapshot.data();
+        dispatch(StoreAction.setStoreInformation(data.information.name));
         dispatch(StoreAction.setStoreMenu(data.menu));
       })
       .catch((e) => console.log(e));

@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import queryString from 'query-string';
-import { RootState } from '../../modules';
 import { useSelector } from 'react-redux';
 import { dbService } from '../../firebase/firebase';
 import StoreAndTableBoxContainer from '../../component/Home/StoreAndTableBoxContainer';
 import DetailViewNav from '../../component/Detail/DetailViewNav';
 import DetailContent from '../../component/Detail/DetailContent';
+import { RootState } from '../../redux/modules';
 
 const DetailView = (props:any) => {
 
-    const { count  } = useSelector((state:RootState) => ({
+    const { count } = useSelector((state:RootState) => ({
         count:state.counters.count,
     }));
     const query = queryString.parse(props.location.search);

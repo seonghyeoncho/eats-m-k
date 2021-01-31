@@ -10,7 +10,6 @@ interface Option {
     name: string;
     price: number;
 };
-
 interface OptionGroup {
     id: number;
     name: string;
@@ -26,6 +25,9 @@ interface Item {
 };
 
 export interface Store {
+  information: {
+    name: string;
+  };
   menu: {
     categories: Category[];
     optionGroups: OptionGroup[];
@@ -34,6 +36,9 @@ export interface Store {
 };
 
 const initialState: Store = {
+  information: {
+    name: ''
+  },
   menu: {
     categories: [],
     optionGroups: [],
@@ -48,6 +53,13 @@ const StoreReducer = (state = initialState, action: Action) => {
         ...state,
         menu: action.payload.menu,
       };
+    case StoreAction.Types.SET_STORE_INFO:
+      return {
+        ...state,
+        information: {
+          name:action.payload.name
+        }
+      }
     default:
       return state;
   };

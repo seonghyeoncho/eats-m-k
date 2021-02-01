@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 interface Props {
     list: any;
@@ -6,7 +7,6 @@ interface Props {
 };
 
 const HorizontalScroll = ({title, list}:Props) => {
-    console.log(list);
     return (
         <div className="horizontal-scroll">
             <div className="title-con">
@@ -16,15 +16,19 @@ const HorizontalScroll = ({title, list}:Props) => {
             </div>
             <div className="content-con">
                 <div className="content">
+                    
                     {
                         list.map((doc:any) => {
                             return (
-                                <div className="item">
-                                    hello
-                                </div>
+                                <Link to={`/detail/?menu=${doc.name}`} >
+                                    <div className="item">
+                                        {doc.name}
+                                    </div>
+                                </Link>
                             )
                         })
                     }
+                    
                 </div>
             </div>
         </div>

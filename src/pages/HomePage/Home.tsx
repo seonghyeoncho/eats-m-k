@@ -7,7 +7,7 @@ import StoreAndTableBoxContainer from '../../component/Home/StoreAndTableBoxCont
 import MenuListContainer from '../../component/Home/MenuList/MenuListcontainer';
 import '../../scss/main.scss';
 import MenuListNav from '../../component/Home/MenuListNav';
-import { LocationAction, StoreAction } from '../../redux/actions';
+import { LocationAction, StoreAction, DataAction } from '../../redux/actions';
 import HorizontalScroll from '../../component/Home/HorizontalScroll';
 
 const Home: React.FC<any> = ( props:any ) => {
@@ -26,6 +26,7 @@ const Home: React.FC<any> = ( props:any ) => {
     useEffect(()=>{
         dispatch(LocationAction.setLocation(store, table));
         dispatch(StoreAction.loadStoreFirebase());
+        dispatch(DataAction.loadDataFirebase());
     },[]);
 
     return (

@@ -7,11 +7,11 @@ import { Option } from '../../redux/Types'
 
 interface Props {
     select: {
-        menu:string,
-        price:number,
-        itemTotalPrice:number,
-        options:Option[],
-        count:number
+        name:string | null,
+        price:number | null,
+        itemTotalPrice:number | null,
+        options:Option[] | null,
+        count:number | null
     };
     moreMenuHandler: (m:Option,isChecked:boolean) => void;
 };
@@ -22,7 +22,7 @@ const DetailContent = ({ select, moreMenuHandler }:Props) => {
         <div className="detail-con">
             <div className="detail-content-con">
 
-                <DetailInfo menu={select.menu} price={select.price}/>
+                {/* <DetailInfo menu={select.name} price={select.price}/> */}
 
                 <div className="line"/>
 
@@ -30,13 +30,13 @@ const DetailContent = ({ select, moreMenuHandler }:Props) => {
 
                 <div className="line"/>
 
-                <CounterContainer/>
+                {/* <CounterContainer/> */}
 
                 <div className="line"/>
 
                 <div className="detail-totalprice-con">
                     <div className="datail-totalprice-text">합계</div>
-                    <div className="detail-totalprice-price">{numberWithCommas(select.itemTotalPrice)}원</div>
+                    {/* <div className="detail-totalprice-price">{numberWithCommas(select.itemTotalPrice)}원</div> */}
                 </div>
 
                 <div className="line"/>

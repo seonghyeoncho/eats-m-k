@@ -6,28 +6,23 @@ import ResetBucketPopup from '../../component/Bucket/ResetBucketPopup';
 import BucketNav from '../../component/Bucket/BucektNav';
 import BucketOrderOrBackButton from '../../component/Bucket/BucketOrderOrBackButton';
 import BucketViewInfo from '../../component/Bucket/BucketViewInfo';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux';
 
 const BucketViewContainer = (props:any) => {
 
-    const query = queryString.parse(props.location.search);
-    const store = query.store;
-    const table = query.table;
-    const [ orderStatus, setOrderStatus ] = useState<boolean>();
-    const [ bucket, setBucket ] = useState([]);
-    const [ totalPrice, setTotalPrice ] = useState<number>(0);
+    
+    const { store, table, orderStatus, bucket, totalPrice } = useSelector((state:RootState)=>({
+        store:state.Store.information.name,
+        table:state.Location.table,
+        orderStatus:state.Data.data.orderStatus,
+        bucket:state.Data.data.bucket,
+        totalPrice:state.Data.data.totalPrice
+    }));
     const [ popUpState, setPopUpState ] = useState<boolean>(false);
+
     const goBack = () => props.history.goBack();
     const popUpTrigger = () => setPopUpState(!popUpState);
-
-    useEffect(()=>{
-        dbService.collection(`${store}`).doc(`${table}`).onSnapshot((snapShot:any)=>{
-            const data = snapShot.data();
-            setBucket(data.bucket);
-            setTotalPrice(data.totalPrice);
-        });
-        setOrderStatus(JSON.parse(window.localStorage.getItem('orderStatus')!));
-    },[orderStatus]);
-
     return (
         <>
             <ResetBucketPopup popUpState={popUpState} popUpTrigger={popUpTrigger}/>

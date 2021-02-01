@@ -2,7 +2,7 @@ import { Action } from '../../Types';
 import { DataAction } from '../../actions';
 import { dbService } from '../../../firebase/firebase';
 import { RootState } from '../..';
-import { addBucketMenu, setData } from '../../actions/DataAction';
+import { addBucketMenu, loadDataFirebase, setData } from '../../actions/DataAction';
 import { addOrdersFunc } from '../../../functions/compareAndMerge';
 import { resetCount } from '../../actions/CounterAction';
 
@@ -11,7 +11,7 @@ interface param {
     getState: () => RootState;
 };
 
-export const DataMIddleware = ({ dispatch, getState }: param) => (
+export const DataMiddleware = ({ dispatch, getState }: param) => (
     next:any
 ) => ( action: Action ) => {
 
@@ -20,8 +20,9 @@ export const DataMIddleware = ({ dispatch, getState }: param) => (
     if(DataAction.Types.LOAD_DATA_FIREBASE === action.type ) {
         const storeName = getState().Store.information.name;
         const table = getState().Location.table;
+        console.log(storeName, table);
         dbService
-            .collection(`${storeName}`)
+            .collection(`멘동`)
             .doc(`${table}`)
             .onSnapshot((doc:any) => {
                 const data = doc.data();
@@ -29,18 +30,23 @@ export const DataMIddleware = ({ dispatch, getState }: param) => (
             });
     };
     if(DataAction.Types.ADD_BUCKET_MENU === action.type) {
+        console.log('ddd');
         const storeName = getState().Store.information.name;
         const table = getState().Location.table;
         const bucket = addOrdersFunc( getState().Data.data.bucket, action.payload.select );
+        console.log(bucket);
         const totalPrice = getState().Data.data.totalPrice + action.payload.select.itemTotalPrice;
         dbService
             .collection(`${storeName}`)
             .doc(`${table}`)
             .update({
-                'bucket':bucket,
+                'bucket':[
+                    ...bucket
+                ],
                 'totalPrice': totalPrice
             }).then(() => {
                 dispatch(resetCount());
+                dispatch(loadDataFirebase());
             }).catch((e) => console.log(e));
     };
     if(DataAction.Types.MODIF_BUCKET_MENU_DECREASE === action.type) {
@@ -54,11 +60,25 @@ export const DataMIddleware = ({ dispatch, getState }: param) => (
         const Obj = {
             ...select,
             count: count,
-            id:`${select.menu}/${count}/${JSON.stringify(select.options)}`,
+            id:`${select.name}/${count}/${JSON.stringify(select.options)}`,
             itemTotalPrice: itemTotalPrice 
         };
         const modifBuc = bucket.map((item:any) => item.id === prevId ? Obj : item);
-        dispatch(addBucketMenu(modifBuc));
+        const storeName = getState().Store.information.name;
+        const table = getState().Location.table;
+        const totalPrice = getState().Data.data.totalPrice + moreprice;
+        dbService
+            .collection(`${storeName}`)
+            .doc(`${table}`)
+            .update({
+                'bucket':[
+                    ...modifBuc
+                ],
+                'totalPrice': totalPrice
+            }).then(() => {
+                dispatch(resetCount());
+                dispatch(loadDataFirebase());
+            }).catch((e) => console.log(e));
 
     }
     if(DataAction.Types.MODIF_BUCKET_MENU_INCREASE === action.type) {
@@ -72,10 +92,24 @@ export const DataMIddleware = ({ dispatch, getState }: param) => (
         const Obj = {
             ...select,
             count: count,
-            id:`${select.menu}/${count}/${JSON.stringify(select.options)}`,
+            id:`${select.name}/${count}/${JSON.stringify(select.options)}`,
             itemTotalPrice: itemTotalPrice 
         };
         const modifBuc = bucket.map((item:any) => item.id === prevId ? Obj : item);
-        dispatch(addBucketMenu(modifBuc));
+        const storeName = getState().Store.information.name;
+        const table = getState().Location.table;
+        const totalPrice = getState().Data.data.totalPrice + moreprice;
+        dbService
+            .collection(`${storeName}`)
+            .doc(`${table}`)
+            .update({
+                'bucket':[
+                    ...modifBuc
+                ],
+                'totalPrice': totalPrice
+            }).then(() => {
+                dispatch(resetCount());
+                dispatch(loadDataFirebase());
+            }).catch((e) => console.log(e));
     }
 };

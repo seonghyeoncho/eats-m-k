@@ -1,12 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, BrowserRouterProps, Route, Switch} from 'react-router-dom'
-// import OrderListView from '../pages/OrderListView/OrderListView';
-// import CompleteView from '../pages/CompleteView/CompleteView';
-// import ReceiptView from '../pages/ReceiptPage/ReceiptView';
+import OrderListView from '../pages/OrderListView/OrderListView';
+import CompleteView from '../pages/CompleteView/CompleteView';
+import ReceiptView from '../pages/ReceiptPage/ReceiptView';
 import Home from '../pages/HomePage/Home';
-// import DetailView from '../pages/DetailMenuPage/DetailView';
-// import BucketViewContainer from '../pages/BucketPage/BucketViewContainer';
-// import OrderListD from '../pages/OrderListView/OrderListD';
+import DetailView from '../pages/DetailMenuPage/DetailView';
+import BucketViewContainer from '../pages/BucketPage/BucketViewContainer';
+import OrderListD from '../pages/OrderListView/OrderListD';
 
 
 
@@ -22,7 +22,7 @@ const AppRouter = () =>{
                     component={(props:BrowserRouterProps) => <Home {...props}/>}
                 />
 
-                {/* <Route exact path="/orderlist" 
+                <Route exact path="/orderlist" 
                     component={(props:BrowserRouterProps)=><OrderListView {...props}/>}
                 />
 
@@ -44,7 +44,7 @@ const AppRouter = () =>{
 
                 <Route exact path="/complete"
                     component={(props:BrowserRouterProps)=><CompleteView {...props}/>}
-                />  */}
+                /> 
 
             </Switch>
         </Router>

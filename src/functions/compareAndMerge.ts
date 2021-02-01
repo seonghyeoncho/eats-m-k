@@ -4,15 +4,14 @@ export const addOrdersFunc = ( bucket:any,select:any) => {
         const c = bucket.length;
         var flag = 0;
         for( let i=0 ; i<bucket.length ; i++ ) {
-            if( bucket[i].menu === select.menu && compareAndMerge(bucket[i].more, select.more) ) {
-                addOrdersProcesser('M', bucket, select);
-                break;
+            if( bucket[i].name === select.name && compareAndMerge(bucket[i].options, select.options) ) {
+                return addOrdersProcesser('M', bucket, select);
             }
             flag++;
         }; 
-        if( flag === c ) addOrdersProcesser('A', bucket, select);
-    } else {
-        addOrdersProcesser('A', bucket, select);
+        if( flag === c ) return addOrdersProcesser('A', bucket, select);
+    } else { 
+        return addOrdersProcesser('A', bucket, select);
     };
 
 };
@@ -54,19 +53,19 @@ const addOrdersProcesser = (c:string, bucket:any, select:any) => {
 const processA = (bucket:any, select:any): any => {
     const obj = bucket.concat({
         ...select,
-        id:`${select.menu}/${select.count}/${JSON.stringify(select.more)}`
+        id:`${select.name}/${select.count}/${JSON.stringify(select.options)}`
     });
     return obj;
 };
 
 const processM = (bucket:any, select:any): any => {
     const obj = bucket.map( (doc:any) =>
-        doc.menu === select.menu && compareAndMerge(doc.more, select.more) ? 
+        doc.name === select.name && compareAndMerge(doc.options, select.options) ? 
             {
                 ...select,
                 count:doc.count + select.count,
                 itemTotalPrice: Number(doc.itemTotalPrice) + Number(select.itemTotalPrice),
-                id:`${select.menu}/${doc.count + select.count}/${JSON.stringify(select.more)}`,   
+                id:`${select.name}/${doc.count + select.count}/${JSON.stringify(select.options)}`,   
             }
         :
             doc

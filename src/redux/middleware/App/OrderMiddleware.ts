@@ -2,7 +2,6 @@ import { Action } from '../../Types';
 import { OrderAction } from '../../actions';
 import { dbService } from '../../../firebase/firebase';
 import { RootState } from '../..';
-import { loadStoreFirebase } from '../../actions/StoreAction';
 import { loadDataFirebase } from '../../actions/DataAction';
 
 interface param {
@@ -28,9 +27,11 @@ export const OrderMiddleware = ({ dispatch, getState }: param) => (
             .doc(`${table}`)
             .update({
                 'order':bucket,
+                'bucket':[],
                 'receipt_total_price':receiptTotalPrice + totalPrice,
                 'totalPrice':0,
                 'order_status':true,
+                'state':true
             })
             .then(() => {
                 dispatch(loadDataFirebase());

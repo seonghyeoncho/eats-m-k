@@ -1,64 +1,29 @@
 import React from 'react';
 import P_img from '../../image/icons/icon_plus_x3.png';
 import M_img from '../../image/icons/icon_minus_x3.png';
-import { updateBucket } from '../../functions/updateBucket';
+import { useDispatch } from 'react-redux';
+import { modifBucketDe, modifBucketIn } from '../../redux/actions/DataAction';
+import { DataAction } from '../../redux/actions';
 
 interface Props {
-    c:number;
-    id:string;
-    menu:string;
-    price:any;
-    more:any;
-    itemTotalPrice:number;
-    store:string | string[] | null
-    table:string | string[] | null
-    totalPrice:number
-    bucket:any
+    c: number;
+    select: any
 }
 
-const ModifCount = ({c,id, menu, price, more, itemTotalPrice, totalPrice,bucket, store, table}:Props) => {
-    var moreprice = price;
-    more.forEach((doc:any) => {
-        moreprice += doc.price;
-    });
+const ModifCount = ({c, select}:Props) => {
+    const dispatch = useDispatch();
 
-    const modifBucket = ( totalPrice:number ) => {
-        const Obj = {
-            menu: menu,
-            price: price,
-            count: c,
-            more: more,
-            id:`${menu}/${c}/${JSON.stringify(more)}`,
-            itemTotalPrice: itemTotalPrice 
-        }
-        const modifBuc = bucket.map((item:any) => item.id === id 
-            ? 
-                Obj
-            :
-                item
-        );
-        updateBucket(store,table,modifBuc,totalPrice);
-    };
-    const modifMenuCount = (type:string) => {
-        if(type === 'in'){
-            c += 1
-            itemTotalPrice += moreprice
-            totalPrice += moreprice
-        } else {
-            c -= 1
-            itemTotalPrice -= moreprice;
-            totalPrice -= moreprice
-        }
-        modifBucket(totalPrice);
-    };
-    const onIncrease = () => {
-        modifMenuCount('in')
-    };
     const onDecrease = () => {
-        if(c !== 1) {
-            modifMenuCount('de')
-        };
-    };
+        console.log(select);
+        dispatch(modifBucketDe(select));
+        dispatch(DataAction.loadDataFirebase());
+    }
+    const onIncrease = () => {
+        console.log(select);
+        dispatch(modifBucketIn(select));
+        dispatch(DataAction.loadDataFirebase());
+    }
+
 
     return (
         <div className="modif-bucket-counter-con">

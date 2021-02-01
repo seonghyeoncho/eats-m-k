@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import queryString from 'query-string';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import StoreAndTableBoxContainer from '../../component/Home/StoreAndTableBoxContainer';
 import DetailViewNav from '../../component/Detail/DetailViewNav';
 import DetailContent from '../../component/Detail/DetailContent';
@@ -10,26 +10,32 @@ import AddMenuButtonContainer from '../../component/AddMenuButton/AddMenuButtonC
 
 interface Select {
     select: {
-        menu:string,
-        price:number,
-        itemTotalPrice:number,
-        options:Option[],
-        count:number
+        menu:string | null,
+        price:number | null,
+        itemTotalPrice:number | null,
+        options:Option[] | null,
+        count:number | null
     },
 };
 const DetailView = (props:any) => {
 
-    const { count, totalPrice, items } = useSelector((state:RootState) => ({
+    const { count, totalPrice, items, bucket } = useSelector((state:RootState) => ({
         count:state.Counter.count,
         totalPrice:state.Data.data.totalPrice,
-        items:state.Store.menu.items
+        items:state.Store.menu.items,
+        bucket:state.Data.data.bucket
     }));
+    
     const query = queryString.parse(props.location.search);
     const menu = String(query.menu);
     const [ select, setSelect ] = useState<any>(null);
     const [ options, setOptions ] = useState<any>([]);
     const [ itemTotalPrice , setItemTotalPrice ] = useState<number>(0);
-    
+    console.log(select)
+    console.log(items);
+
+    console.log(bucket);
+    const dispatch = useDispatch();
     const moreMenuHandler = (m:any, isChecked:boolean) => {
         if(isChecked) {
             setOptions( (prev:any) => [m,...prev]);
@@ -41,11 +47,15 @@ const DetailView = (props:any) => {
     };
 
     const selectMenu = () => {
+        console.log(items)
         for( var i=0 ; i<items.length ; i++ ) {
             if (items[i].name === menu) {
                 const Obj = {
-                    menu:items[i].name,
+                    name:items[i].name,
                     price:items[i].price,
+                    options:[],
+                    count:count,
+                    itemTotalPrice:items[i].price,
                 };
                 setSelect(Obj);
                 setItemTotalPrice(Obj.price);
@@ -56,7 +66,8 @@ const DetailView = (props:any) => {
     };
 
     useEffect(()=>{
-        if ( select === null ) selectMenu();
+        console.log('fff');
+        selectMenu();
     },[]);
 
     return (

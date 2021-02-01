@@ -11,8 +11,10 @@ type Props = {
 };
 
 const AddMenuButtonContainer = ({ select }:Props) => {
+    console.log(select);
     const dispatch = useDispatch();
     const addOrders = () => {
+        console.log('dispatch')
         dispatch(addBucketMenu(select));
     };
     return <AddMenuButton  addOrders={addOrders}/>

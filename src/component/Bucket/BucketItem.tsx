@@ -4,6 +4,7 @@ import ModifCount from './ModifCount';
 import BucketItemInfo from './BucketItemInfo';
 import MoreMenuListContainer from './MoreMenuListContainer';
 
+
 interface Props {
     bucket: any;
     totalPrice:number
@@ -33,16 +34,8 @@ const BucketItem = ({bucket, store, table, totalPrice}:Props) => {
                                             totalPrice={totalPrice} 
                                         />
                                         <ModifCount 
-                                            c={doc.count} 
-                                            id={doc.id} 
-                                            menu={doc.menu} 
-                                            price={doc.price} 
-                                            more={doc.more} 
-                                            itemTotalPrice={doc.itemTotalPrice}
-                                            totalPrice={totalPrice}
-                                            store={store}
-                                            table={table}
-                                            bucket={bucket}
+                                            c={doc.count}
+                                            select={doc}
                                         />
                                     </div>
                                 </div>

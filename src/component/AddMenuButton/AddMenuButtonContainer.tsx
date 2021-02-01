@@ -9,9 +9,6 @@ type Props = {
     select: {
         menu:string,
         price:number,
-        more: any,
-        count:number,
-        itemTotalPrice: number
     };
     history: any;
 };

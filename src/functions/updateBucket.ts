@@ -11,7 +11,7 @@ export const updateBucket = (store:string | string[] | null, table:string | stri
 
 export const removeBucketItem = (id:string, store:string | string[] | null, table:string | string[] | null, bucket:any, totalPrice:number) => {
     const buckett = bucket?.filter((doc:any)=> doc.id !== id );
-    updateBucket(store,table,buckett,(totalPrice));
+    return buckett;
 };
 
 export const resetBucket = (store:string | string[] | null, table:string | string[] | null) => {

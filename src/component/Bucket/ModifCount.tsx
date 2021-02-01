@@ -22,81 +22,43 @@ const ModifCount = ({c,id, menu, price, more, itemTotalPrice, totalPrice,bucket,
         moreprice += doc.price;
     });
 
-    const modifBucket = (i:number,totalPrice:number) => {
-        console.log(c);
-        console.log(bucket);
-        console.log(more);
-
+    const modifBucket = ( totalPrice:number ) => {
         const Obj = {
-
             menu: menu,
             price: price,
             count: c,
             more: more,
             id:`${menu}/${c}/${JSON.stringify(more)}`,
             itemTotalPrice: itemTotalPrice 
-
         }
-
         const modifBuc = bucket.map((item:any) => item.id === id 
-
             ? 
                 Obj
             :
                 item
-
         );
-
         updateBucket(store,table,modifBuc,totalPrice);
-        
     };
-
-
     const modifMenuCount = (type:string) => {
-
         if(type === 'in'){
-
             c += 1
             itemTotalPrice += moreprice
             totalPrice += moreprice
-
-
-
         } else {
-
             c -= 1
             itemTotalPrice -= moreprice;
             totalPrice -= moreprice
-
         }
-
-        if(more.length === 0 ){
-            
-           modifBucket(0,totalPrice);
-
-        } else {
-
-            modifBucket(1,totalPrice);
-
-        }
-
-    }
-    
+        modifBucket(totalPrice);
+    };
     const onIncrease = () => {
-
         modifMenuCount('in')
-
-    }
-
+    };
     const onDecrease = () => {
-        
         if(c !== 1) {
-
             modifMenuCount('de')
-
-        }
-
-    }
+        };
+    };
 
     return (
         <div className="modif-bucket-counter-con">

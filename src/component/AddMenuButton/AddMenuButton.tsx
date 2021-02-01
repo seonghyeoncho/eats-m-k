@@ -9,9 +9,7 @@ type Props = {
 const AddMenuButton = ({addOrders}:Props) => {
 
     return(
-
         <div onClick={addOrders} className="addmenu-bt">장바구니 담기</div>
-
     );
 
 

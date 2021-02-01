@@ -4,12 +4,10 @@ import { dbService } from '../../firebase/firebase';
 import { RootState } from '../../redux';
 import CheckItem from './CheckItem';
 
-
 interface Props {
-    
     moreMenuHandler: ( m:any, checked:boolean ) => void;
+};
 
-}
 const CheckBoxCon = ({ moreMenuHandler }:Props) => {
     const { option } = useSelector((state:RootState)=>({
         option:state.Store.menu.optionGroups
@@ -17,15 +15,18 @@ const CheckBoxCon = ({ moreMenuHandler }:Props) => {
     
 
     return (
-        <div className="checkbox-con">
+        <>
+            <div className="detail-addmenu">추가선택</div>
+            <div className="checkbox-con">
 
-            {/* {
-                AC?.map((doc:any)=>{
-                   
-                        return <CheckItem key={doc.menu} menu={doc} moreMenuHandler={moreMenuHandler} />
-                })
-            } */}
-        </div>
+                {/* {
+                    AC?.map((doc:any)=>{
+                    
+                            return <CheckItem key={doc.menu} menu={doc} moreMenuHandler={moreMenuHandler} />
+                    })
+                } */}
+            </div>
+        </>
     );
 }
 

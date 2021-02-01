@@ -1,7 +1,6 @@
 import React from 'react';
 import BucketButtonContainer from '../BucketButton/BucketButtonContainer';
 import MenuListButton from './MenuListButton';
-import { OrderStatus } from '../../types/types';
 
 interface Props {
     setMenuListState:(n:number) => void;
@@ -13,7 +12,7 @@ const MenuListNav = ({ menuListState,setMenuListState,totalPrice}:Props) => {
     return(
         <div className="menulist-nav">
             <MenuListButton menuListState={menuListState} setMenuListState={setMenuListState}/>
-            <BucketButtonContainer totalPrice={totalPrice}/>
+            <BucketButtonContainer />
         </div>
 
     );

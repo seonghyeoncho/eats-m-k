@@ -1,5 +1,5 @@
 import React from 'react';
-import PopUp from './PopUp';
+import PopUp from '../Popup/PopUp';
 import { resetBucket } from '../../functions/updateBucket';
 
 interface Props {

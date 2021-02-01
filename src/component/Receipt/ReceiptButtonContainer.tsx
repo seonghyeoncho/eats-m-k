@@ -1,34 +1,21 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux';
 import ReceiptButton from './ReceiptButton';
 
-interface Props {
-
-    store: string | string[] | null;
-    table: string | string[] | null;
-    state: boolean | undefined;
-    orderStatus: boolean | undefined;
-
-}
-const ReceiptButtonContainer = ({store, table, state, orderStatus}:Props) => {
-
+const ReceiptButtonContainer = () => {
+    const { state, orderStatus } = useSelector((state:RootState) => ({
+        state: state.Data.data.state,
+        orderStatus: state.Data.data.orderStatus
+    }));
     return (
-
         <div>
-
             { 
-                !orderStatus ? 
-
-                    <></> 
-                : 
-
-                    <ReceiptButton orderStatus={orderStatus} state={state} store={store} table={table}/>
-                    
+                !orderStatus ? <></> 
+                : <ReceiptButton orderStatus={orderStatus} state={state}/> 
             }
-
         </div>
-
     );
-
 };
 
 export default ReceiptButtonContainer;

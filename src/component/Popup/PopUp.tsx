@@ -1,4 +1,5 @@
 import React from 'react';
+import './PopUp.scss';
 
 interface Props {
     title:string;
@@ -8,7 +9,6 @@ interface Props {
 }
 
 const PopUp = ({title, content,func,popUpTrigger}:Props) => {
-
     return(
         <div className="popup-con">
             <div className="popup-inner-con">

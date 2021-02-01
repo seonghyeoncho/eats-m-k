@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import queryString from 'query-string';
 import { useDispatch, useSelector } from 'react-redux';
-import StoreAndTableBoxContainer from '../../component/Home/StoreAndTableBoxContainer';
+import StoreAndTableBoxContainer from '../../component/StoreAndTable/StoreAndTableBoxContainer';
 import DetailViewNav from '../../component/Detail/DetailViewNav';
 import DetailContent from '../../component/Detail/DetailContent';
 import { RootState } from '../../redux';

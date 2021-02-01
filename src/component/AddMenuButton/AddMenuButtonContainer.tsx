@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import AddMenuButton from './AddMenuButton';
 import { addBucketMenu } from '../../redux/actions/DataAction';
+import './AddMenuButton.scss';
 
 type Props = {
     select: {

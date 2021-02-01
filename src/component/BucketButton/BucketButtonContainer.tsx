@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux';
 import BucketButton from './BucketButton';
+import './BucketButton.scss';
 
 const BucketButtonContainer = () => {
 
@@ -14,10 +15,8 @@ const BucketButtonContainer = () => {
     return(
         <>
             {
-                totalPrice === 0 ? 
-                    <div className="bucket-block"></div>
-                :
-                    <BucketButton store={store} table={table} />
+                totalPrice === 0 ? <div className="bucket-block"></div> 
+                : <BucketButton store={store} table={table} />
             }
         </> 
     );

@@ -4,13 +4,11 @@ import Complete from '../../image/icons/icon_OrderCompleted_x3.png';
 import Reception from '../../image/icons/icon_ReceptionCompleted_x3.png';
 
 interface Props {
-    orderStatus:boolean | undefined
+    orderStatus:boolean | undefined;
     state:boolean | undefined;
-    store: string | string[] | null,
-    table: string | string[] | null
+};
 
-}
-const ReceiptButton = ({orderStatus,state, store, table}:Props) => {
+const ReceiptButton = ({ orderStatus,state }:Props) => {
 
     let text:string = '';
     if(state && orderStatus){
@@ -18,20 +16,17 @@ const ReceiptButton = ({orderStatus,state, store, table}:Props) => {
     } else if(!state && orderStatus){
         text = '주문완료';
     } else {
-
     }
     
     return (
-        <Link to={`/orderstatus/?store=${store}&table=${table}`}>
-           
-            {   
-                state ? 
-                    <img src={Reception}/>
-                :
-                    <img src={Complete}/>
-            }
-            <div className="order-status-text">{text}</div>
-           
+        <Link to='/receipt/'>
+            <div className="receipt">
+                {   
+                    state ? <img src={Reception} alt="Re"/>
+                    : <img src={Complete} alt="Co"/>
+                }
+                <div className="text">{text}</div>
+            </div>
         </Link>
     );
 };

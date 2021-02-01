@@ -4,15 +4,12 @@ import queryString from 'query-string';
 
 interface Props {
     text:string
-}
-const OrderButton = ({text}:Props) => {
-    const query = queryString.parse(window.location.search);
-    const store = query.store;
-    const table = query.table
+};
 
+const OrderButton = ({text}:Props) => {
     return(
         <>
-            <Link to={`/orderlist/?store=${store}&table=${table}`}>
+            <Link to={`/orderlist`}>
                  <div className="main-order-bt">
                      <div className="main-order-bt-text">{text}</div>
                  </div>

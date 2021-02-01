@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './HorizontalScroll.scss';
 
 interface Props {
     list: any;
@@ -16,7 +17,6 @@ const HorizontalScroll = ({title, list}:Props) => {
             </div>
             <div className="content-con">
                 <div className="content">
-                    
                     {
                         list.map((doc:any) => {
                             return (
@@ -28,7 +28,6 @@ const HorizontalScroll = ({title, list}:Props) => {
                             )
                         })
                     }
-                    
                 </div>
             </div>
         </div>

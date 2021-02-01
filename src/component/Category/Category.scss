@@ -1,0 +1,11 @@
+.category{
+    width: 100%;
+    white-space: nowrap;
+    overflow-x: auto;
+    color: white;
+    .item-con{
+        .item{
+            display: inline-block;
+        }
+    }
+}

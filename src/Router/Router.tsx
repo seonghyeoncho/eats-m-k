@@ -34,7 +34,7 @@ const AppRouter = () =>{
                     component={(props:BrowserRouterProps)=><BucketViewContainer {...props}/>}
                 />
 
-                <Route exact path="/orderstatus"
+                <Route exact path="/receipt"
                     component={(props:BrowserRouterProps)=><ReceiptView {...props}/>}
                 />
 

@@ -31,7 +31,7 @@ export interface Store {
   menu: {
     categories: Category[];
     optionGroups: OptionGroup[];
-    item: Item[];
+    items: Item[];
   },
 };
 
@@ -42,7 +42,7 @@ const initialState: Store = {
   menu: {
     categories: [],
     optionGroups: [],
-    item: [],
+    items: [],
   },
 };
 

@@ -8,12 +8,14 @@ import MenuListContainer from '../../component/Home/MenuList/MenuListcontainer';
 import '../../scss/main.scss';
 import MenuListNav from '../../component/Home/MenuListNav';
 import { LocationAction, StoreAction } from '../../redux/actions';
+import HorizontalScroll from '../../component/Home/HorizontalScroll';
 
 const Home: React.FC<any> = ( props:any ) => {
 
-    const { orderStatus, totalPrice } = useSelector((state:RootState)=>({
+    const { orderStatus, totalPrice, items} = useSelector((state:RootState)=>({
         orderStatus:state.Data.data.orderStatus,
-        totalPrice:state.Data.data.totalPrice
+        totalPrice:state.Data.data.totalPrice,
+        items:state.Store.menu.items
     }));
     const [ menuListState,setMenuListState ] = useState<number>(0);
     const query = queryString.parse(window.location.search);
@@ -28,9 +30,11 @@ const Home: React.FC<any> = ( props:any ) => {
 
     return (
         <div>
-            <StoreAndTableBoxContainer store={store} table={table}/>
+            <StoreAndTableBoxContainer/>
             <div className="main-content">
-                <MenuListNav setMenuListState={setMenuListState} menuListState={menuListState} totalPrice={totalPrice}/>
+                {/* <MenuListNav setMenuListState={setMenuListState} menuListState={menuListState} totalPrice={totalPrice}/> */}
+                <HorizontalScroll list={items} title={'사장님 추천'}/>
+                <HorizontalScroll list={items} title={'이런건 어때요?'}/>
                 <MenuListContainer state={menuListState}/>
                 <div className="block"></div>
                 <div className="bt">

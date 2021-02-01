@@ -1,14 +1,15 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux';
 import BucketButton from './BucketButton';
 
-interface Props {
-    totalPrice: number;
-}
+const BucketButtonContainer = () => {
 
-const BucketButtonContainer = ({totalPrice}:Props) => {
-
-    const store = window.localStorage.getItem('store');
-    const table = window.localStorage.getItem('table');
+    const { store, table, totalPrice } = useSelector((state:RootState) => ({
+        store:state.Store.information.name,
+        table:state.Location.table,
+        totalPrice:state.Data.data.totalPrice
+    }));
 
     return(
         <>

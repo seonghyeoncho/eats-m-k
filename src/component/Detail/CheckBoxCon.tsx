@@ -1,35 +1,30 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { dbService } from '../../firebase/firebase';
+import { RootState } from '../../redux';
 import CheckItem from './CheckItem';
 
 
 interface Props {
     
     moreMenuHandler: ( m:any, checked:boolean ) => void;
-    store: string | string[] | null
 
 }
-const CheckBoxCon = ({ moreMenuHandler, store}:Props) => {
+const CheckBoxCon = ({ moreMenuHandler }:Props) => {
+    const { option } = useSelector((state:RootState)=>({
+        option:state.Store.menu.optionGroups
+    }))
     
-    const [AC, setAC] = useState<any>([]);
-
-    useEffect(()=>{
-        dbService.collection('store').doc(`${store}`).get().then(
-            (doc:any) => {
-                setAC(doc.data().AC);
-            }
-        )
-    },[]);
 
     return (
         <div className="checkbox-con">
 
-            {
+            {/* {
                 AC?.map((doc:any)=>{
                    
                         return <CheckItem key={doc.menu} menu={doc} moreMenuHandler={moreMenuHandler} />
                 })
-            }
+            } */}
         </div>
     );
 }

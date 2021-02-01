@@ -7,7 +7,7 @@ import { resetCount } from '../../redux/modules/counters';
 interface Props {
     totalPrice:number;
     history:any;
-}
+};
 
 const DetailViewNav = ({totalPrice,history, }:Props) => {
 
@@ -18,7 +18,7 @@ const DetailViewNav = ({totalPrice,history, }:Props) => {
             <div className="detail-nav-content">
                 <img  className="back-bt" onClick={()=>{history.goBack();dispatch(resetCount());}} src={Arrow} alt="Arrow"/>    
                 <div className="detail-nav-content-text">MENU</div>
-                <BucketButtonContainer totalPrice={totalPrice}/>
+                <BucketButtonContainer/>
             </div>
         </div>
     );

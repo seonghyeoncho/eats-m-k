@@ -4,7 +4,7 @@ import Cart from '../../image/graphics/graphic_cart_x3.png';
 
 type Props = {
     store: string | null;
-    table: string | null;
+    table: string | string[] | null;
 }
 
 const BucketButton = ({store,table}:Props) => {

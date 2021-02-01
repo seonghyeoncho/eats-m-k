@@ -8,6 +8,13 @@
 body{
     margin:0px;
     font-family: NotoSansCJkkr-Regular;
+    scrollbar-width: none;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+    ::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera*/
+    }
+    background-color: black;
 }
 Link{
     text-decoration: none;
@@ -59,11 +66,11 @@ Link{
 }
 .store-nav-con{
     z-index: 1;
-    position: fixed;
+
     top:0px;
     height: 155px;
     width: 100%;
-    background-color: $base-color;
+    background-color: black;
     color: #ffffff;
     display: flex;
     justify-content: space-between;
@@ -954,6 +961,26 @@ Link{
         }
     }
 }
+.horizontal-scroll{
+    background-color: black;
+    color: white;
+    .content-con{
+        width: 100%;
+        white-space: nowrap;
+        overflow-x: auto;
+        color: white;
+        .content{
+            .item{
+                display: inline-block;
+                width: 150px;
+                height: 200px;
+                border-radius: 20px;
+                margin: 0 10px;
+                background-color: rgb(53, 53, 53);
+            }
+        }
+    }
+}
 .bucket-img{
     margin-right: 35px;
     width: 40px;
@@ -963,6 +990,7 @@ Link{
 }
 .block{
     height: 100px;
+    background-color: black;
 }
 a {
     text-decoration: none;

@@ -64,7 +64,7 @@ const DetailView = (props:any) => {
             <StoreAndTableBoxContainer/>
             <DetailViewNav totalPrice={totalPrice} history={props.history}/>
             <DetailContent moreMenuHandler={moreMenuHandler} select={select}/>
-            <AddMenuButtonContainer select={select} history={props.history}/>
+            <AddMenuButtonContainer select={select}/>
         </div>
     );
 }

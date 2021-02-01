@@ -1,43 +1,36 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { dbService } from '../../firebase/firebase';
-import { addOrdersFunc } from '../../functions/compareAndMerge';
+import { RootState } from '../../redux';
+import { addBucketMenu } from '../../redux/actions/DataAction';
+import { Option } from '../../redux/Types'
 
 interface Props {
     select: {
         menu:string,
         price:number,
-        more: any,
+        optoins: Option[],
         count:number,
         itemTotalPrice: number
     };
-    store:string | string[] | null
-    table:string | string[] | null
 }
 
-const OrderButtonDirect = ({select, store, table}:Props) => {
+const OrderButtonDirect = ({select}:Props) => {
 
-    const [bucket, setBucket] = useState<any>([]);
-    const [totalPrice, setTotalPrice] = useState<number>(0);
-    const orderStatus = JSON.parse(window.localStorage.getItem('orderStatus')!);
-    
+    const { bucket, orderStatus } = useSelector((state:RootState) => ({
+        bucket:state.Data.data.bucket,
+        orderStatus:state.Data.data.orderStatus
+    }));
+    const dispatch = useDispatch();
     const onClick = () => {
-        addOrdersFunc(bucket, select, totalPrice);
+        dispatch(addBucketMenu(bucket, select));
     };
-    useEffect(()=>{
-        dbService.collection(`${store}`).doc(`${table}`).get().then((doc:any)=>{
-            const data = doc.data();
-            setBucket(data.bucket);
-            setTotalPrice(data.totalPrice);
-        });
-    },[]);
-
     return(
         <div>
             <div onClick={onClick}>
-                <Link to={`/orderlistd/?store=${store}&table=${table}`}>
+                {/* <Link to={`/orderlistd/?store=${store}&table=${table}`}>
                     <div className={`bt ${orderStatus?'add':''}`}>{orderStatus? '추가 주문하기':'주문하기'}</div>
-                </Link>
+                </Link> */}
             </div>
         </div>
     );

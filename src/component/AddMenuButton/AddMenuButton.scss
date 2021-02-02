@@ -1,16 +1,4 @@
+@import '../../scss/mixin';
 .addmenu-bt{
-    position: fixed;
-    left: 24px;
-    width: 153px;
-    bottom: 20px;
-    border: solid 1px $base-color;
-    border-radius: 30px;
-    color: $base-color;
-    height: 58px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-    font-family: NotoSansCJkkr-Bold;
-    font-size: 18px;
+    border: solid 1px black;
 }

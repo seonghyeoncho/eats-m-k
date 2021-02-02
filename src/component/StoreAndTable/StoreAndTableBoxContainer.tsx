@@ -2,6 +2,7 @@ import React from 'react';
 import StoreAndTableBox from './StoreAndTableBox';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux';
+import './StoreAndTable.scss';
 
 const StoreAndTableBoxContainer = () => {
     const { orderStatus, state, store, table } = useSelector((state:RootState)=>({

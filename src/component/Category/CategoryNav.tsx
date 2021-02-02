@@ -9,13 +9,13 @@ interface Category {
 interface Props {
     categorys:Category[];
     setCategoryName: (category:string) => void;
-}
+};
 
 const CategoryNav = ({ categorys, setCategoryName}:Props) => {
     console.log(categorys);
     return (
-        <div className="category">
-            <div className="item-con">
+        <div className="category-nav">
+            <div className="name">
                 {
                     categorys.map((category:Category) => {
                         return (
@@ -26,7 +26,6 @@ const CategoryNav = ({ categorys, setCategoryName}:Props) => {
                     })
                 }
             </div>
-
         </div>
     );
 };

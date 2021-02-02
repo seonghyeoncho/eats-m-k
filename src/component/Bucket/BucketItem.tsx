@@ -1,51 +1,33 @@
 import React from 'react';
-import CancleOrderButtonContainer from '../CancleOrderButton/CancleOrderButtonContainer';
 import ModifCount from './ModifCount';
 import BucketItemInfo from './BucketItemInfo';
 import MoreMenuListContainer from './MoreMenuListContainer';
-
+import { Bucket } from '../../redux/reducers/DataReducer';
+import DeleteMenuContainer from '../CancleOrderButton/DeleteMenuContainer';
 
 interface Props {
-    bucket: any;
-    totalPrice:number
-    store:string | string[] | null
-    table:string | string[] | null
+    bucket: Bucket[];
+};
 
-}
-const BucketItem = ({bucket, store, table, totalPrice}:Props) => {
+const BucketItem = ({bucket}:Props) => {
     return(
-        <>
+        <div className="item">
             {
-                bucket?.map((doc:any): JSX.Element | undefined => {
-                    for(let i in doc){
+                bucket.map((item:Bucket): JSX.Element | undefined => {
                         return (
-                            <div className="bucket-item-con" key={doc.menu}>
-                                <div className="bucket-item"> 
-                                    <BucketItemInfo menu={doc.menu} itemTotalPrice={doc.itemTotalPrice} count={doc.count} price={doc.price}/>
-                                    <MoreMenuListContainer more={doc.more}/>
-                                    <div className="line"/>
-                                    <div className="modif-bucket">
-                                        <CancleOrderButtonContainer 
-                                            id={doc.id} 
-                                            itemTotalPrice={doc.itemTotalPrice} 
-                                            bucket={bucket} 
-                                            store={store} 
-                                            table={table} 
-                                            totalPrice={totalPrice} 
-                                        />
-                                        <ModifCount 
-                                            c={doc.count}
-                                            select={doc}
-                                        />
-                                    </div>
+                            <div className="content" key={item.id}>
+                                <div className="item"> 
+                                    <BucketItemInfo name={item.name} itemTotalPrice={item.itemTotalPrice} count={item.count} price={item.price}/>
+                                    <MoreMenuListContainer more={item.option}/>
+                                    <DeleteMenuContainer id={item.id} itemTotalPrice={item.itemTotalPrice}/>
+                                    <ModifCount c={item.count} select={item}/>
                                 </div>
-                                <div className="middle"/>
                             </div>
                         );
                     }
-                })
+                )
             }
-        </>
+        </div>
     );
 };
 export default BucketItem;

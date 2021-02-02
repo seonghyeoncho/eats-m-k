@@ -1,11 +1,23 @@
-.category{
+.category-nav{
     width: 100%;
     white-space: nowrap;
     overflow-x: auto;
-    color: white;
-    .item-con{
+    color: black;
+    .name{
         .item{
+            margin: 20px;
             display: inline-block;
+        }
+    }
+}
+.category{
+    .list{
+        .item{
+            display: flex;
+            margin-left: 20px;
+            div{
+                margin: 20px;
+            }
         }
     }
 }

@@ -4,10 +4,11 @@ import M_img from '../../image/icons/icon_minus_x3.png';
 import { useDispatch } from 'react-redux';
 import { modifBucketDe, modifBucketIn } from '../../redux/actions/DataAction';
 import { DataAction } from '../../redux/actions';
+import { Bucket } from '../../redux/reducers/DataReducer';
 
 interface Props {
     c: number;
-    select: any
+    select: Bucket;
 }
 
 const ModifCount = ({c, select}:Props) => {

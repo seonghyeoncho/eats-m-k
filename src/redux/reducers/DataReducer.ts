@@ -4,26 +4,19 @@ import { Action } from '../Types';
 interface Option {
     menu:string,
     price:number,
-    state:boolean
 };
-interface Bucket {
+export interface Bucket {
     name: string;
-    price: string;
-    description: string;
-    state:boolean,
+    id: string;
+    price: number;
     option:Option[]
-};
-interface Item {
-    name: string;
-    price: string;
-    description: string;
-    categories: number[];
-    optionGroups: number[];
+    itemTotalPrice:number,
+    count:number
+
 };
 interface Receipt {
     menu:string,
     price:number,
-    state:boolean
 };
 
 export interface Data {

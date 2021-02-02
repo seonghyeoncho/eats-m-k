@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Trashcon from '../../image/icons/icon_delete_x3.png';
 
 type Props = {
-    popUpTrigger: ()=>void
+    popUpTrigger: () => void;
 };
 
-const CancleOrderButton = ({ popUpTrigger }:Props) => {
+const DeleteMenu = ({ popUpTrigger }:Props) => {
 
     return (
         <div onClick={popUpTrigger} className="modif-bucket-delete-con">
@@ -15,4 +15,4 @@ const CancleOrderButton = ({ popUpTrigger }:Props) => {
     );
 }
 
-export default CancleOrderButton;
+export default DeleteMenu;

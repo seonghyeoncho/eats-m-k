@@ -1,12 +1,12 @@
 import React from 'react';
-import './PopUp.scss';
+import './Popup.scss';
 
 interface Props {
     title:string;
     content:string;
     func: () => void;
     popUpTrigger:() => void
-}
+};
 
 const PopUp = ({title, content,func,popUpTrigger}:Props) => {
     return(
@@ -25,5 +25,6 @@ const PopUp = ({title, content,func,popUpTrigger}:Props) => {
             </div>
         </div>
     );
-}
+};
+
 export default PopUp; 

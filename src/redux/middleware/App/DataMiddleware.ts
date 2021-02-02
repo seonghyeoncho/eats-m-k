@@ -5,6 +5,8 @@ import { RootState } from '../..';
 import { addBucketMenu, loadDataFirebase, setData } from '../../actions/DataAction';
 import { addOrdersFunc } from '../../../functions/compareAndMerge';
 import { resetCount } from '../../actions/CounterAction';
+import { disconnect } from 'process';
+import { Bucket } from '../../reducers/DataReducer';
 
 interface param {
     dispatch: any;
@@ -34,7 +36,6 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
         const storeName = getState().Store.information.name;
         const table = getState().Location.table;
         const bucket = addOrdersFunc( getState().Data.data.bucket, action.payload.select );
-        console.log(bucket);
         const totalPrice = getState().Data.data.totalPrice + action.payload.select.itemTotalPrice;
         dbService
             .collection(`${storeName}`)
@@ -54,19 +55,23 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
         const select = action.payload.select
         const prevId = select.id;
         const count = select.count - 1;
-        var moreprice = select.price;
-        select.options.forEach((doc:any) => { moreprice += doc.price; });
-        const itemTotalPrice = select.itemtTotalPrice - moreprice;
+        var morePrice = select.price;
+        select.options.forEach((doc:any) => { morePrice += doc.price; });
+        const itemTotalPrice = select.itemTotalPrice - morePrice;
+        console.log(itemTotalPrice);
+        console.log(select.itemTotalPrice)
         const Obj = {
-            ...select,
+            name:select.name,
+            price:select.price,
+            options:select.options,
             count: count,
             id:`${select.name}/${count}/${JSON.stringify(select.options)}`,
             itemTotalPrice: itemTotalPrice 
         };
-        const modifBuc = bucket.map((item:any) => item.id === prevId ? Obj : item);
+        const modifBuc = bucket.map((item:Bucket) => item.id === prevId ? Obj : item);
         const storeName = getState().Store.information.name;
         const table = getState().Location.table;
-        const totalPrice = getState().Data.data.totalPrice + moreprice;
+        const totalPrice = getState().Data.data.totalPrice - morePrice;
         dbService
             .collection(`${storeName}`)
             .doc(`${table}`)
@@ -85,12 +90,14 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
         const bucket = getState().Data.data.bucket;
         const select = action.payload.select
         const prevId = select.id;
-        var moreprice = select.price;
-        select.options.forEach((doc:any) => { moreprice += doc.price;});
+        var morePrice = select.price;
+        select.options.forEach((doc:any) => { morePrice += doc.price;});
         const count = select.count + 1;
-        const itemTotalPrice = select.itemtTotalPrice + moreprice;
+        const itemTotalPrice = select.itemTotalPrice + morePrice;
         const Obj = {
-            ...select,
+            name:select.name,
+            price:select.price,
+            options:select.options,
             count: count,
             id:`${select.name}/${count}/${JSON.stringify(select.options)}`,
             itemTotalPrice: itemTotalPrice 
@@ -98,7 +105,7 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
         const modifBuc = bucket.map((item:any) => item.id === prevId ? Obj : item);
         const storeName = getState().Store.information.name;
         const table = getState().Location.table;
-        const totalPrice = getState().Data.data.totalPrice + moreprice;
+        const totalPrice = getState().Data.data.totalPrice + morePrice;
         dbService
             .collection(`${storeName}`)
             .doc(`${table}`)
@@ -111,5 +118,25 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
                 dispatch(resetCount());
                 dispatch(loadDataFirebase());
             }).catch((e) => console.log(e));
+    };
+    if(DataAction.Types.DELETE_MENU === action.type) {
+        const storeName = getState().Store.information.name;
+        const table = getState().Location.table;
+        const bucket = getState().Data.data.bucket.filter((doc:Bucket) => doc.id !== action.payload.id);
+        const totalPrice = getState().Data.data.totalPrice - action.payload.itemTotalPrice;
+        dbService
+            .collection(`${storeName}`)
+            .doc(`${table}`)
+            .update({
+                'bucket':[
+                    ...bucket
+                ],
+                'totalPrice': totalPrice
+            }).then(() => {
+                dispatch(resetCount());
+                dispatch(loadDataFirebase());
+            }).catch((e) => console.log(e));
+
+
     }
 };

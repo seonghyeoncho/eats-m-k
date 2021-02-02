@@ -9,10 +9,8 @@ const MoreMenuListContainer = ({more}:Props) => {
     return(
         <div>
             {
-                more !== undefined ? 
-                    <MoreMenuList more={more}/>
-                :
-                    <div>추가사항 없음</div>
+                more !== undefined ? <MoreMenuList more={more}/>
+                : <></>
             }
         </div>
     ); 

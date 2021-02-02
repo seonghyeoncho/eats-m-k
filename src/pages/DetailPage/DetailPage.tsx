@@ -30,14 +30,14 @@ const DetailPage = ({select, history}:Props) => {
     }));
     const [ options, setOptions ] = useState<Option[]>([]);
     const [ itemTotalPrice , setItemTotalPrice ] = useState<number>(0);    
-    const moreMenuHandler = (m:Option, isChecked:boolean) => {
+    const optionHandler = (o:Option, isChecked:boolean) => {
         if(isChecked) {
-            setOptions((prev:Option[]) => [m,...prev]);
-            setItemTotalPrice(itemTotalPrice + m.price);
+            setOptions((prev:Option[]) => [o,...prev]);
+            setItemTotalPrice(itemTotalPrice + o.price);
             dispatch(SelectAction.setMenu(select, count, options));
         } else if(!isChecked) {
-            setOptions( (prev:Option[]) => prev.filter((doc:Option)=> m.name !== doc.name));
-            setItemTotalPrice(itemTotalPrice - m.price);
+            setOptions( (prev:Option[]) => prev.filter((doc:Option)=> o.name !== doc.name));
+            setItemTotalPrice(itemTotalPrice - o.price);
             dispatch(SelectAction.setMenu(select, count, options));
         };
     };
@@ -45,7 +45,7 @@ const DetailPage = ({select, history}:Props) => {
         <div className="detail">
             <DetailNav history={history}/>
             <DetailInfo name={select.name} price={select.price} desc={select.desc}/>
-            <DetailContent moreMenuHandler={moreMenuHandler}/>
+            <DetailContent optionHandler={optionHandler}/>
             <AddMenuButtonContainer/>
         </div>
     );

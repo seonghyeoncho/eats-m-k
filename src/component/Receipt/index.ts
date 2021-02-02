@@ -1,3 +1,3 @@
-import ReceiptButtonContainer from './ReceiptButtonContainer';
+import ReceiptButtonContainer from './ReceiptButton/ReceiptButtonContainer';
 
 export { ReceiptButtonContainer }

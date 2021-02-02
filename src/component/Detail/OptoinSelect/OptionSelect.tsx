@@ -1,15 +1,16 @@
 import React from 'react';
 import numberWithCommas from '../../../functions/addCommaFunc';
 import { Option, OptionGroup } from '../../../redux/Types';
+import Options from '../Options';
 
 
 interface Props {
-    moreMenuHandler: ( m:any, checked:boolean ) => void;
+    optionHandler: ( o:any, checked:boolean ) => void;
     selectOptionGroups: string[];
     optionGroups: OptionGroup[];
 };
 
-const OptionSelect = ({moreMenuHandler, selectOptionGroups, optionGroups}:Props) => {
+const OptionSelect = ({optionHandler, selectOptionGroups, optionGroups}:Props) => {
 
     return (
         <div className="option">
@@ -19,16 +20,7 @@ const OptionSelect = ({moreMenuHandler, selectOptionGroups, optionGroups}:Props)
                         return(
                             <div className="content">
                                 <div className="title">최대 : {option.maxSelect}개</div>
-                                {
-                                    option.options.map((op:Option) => {
-                                        return (
-                                            <div  className="item" onClick={()=>moreMenuHandler(op,true)}>
-                                                <div className="name">{op.name}</div>
-                                                <div className="price"> + {numberWithCommas(op.price)}원</div>
-                                            </div>
-                                        )
-                                    })
-                                }
+                                <Options optionHandler={optionHandler} options={option.options}/>
                             </div>
                         )
                     }

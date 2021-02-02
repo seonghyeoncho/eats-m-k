@@ -11,13 +11,13 @@ import '../../scss/main.scss';
 
 const Home: React.FC<any> = ( props:any ) => {
 
-    const { orderStatus, totalPrice, items, categotys } = useSelector((state:RootState)=>({
+    const { items, categotys } = useSelector((state:RootState)=>({
         orderStatus:state.Data.data.orderStatus,
         totalPrice:state.Data.data.totalPrice,
         items:state.Store.menu.items,
         categotys: state.Store.menu.categories
     }));
-
+    const s = window.localStorage.getItem('storeName');
     const [ categoryName, setCategoryName ] = useState<string>('');
     const query = queryString.parse(window.location.search);
     const store = query.store;
@@ -25,10 +25,10 @@ const Home: React.FC<any> = ( props:any ) => {
     const dispatch = useDispatch();
     
     useEffect(()=>{
-        dispatch(LocationAction.setLocation(store, table));
+        dispatch(LocationAction.initiateLocation(store, table));
         dispatch(StoreAction.loadStoreFirebase());
         dispatch(DataAction.loadDataFirebase());
-    },[]);
+    },[s]);
 
     return (
         <div>

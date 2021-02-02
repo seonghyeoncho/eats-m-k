@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import ReceiptButtonContainer from '../Receipt/ReceiptButtonContainer';
+import ReceiptButtonContainer from '../Receipt/ReceiptButton/ReceiptButtonContainer';
 
 type BoxProps = {
     store:string | string[] | null;

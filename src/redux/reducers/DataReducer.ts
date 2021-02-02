@@ -2,7 +2,7 @@ import { DataAction } from '../actions';
 import { Action } from '../Types';
 
 interface Option {
-    menu:string,
+    name:string,
     price:number,
 };
 export interface Bucket {
@@ -14,15 +14,10 @@ export interface Bucket {
     count:number
 
 };
-interface Receipt {
-    menu:string,
-    price:number,
-};
-
 export interface Data {
     data: {
         bucket: Bucket[],
-        receipt: Receipt[],
+        receipt: Bucket[],
         totalPrice: number,
         receiptTotalPrice: number,
         state:boolean,

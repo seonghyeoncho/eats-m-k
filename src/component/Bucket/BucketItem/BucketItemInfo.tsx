@@ -1,5 +1,5 @@
 import React from 'react';
-import numberWithCommas from '../../functions/addCommaFunc';
+import numberWithCommas from '../../../functions/addCommaFunc';
 
 interface Props {
     name: string;
@@ -10,16 +10,16 @@ interface Props {
 
 const BucketItemInfo = ({name, itemTotalPrice, count, price}:Props) => {
     return (
-        <>
-            <div className="bucket-item-info">
+        <div className="info">
+            <div className="name">
                 <div>{name}</div>
                 <div>{numberWithCommas(itemTotalPrice)}원</div>
             </div>
-            <div className="bucket-item-count">
+            <div className="count">
                 <div>개수 : {count}개</div>
                 <div>{numberWithCommas(price)}원</div>
             </div>
-        </>
+        </div>
     );
 };
 export default BucketItemInfo;

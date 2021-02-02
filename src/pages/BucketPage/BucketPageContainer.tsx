@@ -5,13 +5,11 @@ import { RootState } from '../../redux';
 import BucketPage from './BucketPage';
 
 const BucketPageContainer = (props:any) => {
-
     const store = window.localStorage.getItem('store');
     const table = window.localStorage.getItem('table');
     const { bucket } = useSelector((state:RootState)=>({
         bucket:state.Data.data.bucket,
     }));
-
     return (
         <>
             {

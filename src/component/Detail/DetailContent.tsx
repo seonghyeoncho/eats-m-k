@@ -5,17 +5,17 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../redux';
 
 interface Props {
-    moreMenuHandler: (m:Option,isChecked:boolean) => void;
+    optionHandler: (m:Option,isChecked:boolean) => void;
 };
 
-const DetailContent = ({ moreMenuHandler }:Props) => {
+const DetailContent = ({ optionHandler }:Props) => {
     const { select } = useSelector((state:RootState) => ({
         select:state.Select.select,
     }));
 
     return(
         <div>
-            <OptionSelectContainer moreMenuHandler={moreMenuHandler}/>
+            <OptionSelectContainer optionHandler={optionHandler}/>
         </div>
     );
 };

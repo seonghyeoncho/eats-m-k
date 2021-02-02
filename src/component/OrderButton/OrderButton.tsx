@@ -8,13 +8,13 @@ interface Props {
 
 const OrderButton = ({text}:Props) => {
     return(
-        <>
+        <div className="order">
             <Link to={`/orderlist`}>
-                 <div className="main-order-bt">
-                     <div className="main-order-bt-text">{text}</div>
+                 <div className="content">
+                     <div className="text">{text}</div>
                  </div>
             </Link>
-        </>
+        </div>
     );
 }
 

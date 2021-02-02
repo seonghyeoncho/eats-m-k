@@ -15,15 +15,15 @@ export const StoreMiddleware = ({ dispatch, getState }: param) => (
   next(action);
 
   if (StoreAction.Types.LOAD_STORE_FIREBASE === action.type) {
-    console.log(getState().Location.store);
+    const store = window.localStorage.getItem('store')
     dbService
       .collection('stores')
-      .doc(`${getState().Location.store}`)
+      .doc(`${store}`)
       .get()
       .then((querySnapshot) => { 
-        console.log(querySnapshot.data());
         const data:any = querySnapshot.data();
         dispatch(StoreAction.setStoreInformation(data.information.name));
+        window.localStorage.setItem('storeName', data.information.name);
         dispatch(StoreAction.setStoreMenu(data.menu));
       })
       .catch((e) => console.log(e));

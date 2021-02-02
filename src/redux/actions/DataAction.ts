@@ -57,7 +57,7 @@ export const deleteBucket: ActionCreator = (id, itemTotalPrice) => {
         }
     };
 };
-export const reset: ActionCreator = () => {
+export const resetBucket: ActionCreator = () => {
     return {
         type: Types.RESER_BUCKET,
         payload: null

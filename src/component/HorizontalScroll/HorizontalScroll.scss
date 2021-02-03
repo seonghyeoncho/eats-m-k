@@ -1,6 +1,6 @@
 @import '../../scss/_variables.scss';
 .horizontal-scroll{
-    color: black;
+    // color: black;
     .title-con{
         .title{
             color: white;
@@ -16,8 +16,6 @@
         .content{
             .item{
                 .info{
-                    display: flex;
-                    justify-content: space-between;
                     font-size: 16px;
                     
                     margin-bottom: 10px;

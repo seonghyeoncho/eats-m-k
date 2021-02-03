@@ -1,11 +1,30 @@
 .home{
+    height: 282px;
+    width: 100%;
+    color: black;
+    background: linear-gradient(to top, #000000, #000000 10%, rgba(84, 84, 84, 0)), no-repeat url('../../image/graphics/graphic_sushi_big.png');
+    background-position: center center;
+    background-size: 375px 282px;
     .content{
-        background-color: black;
+        // background-color: black;
         .first{
             .horizontal-scroll{
+                margin-bottom: 40px;
                 .title-con{
                     .title{
-                        transform: translate(0,-20px);
+
+                        margin-bottom: 20px;
+
+                    }
+                }
+                .content-con{
+                    .content{
+                        .item{
+                            .info{
+                                display: flex;
+                                justify-content: space-between;
+                            }
+                        }
                     }
                 }
             }
@@ -14,12 +33,23 @@
             .horizontal-scroll{
                 .title-con{
                     .title{
+                        margin-bottom: 20px;
                     }
                 }
             }
-            
+            .content-con{
+                .content{
+                    .item{
+                        .box{
+                            .info{
+                                transform: translate(12px,113px);
+                                font-size: 14px;
+                            }
+                        }
+                    }
+                }
+            }
         }
-
     }
 }
 

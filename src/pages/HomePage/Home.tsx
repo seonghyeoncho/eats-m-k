@@ -34,7 +34,6 @@ const Home: React.FC<any> = ( props:any ) => {
         <div className="home">
             <StoreAndTableBoxContainer/>
             <div className="content">
-
                 <div className="first">
                     <HorizontalScroll list={items} title={'사장님 추천'} width={325} height={160} radius={10}/>
                 </div>

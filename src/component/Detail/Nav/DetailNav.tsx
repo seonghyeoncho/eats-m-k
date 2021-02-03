@@ -11,7 +11,7 @@ interface Props {
 const DetailNav = ({history, }:Props) => {
     const dispatch = useDispatch();
     return(
-        <div className="nav">
+        <div className="detailnav">
             <div className="content">
                 <img  className="back-bt" src={Arrow} alt="Arrow" onClick={()=>{history.goBack();dispatch(CounterAction.resetCount());}}/>    
                 <div className="text">MENU</div>

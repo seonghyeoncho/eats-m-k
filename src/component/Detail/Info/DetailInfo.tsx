@@ -11,8 +11,10 @@ const DetailInfo = ({name, price, desc}:Props) => {
     return (
         <div className="info">
             <div className="content">
-                <div className="name">{name}</div>
-                <div className="desc">{desc}</div>
+                <div className="info1">
+                    <div className="name">{name}</div>
+                    <div className="desc">{desc}</div>
+                </div>
                 <div className="price">{numberWithCommas(price)}원</div>
             </div>
             

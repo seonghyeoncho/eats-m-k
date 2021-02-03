@@ -2,7 +2,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { RootState } from '../../redux';
-import DetailView from './DetailPage';
+import DetailPage from './DetailPage';
+import './DetailPage.scss';
 
 const DetailPageContainer = (props:any) => {
     const { select } = useSelector((state:RootState) => ({
@@ -15,7 +16,7 @@ const DetailPageContainer = (props:any) => {
         <>
             {
                 select.name === '' ? <Redirect to={`/?store=${store}&table=${table}`}/>
-                : <DetailView select={select} history={props.history}/>
+                : <DetailPage select={select} history={props.history}/>
             }
         </>
     );

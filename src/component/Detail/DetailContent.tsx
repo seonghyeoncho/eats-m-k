@@ -14,9 +14,7 @@ const DetailContent = ({ }:Props) => {
     }));
 
     return(
-        <div>
-            <OptionSelectContainer/>
-        </div>
+        <OptionSelectContainer/>
     );
 };
 export default DetailContent;

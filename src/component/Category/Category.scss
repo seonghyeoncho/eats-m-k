@@ -1,9 +1,12 @@
+@import '../../scss/_variables.scss';
+
 .category-nav{
     width: 100%;
     white-space: nowrap;
     overflow-x: auto;
     color: black;
     .name{
+        background-color: $mc-list-BG;
         .item{
             margin: 20px;
             display: inline-block;

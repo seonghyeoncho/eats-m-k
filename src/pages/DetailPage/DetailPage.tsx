@@ -7,6 +7,7 @@ import AddMenuButtonContainer from '../../component/AddMenuButton/AddMenuButtonC
 import DetailInfo from '../../component/Detail/Info/DetailInfo';
 import OrderDirectContainer from '../../component/OrderButton/OrderDirectContainer';
 import { CounterContainer } from '../../component/Counter';
+import Test from '../../image/graphics/testImg.jpg'
 
 interface Props {
     select: {
@@ -47,6 +48,7 @@ const DetailPage = ({select, history}:Props) => {
     return (
         <div className="detail">
             <DetailNav history={history}/>
+            <img src={Test} className="test"/>
             <DetailInfo name={select.name} price={select.price} desc={select.desc}/>
             <DetailContent />
             <CounterContainer/>

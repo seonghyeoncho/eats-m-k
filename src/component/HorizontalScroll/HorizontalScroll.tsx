@@ -2,7 +2,9 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { setMenu } from '../../redux/actions/SelectMenuAction';
+import BigBox from './BigBox';
 import './HorizontalScroll.scss';
+import SmallBox from './SmallBox';
 
 interface Props {
     list: Item[];
@@ -36,13 +38,10 @@ const HorizontalScroll = ({title, list, width, height, radius}:Props) => {
                         list.map((item:Item) => {
                             return (
                                 <Link to={`/detail/`} onClick={() => dispatch(setMenu(item.name, 1,[]))}>
-                                    <div className="item">
-                                        <div className="info">
-                                            <div className="name">{item.name}</div>
-                                            <div className="price">{item.price}</div>
-                                        </div>
-                                        <div className="box" style={{width:`${width}px`, height:`${height}px`, borderRadius:`${radius}` }}></div>
-                                    </div>
+                                    {
+                                        width === 325 ? <BigBox width={width} height={height} radius={radius} name={item.name} price={item.price}/>
+                                        : <SmallBox width={width} height={height} radius={radius} name={item.name} price={item.price}/>
+                                    }
                                 </Link>
                             )
                         })

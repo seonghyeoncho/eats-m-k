@@ -1,0 +1,25 @@
+.home{
+    .content{
+        background-color: black;
+        .first{
+            .horizontal-scroll{
+                .title-con{
+                    .title{
+                        transform: translate(0,-20px);
+                    }
+                }
+            }
+        }
+        .second{
+            .horizontal-scroll{
+                .title-con{
+                    .title{
+                    }
+                }
+            }
+            
+        }
+
+    }
+}
+

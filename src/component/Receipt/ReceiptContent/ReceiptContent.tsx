@@ -28,7 +28,7 @@ const ReciptContent = ({}:Props) => {
                                     <div>개수 : {doc.count}개</div>
                                     <div>{numberWithCommas(doc.price)}원</div>
                                 </div>
-                                <OptionsContainer options={doc.option}/>
+                                <OptionsContainer options={doc.options}/>
                             </div>
                         );
                     }

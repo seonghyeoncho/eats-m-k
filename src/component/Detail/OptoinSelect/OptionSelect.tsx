@@ -1,16 +1,25 @@
-import React from 'react';
-import numberWithCommas from '../../../functions/addCommaFunc';
-import { Option, OptionGroup } from '../../../redux/Types';
-import Options from '../Options';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { SelectAction } from '../../../redux/actions';
+import { OptionGroup } from '../../../redux/Types';
+import Options from './Options';
 
+interface Option {
+    name: string,
+    price: number
+};
+interface OptionGroups {
+    name: string,
+    selecOption: Option[],
+    optionPrice: number,
+}
 
 interface Props {
-    optionHandler: ( o:any, checked:boolean ) => void;
     selectOptionGroups: string[];
-    optionGroups: OptionGroup[];
+    optionGroups:  OptionGroup[];
 };
 
-const OptionSelect = ({optionHandler, selectOptionGroups, optionGroups}:Props) => {
+const OptionSelect = ({ selectOptionGroups, optionGroups }:Props) => {
 
     return (
         <div className="option">
@@ -20,7 +29,7 @@ const OptionSelect = ({optionHandler, selectOptionGroups, optionGroups}:Props) =
                         return(
                             <div className="content">
                                 <div className="title">최대 : {option.maxSelect}개</div>
-                                <Options optionHandler={optionHandler} options={option.options}/>
+                                <Options options={option.options} maxSelect={option.maxSelect} optionName={option.name}/>
                             </div>
                         )
                     }

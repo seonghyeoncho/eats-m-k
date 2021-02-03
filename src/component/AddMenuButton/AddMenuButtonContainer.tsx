@@ -7,14 +7,23 @@ import { RootState } from '../../redux';
 
 const AddMenuButtonContainer = () => {
 
-    const { select, } = useSelector((state:RootState) => ({
-        select:state.Select.select
+    const { select, count } = useSelector((state:RootState) => ({
+        select:state.Select.select,
+        count:state.Counter.count,
     }));
-    console.log(select);
+
     const dispatch = useDispatch();
     const addOrders = () => {
         console.log('dispatch');
-        dispatch(addBucketMenu(select));
+        const Obj = {
+            name: select.name,
+            price: select.price,
+            itemTotalPrice: select.itemTotalPrice,
+            count: count,
+            options:select.options,
+        };
+        console.log(Obj)
+        dispatch(addBucketMenu(Obj));
     };
     return <AddMenuButton  addOrders={addOrders}/>
 }

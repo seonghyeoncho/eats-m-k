@@ -1,19 +1,15 @@
-.counter-con{
-    .counter-content{
+.counter{
+    .content{
         display: flex;
         align-items: center;
         justify-content: space-between;
-        .counter-content-text{
-            font-size: 17px;
-            font-family: NotoSansCJKkr-Bold;
-        }
-        .counter-bt-con{
+        .bt{
             width: 138px;
             display: flex;
             border: solid 1px black;
             border-radius: 50px;
             height: 40px;
-            .counter-bt-text{
+            .text{
                 width: 24px;
                 text-align: center;
                 font-size: 15px;
@@ -23,10 +19,12 @@
                 width: 14px;
                 margin:auto;
             }
-            div{ 
-                padding: 0px 14px;
-                margin:auto 0px;
+            .de-img{
             }
+            .in-img{
+                
+            }
+            
         }
     }
 }

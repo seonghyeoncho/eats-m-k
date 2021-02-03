@@ -1,11 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, BrowserRouterProps, Route, Switch} from 'react-router-dom'
-import OrderListView from '../pages/ComfirmPage/ComfirmPage';
+import ComfirmPageContainer from '../pages/ComfirmPage/ComfirmPageContainer';
 import CompletePage from '../pages/CompletePage/CompletePage';
 import ReceiptPageContainer from '../pages/ReceiptPage/ReceiptPageContainer';
 import Home from '../pages/HomePage/Home';
 import BucketPageContainer from '../pages/BucketPage/BucketPageContainer';
-import OrderListD from '../pages/ComfirmPage/OrderListD';
 import DetailPageContainer from '../pages/DetailPage/DetailPageContainer';
 
 const AppRouter = () => {
@@ -15,11 +14,8 @@ const AppRouter = () => {
                 <Route exact path="/" 
                     component={(props:BrowserRouterProps) => <Home {...props}/>}
                 />
-                <Route exact path="/orderlist" 
-                    component={(props:BrowserRouterProps)=><OrderListView {...props}/>}
-                />
-                <Route exact path="/orderlistd" 
-                    component={(props:BrowserRouterProps)=><OrderListD {...props}/>}
+                <Route exact path="/comfirm" 
+                    component={(props:BrowserRouterProps)=><ComfirmPageContainer {...props}/>}
                 />
                 <Route exact path="/bucket"
                     component={(props:BrowserRouterProps)=><BucketPageContainer {...props}/>}

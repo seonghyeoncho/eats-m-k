@@ -4,6 +4,8 @@ export enum Types {
     SELECT_MENU = '[Select] select menu',
     SET_MENU = '[Select] set menu',
     RESET_SELECT = '[Select] reset select',
+    SELECT_OPTION = '[Select] select options',
+    DELETE_OPTION = '[Select] delete options',
 };
 
 export const setMenu: ActionCreator = (menu, count, options) => {
@@ -30,5 +32,21 @@ export const resetSelect: ActionCreator = () => {
         payload: null
     };
 };
+export const selectOptoin: ActionCreator = (options) => {
+    return {
+        type:Types.SELECT_OPTION,
+        payload: {
+            options:options,
+        }
+    }
+}
+export const deleteOptoin: ActionCreator = (options) => {
+    return {
+        type:Types.DELETE_OPTION,
+        payload: {
+            options:options,
+        }
+    }
+}
 
 

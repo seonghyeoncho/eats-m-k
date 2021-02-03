@@ -15,12 +15,12 @@ const ModifBucket = ({c, select}:Props) => {
 
     const dispatch = useDispatch();
     const onDecrease = () => {
-        console.log(select);
-        dispatch(modifBucketDe(select));
-        dispatch(DataAction.loadDataFirebase());
+        if(c !== 1) {
+            dispatch(modifBucketDe(select));
+            dispatch(DataAction.loadDataFirebase());
+        }
     };
     const onIncrease = () => {
-        console.log(select);
         dispatch(modifBucketIn(select));
         dispatch(DataAction.loadDataFirebase());
     };

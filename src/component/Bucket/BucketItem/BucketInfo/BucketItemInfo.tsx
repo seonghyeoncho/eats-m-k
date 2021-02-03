@@ -1,6 +1,6 @@
 import React from 'react';
-import numberWithCommas from '../../../functions/addCommaFunc';
-
+import numberWithCommas from '../../../../functions/addCommaFunc';
+import './BucketItemInfo.scss';
 interface Props {
     name: string;
     itemTotalPrice: number;

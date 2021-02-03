@@ -1,7 +1,14 @@
 import React from 'react';
-import numberWithCommas from '../../functions/addCommaFunc';
+import numberWithCommas from '../../../functions/addCommaFunc';
+import './ComfirmInfo.scss';
 
-const ComfirmInfo = () => {
+interface Props {
+    store: string | null;
+    table: string | null;
+    totalPrice: number;
+};
+
+const ComfirmInfo = ({store, table, totalPrice}: Props) => {
     return (
         <div className="info">
             <div className="store">{store}</div>

@@ -7,7 +7,7 @@ import { LocationAction, StoreAction, DataAction } from '../../redux/actions';
 import HorizontalScroll from '../../component/HorizontalScroll/HorizontalScroll';
 import CategoryNav from '../../component/Category/CategoryNav';
 import CategoryMenuList from '../../component/Category/CategoryMenuList';
-import '../../scss/main.scss';
+import './HomePage.scss';
 
 const Home: React.FC<any> = ( props:any ) => {
 
@@ -31,11 +31,16 @@ const Home: React.FC<any> = ( props:any ) => {
     },[s]);
 
     return (
-        <div>
+        <div className="home">
             <StoreAndTableBoxContainer/>
-            <div className="main-content">
-                <HorizontalScroll list={items} title={'사장님 추천'} width={325} height={164}/>
-                <HorizontalScroll list={items} title={'이런건 어때요?'} width={120} height={160}/>
+            <div className="content">
+
+                <div className="first">
+                    <HorizontalScroll list={items} title={'사장님 추천'} width={325} height={160} radius={10}/>
+                </div>
+                <div className="second">
+                    <HorizontalScroll list={items} title={'이런건 어때요?'} width={120} height={160} radius={18}/>
+                </div>
                 <CategoryNav categorys={categotys} setCategoryName={setCategoryName}/>
                 <CategoryMenuList list={items} categoryName={categoryName}/>
             </div>

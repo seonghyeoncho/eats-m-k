@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { RootState } from '../../redux';
 import ReceiptPage from './ReceiptPage';
+import './ReceiptPage.scss';
 
 const ReceiptPageContainer = (props:any) => {
 

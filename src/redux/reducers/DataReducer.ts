@@ -9,7 +9,7 @@ export interface Bucket {
     name: string;
     id: string;
     price: number;
-    option:Option[]
+    options:Option[]
     itemTotalPrice:number,
     count:number
 

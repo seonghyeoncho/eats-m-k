@@ -1,6 +1,6 @@
 import React from 'react';
 import ModifBucket from '../ModifBucket/ModifBucket';
-import BucketItemInfo from './BucketItemInfo';
+import BucketItemInfo from './BucketInfo/BucketItemInfo';
 import { Bucket } from '../../../redux/reducers/DataReducer';
 import DeleteMenuContainer from '../../DeleteMenu/DeleteMenuContainer';
 import './BucketItem.scss';
@@ -24,7 +24,7 @@ const BucketItem = ({ bucket }:Props) => {
                                     count={item.count} 
                                     price={item.price}
                                 />
-                                <OptionsContainer options={item.option}/>
+                                <OptionsContainer options={item.options}/>
                                 <DeleteMenuContainer id={item.id} itemTotalPrice={item.itemTotalPrice}/>
                                 <ModifBucket c={item.count} select={item}/>
                             </div>

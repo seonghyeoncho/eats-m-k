@@ -5,17 +5,6 @@
 }
 @include desktop {
 }
-body{
-    margin:0px;
-    font-family: NotoSansCJkkr-Regular;
-    scrollbar-width: none;
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
-    ::-webkit-scrollbar {
-        display: none; /* Chrome, Safari, Opera*/
-    }
-    
-}
 Link{
     text-decoration: none;
 }
@@ -814,22 +803,7 @@ Link{
     height: 100px;
 
 }
-a {
-    text-decoration: none;
-    :link{
-        color: black;
-    }
-    :visited{
-        color: black;
 
-    }
-    :hover{
-        color: black;
-    }
-    :active{
-        color: black;
-    }
-}
 footer{
     background-color: white;
 }

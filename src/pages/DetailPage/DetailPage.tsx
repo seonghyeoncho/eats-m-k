@@ -4,9 +4,9 @@ import DetailNav from '../../component/Detail/Nav/DetailNav';
 import DetailContent from '../../component/Detail/DetailContent';
 import { RootState } from '../../redux';
 import AddMenuButtonContainer from '../../component/AddMenuButton/AddMenuButtonContainer';
-import { SelectAction } from '../../redux/actions';
 import DetailInfo from '../../component/Detail/Info/DetailInfo';
-import { Option } from '../../redux/Types'
+import OrderDirectContainer from '../../component/OrderButton/OrderDirectContainer';
+import { CounterContainer } from '../../component/Counter';
 
 interface Props {
     select: {
@@ -20,6 +20,16 @@ interface Props {
     };
     history:any
 };
+interface Option {
+    name: string,
+    price: number
+};
+
+interface OptionGroups {
+    name: string,
+    selecOption: Option[],
+    optionPrice: number,
+}
 
 const DetailPage = ({select, history}:Props) => {
     const dispatch = useDispatch();
@@ -28,25 +38,20 @@ const DetailPage = ({select, history}:Props) => {
         totalPrice:state.Data.data.totalPrice,
         select:state.Select.select,
     }));
-    const [ options, setOptions ] = useState<Option[]>([]);
+    //필수그룹의 설정도 필요할 듯
+    //옵션 그룹 별로 추가 사항이 들어가도록 해야함
+    // 추가 사항이 없음 상태를 만들어야 할 듯
+
+    const [ options, setOptions ] = useState<OptionGroups[]>([]);
     const [ itemTotalPrice , setItemTotalPrice ] = useState<number>(0);    
-    const optionHandler = (o:Option, isChecked:boolean) => {
-        if(isChecked) {
-            setOptions((prev:Option[]) => [o,...prev]);
-            setItemTotalPrice(itemTotalPrice + o.price);
-            dispatch(SelectAction.setMenu(select, count, options));
-        } else if(!isChecked) {
-            setOptions( (prev:Option[]) => prev.filter((doc:Option)=> o.name !== doc.name));
-            setItemTotalPrice(itemTotalPrice - o.price);
-            dispatch(SelectAction.setMenu(select, count, options));
-        };
-    };
     return (
         <div className="detail">
             <DetailNav history={history}/>
             <DetailInfo name={select.name} price={select.price} desc={select.desc}/>
-            <DetailContent optionHandler={optionHandler}/>
+            <DetailContent />
+            <CounterContainer/>
             <AddMenuButtonContainer/>
+            <OrderDirectContainer/>
         </div>
     );
 }

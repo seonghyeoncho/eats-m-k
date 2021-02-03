@@ -1,29 +1,25 @@
-import React, { useEffect } from 'react';
-import numberWithCommas from '../../functions/addCommaFunc';
+import React from 'react';
 import OrderContainer from '../../component/Order/OrderContainer';
-import MoreMenuList from '../../component/Detail/Options';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../redux';
-import ComfirmInfo from './ComfirmInfo';
+import ComfirmInfo from '../../component/Comfirm/ComfirmInfo/ComfirmInfo';
+import ComfirmContent from '../../component/Comfirm/ComfirmContent/ComfirmContent';
+import { Bucket } from '../../redux/reducers/DataReducer';
 
+interface Props {
+    store: string | null;
+    table: string | null;
+    totalPrice: number;
+    bucket: Bucket[];
+};
 
-const ComfirmPage = (props:any) => {
+const ComfirmPage = ({ store, table, totalPrice, bucket}: Props) => {
     
-    const { bucket, totalPrice, store, table } = useSelector((state:RootState)=>({
-        bucket:state.Data.data.bucket,
-        totalPrice:state.Data.data.totalPrice,
-        store:state.Store.information.name,
-        table:state.Location.table
-    }));
-
     return (
         <div className="comfirm">
-            <ComfirmInfo/>
-
-            
+            <ComfirmInfo store={store} table={table} totalPrice={totalPrice}/>
+            <ComfirmContent bucket={bucket}/>
             <OrderContainer text={"취소"}/>
         </div>
     );
-}
+};
 
 export default ComfirmPage;

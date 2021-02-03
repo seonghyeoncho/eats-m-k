@@ -13,8 +13,18 @@ export interface Select {
     },
     menu: string,
     count:number,
-    options:Option[],
+    options: Options[]
 
+}
+interface Options {
+    name: string,
+    price: number,
+    optionCategory: string,
+}
+interface OptionGroups {
+    name: string,
+    selecOption: Option[],
+    optionPrice: number,
 }
 const initialState: Select = {
     select: {
@@ -29,20 +39,34 @@ const initialState: Select = {
     menu:'',
     count: 1,
     options:[],
+    
 };
 
 const SelectReducer = ( state = initialState , action: Action ) => {
     switch(action.type) {
         case SelectAction.Types.SELECT_MENU:
             return {
+                ...state,
                 select: action.payload.select,
             };
         case SelectAction.Types.SET_MENU:
             return {
+                ...state,
                 menu:action.payload.menu,
                 count:action.payload.count,
                 options:action.payload.options
             }
+        case SelectAction.Types.SELECT_OPTION:
+            return {
+                ...state,
+                options: state.options.concat(action.payload.options),
+            }
+        case SelectAction.Types.DELETE_OPTION:
+            return {
+                ...state,
+                options: state.options.filter((option:Options) => option.name !== action.payload.options.name),
+            }
+            
         default:
             return state;
     };

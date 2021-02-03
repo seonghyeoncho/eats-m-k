@@ -1,5 +1,5 @@
 import { Action } from '../../Types';
-import { DataAction } from '../../actions';
+import { CounterAction, DataAction, SelectAction } from '../../actions';
 import { dbService } from '../../../firebase/firebase';
 import { RootState } from '../..';
 import { loadDataFirebase, setData } from '../../actions/DataAction';
@@ -32,8 +32,25 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
     };
     if(DataAction.Types.ADD_BUCKET_MENU === action.type) {
         console.log('ddd');
-        const bucket = addOrdersFunc( getState().Data.data.bucket, action.payload.select );
-        const totalPrice = getState().Data.data.totalPrice + action.payload.select.itemTotalPrice;
+        const select = action.payload.select
+        var morePrice = select.price;
+        const options = getState().Select.options;
+        options.forEach((doc:any) => { morePrice += doc.price});
+        console.log(morePrice);
+        console.log(options)
+        const count = getState().Counter.count;
+        console.log(getState().Select.options)
+        const Obj = {
+            name: select.name,
+            price: select.price,
+            options:getState().Select.options,
+            count: count,
+            id:`${select.name}/${count}/${JSON.stringify(select.options)}`,
+            itemTotalPrice: (morePrice) * count
+        };
+        const bucket = addOrdersFunc( getState().Data.data.bucket, Obj);
+        console.log(Obj, bucket);
+        const totalPrice = getState().Data.data.totalPrice + Obj.itemTotalPrice;
         dbService
             .collection(`${store}`)
             .doc(`${table}`)
@@ -43,8 +60,8 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
                 ],
                 'totalPrice': totalPrice
             }).then(() => {
-                dispatch(resetCount());
-                dispatch(loadDataFirebase());
+                dispatch(CounterAction.resetCount());
+                dispatch(SelectAction.resetSelect());
             }).catch((e) => console.log(e));
     };
     if(DataAction.Types.MODIF_BUCKET_MENU_DECREASE === action.type) {
@@ -76,8 +93,7 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
                 ],
                 'totalPrice': totalPrice
             }).then(() => {
-                dispatch(resetCount());
-                dispatch(loadDataFirebase());
+                dispatch(CounterAction.resetCount());
             }).catch((e) => console.log(e));
 
     }
@@ -108,8 +124,7 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
                 ],
                 'totalPrice': totalPrice
             }).then(() => {
-                dispatch(resetCount());
-                dispatch(loadDataFirebase());
+                dispatch(CounterAction.resetCount());
             }).catch((e) => console.log(e));
     };
     if(DataAction.Types.DELETE_MENU === action.type) {
@@ -124,8 +139,7 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
                 ],
                 'totalPrice': totalPrice
             }).then(() => {
-                dispatch(resetCount());
-                dispatch(loadDataFirebase());
+                dispatch(CounterAction.resetCount());
             }).catch((e) => console.log(e));
 
 
@@ -138,8 +152,7 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
                 'bucket':[],
                 'totalPrice': 0
             }).then(() => {
-                dispatch(resetCount());
-                dispatch(loadDataFirebase());
+                dispatch(CounterAction.resetCount());
             }).catch((e) => console.log(e));
     }
 };

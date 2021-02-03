@@ -16,7 +16,7 @@ export const SelectMiddleware = ({ dispatch, getState }: param) => (
         console.log(action.type);
         const items = getState().Store.menu.items;
         const count = action.payload.count;
-        const options = action.payload.options;
+        const options = getState().Select.options;
         console.log(items);
 
         for( var i=0 ; i<items.length ; i++ ) {
@@ -38,5 +38,5 @@ export const SelectMiddleware = ({ dispatch, getState }: param) => (
     if(SelectAction.Types.RESET_SELECT === action.type) {
         dispatch(SelectAction.selectMenu(null));
         dispatch(SelectAction.setMenu(null, null, null));
-    }
+    };
 };

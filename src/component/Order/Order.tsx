@@ -14,12 +14,21 @@ const Order = ({ onSubmit, text }:Props) => {
 
     return ( 
         <div className="order">
-            <Link to={`/?store=${store}&table=${table}`}>
-                <div className="text">{text}</div>
-            </Link>
-            <Link to="/complete">
-                <div onClick={onSubmit} className="order">주문하기</div>
-            </Link>
+            
+            <div className="cancle-order">
+                <Link to={`/?store=${store}&table=${table}`} className="atohome">
+                    <div className="text">
+                        {text}
+                    </div>
+                </Link>
+            </div>
+            <div onClick={onSubmit} className="order">
+                <Link to="/complete" className="atocom">
+                    
+                    <div className="order-text">주문하기</div>
+                    
+                </Link>
+            </div>
         </div>
     );
 }

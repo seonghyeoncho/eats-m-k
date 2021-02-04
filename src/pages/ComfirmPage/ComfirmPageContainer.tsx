@@ -15,12 +15,10 @@ const ComfirmContainer = (props:any) => {
         totalPrice:state.Data.data.totalPrice,
     }));
 
-    console.log(bucket);
-
     return (
         // bucket.length === 0 ? <Redirect to={`/?store=${store}&table=${table}`}/>
         // :
-         <ComfirmPage store={storeName} table={table} totalPrice={totalPrice} bucket={bucket}/>
+         <ComfirmPage bucket={bucket}/>
     );
 };
 

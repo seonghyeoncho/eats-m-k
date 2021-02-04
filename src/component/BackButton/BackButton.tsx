@@ -10,7 +10,7 @@ const BackButton = ({text}:Props) => {
     const table = window.localStorage.getItem('table')!;
     return (
         <Link to={`/?store=${store}&table=${table}`} className="back-bt">
-            <div>{text}</div>
+            <div className="text">{text}</div>
         </Link>
     );
 };

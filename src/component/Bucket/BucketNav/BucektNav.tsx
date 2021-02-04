@@ -1,5 +1,5 @@
 import React from 'react';
-import Arrow from '../../../image/icons/icon_arrow_back_black_x3.png';
+import Arrow from '../../../image/icons/icon_arrow_back_white_x3.png';
 import './BucketNav.scss';
 
 interface Props {
@@ -8,8 +8,8 @@ interface Props {
 }
 const BucketNav = ({goBack,popUpTrigger}:Props) => {
     return (
-        <div className="nav" >
-            <div className="img">
+        <div className="bucket-nav" >
+            <div className="back-img">
                 <img src={Arrow} onClick={goBack} alt="Arrow"/>
             </div>
             <div className="text"> 장바구니</div>

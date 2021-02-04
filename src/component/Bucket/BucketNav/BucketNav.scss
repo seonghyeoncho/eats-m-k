@@ -1,12 +1,27 @@
-.nav{
+@import '../../../scss/_variables.scss';
+.bucket-nav{
+    padding: 0 25px;
     display: flex;
-    .img{
-
+    justify-content: space-between;
+    height: 44px;
+    .back-img{
+        margin: auto 0px;
+        
+        img{
+            width: 12px;
+            height: 21px;
+        }
+        
     }
     .text{
+        margin: auto 0px;
+        font-size: 18px;
 
     }
     .reset{
+        margin: auto 0px;
+        font-size: 15px;
+        opacity: 0.54;
 
     }
 }

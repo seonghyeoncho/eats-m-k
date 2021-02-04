@@ -21,7 +21,6 @@ const OrderButtonDirectContainer = () => {
             options:select.options,
         };
         dispatch(DataAction.addBucketMenu(Obj));
-        dispatch(OrderAction.addOrder());
     };
     
     return(

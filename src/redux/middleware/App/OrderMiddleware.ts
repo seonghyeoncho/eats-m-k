@@ -21,6 +21,7 @@ export const OrderMiddleware = ({ dispatch, getState }: param) => (
         const bucket = getState().Data.data.bucket;
         const totalPrice = getState().Data.data.totalPrice;
         const receiptTotalPrice = getState().Data.data.receiptTotalPrice;
+        const receipt = getState().Data.data.receipt;
 
         dbService
             .collection(`${storeName}`)
@@ -32,6 +33,9 @@ export const OrderMiddleware = ({ dispatch, getState }: param) => (
                 'bucket':[],
                 'receipTtotalPrice':receiptTotalPrice + totalPrice,
                 'totalPrice':0,
+                'receipt':[
+                    ...receipt.concat(bucket)
+                ],
                 'order_status':true,
                 'state':false
             })

@@ -1,24 +1,25 @@
 import React from 'react';
 import OrderContainer from '../../component/Order/OrderContainer';
-import ComfirmInfo from '../../component/Comfirm/ComfirmInfo/ComfirmInfo';
 import ComfirmContent from '../../component/Comfirm/ComfirmContent/ComfirmContent';
 import { Bucket } from '../../redux/reducers/DataReducer';
+import CurrentInfo from '../BucketPage/CurrentInfo';
 
 interface Props {
-    store: string | null;
-    table: string | null;
-    totalPrice: number;
     bucket: Bucket[];
 };
 
-const ComfirmPage = ({ store, table, totalPrice, bucket}: Props) => {
+const ComfirmPage = ({ bucket}: Props) => {
     
     return (
+        <>
         <div className="comfirm">
-            <ComfirmInfo store={store} table={table} totalPrice={totalPrice}/>
-            <ComfirmContent bucket={bucket}/>
+            <CurrentInfo/>
+            <ComfirmContent bucket={bucket}/>            
+        </div>
+        <div className="confirm-order">
             <OrderContainer text={"취소"}/>
         </div>
+        </>
     );
 };
 

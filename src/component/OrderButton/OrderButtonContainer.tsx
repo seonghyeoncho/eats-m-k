@@ -8,11 +8,9 @@ const OrderButtonContainer = () => {
         totalPrice:state.Data.data.totalPrice,
     }));
     const func = () => {
-
     }
-    
     return(
-        <div>
+        <div className="order-bt">
             { 
                 totalPrice === 0 ? <></>
                 : <OrderButton text={'주문하기'} func={func}/> 

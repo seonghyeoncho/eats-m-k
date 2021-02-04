@@ -10,25 +10,23 @@ interface Props {
 
 const ComfirmContent = ({ bucket }:Props) => {
     return (
-        <div className="content">
+        <div className="cfcontent">
                 {
                     bucket.map((item:Bucket) => {
                         for(let i in item){
                             return (
                                 <>
-                                    <div className="item">
-                                        <div className="info">
-                                            <div>{item.name}</div>
-                                            <div>{numberWithCommas(item.itemTotalPrice)}원</div>
+                                    <div className="cfitem">
+                                        <div className="cfinfo">
+                                            <div className="cfname">{item.name}</div>
+                                            <div className="cfprice">{numberWithCommas(item.itemTotalPrice)}원</div>
                                         </div>
-                                        <div className="content">
-                                            <div className="info">
+                                        <div className="cfcontent">
+                                            <div className="cfsinfo">
                                                 <div>개수 : {item.count}개</div>
                                                 <div>{numberWithCommas(item.price)}원</div>
                                             </div>
-                                            <div className="option">
-                                                <Options options={item.options}/>
-                                            </div>
+                                            <Options options={item.options}/>
                                         </div>
                                     </div>
                                 </>

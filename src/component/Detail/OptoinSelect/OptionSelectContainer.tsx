@@ -27,7 +27,6 @@ const OptionSelectContainer = ({ }:Props) => {
     console.log(options);
     return (
         <div className="option-con">
-            <div className="title">추가선택</div>
             <OptionSelect 
                 selectOptionGroups={selectOptionGroups}
                 optionGroups={optionGroups}

@@ -15,7 +15,6 @@ const StoreAndTableBox = ({ store, table }:BoxProps) => {
                 <div className="store">{store}</div>
                 <div className="table">테이블 {table}</div>
             </div>
-           
             <div className="order-status-bt">
                 <ReceiptButtonContainer/>
             </div>

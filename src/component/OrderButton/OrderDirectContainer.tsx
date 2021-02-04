@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux';
-import { DataAction } from '../../redux/actions';
+import { DataAction, OrderAction } from '../../redux/actions';
 import OrderButton from './OrderButton';
 
 const OrderButtonDirectContainer = () => {
@@ -21,10 +21,13 @@ const OrderButtonDirectContainer = () => {
             options:select.options,
         };
         dispatch(DataAction.addBucketMenu(Obj));
+        dispatch(OrderAction.addOrder());
     };
     
     return(
-        <div onClick={addOrders}><OrderButton text={'주문하기'}/></div>
+        <div className="order-detail">
+            <OrderButton text={'주문하기'} func={addOrders}/>
+        </div>
     );
 }
 

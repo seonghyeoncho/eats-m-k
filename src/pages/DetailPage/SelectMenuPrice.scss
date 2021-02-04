@@ -1,0 +1,17 @@
+@import '../../scss/_variables.scss';
+.selectprice{
+    background-color: $mc-list-BG;
+    color: white;
+    height: 40px;
+    padding: 12px 25px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 19px;
+    font-family: NotoSansCJKkr-Bold;
+    .text{
+        margin: auto 0;
+    }
+    .price{
+        margin: auto 0;
+    }
+}

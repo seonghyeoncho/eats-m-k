@@ -18,7 +18,7 @@ export const OrderMiddleware = ({ dispatch, getState }: param) => (
     if(OrderAction.Types.ADD_NEW_ORDER === action.type) {
         const storeName = getState().Store.information.name;
         const table = getState().Location.table;
-        const bucket = '';
+        const bucket = getState().Data.data.bucket;
         const totalPrice = getState().Data.data.totalPrice;
         const receiptTotalPrice = getState().Data.data.receiptTotalPrice;
 
@@ -26,12 +26,14 @@ export const OrderMiddleware = ({ dispatch, getState }: param) => (
             .collection(`${storeName}`)
             .doc(`${table}`)
             .update({
-                'order':bucket,
+                'order':[
+                    ...bucket
+                ],
                 'bucket':[],
-                'receipt_total_price':receiptTotalPrice + totalPrice,
+                'receipTtotalPrice':receiptTotalPrice + totalPrice,
                 'totalPrice':0,
                 'order_status':true,
-                'state':true
+                'state':false
             })
             .then(() => {
                 dispatch(loadDataFirebase());

@@ -62,6 +62,7 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
             }).then(() => {
                 dispatch(CounterAction.resetCount());
                 dispatch(SelectAction.resetSelect());
+                dispatch(SelectAction.resetOption());
             }).catch((e) => console.log(e));
     };
     if(DataAction.Types.MODIF_BUCKET_MENU_DECREASE === action.type) {

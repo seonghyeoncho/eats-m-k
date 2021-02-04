@@ -25,8 +25,11 @@ const BucketItem = ({ bucket }:Props) => {
                                     price={item.price}
                                 />
                                 <OptionsContainer options={item.options}/>
-                                <DeleteMenuContainer id={item.id} itemTotalPrice={item.itemTotalPrice}/>
-                                <ModifBucket c={item.count} select={item}/>
+                                <div className="line"/>
+                                <div className="modif-bt">
+                                    <DeleteMenuContainer id={item.id} itemTotalPrice={item.itemTotalPrice}/>
+                                    <ModifBucket c={item.count} select={item}/>
+                                </div>
                             </div>
                         </div>
                     )}

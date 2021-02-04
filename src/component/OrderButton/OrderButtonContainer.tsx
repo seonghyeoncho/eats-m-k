@@ -7,12 +7,15 @@ const OrderButtonContainer = () => {
     const { totalPrice } = useSelector((state:RootState) => ({
         totalPrice:state.Data.data.totalPrice,
     }));
+    const func = () => {
+
+    }
     
     return(
         <div>
             { 
                 totalPrice === 0 ? <></>
-                : <OrderButton text={'주문하기'}/> 
+                : <OrderButton text={'주문하기'} func={func}/> 
             }
         </div>
     );

@@ -1,25 +1,71 @@
 @import '../../scss/_variables.scss';
 
 .category-nav{
+    position: sticky;
+    top:0px;
     width: 100%;
     white-space: nowrap;
     overflow-x: auto;
     color: black;
+    margin-top: 40px;
     .name{
-        background-color: $mc-list-BG;
+        font-family: NotoSansCJKkr-Regular;
         .item{
-            margin: 20px;
+           
+            margin: 0 10px;
             display: inline-block;
+            color: $category;
+        }
+        .selectedC{
+            color: white;
+            display: inline-block;
+            padding-bottom: 4px;
+            border-bottom: solid 2px white;
         }
     }
 }
 .category{
+    .category-name{
+        background-color: $mc-list-BG;
+        height: 44px;
+        margin-top: 12px;
+        .name-text{
+            color: white;
+            margin-left: 25px;
+            font-size: 14px;
+            padding-top: 12px;
+            font-family: NotoSansCJKkr-Bold;
+           
+        }
+    }
     .list{
-        .item{
+        .list-con{
             display: flex;
-            margin-left: 20px;
-            div{
-                margin: 20px;
+            height: 94px;
+            align-items: center;
+            .img{
+                width: 70px;
+                height: 70px;
+                background-color: white;
+                margin-left: 25px;
+            }
+            .item{
+                color: white;
+                margin-left: 15px;
+                .name{
+                    font-size: 15px;
+                    font-family: NotoSansCJKkr-Bold;
+                }
+                .description{
+                    font-family: NotoSansCJKkr-Regular;
+                    font-size: 13px;
+                    color: $sub-text;
+                    margin-bottom: 4px;
+                }
+                .price{
+                    font-family: NotoSansCJKkr-Regular;
+                    font-size: 15px;
+                }
             }
         }
     }

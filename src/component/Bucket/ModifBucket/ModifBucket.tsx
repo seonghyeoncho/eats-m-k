@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { modifBucketDe, modifBucketIn } from '../../../redux/actions/DataAction';
 import { DataAction } from '../../../redux/actions';
 import { Bucket } from '../../../redux/reducers/DataReducer';
+import './ModifBucket.scss';
 
 interface Props {
     c: number;
@@ -27,8 +28,8 @@ const ModifBucket = ({c, select}:Props) => {
 
     return (
         <div className="modif">
-            <div className="content">
-                <div onClick={()=>{onDecrease();}} className="m-img">
+            <div className="modif-content">
+                <div onClick={()=>{onDecrease();}} className={`m ${ c ===1 ? 'nm':''}`}>
                     <img src={M_img} alt="M"/>
                 </div>
                 <div className="count">{c}</div>

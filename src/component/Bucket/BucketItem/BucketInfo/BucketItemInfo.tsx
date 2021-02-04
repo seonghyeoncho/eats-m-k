@@ -16,7 +16,7 @@ const BucketItemInfo = ({name, itemTotalPrice, count, price}:Props) => {
                 <div>{numberWithCommas(itemTotalPrice)}원</div>
             </div>
             <div className="count">
-                <div>개수 : {count}개</div>
+                <div>수량 : {count}개</div>
                 <div>{numberWithCommas(price)}원</div>
             </div>
         </div>

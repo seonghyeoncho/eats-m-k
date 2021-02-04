@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { RootState } from '../../redux';
 import BucketPage from './BucketPage';
+import './BucketPage.scss';
 
 const BucketPageContainer = (props:any) => {
     const store = window.localStorage.getItem('store');

@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import numberWithCommas from '../../../functions/addCommaFunc';
+import Checked from '../../../image/icons/icon_CheckBox_selected_x3.png';
+import NotCheck from '../../../image/icons/icon_CheckBox_deselect_x3.png';
+
 interface Option {
     name: string,
     price: number
@@ -21,7 +24,11 @@ const SelectItem = ({ name, price, optionHandler }:Props) => {
     
     return (
         <div className="item" onClick={() => {setIsChecked(!isChecked);optionHandler(option, isChecked);}}>
-            <div className="name">{name}</div>
+            <div className="con">
+                <img className='check' src={!isChecked ? Checked:NotCheck}></img>
+                <div className="name">{name}</div>
+            </div>
+            
             <div className="price"> + {numberWithCommas(price)}원</div>
         </div>
     );

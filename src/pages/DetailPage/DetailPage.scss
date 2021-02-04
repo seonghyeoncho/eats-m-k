@@ -1,49 +1,77 @@
 @import '../../scss/_variables.scss';
 .detail{
     background-color: black;
-    .test{
-        z-index: 2;
-        position: fixed;
-        top:0;
-        left: 0;
-        right: 0;
-        height: 282px;
-        width: 100%;
-    }
-    .info{
-        position: fixed;
-        top:224px;
-        left: 0;
-        right: 0;
-        z-index: 3;
+    margin-bottom: 100px;
+    .con{
+        position: relative;
+        .test{
+            z-index: 2;
+            height: 282px;
+            width: 100%;
+            background: no-repeat url('../../image/graphics/testImg.jpg');
+            background-size: 100%;
+            background-position: center center;
+        }
+        .info{
+            position: absolute;
 
-        background-color: black;
-        border-radius: 40px 40px  0 0 ;
-        padding:  16px 25px;
-        padding-top: 18px;
-        .content{
-            z-index: 1;
-            color: white;
+            top:224px;
+            left: 0;
+            right: 0;
+            z-index: 3;
 
-            height: 46px;
-            display: flex;
-            justify-content: space-between;
-            .info1{
-                .name{
+            background-color: black;
+            border-radius: 40px 40px  0 0 ;
+            padding:  16px 25px;
+            padding-top: 18px;
+            .content{
+                z-index: 1;
+                color: white;
+
+                height: 46px;
+                display: flex;
+                justify-content: space-between;
+                .info1{
+                    .name{
+                        font-size: 17px;
+                        font-family: NotoSansCJKkr-Bold;
+                    }
+                    .desc{
+                        font-size: 13px;
+                        font-family: NotoSansCJKkr-Regular;
+                        color: $sub-text;
+                    }
+                }
+                .price{
                     font-size: 17px;
-                    font-family: NotoSansCJKkr-Bold;
-                }
-                .desc{
-                    font-size: 13px;
                     font-family: NotoSansCJKkr-Regular;
-                    color: $sub-text;
+                    margin: auto 0;
                 }
-            }
-            .price{
-                font-size: 17px;
-                font-family: NotoSansCJKkr-Regular;
-                margin: auto 0;
             }
         }
     }
 }
+.detail-bt{
+    position: fixed;
+    left: 4%;
+    right: 4%;
+    bottom: 20px;
+    height: 7.9%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .order-detail{
+        width: 100%;
+        height: 60px;
+        background-color: $base-color;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .order{
+            .text{
+                font-size: 1.188rem;
+            }
+        }
+    }
+}  

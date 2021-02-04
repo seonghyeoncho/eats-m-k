@@ -1,6 +1,22 @@
+@import '../../../scss/_variables.scss';
 .items{
+    
     .content{
+        border-bottom: solid 10px black;
+        background-color: $list-BG;
         .item{
+            .line{
+                height: 0;
+                margin: 0 25px; 
+                opacity: 0.2;
+                border: solid 1px white;
+            }
+            .options{
+                .item{
+                    margin: 0 25px;
+                }
+            }
+            
             .info{
                 .name{
 
@@ -8,6 +24,12 @@
                 .count{
                     
                 }
+            }
+            .modif-bt{
+                display: flex;
+                justify-content: space-between;
+
+                padding: 14px 25px 16px 25px;
             }
         }
     }

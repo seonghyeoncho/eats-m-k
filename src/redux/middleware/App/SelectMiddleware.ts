@@ -36,7 +36,10 @@ export const SelectMiddleware = ({ dispatch, getState }: param) => (
         };
     };
     if(SelectAction.Types.RESET_SELECT === action.type) {
-        dispatch(SelectAction.selectMenu(null));
-        dispatch(SelectAction.setMenu(null, null, null));
+        dispatch(SelectAction.selectMenu({}));
+        dispatch(SelectAction.setMenu('', 1, []));
+    };
+    if(SelectAction.Types.RESET_OPTION === action.type) {
+        dispatch(SelectAction.selectOptoin([]));
     };
 };

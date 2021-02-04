@@ -6,12 +6,11 @@ import './AddMenuButton.scss';
 import { RootState } from '../../redux';
 
 const AddMenuButtonContainer = () => {
-
-    const { select, count } = useSelector((state:RootState) => ({
+    const { select, count, options } = useSelector((state:RootState) => ({
         select:state.Select.select,
         count:state.Counter.count,
+        options:state.Select.options
     }));
-
     const dispatch = useDispatch();
     const addOrders = () => {
         console.log('dispatch');
@@ -20,9 +19,8 @@ const AddMenuButtonContainer = () => {
             price: select.price,
             itemTotalPrice: select.itemTotalPrice,
             count: count,
-            options:select.options,
+            options:options
         };
-        console.log(Obj)
         dispatch(addBucketMenu(Obj));
     };
     return <AddMenuButton  addOrders={addOrders}/>

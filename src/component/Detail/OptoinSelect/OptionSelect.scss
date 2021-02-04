@@ -1,27 +1,51 @@
+@import '../../../scss/_variables.scss';
 .option-con{
-    margin-top: 304px;
-    margin-left: 25px;
-    margin-right: 25px;
     color: white;
-    .title{
-        font-size: 20px;
-
-    }
-    .option{
+    .select-option{
+        margin-top: 18px;
         .content{
             .title{
-                font-weight: bold;
-            }
-            .item{
                 display: flex;
+                justify-content: space-between;
+                height: 49px;
+                padding: 0 25px; 
+                background-color: $mc-list-BG;
                 .name{
-
+                    font-size: 17px;
+                    font-family: NotoSansCJKkr-Bold;
+                    margin: auto 0;
                 }
-                .price{
-
+                .max{
+                    font-size: 17px;
+                    font-family: NotoSansCJKkr-Regular;
+                    margin: auto 0;
+                }
+            }
+            .options{
+                background-color: $list-BG;
+                .item{
+                    margin-left: 25px;
+                    margin-right: 25px;
+                    padding: 16px 0;
+                    display: flex;
+                    justify-content: space-between;
+                    .con{
+                        display: flex;
+                        
+                        .check{
+                            width: 24px;
+                            height: 24px;
+                           
+                        }
+                        .name{
+                            margin: auto 12px;
+                        }
+                    }
+                    .price{
+                        margin: auto 0;
+                    }
                 }
             }
         }
     }
-
 }

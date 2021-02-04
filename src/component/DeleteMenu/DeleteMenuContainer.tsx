@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { DataAction } from '../../redux/actions';
 import PopUp from '../Popup/PopUp';
 import DeleteMenu from './DeleteMenu';
+import './DeleteMenu.scss';
 
 interface Props {
     id:string;

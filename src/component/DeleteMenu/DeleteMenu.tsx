@@ -8,9 +8,9 @@ type Props = {
 const DeleteMenu = ({ popUpTrigger }:Props) => {
 
     return (
-        <div onClick={popUpTrigger} className="modif-bucket-delete-con">
+        <div onClick={popUpTrigger} className="delete-con">
             <img src={Trashcon} alt="Trash"/>
-            <div>삭제하기</div>
+            <div className="delete">삭제하기</div>
         </div>
     );
 }

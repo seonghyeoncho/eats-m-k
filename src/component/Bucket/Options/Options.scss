@@ -1,5 +1,13 @@
-.option{
+@import '../../../scss/_variables.scss';
+.options{
+    padding-bottom: 8px;
     .item{
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+        font-family: NotoSansCJKkr-Regular;
+        color: $sub-text;
+        margin-bottom: 6px;
         .name{
 
         }

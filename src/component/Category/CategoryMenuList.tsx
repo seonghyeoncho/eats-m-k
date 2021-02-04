@@ -11,6 +11,9 @@ const CategoryMenuList = ({categoryName, list}:Props): JSX.Element => {
     console.log(list);
     return (
         <div className="category">
+            <div className="category-name">
+                <div className="name-text">{categoryName}</div>
+            </div>
             <div className="list">
                 {
                     list.map((item:any): JSX.Element | undefined => {

@@ -19,7 +19,7 @@ interface Item {
     description: string;
     categories: number[];
     optionGroups: string[];
-}
+};
 
 const HorizontalScroll = ({title, list, width, height, radius}:Props) => {
     const dispatch = useDispatch();

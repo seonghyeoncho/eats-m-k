@@ -1,9 +1,10 @@
-import { ActionCreator } from '../Types';
+import { Action, ActionCreator } from '../Types';
 
 export enum Types {
     SELECT_MENU = '[Select] select menu',
     SET_MENU = '[Select] set menu',
     RESET_SELECT = '[Select] reset select',
+    RESET_OPTION = '[Select] reset option',
     SELECT_OPTION = '[Select] select options',
     DELETE_OPTION = '[Select] delete options',
 };
@@ -46,6 +47,12 @@ export const deleteOptoin: ActionCreator = (options) => {
         payload: {
             options:options,
         }
+    }
+}
+export const resetOption: ActionCreator = () => {
+    return {
+        type:Types.RESET_OPTION,
+        payload: null,
     }
 }
 

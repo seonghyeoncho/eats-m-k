@@ -1,17 +1,19 @@
+@import '../../scss/_variables.scss';
+
 .home{
-    height: 282px;
+    height: 220px;
     width: 100%;
     color: black;
-    background: linear-gradient(to top, #000000, #000000 10%, rgba(84, 84, 84, 0)), no-repeat url('../../image/graphics/graphic_sushi_big.png');
+    background: linear-gradient(to top, #000000, #000000 0%, rgba(84, 84, 84, 0)), no-repeat url('../../image/graphics/graphic_sushi_big.png');
     background-position: center center;
-    background-size: 375px 282px;
+    background-size: 375px 220px;
     .content{
-        // background-color: black;
         .first{
             .horizontal-scroll{
                 margin-bottom: 40px;
                 .title-con{
                     .title{
+                        margin-top: 32px;
 
                         margin-bottom: 20px;
 
@@ -20,9 +22,25 @@
                 .content-con{
                     .content{
                         .item{
-                            .info{
+                            .scinfo{
                                 display: flex;
                                 justify-content: space-between;
+                                margin-bottom: 10px;
+                                font-size: 16px;
+                                .name{     
+                                    font-family: NotoSansCJKkr-Bold;
+                                }
+                                .price{
+                                    font-family: NotoSansCJKkr-Regular;
+                                }
+                            }
+                            .box{
+                                overflow: hidden;
+                                .test{
+                                    width: 100%;
+                                    height: 100%;
+                                    object-fit: cover;
+                                }
                             }
                         }
                     }
@@ -41,9 +59,26 @@
                 .content{
                     .item{
                         .box{
-                            .info{
-                                transform: translate(12px,113px);
+                            overflow: hidden;
+                            position: relative;
+                            .scinfo{
+                                position: absolute;
+                                top: 70%;
                                 font-size: 14px;
+                                margin-left: 12px;
+                                .name{
+                                    color: white;
+                                    font-family: NotoSansCJKkr-Bold;
+                                }
+                                .price{
+                                    color: $sub-text;
+                                    font-family: NotoSansCJKkr-Regular;
+                                }
+                            }
+                            .test{
+                                width: 100%;
+                                height: 100%;
+                                object-fit: cover;
                             }
                         }
                     }

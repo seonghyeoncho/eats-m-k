@@ -4,7 +4,9 @@ export const addOrdersFunc = ( bucket:any,select:any) => {
         const c = bucket.length;
         var flag = 0;
         for( let i=0 ; i<bucket.length ; i++ ) {
+            console.log(bucket[i].options)
             if( bucket[i].name === select.name && compareAndMerge(bucket[i].options, select.options) ) {
+                
                 return addOrdersProcesser('M', bucket, select);
             }
             flag++;
@@ -23,7 +25,7 @@ const compareAndMerge = ( bucketMore:[], selectMore:any ) => {
             let flag1 = 0;
             const count = bucketMore.length;
             for( let i=0 ; i<count ; i++ ) {
-                if( JSON.stringify(bucketMore).includes(JSON.stringify(selectMore[i].menu)) ) flag1++;
+                if( JSON.stringify(bucketMore).includes(JSON.stringify(selectMore[i].name)) ) flag1++;
             }
             if (flag1 === count ) {
                 console.log('ture : reason 1');

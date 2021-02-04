@@ -12,8 +12,11 @@ const Counter = ({count,onIncrease,onDecrease}:Props) => {
   return(
     <div className="counter">
       <div className="content">
+        <div className="title">
+          수량
+        </div>
         <div className="bt">
-          <img onClick={onDecrease}  className="de-img" src={M_img} alt="de"/>   
+          <img onClick={onDecrease} className={`de ${ count === 1 ? 'deni':''}`} src={M_img} alt="de" />   
           <div className="text">{count}</div>
           <img onClick={onIncrease} className="in-img" src={P_img} alt="in"/>
         </div>

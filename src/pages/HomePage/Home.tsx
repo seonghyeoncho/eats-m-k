@@ -40,8 +40,8 @@ const Home: React.FC<any> = ( props:any ) => {
                 <div className="second">
                     <HorizontalScroll list={items} title={'이런건 어때요?'} width={120} height={160} radius={18}/>
                 </div>
-                <CategoryNav categorys={categotys} setCategoryName={setCategoryName}/>
-                <CategoryMenuList list={items} categoryName={categoryName}/>
+                <CategoryNav categorys={categotys} setCategoryName={setCategoryName} categoryName={categoryName}/>
+                <CategoryMenuList list={items} categoryName={categoryName} />
             </div>
         </div>
     );

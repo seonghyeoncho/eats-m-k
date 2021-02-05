@@ -15,9 +15,6 @@ const StoreAndTableBoxContainer = () => {
     const store = window.localStorage.getItem('storeName');
     const table = window.localStorage.getItem('table');
 
-
-
-
     return <StoreAndTableBox store={store} table={table} state={state} orderStatus={orderStatus}/>
 }
 export default StoreAndTableBoxContainer;

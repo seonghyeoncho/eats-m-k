@@ -1,13 +1,11 @@
 @import '../../../scss/_variables.scss';
 .options{
-    padding-bottom: 8px;
     .item{
         display: flex;
         justify-content: space-between;
         font-size: 14px;
         font-family: NotoSansCJKkr-Regular;
         color: $sub-text;
-        margin-bottom: 6px;
         .name{
 
         }
@@ -16,3 +14,24 @@
         }
     }
 }
+/*
+
+order:Order[]
+Order:{
+    item:Item[]
+    totalPrice: number
+}
+Item:{
+    name: string
+    price: number
+    itemTotalPrice: number
+    count: number
+    state: boolean
+    options:Option[]
+}
+Option: {
+    name: string
+    price: number
+    optionGroup:number[]//미정
+}
+*/

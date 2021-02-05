@@ -1,16 +1,56 @@
+@import '../../scss/_variables.scss';
 .complete{
-    .content{
-        .img{
-            
+    color: white;
+    .complete-content{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        .finish-img{
+            width: 303px;
+            height: 160px;
+            margin-top: 100px;
+            margin-bottom: 40px;
         }
         .title{
+            font-size: 24px;
+            font-family: NotoSansCJKkr-Bold;
+            color: white;
+            margin-bottom: 12px;
 
         }
-        .text{
+        .ctext{
+            opacity: 0.87;
+            text-align: center;
+            line-height: 1.71;
+            font-size: 14px;
+            font-family: NotoSansCJKkr-Regular;
+            margin-bottom: 90px;
 
         }
-        .tiemr{
+        .timer{
+            font-family: NotoSansCJKkr-Bold;
+            font-size: 15px;
 
+        }
+        .back-bt{
+            position: fixed;
+            left: 17.3%;
+            right: 17.3%;
+            bottom: 20px;
+            width: 65.3%;
+            height: 60px;
+            background-color: $base-color;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            .text{
+                font-size: 1.125rem;
+                font-family: NotoSansCJKkr-Bold;
+                color: white;
+
+            }
         }
     }
 }

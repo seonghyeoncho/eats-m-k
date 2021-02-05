@@ -8,6 +8,7 @@ import HorizontalScroll from '../../component/HorizontalScroll/HorizontalScroll'
 import CategoryNav from '../../component/Category/CategoryNav';
 import CategoryMenuList from '../../component/Category/CategoryMenuList';
 import './HomePage.scss';
+import ButtonsContainer from '../../component/Buttons/ButtonsContainer';
 
 const Home: React.FC<any> = ( props:any ) => {
 
@@ -33,6 +34,7 @@ const Home: React.FC<any> = ( props:any ) => {
     return (
         <div className="home">
             <StoreAndTableBoxContainer/>
+            <ButtonsContainer/>
             <div className="content">
                 <div className="first">
                     <HorizontalScroll list={items} title={'사장님 추천'} width={325} height={160} radius={10}/>

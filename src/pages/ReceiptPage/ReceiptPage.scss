@@ -1,3 +1,177 @@
+@import '../../scss/_variables.scss';
 .receipt{
-    
+    color: white;
+
+    .recipt-nav{
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        height: 44px;
+        margin: 0 25px;
+        div{
+            flex: 1 2 30%;
+            margin: auto 0;
+        }
+        .text{
+            font-family: NotoSansCJKkr-Bold;
+            font-size: 18px;
+            transform: translate(-33px,0);
+
+        }
+
+    }
+    .receipt-info{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 218px;
+        padding-top: 40px;
+        padding-bottom: 30px;
+        margin-bottom: 10px;
+        margin-left: 23px;
+        margin-right: 23px;
+        font-family: NotoSansCJKkr;
+        border-bottom: dashed 1px black;
+        .store{
+            font-weight: bold;
+            font-size: 24px;
+            margin-bottom: 4px;
+        }
+        .table{
+            font-size: 15px;
+            color: $sub-text;
+            margin-bottom: 10px;
+        }
+        .totalprice{
+            font-size: 24px;
+            font-weight: bold;
+        }
+    }
+    .receipt-content{
+        background-color: #333333;
+        margin: 0 15px;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+        .receipt-con{
+            margin: 0 25px;
+            .item{
+                padding: 16px 0;
+                border-bottom: solid 1px black;
+                .title{
+                    display: flex;
+                    justify-content: space-between;
+                }
+                .sub{
+                    display: flex;
+                    justify-content: space-between;
+                }
+            }
+        }
+
+    }
+    .receipt-state{
+        z-index: 2;
+        display: flex;
+        position: fixed;
+        top: 44px;
+        left: 0px;
+        right: 0px;
+        padding-top: 28px;
+        padding-bottom: 28px;
+        margin: 0px 15px;
+        align-items: flex-end;
+        justify-content: center;
+        background-color: black;
+        .receipt-complete{
+            text-align: center;
+            width: 72px;
+            margin-right: 60px;
+            .circle-1{
+                width: 72px;
+                height: 72px;
+                background-color: $base-color;
+                border-radius: 50px;
+                margin-bottom: 8px;
+                margin-right: 84px;
+                img{
+                    width: 36px;
+                    margin-top: 18px;
+                }
+            }
+            .circle-2{
+                width: 8px;
+                height: 8px;
+                border-radius: 50px;
+                background-color: $base-color;
+                margin-left: 32px;
+                margin-bottom: 8px;
+            }
+            .text{
+                font-size: 15px;
+                font-family: NotoSansCJkkr-Bold;
+            }
+        }
+        .receipt{
+            text-align: center;
+            width: 72px;
+            .circle1 {
+                width: 24px;
+                height: 24px;
+                background-color: #800000;
+                border-radius: 50px;
+                // margin: 8px auto;
+                margin: 0 auto;
+            }
+            .y1 {
+                width: 72px;
+                height: 72px;
+                background-color: $base-color;
+                border-radius: 50px;
+                margin-bottom: 8px;
+                img{
+                    width: 36px;
+                    margin-top: 18px;
+                }
+            }
+            .circle2 {
+                width: 8px;
+                height: 8px;
+                border-radius: 50px;
+                background-color: #800000;
+                margin: auto;
+                margin-bottom: 8px;
+                margin: 8px auto;
+            }
+            .y2 {
+                width: 8px;
+                height: 8px;
+                border-radius: 50px;
+                background-color: $base-color;
+                margin-left: 32px;
+                margin-bottom: 8px;
+            }
+            .text {
+                font-size: 15px;
+                font-family: NotoSansCJkkr-Bold;
+                opacity: 0.54;
+            }
+            .ytext {
+                opacity: 1;
+                margin: auto;
+            }
+        }
+        .state-line{
+            z-index: -1;
+            position: fixed;
+            left: 86px;
+            right: 86px;
+            top: 155px;
+            height: 2px;
+            background-color: #800000;
+        }
+
+    }
 }

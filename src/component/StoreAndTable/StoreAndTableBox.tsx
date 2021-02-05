@@ -1,5 +1,4 @@
 import React from 'react';
-import ReceiptButtonContainer from '../Receipt/ReceiptButton/ReceiptButtonContainer';
 
 type BoxProps = {
     store:string | string[] | null;
@@ -14,9 +13,6 @@ const StoreAndTableBox = ({ store, table }:BoxProps) => {
             <div>
                 <div className="store">{store}</div>
                 <div className="table">테이블 {table}</div>
-            </div>
-            <div className="order-status-bt">
-                <ReceiptButtonContainer/>
             </div>
         </div>
     );

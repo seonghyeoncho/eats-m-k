@@ -12,8 +12,8 @@ const StateIndicator = ({}:Props) => {
         state:state.Data.data.state,
     }));
     return (
-        <div className="state">
-            <div className="complete"> 
+        <div className="receipt-state">
+            <div className="receipt-complete"> 
                 <div className="circle-1"> 
                     <img src={Complete} alt="complete"/>
                 </div>

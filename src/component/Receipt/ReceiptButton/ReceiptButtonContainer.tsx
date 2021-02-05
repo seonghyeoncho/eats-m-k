@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../redux';
 import ReceiptButton from './ReceiptButton';
+import './ReceiptButton.scss';
 
 const ReceiptButtonContainer = () => {
     const { state, orderStatus } = useSelector((state:RootState) => ({

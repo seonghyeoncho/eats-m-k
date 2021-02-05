@@ -1,13 +1,13 @@
 import React from 'react';
-import Arrow from '../../../image/icons/icon_arrow_back_black_x3.png'
+import Arrow from '../../../image/icons/icon_arrow_back_white_x3.png'
 
 interface Props {
     goBack: () => void
-}
+};
 
 const ReceiptNav = ({ goBack }:Props) => {
     return (
-        <div className="nav">
+        <div className="recipt-nav">
             <div className="img">
                 <img src={Arrow} width="12px" onClick={goBack} alt="Arrow"/>
             </div>

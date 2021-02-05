@@ -14,7 +14,7 @@ const ReciptContent = ({}:Props) => {
         receipts:state.Data.data.receipt,
     }));
     return (
-        <div className="content">
+        <div className="receipt-con">
             {
                 receipts.map((doc:Bucket) => {
                     for(let i in doc){
@@ -25,7 +25,7 @@ const ReciptContent = ({}:Props) => {
                                     <div>{numberWithCommas(doc.itemTotalPrice)}원</div>
                                 </div>
                                 <div className="sub">
-                                    <div>개수 : {doc.count}개</div>
+                                    <div>수량 : {doc.count}개</div>
                                     <div>{numberWithCommas(doc.price)}원</div>
                                 </div>
                                 <OptionsContainer options={doc.options}/>

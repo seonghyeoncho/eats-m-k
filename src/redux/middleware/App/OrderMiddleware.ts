@@ -16,12 +16,17 @@ export const OrderMiddleware = ({ dispatch, getState }: param) => (
     next(action);
 
     if(OrderAction.Types.ADD_NEW_ORDER === action.type) {
-        const storeName = getState().Store.information.name;
-        const table = getState().Location.table;
+        const storeName = window.localStorage.getItem('storeName');
+        const table = window.localStorage.getItem('table');
         const bucket = getState().Data.data.bucket;
         const totalPrice = getState().Data.data.totalPrice;
-        const receiptTotalPrice = getState().Data.data.receiptTotalPrice;
+        const receiptTotalPrice = getState().Data.data.receipttotalprice;
+        console.log(receiptTotalPrice);
+        console.log(totalPrice);
         const receipt = getState().Data.data.receipt;
+        console.log(bucket);
+        const newReceipt = receipt.concat(bucket);
+        console.log(newReceipt);
 
         dbService
             .collection(`${storeName}`)
@@ -31,12 +36,12 @@ export const OrderMiddleware = ({ dispatch, getState }: param) => (
                     ...bucket
                 ],
                 'bucket':[],
-                'receipTtotalPrice':receiptTotalPrice + totalPrice,
+                'receipttotalprice':receiptTotalPrice + totalPrice,
                 'totalPrice':0,
                 'receipt':[
-                    ...receipt.concat(bucket)
+                    ...newReceipt
                 ],
-                'order_status':true,
+                'orderStatus':true,
                 'state':false
             })
             .then(() => {

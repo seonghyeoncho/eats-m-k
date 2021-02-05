@@ -10,6 +10,7 @@ const ReceiptPageContainer = (props:any) => {
     const { receipts } =  useSelector((state:RootState) => ({
         receipts:state.Data.data.receipt,
     }));
+    console.log(receipts);
     const store = window.localStorage.getItem('store');
     const table = window.localStorage.getItem('table');
 

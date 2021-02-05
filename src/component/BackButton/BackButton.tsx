@@ -6,7 +6,7 @@ interface Props {
 };
 
 const BackButton = ({text}:Props) => {
-    const store = window.localStorage.getItem('storeName')!;
+    const store = window.localStorage.getItem('store')!;
     const table = window.localStorage.getItem('table')!;
     return (
         <Link to={`/?store=${store}&table=${table}`} className="back-bt">

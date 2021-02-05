@@ -30,7 +30,7 @@ const OptionSelect = ({ selectOptionGroups, optionGroups }:Props) => {
                             <div className="content">
                                 <div className="title">
                                     <div className="name">{option.name}</div>
-                                    <div className="max">(최대 : {option.maxSelect}개)</div>
+                                    <div className="max">최대 : {option.maxSelect}개</div>
                                 </div>
                                 <Options options={option.options} maxSelect={option.maxSelect} optionName={option.name}/>
                             </div>

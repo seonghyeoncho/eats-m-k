@@ -19,7 +19,7 @@ export interface Data {
         bucket: Bucket[],
         receipt: Bucket[],
         totalPrice: number,
-        receiptTotalPrice: number,
+        receipttotalprice: number,
         state:boolean,
         orderStatus:boolean
     }
@@ -30,7 +30,7 @@ const initialState: Data = {
         bucket:[],
         receipt: [],
         totalPrice: 0,
-        receiptTotalPrice: 0,
+        receipttotalprice: 0,
         state: false,
         orderStatus: false,
     }

@@ -1,5 +1,5 @@
 import { Action } from '../../Types';
-import { SelectAction } from '../../actions';
+import { OptionAction, SelectAction } from '../../actions';
 import { RootState } from '../..';
 
 interface param {
@@ -16,7 +16,6 @@ export const SelectMiddleware = ({ dispatch, getState }: param) => (
         console.log(action.type);
         const items = getState().Store.menu.items;
         const count = action.payload.count;
-        const options = getState().Select.options;
         console.log(items);
 
         for( var i=0 ; i<items.length ; i++ ) {
@@ -25,12 +24,11 @@ export const SelectMiddleware = ({ dispatch, getState }: param) => (
                     name: items[i].name,
                     price:items[i].price,
                     optionGroups:items[i].optionGroups,
-                    options:options,
                     count: count,
-                    itemTotalPrice:items[i].price,
                     desc: items[i].description,
                 };
-                dispatch( SelectAction.selectMenu(item));
+                dispatch(SelectAction.selectMenu(item));
+                dispatch(OptionAction.commendInitSelectOtpion(item.optionGroups));
                 break;
             }; 
         };

@@ -7,38 +7,32 @@ import SelectItem from './SelectItem';
 
 interface Option {
     name: string,
-    price: number
+    price: number,
+    state:boolean,
 };
 
 interface Props {
-    options: Option[];
+    options:any[];
     maxSelect: number;
-    optionName : string;
 };
 
-const Options = ({ maxSelect, options, optionName, }:Props) => {
+const Options = ({ maxSelect, options, }:Props) => {
 
     const dispatch = useDispatch();
     const [ totalCheck, setTotalCheck ] = useState<number>(0);
-
-    const optionHandler = (selectOption:Option, isChecked: boolean) => {
+    console.log('maxSelect', maxSelect)
+    const optionHandler = (isChecked: boolean, test:any[]) => {
         console.log(isChecked);
-        const option = {
-            name: selectOption.name,
-            price: selectOption.price,
-            optionCategory: optionName
-        };
+        console.log(totalCheck)
         if(isChecked){
             if(totalCheck < maxSelect) {
                 setTotalCheck(totalCheck + 1);
-                dispatch(SelectAction.selectOptoin(option));
 
             } else {
                 console.log('over max select!');
             }
         } else {
             setTotalCheck(totalCheck - 1);
-            dispatch(SelectAction.deleteOptoin(option));
         };
     };
 
@@ -47,7 +41,9 @@ const Options = ({ maxSelect, options, optionName, }:Props) => {
             {
                 options.map((op:Option) => {
                     return (
-                        <SelectItem name={op.name} price={op.price} optionHandler={optionHandler} maxSelect={maxSelect} totalCheck={totalCheck}/>
+                        <div key={op.name}>
+                            <SelectItem name={op.name} price={op.price} maxSelect={maxSelect} totalCheck={totalCheck} state={op.state} optionHandler={optionHandler}/>
+                        </div>
                     )
                 })
             }

@@ -1,41 +1,42 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { SelectAction } from '../../../redux/actions';
+import React from 'react';
 import { OptionGroup } from '../../../redux/Types';
 import Options from './Options';
 
 interface Option {
-    name: string,
-    price: number
+    name: string;
+    price: number;
+    state:boolean;
 };
 interface OptionGroups {
     name: string,
     selecOption: Option[],
     optionPrice: number,
 }
-
+interface SelectedOption {
+    name: string,
+    maxSelect: number,
+    options: Option[]
+}
 interface Props {
-    selectOptionGroups: string[];
-    optionGroups:  OptionGroup[];
+    option: SelectedOption[];
 };
 
-const OptionSelect = ({ selectOptionGroups, optionGroups }:Props) => {
+const OptionSelect = ({ option }:Props) => {
+    console.log(option)
 
     return (
         <div className="select-option">
             {
-                optionGroups.map((option:OptionGroup) => {
-                    if(selectOptionGroups.includes(option.name)){
-                        return(
-                            <div className="content">
-                                <div className="title">
-                                    <div className="name">{option.name}</div>
-                                    <div className="max">최대 : {option.maxSelect}개</div>
-                                </div>
-                                <Options options={option.options} maxSelect={option.maxSelect} optionName={option.name}/>
+                option.map((op:SelectedOption) => {
+                    return(
+                        <div className="content" key={op.name}>
+                            <div className="title">
+                                <div className="name">{op.name}</div>
+                                <div className="max">최대 : {op.maxSelect}개</div>
                             </div>
-                        )
-                    }
+                            <Options options={op.options} maxSelect={op.maxSelect}/>
+                        </div>
+                    )
                 })
             }
         </div>

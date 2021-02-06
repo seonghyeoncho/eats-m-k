@@ -13,6 +13,7 @@ import idSet from './modules/setClientId'
 import DataReducer, { Data } from './reducers/DataReducer';
 import { Store } from './Types';
 import SelectReducer, { Select } from './reducers/SelectReducer';
+import OptionReducer, {OptionSelect} from './reducers/OptionReducer';
 
 const reducer = combineReducers({
   Store: StoreReducer,
@@ -20,6 +21,7 @@ const reducer = combineReducers({
   Counter: CounterReducer,
   Data: DataReducer,
   Select: SelectReducer,
+  Option: OptionReducer,
   totalPrice,
   storeSet,
   tableSet,  
@@ -40,6 +42,7 @@ export interface RootState {
   Counter:Counter;
   Data: Data;
   Select: Select;
+  Option: OptionSelect;
 };
 
 export default store;

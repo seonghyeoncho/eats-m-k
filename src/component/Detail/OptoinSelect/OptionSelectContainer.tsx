@@ -18,18 +18,19 @@ interface OptionGroups {
 }
 
 const OptionSelectContainer = ({ }:Props) => {
-    const { optionGroups, selectOptionGroups, options } = useSelector((state:RootState)=>({
+    const { optionGroups, selectOptionGroups, options, option } = useSelector((state:RootState)=>({
         optionGroups:state.Store.menu.optionGroups,
         selectOptionGroups:state.Select.select.optionGroups,
-        options:state.Select.options
+        options:state.Select.options,
+        option:state.Option.option,
     }));
 
     console.log(options);
+    console.log(option);
     return (
         <div className="option-con">
             <OptionSelect 
-                selectOptionGroups={selectOptionGroups}
-                optionGroups={optionGroups}
+                option={option}
             />
         </div>
     );

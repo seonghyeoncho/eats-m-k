@@ -31,26 +31,22 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
             });
     };
     if(DataAction.Types.ADD_BUCKET_MENU === action.type) {
-        console.log('ddd');
-        const select = action.payload.select
+        const select = action.payload.select;
         var morePrice = select.price;
         const options = getState().Select.options;
         options.forEach((doc:any) => { morePrice += doc.price});
-        console.log(morePrice);
-        console.log(options)
         const count = getState().Counter.count;
-        console.log(getState().Select.options)
         const Obj = {
             name: select.name,
             price: select.price,
-            options:getState().Select.options,
+            options: getState().Select.options,
             count: count,
             id:`${select.name}/${count}/${JSON.stringify(select.options)}`,
             itemTotalPrice: (morePrice) * count
         };
         const bucket = addOrdersFunc( getState().Data.data.bucket, Obj);
-        console.log(Obj, bucket);
         const totalPrice = getState().Data.data.totalPrice + Obj.itemTotalPrice;
+        console.log('BUCKET TEST',bucket)
         dbService
             .collection(`${store}`)
             .doc(`${table}`)

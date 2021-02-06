@@ -1,4 +1,4 @@
-import { Action, ActionCreator } from '../Types';
+import { ActionCreator } from '../Types';
 
 export enum Types {
     SELECT_MENU = '[Select] select menu',

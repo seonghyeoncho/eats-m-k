@@ -1,55 +1,37 @@
 import React from 'react';
 import { BrowserRouter as Router, BrowserRouterProps, Route, Switch} from 'react-router-dom'
-import OrderListView from '../pages/OrderListView/OrderListView';
-import CompleteView from '../pages/CompleteView/CompleteView';
-import ReceiptView from '../pages/ReceiptPage/ReceiptView';
+import ComfirmPageContainer from '../pages/ComfirmPage/ComfirmPageContainer';
+import CompletePage from '../pages/CompletePage/CompletePage';
+import ReceiptPageContainer from '../pages/ReceiptPage/ReceiptPageContainer';
 import Home from '../pages/HomePage/Home';
-import DetailView from '../pages/DetailMenuPage/DetailView';
-import BucketViewContainer from '../pages/BucketPage/BucketViewContainer';
-import OrderListD from '../pages/OrderListView/OrderListD';
+import BucketPageContainer from '../pages/BucketPage/BucketPageContainer';
+import DetailPageContainer from '../pages/DetailPage/DetailPageContainer';
 
-
-
-
-
-const AppRouter = () =>{
-    
+const AppRouter = () => {
     return(
         <Router>
             <Switch>
-
-                <Route exact path="/menu" 
+                <Route exact path="/" 
                     component={(props:BrowserRouterProps) => <Home {...props}/>}
                 />
-
-                <Route exact path="/orderlist" 
-                    component={(props:BrowserRouterProps)=><OrderListView {...props}/>}
+                <Route exact path="/comfirm" 
+                    component={(props:BrowserRouterProps)=><ComfirmPageContainer {...props}/>}
                 />
-
-                <Route exact path="/orderlistd" 
-                    component={(props:BrowserRouterProps)=><OrderListD {...props}/>}
-                />
-
                 <Route exact path="/bucket"
-                    component={(props:BrowserRouterProps)=><BucketViewContainer {...props}/>}
+                    component={(props:BrowserRouterProps)=><BucketPageContainer {...props}/>}
                 />
-
                 <Route exact path="/receipt"
-                    component={(props:BrowserRouterProps)=><ReceiptView {...props}/>}
+                    component={(props:BrowserRouterProps)=><ReceiptPageContainer {...props}/>}
                 />
-
                 <Route exact path="/detail" 
-                    component={(props:BrowserRouterProps)=><DetailView {...props}/>}
+                    component={(props:BrowserRouterProps)=><DetailPageContainer {...props}/>}
                 />
-
                 <Route exact path="/complete"
-                    component={(props:BrowserRouterProps)=><CompleteView {...props}/>}
+                    component={(props:BrowserRouterProps)=><CompletePage {...props}/>}
                 /> 
-
             </Switch>
         </Router>
     );
-
-}
+};
 
 export default AppRouter;

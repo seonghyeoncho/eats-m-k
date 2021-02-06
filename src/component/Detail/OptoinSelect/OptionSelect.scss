@@ -1,0 +1,55 @@
+@import '../../../scss/_variables.scss';
+.option-con{
+    color: white;
+    .select-option{
+        margin-top: 18px;
+        .content{
+            .title{
+                display: flex;
+                justify-content: space-between;
+                height: 49px;
+                padding: 0 25px; 
+                background-color: $mc-list-BG;
+                .name{
+                    font-size: 17px;
+                    font-family: NotoSansCJKkr-Bold;
+                    margin: auto 0;
+                }
+                .max{
+                    font-size: 15px;
+                    font-family: NotoSansCJKkr-Regular;
+                    margin: auto 0;
+                }
+            }
+            .options{
+                background-color: $list-BG;
+                .item{
+                    margin-left: 25px;
+                    margin-right: 25px;
+                    padding: 16px 0;
+                    display: flex;
+                    justify-content: space-between;
+                    .con{
+                        display: flex;
+                        .check{
+                            width: 24px;
+                            height: 24px;
+                            margin-right: 10px;
+                        }
+                        .Rcheck{
+                            width: 26px;
+                            height: 26px;
+                            margin-right: 12px;
+                        }
+                        .name{
+                            margin: auto 0;
+                        }
+                    }
+                    .price{
+                        margin: auto 0;
+                    }
+                }
+            }
+        }
+    }
+}

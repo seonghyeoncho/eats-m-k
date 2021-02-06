@@ -3,21 +3,22 @@ import queryString from 'query-string';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux';
 import StoreAndTableBoxContainer from '../../component/StoreAndTable/StoreAndTableBoxContainer';
-import '../../scss/main.scss';
 import { LocationAction, StoreAction, DataAction } from '../../redux/actions';
 import HorizontalScroll from '../../component/HorizontalScroll/HorizontalScroll';
 import CategoryNav from '../../component/Category/CategoryNav';
 import CategoryMenuList from '../../component/Category/CategoryMenuList';
+import './HomePage.scss';
+import ButtonsContainer from '../../component/Buttons/ButtonsContainer';
 
 const Home: React.FC<any> = ( props:any ) => {
 
-    const { orderStatus, totalPrice, items, categotys } = useSelector((state:RootState)=>({
+    const { items, categotys } = useSelector((state:RootState)=>({
         orderStatus:state.Data.data.orderStatus,
         totalPrice:state.Data.data.totalPrice,
         items:state.Store.menu.items,
         categotys: state.Store.menu.categories
     }));
-
+    const s = window.localStorage.getItem('storeName');
     const [ categoryName, setCategoryName ] = useState<string>('');
     const query = queryString.parse(window.location.search);
     const store = query.store;
@@ -25,19 +26,24 @@ const Home: React.FC<any> = ( props:any ) => {
     const dispatch = useDispatch();
     
     useEffect(()=>{
-        dispatch(LocationAction.setLocation(store, table));
+        dispatch(LocationAction.initiateLocation(store, table));
         dispatch(StoreAction.loadStoreFirebase());
         dispatch(DataAction.loadDataFirebase());
-    },[]);
+    },[s]);
 
     return (
-        <div>
+        <div className="home">
             <StoreAndTableBoxContainer/>
-            <div className="main-content">
-                <HorizontalScroll list={items} title={'사장님 추천'}/>
-                <HorizontalScroll list={items} title={'이런건 어때요?'}/>
-                <CategoryNav categorys={categotys} setCategoryName={setCategoryName}/>
-                <CategoryMenuList list={items} categoryName={categoryName}/>
+            <ButtonsContainer/>
+            <div className="content">
+                <div className="first">
+                    <HorizontalScroll list={items} title={'사장님 추천'} width={325} height={160} radius={10}/>
+                </div>
+                <div className="second">
+                    <HorizontalScroll list={items} title={'이런건 어때요?'} width={120} height={160} radius={18}/>
+                </div>
+                <CategoryNav categorys={categotys} setCategoryName={setCategoryName} categoryName={categoryName}/>
+                <CategoryMenuList list={items} categoryName={categoryName} />
             </div>
         </div>
     );

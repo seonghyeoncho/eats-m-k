@@ -13,6 +13,8 @@ export const LocationMiddleware = ({ dispatch }: param) => (
     
     if(LocationAction.Types.INIT_LOCATION === action.type ) {
         const { store, table } = action.payload;
-        dispatch(LocationAction.setLocation(store, table));
+        console.log(store, table);
+        window.localStorage.setItem('store', store);
+        window.localStorage.setItem('table', table);
     };
 };

@@ -6,17 +6,15 @@ import './BucketButton.scss';
 
 const BucketButtonContainer = () => {
 
-    const { store, table, totalPrice } = useSelector((state:RootState) => ({
-        store:state.Store.information.name,
-        table:state.Location.table,
+    const { totalPrice } = useSelector((state:RootState) => ({
         totalPrice:state.Data.data.totalPrice
     }));
 
     return(
         <>
             {
-                totalPrice === 0 ? <div className="bucket-block"></div> 
-                : <BucketButton store={store} table={table} />
+                totalPrice === 0 ? <></>
+                : <BucketButton/>
             }
         </> 
     );

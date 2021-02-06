@@ -1,18 +1,39 @@
+@import '../../scss/_variables.scss';
 .horizontal-scroll{
-    color: black;
+    // color: black;
+    .title-con{
+        .title{
+            color: white;
+            margin-left: 25px;
+            font-size: 18px;
+            font-family: NotoSansCJkkr-Bold;
+        }
+    }
     .content-con{
         width: 100%;
         white-space: nowrap;
         overflow-x: auto;
-        color: white;
         .content{
             .item{
+                .info{
+                    font-size: 16px;
+                    
+                    margin-bottom: 10px;
+                    .name{
+                        font-family: NotoSansCJKkr-Bold;
+                    }
+                    .price{
+                        font-family: NotoSansCJKkr-Regular;
+                    }
+                }
                 display: inline-block;
-                width: 150px;
-                height: 200px;
-                border-radius: 20px;
-                margin: 0 10px;
-                background-color: rgb(53, 53, 53);
+                .box{
+                    background-color: rgb(53, 53, 53);
+                    border-radius: 25px;
+                    width: 100%;
+                }
+                margin: 0 5px;
+                color: white;
             }
         }
     }

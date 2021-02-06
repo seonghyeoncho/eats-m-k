@@ -4,7 +4,6 @@ import { appMiddleware } from './middleware/App';
 import LocationReducer,  { Location } from './reducers/LocationReducer';
 import StoreReducer from './reducers/StoreReducer';
 import CounterReducer, { Counter } from './reducers/CounterReducer';
-import selectMenu from './modules/selectMenu';
 import totalPrice from './modules/totalPrice';
 import storeSet from './modules/setStore';
 import tableSet from './modules/setTable';
@@ -13,14 +12,17 @@ import detailViewTotalPrice from './modules/detailViewTotalPrice';
 import idSet from './modules/setClientId'
 import DataReducer, { Data } from './reducers/DataReducer';
 import { Store } from './Types';
+import SelectReducer, { Select } from './reducers/SelectReducer';
+import OptionReducer, {OptionSelect} from './reducers/OptionReducer';
 
 const reducer = combineReducers({
   Store: StoreReducer,
   Location: LocationReducer,
   Counter: CounterReducer,
   Data: DataReducer,
+  Select: SelectReducer,
+  Option: OptionReducer,
   totalPrice,
-  selectMenu,
   storeSet,
   tableSet,  
   stateSet,
@@ -39,6 +41,8 @@ export interface RootState {
   Location:Location;
   Counter:Counter;
   Data: Data;
+  Select: Select;
+  Option: OptionSelect;
 };
 
 export default store;

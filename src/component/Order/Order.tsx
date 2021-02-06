@@ -3,28 +3,32 @@ import { Link } from 'react-router-dom';
 
 
 interface Props {
-    store: any
-    table: any
     text: string;
     onSubmit: ()=> void
-    
 }
 
-const Order = ({store, table,onSubmit,text}:Props) => {
+const Order = ({ onSubmit, text }:Props) => {
 
+    const store = window.localStorage.getItem('store');
+    const table= window.localStorage.getItem('table');
 
     return ( 
-        <div className="order-bt-con">
+        <div className="order">
             
-
-            <Link to={`/menu/?store=${store}&table=${table}`}>
-                <div className="order-bt-cancle">{text}</div>
-            </Link>
-
-            <Link to="/complete">
-                <div onClick={onSubmit} className="order-bt">주문하기</div>
-            </Link>
-            
+            <div className="cancle-order">
+                <Link to={`/?store=${store}&table=${table}`} className="atohome">
+                    <div className="text">
+                        {text}
+                    </div>
+                </Link>
+            </div>
+            <div onClick={onSubmit} className="order">
+                <Link to="/complete" className="atocom">
+                    
+                    <div className="order-text">주문하기</div>
+                    
+                </Link>
+            </div>
         </div>
     );
 }

@@ -1,12 +1,19 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 type Props = {
     addOrders:()=>void 
 };
 
 const AddMenuButton = ({addOrders}:Props) => {
+    const store = window.localStorage.getItem('store');
+    const table = window.localStorage.getItem('table');
     return(
-        <div onClick={addOrders} className="addmenu-bt">장바구니 담기</div>
+        <Link to={`/?store=${store}&table=${table}`} className="addmenu-bt">
+            <div onClick={addOrders}>
+                <div className="addmenu-text">장바구니 담기</div>
+            </div>
+        </Link>
     );
 };
 

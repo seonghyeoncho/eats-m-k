@@ -3,20 +3,19 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../redux';
 import OrderButton from './OrderButton';
 
-
 const OrderButtonContainer = () => {
-    const { totalPrice, orderStatus } = useSelector((state:RootState) => ({
+    const { totalPrice } = useSelector((state:RootState) => ({
         totalPrice:state.Data.data.totalPrice,
-        orderStatus:state.Data.data.orderStatus
     }));
-    
+    const func = () => {
+    }
     return(
-        <>
+        <div className="order-bt">
             { 
                 totalPrice === 0 ? <></>
-                : <OrderButton text={orderStatus? '추가 주문하기':'주문하기'}/> 
+                : <OrderButton text={'주문하기'} func={func}/> 
             }
-        </>
+        </div>
     );
 }
 

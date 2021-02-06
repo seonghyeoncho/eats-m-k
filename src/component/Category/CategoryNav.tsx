@@ -9,24 +9,26 @@ interface Category {
 interface Props {
     categorys:Category[];
     setCategoryName: (category:string) => void;
-}
+    categoryName: string;
+};
 
-const CategoryNav = ({ categorys, setCategoryName}:Props) => {
+const CategoryNav = ({ categorys, setCategoryName, categoryName}:Props) => {
     console.log(categorys);
     return (
-        <div className="category">
-            <div className="item-con">
+        <div className="category-nav">
+            <div className="name">
+                <div className="item" style={{width:"15px", margin:"0px"}}/>
                 {
                     categorys.map((category:Category) => {
                         return (
-                            <div className="item" onClick={() => setCategoryName(category.name)}>
+                            <div className={`item ${categoryName===category.name ? 'selectedC':''}`} onClick={() => setCategoryName(category.name)}>
                                 {category.name}
                             </div>
                         )
                     })
                 }
+                <div className="item" style={{width:"15px", margin:"0px"}}/>
             </div>
-
         </div>
     );
 };

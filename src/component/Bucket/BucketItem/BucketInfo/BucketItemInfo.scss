@@ -1,0 +1,19 @@
+@import '../../../../scss/_variables.scss';
+.info{
+    padding: 16px 25px 0px 25px;
+    .name{
+        display: flex;
+        justify-content: space-between;
+        font-size:16px;
+        font-family: NotoSansCJKkr-Bold;
+        margin-bottom: 6px;
+    }
+    .count{
+        display: flex;
+        justify-content: space-between;
+        font-family: NotoSansCJKkr-Regular;
+        font-size: 14px;
+        color: $sub-text;
+        margin-bottom: 6px;
+    }
+}

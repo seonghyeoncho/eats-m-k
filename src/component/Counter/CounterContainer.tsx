@@ -1,18 +1,21 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../../redux/modules';
-import { increase, decrease} from '../../redux/modules/counters';
+import { RootState } from '../../redux';
+import { CounterAction } from '../../redux/actions';
 import Counter from './Counter';
 import './Counter.scss';
 
 const CounterContainer = () => {
-  const count = useSelector((state: RootState) => state.counters.count);
+
+  const { count } = useSelector((state:RootState) => ({
+    count:state.Counter.count,
+  }))
   const dispatch = useDispatch();
   const onIncrease = () => {
-    dispatch(increase());
+    dispatch(CounterAction.increase());
   };
   const onDecrease = () => {
-    if(count  !== 1) dispatch(decrease());
+    if(count  !== 1) dispatch(CounterAction.decrease());
   };
   return (
     <Counter count={count} onIncrease={onIncrease} onDecrease={onDecrease}/>

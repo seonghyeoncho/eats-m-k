@@ -1,0 +1,27 @@
+@import '../../scss/_variables.scss';
+
+.currentinfo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 30px;
+    .current-store{
+        font-size: 24px;
+        font-family: NotoSansCJKkr-Bold;
+        margin-bottom: 4px;
+        color: white;
+    }
+    .current-table{
+        font-size: 15px;
+        font-family: NotoSansCJKkr-Regular;
+        color: $sub-text;
+        margin-bottom: 8px;
+    }
+    .current-totalprice{
+        font-size: 26px;
+        font-family: NotoSansCJKkr-Regular;
+        color: white;
+        
+    }
+}

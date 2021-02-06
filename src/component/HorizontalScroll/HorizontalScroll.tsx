@@ -1,13 +1,29 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { setMenu } from '../../redux/actions/SelectMenuAction';
+import BigBox from './BigBox';
 import './HorizontalScroll.scss';
+import SmallBox from './SmallBox';
 
 interface Props {
-    list: any;
+    list: Item[];
     title:string;
+    width: number;
+    height: number;
+    radius: number;
+};
+interface Item {
+    name: string;
+    price: number;
+    description: string;
+    categories: number[];
+    optionGroups: string[];
 };
 
-const HorizontalScroll = ({title, list}:Props) => {
+const HorizontalScroll = ({title, list, width, height, radius}:Props) => {
+    const dispatch = useDispatch();
+    console.log(list);
     return (
         <div className="horizontal-scroll">
             <div className="title-con">
@@ -17,18 +33,22 @@ const HorizontalScroll = ({title, list}:Props) => {
             </div>
             <div className="content-con">
                 <div className="content">
+                    <div className="item" style={{width:'10px', height:'10px', color:"transparent", backgroundColor:"transparent",}}/>
                     {
-                        list.map((doc:any) => {
+                        list.map((item:Item) => {
                             return (
-                                <Link to={`/detail/?menu=${doc.name}`} >
-                                    <div className="item">
-                                        {doc.name}
-                                    </div>
+                                <Link to={`/detail/`} onClick={() => dispatch(setMenu(item.name, 1,[]))}>
+                                    {
+                                        width === 325 ? <BigBox width={width} height={height} radius={radius} name={item.name} price={item.price}/>
+                                        : <SmallBox width={width} height={height} radius={radius} name={item.name} price={item.price}/>
+                                    }
                                 </Link>
                             )
                         })
                     }
+                    <div className="item" style={{width:'10px', height:'10px', color:"transparent", backgroundColor:"transparent"}}/>
                 </div>
+                <div/>
             </div>
         </div>
     );

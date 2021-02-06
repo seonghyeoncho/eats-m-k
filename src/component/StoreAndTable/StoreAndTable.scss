@@ -1,39 +1,28 @@
-.store-nav-con{
-    z-index: 1;
-
-    top:0px;
-    height: 155px;
-    width: 100%;
-
-    color: black;
-    display: flex;
-    justify-content: space-between;
-    .store-nav-store{
-        margin-top: 20px;
+@import'../../scss/_variables';
+.nav{
+    // height: 282px;
+    // width: 100%;
+    // color: black;
+    // background: linear-gradient(to top, #000000, #000000 0%, rgba(84, 84, 84, 0)), no-repeat url('../../image/graphics/graphic_sushi_big.png');
+    // background-position: center center;
+    // background-size: 375px 282px;
+    margin-bottom: 12px;
+    .store{
+        width: 45px;
+        height: 36px;
         font-family: NotoSansCJkkr-Bold;
         font-size: 24px;
-        margin-left: 36px;
-        margin-bottom: 4px;
+        color: white;
+        margin-top: 100px;
+        margin-left: 25px;
+        margin-bottom: 8px;
     }
-    .store-nav-table{
+    .table{
+        width: 57px;
+        height: 24px;
         font-family: NotoSansCJkkr-Regular;
-        font-size: 15px;
-        margin-left: 36px;
-        margin-bottom: 25px;
-        opacity: 0.87;
-    }
-    .order-status-bt{
-        margin-top: 18px;
-        margin-right: 35px;
-        img{
-            width: 42px;
-        }
-        .order-status-text{
-            text-align: center;
-            color: white;
-            font-size: 12px;
-            opacity: 0.87;
-            font-family: NotoSansCJkkr-Regular;
-        }
+        font-size: 16px;
+        color:$sub-text;
+        margin-left: 25px;
     }
 }

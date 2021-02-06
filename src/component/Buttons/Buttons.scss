@@ -1,0 +1,23 @@
+@import '../../scss/_variables.scss';
+.buttons-con{
+    margin: auto 15px;;
+    display: flex;
+    justify-content: space-between;
+    .buttons-state{
+        margin: auto 0px;
+
+    }
+    .order{
+        width: 120px;
+        height: 38px;
+        background-color: $base-color;
+        border-radius: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .text{
+
+
+        }
+    }
+}

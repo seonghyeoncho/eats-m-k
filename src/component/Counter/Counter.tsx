@@ -10,13 +10,15 @@ type Props = {
 
 const Counter = ({count,onIncrease,onDecrease}:Props) => {
   return(
-    <div className="counter-con">
-      <div className="counter-content">
-        <div className="counter-content-text">수량</div>
-        <div className="counter-bt-con">
-          <img onClick={onDecrease} src={M_img} alt="de"/>   
-          <div className="counter-bt-text">{count}</div>
-          <img onClick={onIncrease} src={P_img} alt="in"/>
+    <div className="counter">
+      <div className="content">
+        <div className="title">
+          수량
+        </div>
+        <div className="bt">
+          <img onClick={onDecrease} className={`de ${ count === 1 ? 'deni':''}`} src={M_img} alt="de" />   
+          <div className="text">{count}</div>
+          <img onClick={onIncrease} className="in-img" src={P_img} alt="in"/>
         </div>
       </div>
     </div>

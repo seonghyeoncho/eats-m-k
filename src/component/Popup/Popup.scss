@@ -1,3 +1,4 @@
+@import '../../scss/_variables.scss';
 .popup-con{
     z-index: 5;
     position: fixed;
@@ -9,6 +10,7 @@
     bottom: 0;
     margin: auto;
     background-color: rgba(0,0,0, 0.5);
+    color: black;
     .popup-inner-con{
         border-radius: 20px;
         position: absolute;
@@ -39,9 +41,9 @@
                 width: 112px;
                 height: 28px;
                 border-radius: 0 0 0 20px;
-                background-color: #cccccc;
+                background-color: $category;
                 font-size: 18px;
-                color: #525252;
+                color: white;
                 font-family: NotoSansCJKkr-Bold;
                 text-align: center;
                 padding: 10px 39px; 

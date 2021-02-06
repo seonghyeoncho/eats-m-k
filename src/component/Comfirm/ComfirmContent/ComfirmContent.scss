@@ -1,0 +1,35 @@
+@import '../../../scss/_variables.scss';
+.cfcontent{
+    color: white;
+    background-color: $list-BG;
+    .cfitem{
+        margin: 0 25px;
+        padding-bottom: 10px;
+        border-bottom: solid 2px black ;
+        .cfinfo{
+            padding-top: 16px;
+            display: flex;
+            justify-content: space-between;
+            font-family: NotoSansCJKkr-Bold;
+            font-size: 16px;
+            .cfname{
+            }
+
+        }
+        .cfcontent{
+            color: $sub-text;
+            font-size: 14px;
+            font-family: NotoSansCJKkr-Regular;
+            .cfsinfo{
+                padding-top: 6px;
+                margin-bottom: 6px;
+                display: flex;
+                justify-content: space-between;
+            }
+
+        }
+        .options{
+        }
+
+    }
+}

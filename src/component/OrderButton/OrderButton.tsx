@@ -1,20 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import queryString from 'query-string';
+import './OrderButton.scss';
 
 interface Props {
-    text:string
+    text:string;
+    func: () => void;
 };
 
-const OrderButton = ({text}:Props) => {
+const OrderButton = ({text, func}:Props) => {
     return(
-        <>
-            <Link to={`/orderlist`}>
-                 <div className="main-order-bt">
-                     <div className="main-order-bt-text">{text}</div>
-                 </div>
-            </Link>
-        </>
+        <Link to={`/comfirm`} onClick={func}>
+            <div className="order">
+                    <div className="text">{text}</div>
+            </div>
+        </Link>
     );
 }
 

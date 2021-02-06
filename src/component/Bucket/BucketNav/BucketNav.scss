@@ -1,0 +1,30 @@
+@import '../../../scss/_variables.scss';
+.bucket-nav{
+    padding: 0 25px;
+    display: flex;
+    justify-content: space-between;
+    height: 44px;
+    font-family: NotoSansCJKkr;
+    div{
+        flex: 1 1 30%;
+    }
+    .back-img{
+        margin: auto 0px;
+        img{
+            width: 12px;
+            height: 21px;
+        }
+    }
+    .text{
+        margin: auto 0px;
+        font-size: 18px;
+        font-weight: bold;
+        text-align: center;
+    }
+    .reset{
+        margin: auto 0px;
+        font-size: 15px;
+        opacity: 0.54;
+        text-align: right;
+    }
+}

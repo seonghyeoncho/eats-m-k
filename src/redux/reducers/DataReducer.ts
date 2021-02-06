@@ -2,36 +2,24 @@ import { DataAction } from '../actions';
 import { Action } from '../Types';
 
 interface Option {
-    menu:string,
+    name:string,
     price:number,
-    state:boolean
 };
-interface Bucket {
+export interface Bucket {
     name: string;
-    price: string;
-    description: string;
-    state:boolean,
-    option:Option[]
-};
-interface Item {
-    name: string;
-    price: string;
-    description: string;
-    categories: number[];
-    optionGroups: number[];
-};
-interface Receipt {
-    menu:string,
-    price:number,
-    state:boolean
-};
+    id: string;
+    price: number;
+    options:Option[]
+    itemTotalPrice:number,
+    count:number
 
+};
 export interface Data {
     data: {
         bucket: Bucket[],
-        receipt: Receipt[],
+        receipt: Bucket[],
         totalPrice: number,
-        receiptTotalPrice: number,
+        receipttotalprice: number,
         state:boolean,
         orderStatus:boolean
     }
@@ -42,7 +30,7 @@ const initialState: Data = {
         bucket:[],
         receipt: [],
         totalPrice: 0,
-        receiptTotalPrice: 0,
+        receipttotalprice: 0,
         state: false,
         orderStatus: false,
     }

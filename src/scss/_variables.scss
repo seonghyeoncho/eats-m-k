@@ -4,14 +4,15 @@ $breakpoint-mobile: 335px;
 $breakpoint-tablet: 758px;
 $breakpoint-desktop: 1024px;
 $height: 568px;
-
-$store-bold-font-size:($breakpoint-mobile/15);
-$table-bold-font-size:($breakpoint-mobile/25);
-
-
-
-
-$base-color: #ff1b6d;
+//color
+$sub-text: #DEDEDE;
+$category: #666666;
+$mc-list-BG:  #262626;
+$button-BG: #404040;
+$option-price: #c6c6c6;
+$list-BG: #191919;
+$background-color: black;
+$base-color: #ff0000;
 
 
 @font-face{

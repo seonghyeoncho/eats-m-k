@@ -6,6 +6,8 @@ export enum Types {
     MODIF_BUCKET_MENU_INCREASE = '[Bucket] modif bucket menu count increase',
     MODIF_BUCKET_MENU_DECREASE = '[Bucket] modif bucket menu count decrease',
     LOAD_DATA_FIREBASE = '[Bucket] load data from firebase',
+    DELETE_MENU = '[Bucket] delete menu in bucket',
+    RESER_BUCKET = '[Bucket] reset bucket' 
 };
 
 export const setData: ActionCreator = (data) => {
@@ -44,5 +46,20 @@ export const loadDataFirebase: ActionCreator = () => {
     return {
         type: Types.LOAD_DATA_FIREBASE,
         payload: null,
+    };
+};
+export const deleteBucket: ActionCreator = (id, itemTotalPrice) => {
+    return {
+        type:Types.DELETE_MENU,
+        payload:{
+            id:id,
+            itemTotalPrice: itemTotalPrice
+        }
+    };
+};
+export const resetBucket: ActionCreator = () => {
+    return {
+        type: Types.RESER_BUCKET,
+        payload: null
     };
 };

@@ -1,0 +1,24 @@
+body{
+    margin:0px;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+    ::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera*/
+    }
+    background-color: black;
+}
+a {
+    text-decoration: none;
+    :link{
+        color: black;
+    }
+    :visited{
+        color: black;
+    }
+    :hover{
+        color: black;
+    }
+    :active{
+        color: black;
+    }
+}

@@ -1,0 +1,31 @@
+.zigzag{
+    background: 
+    linear-gradient(-45deg, #333333 10px, transparent 0),
+    linear-gradient(45deg, #333333 10px, transparent 0);
+
+    background-position: center;
+    background-repeat: repeat-x;
+    background-size: 20px 20px;
+    position: relative;
+    top: 230px;
+    width: 100%;
+    height: 20px;
+
+    background-color: #000000;
+}
+
+.box{
+    color: #fff;
+    background-color: #333333;
+    font-family: NotoSansCJKkr-bold;
+    text-align: center;
+
+    position: relative;
+    top: 206px;
+    width: 100%;
+    height: 300px;
+}
+
+body{
+    background-color: black;
+}

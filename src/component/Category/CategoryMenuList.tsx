@@ -4,7 +4,7 @@ import './Category.scss';
 interface Props {
     categoryName : string;
     list: any;
-}
+};
 
 const CategoryMenuList = ({categoryName, list}:Props): JSX.Element => {
     console.log(list);

@@ -11,7 +11,7 @@ const BucketContent = ({ bucket }:Props) => {
     console.log(bucket);
 
     return (
-        <div className="content">
+        <div className="bucket-content">
             <BucketItem bucket={bucket} />
         </div>
     );

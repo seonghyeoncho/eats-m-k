@@ -4,7 +4,11 @@ import { RootState } from '../../redux';
 import Buttons from './Buttons';
 import './Buttons.scss';
 
-const ButtonsContainer = () => {
+interface Props {
+    homeNav: boolean;
+};
+
+const ButtonsContainer = ({homeNav}:Props) => {
     const { totalPrice, receiptTotalPrice } = useSelector((state:RootState) => ({
         totalPrice:state.Data.data.totalPrice,
         receiptTotalPrice:state.Data.data.receipttotalprice,
@@ -13,7 +17,7 @@ const ButtonsContainer = () => {
         <>
             {
                 totalPrice === 0 && receiptTotalPrice === 0? <></>
-                : <Buttons/>
+                : <Buttons homeNav={homeNav}/>
             }
         </>
     );

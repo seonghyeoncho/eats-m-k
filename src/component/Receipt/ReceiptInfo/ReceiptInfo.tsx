@@ -13,11 +13,15 @@ const ReceiptInfo = () => {
     console.log(receiptTotalPrice);
 
     return (
-        <div className="receipt-info">
-            <div className="store">{store}</div >
-            <div className="table">테이블 {table}</div >
-            <div className="totalprice">{numberWithCommas(receiptTotalPrice)}원</div >
-        </div>
+        <>
+            <div className="zigzag"/>
+            <div className="receipt-info">
+                {/* <div className="zigzag"/> */}
+                <div className="store">{store}</div >
+                <div className="table">테이블 {table}</div >
+                <div className="totalprice">{numberWithCommas(receiptTotalPrice)}원</div >
+            </div>
+        </>
     );
 };
 

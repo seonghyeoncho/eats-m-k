@@ -12,29 +12,32 @@ const StateIndicator = ({}:Props) => {
         state:state.Data.data.state,
     }));
     return (
-        <div className="receipt-state">
-            <div className="receipt-complete"> 
-                <div className="circle-1"> 
-                    <img src={Complete} alt="complete"/>
+        <>
+            <div className="receipt-state">
+                <div className="receipt-complete"> 
+                    <div className="circle-1"> 
+                        <img src={Complete} alt="complete"/>
+                    </div>
+                    <div className="circle-2">
+                    </div>
+                    <div className="text">
+                        주문완료  
+                    </div>
                 </div>
-                <div className="circle-2">
+                
+                <div className="receipt"> 
+                    <div className={`circle1 ${state ? 'y1':''}`}>
+                        { state ?  <img src={Reception} alt="receipt"/> : <></> }
+                    </div>
+                    <div className={`circle2 ${state ? 'y2':''}`}></div>
+                    <div className={`text ${state ? 'ytext':''}`}>
+                        접수완료  
+                    </div>
                 </div>
-                <div className="text">
-                    주문완료  
-                </div>
+                <div className="state-line"/>
+                
             </div>
-            
-            <div className="receipt"> 
-                <div className={`circle1 ${state ? 'y1':''}`}>
-                    { state ?  <img src={Reception} alt="receipt"/> : <></> }
-                </div>
-                <div className={`circle2 ${state ? 'y2':''}`}></div>
-                <div className={`text ${state ? 'ytext':''}`}>
-                    접수완료  
-                </div>
-            </div>
-            <div className="state-line"/>
-        </div>
+        </>
     );
 };
 

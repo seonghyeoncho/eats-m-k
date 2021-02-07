@@ -41,6 +41,8 @@ const SelectItem = ({ name, price, maxSelect, totalCheck, state, optionHandler }
     }))
     console.log(state);
     console.log(options);
+    //이부분은 나중에 redux로 옮김
+    //지금 radio가 적용되는 부분에서 이슈 
     const checkCount = () => {
         if(maxSelect === 1) {
             console.log('this options is radio');
@@ -48,18 +50,22 @@ const SelectItem = ({ name, price, maxSelect, totalCheck, state, optionHandler }
             let test:any[] = [];
             for( let i=0 ; i<options.length; i++) {
                 const newSelectedOptions = options[i].options.map((O:O) => {
-                    if(O.name === name) {
-                        return {
-                            name:O.name,
-                            price:O.price,
-                            state: true
+                    if(options[i].maxSelect === 1){
+                        if(O.name === name) {
+                            return {
+                                name:O.name,
+                                price:O.price,
+                                state: true
+                            }
+                        } else {
+                            return {
+                                name:O.name,
+                                price:O.price,
+                                state: false
+                            }
                         }
                     } else {
-                        return {
-                            name:O.name,
-                            price:O.price,
-                            state: false
-                        }
+                        return O;
                     }
                 });
                 console.log(newSelectedOptions);
@@ -69,10 +75,7 @@ const SelectItem = ({ name, price, maxSelect, totalCheck, state, optionHandler }
                     options: newSelectedOptions,
                 })
                 ew = test;
-                console.log("1")
-                break;
             }
-            console.log("2")
             dispatch(OptionAction.setSelectOption(test));
         } else {
             console.log('this is checkbox');
@@ -84,14 +87,14 @@ const SelectItem = ({ name, price, maxSelect, totalCheck, state, optionHandler }
             console.log(count);
             let ew:any[] = [];
             let test:any[] = [];
-            if(count < maxSelect) {
+            if(state) {
                 for( let i=0 ; i<options.length; i++) {
                     const newSelectedOptions = options[i].options.map((O:O) => {
                         if(O.name === name) {
                             return {
                                 name:O.name,
                                 price:O.price,
-                                state: true
+                                state: false
                             }
                         } else return O;
                     });
@@ -104,8 +107,32 @@ const SelectItem = ({ name, price, maxSelect, totalCheck, state, optionHandler }
                     ew = test;
                 }
                 dispatch(OptionAction.setSelectOption(test));
+
             } else {
-                console.log('over max select')
+                if(count < maxSelect) {
+                    for( let i=0 ; i<options.length; i++) {
+                        const newSelectedOptions = options[i].options.map((O:O) => {
+                            if(O.name === name) {
+                                return {
+                                    name:O.name,
+                                    price:O.price,
+                                    state: true
+                                }
+                            } else return O;
+                        });
+                        console.log(newSelectedOptions);
+                        test = ew.concat({
+                            name:options[i].name,
+                            maxSelect: options[i].maxSelect,
+                            options: newSelectedOptions,
+                        })
+                        ew = test;
+                    }
+                    dispatch(OptionAction.setSelectOption(test));
+                } else {
+                    console.log('over max select')
+
+                }
             }
         }
     };

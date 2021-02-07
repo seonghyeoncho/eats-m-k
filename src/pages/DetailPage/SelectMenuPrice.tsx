@@ -2,17 +2,16 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import numberWithCommas from '../../functions/addCommaFunc';
 import { RootState } from '../../redux';
-import { Option } from '../../redux/Types';
 import './SelectMenuPrice.scss';
 
 const SelectMenuPrice = () => {
     const { select, options, count } = useSelector((state:RootState) => ({
         select:state.Select.select,
-        options:state.Select.options,
+        options:state.Option.option,
         count: state.Counter.count,
     }));
     var selectPrice = select.price;
-    options.forEach((option:Option) => selectPrice += option.price);
+    options.forEach((option:any) => option.options.map((doc:any) => {if(doc.state) selectPrice+=doc.price}));
     return (
         <div className="selectprice">
             <div className="text">합계</div>

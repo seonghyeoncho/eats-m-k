@@ -14,27 +14,29 @@ const ReciptContent = ({}:Props) => {
         receipts:state.Data.data.receipt,
     }));
     return (
-        <div className="receipt-con">
-            {
-                receipts.map((doc:Bucket) => {
-                    for(let i in doc){
-                        return (
-                            <div className="item">
-                                <div className="title">
-                                    <div>{doc.name}</div>
-                                    <div>{numberWithCommas(doc.itemTotalPrice)}원</div>
+        <>
+            <div className="receipt-con">
+                {
+                    receipts.map((doc:Bucket) => {
+                        for(let i in doc){
+                            return (
+                                <div className="item">
+                                    <div className="title">
+                                        <div>{doc.name}</div>
+                                        <div>{numberWithCommas(doc.itemTotalPrice)}원</div>
+                                    </div>
+                                    <div className="sub">
+                                        <div>수량 : {doc.count}개</div>
+                                        <div>{numberWithCommas(doc.price)}원</div>
+                                    </div>
+                                    <OptionsContainer options={doc.options}/>
                                 </div>
-                                <div className="sub">
-                                    <div>수량 : {doc.count}개</div>
-                                    <div>{numberWithCommas(doc.price)}원</div>
-                                </div>
-                                <OptionsContainer options={doc.options}/>
-                            </div>
-                        );
-                    }
-                })
-            }
-        </div>
+                            );
+                        }
+                    })
+                }
+            </div>
+        </>
     );
 };
 

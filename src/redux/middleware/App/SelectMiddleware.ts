@@ -37,7 +37,4 @@ export const SelectMiddleware = ({ dispatch, getState }: param) => (
         dispatch(SelectAction.selectMenu({}));
         dispatch(SelectAction.setMenu('', 1, []));
     };
-    if(SelectAction.Types.RESET_OPTION === action.type) {
-        dispatch(SelectAction.selectOptoin([]));
-    };
 };

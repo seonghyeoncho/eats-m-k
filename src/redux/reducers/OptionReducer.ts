@@ -9,7 +9,7 @@ interface Option {
 interface SelectedOption {
     name: string,
     maxSelect: number,
-    options: Option[]
+    options: Option[],
 }
 export interface OptionSelect {
     option: SelectedOption[],

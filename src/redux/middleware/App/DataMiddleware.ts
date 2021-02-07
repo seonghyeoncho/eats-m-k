@@ -33,13 +33,15 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
     if(DataAction.Types.ADD_BUCKET_MENU === action.type) {
         const select = action.payload.select;
         var morePrice = select.price;
-        const options = getState().Select.options;
-        options.forEach((doc:any) => { morePrice += doc.price});
+        const options = getState().Option.option
+        console.log(options);
+        options.forEach((doc:any) => doc.options.map((O:any) => {if(O.state) morePrice += O.price}));
+        console.log(morePrice);
         const count = getState().Counter.count;
         const Obj = {
             name: select.name,
             price: select.price,
-            options: getState().Select.options,
+            options: options,
             count: count,
             id:`${select.name}/${count}/${JSON.stringify(select.options)}`,
             itemTotalPrice: (morePrice) * count
@@ -67,7 +69,7 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
         const prevId = select.id;
         const count = select.count - 1;
         var morePrice = select.price;
-        select.options.forEach((doc:any) => { morePrice += doc.price; });
+        select.options.forEach((doc:any) => doc.options.map((O:any) => {if(O.state) morePrice += O.price}));
         const itemTotalPrice = select.itemTotalPrice - morePrice;
         console.log(itemTotalPrice);
         console.log(select.itemTotalPrice)
@@ -92,14 +94,13 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
             }).then(() => {
                 dispatch(CounterAction.resetCount());
             }).catch((e) => console.log(e));
-
     }
     if(DataAction.Types.MODIF_BUCKET_MENU_INCREASE === action.type) {
         const bucket = getState().Data.data.bucket;
         const select = action.payload.select
         const prevId = select.id;
         var morePrice = select.price;
-        select.options.forEach((doc:any) => { morePrice += doc.price;});
+        select.options.forEach((doc:any) => doc.options.map((O:any) => {if(O.state) morePrice += O.price}));
         const count = select.count + 1;
         const itemTotalPrice = select.itemTotalPrice + morePrice;
         const Obj = {

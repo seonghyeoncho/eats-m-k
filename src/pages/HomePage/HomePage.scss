@@ -1,7 +1,9 @@
 @import '../../scss/_variables.scss';
-
+body{
+    font-family: NotoSansCJKkr;
+}
 .home{
-    height: 120px;
+    height: 220px;
     width: 100%;
     color: black;
     background: linear-gradient(to top, #000000, #000000 0%, rgba(84, 84, 84, 0)), no-repeat url('../../image/graphics/graphic_sushi_big.png');

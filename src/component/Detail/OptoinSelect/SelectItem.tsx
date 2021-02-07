@@ -41,10 +41,6 @@ const SelectItem = ({ name, price, maxSelect, totalCheck, state, optionHandler }
     }))
     console.log(state);
     console.log(options);
-    const option: Option = {
-        name: name,
-        price: price
-    };
     const checkCount = () => {
         if(maxSelect === 1) {
             console.log('this options is radio');

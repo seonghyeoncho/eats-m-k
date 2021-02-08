@@ -1,4 +1,19 @@
 @import '../../scss/_variables.scss';
+.visible{
+    z-index: 4;
+    color: white;
+    position: fixed;
+    top: 0;
+    height: 44px;
+    background-color: black;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: NotoSansCJKkr-Bold;
+    font-size: 18px;
+}
 .buttons-con{
     margin: auto 25px;
     display: flex;
@@ -9,6 +24,14 @@
         }
         .receipt-bt{
             margin-right: 10px;
+            img{
+                width: 48px;
+                height: 39px;
+            }
+        }
+        .bucket-img{
+            width: 48px;
+            height: 38px;
         }
         margin: auto 0px;
         display: flex;

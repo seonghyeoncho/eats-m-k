@@ -13,10 +13,11 @@ const ButtonsContainer = ({homeNav}:Props) => {
         totalPrice:state.Data.data.total_price,
         receiptTotalPrice:state.Data.data.receipt_total_price,
     }));
+    const table = window.localStorage.getItem('table');
     return (
         <>
             {
-                totalPrice === 0 && receiptTotalPrice === 0? <div className={homeNav? '':''} >table</div>
+                totalPrice === 0 && receiptTotalPrice === 0? <div className={homeNav? 'visible':'none'}>테이블{table}</div>
                 : <Buttons homeNav={homeNav}/>
             }
         </>

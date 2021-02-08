@@ -6,7 +6,6 @@ import StoreAndTableBoxContainer from '../../component/StoreAndTable/StoreAndTab
 import { LocationAction, StoreAction, DataAction } from '../../redux/actions';
 import HorizontalScroll from '../../component/HorizontalScroll/HorizontalScroll';
 import CategoryNav from '../../component/Category/CategoryNav';
-import CategoryMenuList from '../../component/Category/CategoryMenuList';
 import './HomePage.scss';
 import ButtonsContainer from '../../component/Buttons/ButtonsContainer';
 import Indicator from './Indicator';
@@ -18,27 +17,23 @@ const useScroll = () => {
       x: 0,
       y: 0
     });
-    // scrll의 값을 가져와 state를 갱신합니다.
     const onScroll = () => {
       setState({ y: window.scrollY, x: window.scrollX });
     };
     useEffect(() => {
-      // scroll 이벤트를 만들어줍니다. 스크롤을 움직일때 마다 
-      // onScroll 함수가 실행됩니다.
       window.addEventListener("scroll", onScroll);
       return () => window.removeEventListener("scroll", onScroll);
     }, []);
     return state;
-  };
-
+};
 const Home: React.FC<any> = ( props:any ) => {
 
     const scrollY = useScroll().y;
-    const { items, categotys } = useSelector((state:RootState)=>({
+    const { items, categotys, totalPrice } = useSelector((state:RootState)=>({
         orderStatus:state.Data.data.order_state,
-        totalPrice:state.Data.data.total_price,
         items:state.Store.menu.items,
         categotys: state.Store.menu.categories,
+        totalPrice: state.Data.data.total_price,
     }));
     const s = window.localStorage.getItem('storeName');
     const [ categoryName, setCategoryName ] = useState<string>('');
@@ -74,7 +69,7 @@ const Home: React.FC<any> = ( props:any ) => {
         <div className="home">
             <StoreAndTableBoxContainer/>
             <ButtonsContainer homeNav={homeNav}/>
-            <div className={homeNav? 'home-content-nav': `home-content`}>
+            <div className={homeNav ?  totalPrice === 0? 'home-content-noprice' : 'home-content-nav' : `home-content`}>
                 <div className="first">
                     <HorizontalScroll list={items} title={'사장님 추천'} width={325} height={160} radius={10}/>
                 </div>
@@ -82,15 +77,8 @@ const Home: React.FC<any> = ( props:any ) => {
                     <HorizontalScroll list={items} title={'이런건 어때요?'} width={120} height={160} radius={18}/>
                 </div>
                 {
-                    categoryVaild ? 
-                        <>
-                            <CategoryNav categorys={categotys} setCategoryName={setCategoryName} categoryName={categoryName}/>
-                            {/* <CategoryMenuList list={items} categoryName={categoryName} /> */}
-                        </>
-                    :
-                        <>
-                            <Indicator/>
-                        </>
+                    categoryVaild ? <CategoryNav categorys={categotys} setCategoryName={setCategoryName} categoryName={categoryName}/>
+                    : <Indicator/>
                 }
                 <div className="home-order-bt">
                     {

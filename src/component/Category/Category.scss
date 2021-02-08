@@ -11,9 +11,6 @@
     .name{
         font-family: NotoSansCJKkr-Regular;
         .item{
-            
-           
-            margin: 0 10px;
             display: inline-block;
             color: $category;
         }
@@ -26,14 +23,12 @@
         .category-name{
             background-color: $mc-list-BG;
             height: 44px;
-            margin-top: 12px;
             .name-text{
                 color: white;
                 margin-left: 25px;
                 font-size: 14px;
                 padding-top: 12px;
                 font-family: NotoSansCJKkr-Bold;
-               
             }
         }
     }

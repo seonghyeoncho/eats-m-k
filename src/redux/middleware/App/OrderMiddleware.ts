@@ -76,7 +76,6 @@ Interface Option_B{
 }
 
 Interface OptionList_B{
-	option_id:string
 	name: string,
 	price: number,
 	state: boolean,

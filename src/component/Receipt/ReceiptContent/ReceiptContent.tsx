@@ -20,7 +20,7 @@ const ReciptContent = ({}:Props) => {
                     receipts.map((doc:Bucket) => {
                         for(let i in doc){
                             return (
-                                <div className="item">
+                                <div className="item" key={doc.name}>
                                     <div className="title">
                                         <div>{doc.name}</div>
                                         <div>{numberWithCommas(doc.itemTotalPrice)}원</div>

@@ -10,13 +10,11 @@ const ReceiptInfo = () => {
     const { receiptTotalPrice } = useSelector((state:RootState) => ({
         receiptTotalPrice: state.Data.data.receipttotalprice,
     }));
-    console.log(receiptTotalPrice);
 
     return (
         <>
             <div className="zigzag"/>
             <div className="receipt-info">
-                {/* <div className="zigzag"/> */}
                 <div className="store">{store}</div >
                 <div className="table">테이블 {table}</div >
                 <div className="totalprice">{numberWithCommas(receiptTotalPrice)}원</div >

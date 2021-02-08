@@ -13,7 +13,6 @@ const AddMenuButtonContainer = () => {
     }));
     const dispatch = useDispatch();
     const addOrders = () => {
-        console.log('dispatch');
         const Obj = {
             name: select.name,
             price: select.price,

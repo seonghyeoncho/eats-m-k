@@ -13,7 +13,6 @@ interface Props {
 };
 
 const CategoryNav = ({ categorys, setCategoryName, categoryName}:Props) => {
-    console.log(categorys);
     return (
         <div className="category-nav">
             <div className="name">
@@ -21,7 +20,7 @@ const CategoryNav = ({ categorys, setCategoryName, categoryName}:Props) => {
                 {
                     categorys.map((category:Category) => {
                         return (
-                            <div className={`item ${categoryName===category.name ? 'selectedC':''}`} onClick={() => setCategoryName(category.name)}>
+                            <div className={`item ${categoryName===category.name ? 'selectedC':''}`} onClick={() => setCategoryName(category.name)} key={category.name}>
                                 {category.name}
                             </div>
                         )

@@ -10,6 +10,7 @@ import CategoryMenuList from '../../component/Category/CategoryMenuList';
 import './HomePage.scss';
 import ButtonsContainer from '../../component/Buttons/ButtonsContainer';
 import Indicator from './Indicator';
+import { OrderButtonContainer } from '../../component/OrderButton';
 
 const useScroll = () => {
     // state를 생성합니다.
@@ -39,14 +40,10 @@ const Home: React.FC<any> = ( props:any ) => {
         items:state.Store.menu.items,
         categotys: state.Store.menu.categories,
     }));
-    console.log(items)
     const s = window.localStorage.getItem('storeName');
     const [ categoryName, setCategoryName ] = useState<string>('');
-
     const [ homeNav, setHomeNav ] = useState<boolean>(false);
-    const [ indicator, setIndicator ] = useState<boolean>(true);
     const [ categoryVaild, setCategoryVaild ] = useState<boolean>(false);
-
     const query = queryString.parse(window.location.search);
     const store = query.store;
     const table = query.table;
@@ -63,10 +60,8 @@ const Home: React.FC<any> = ( props:any ) => {
         };
         if(scrollY !== 0) {
             setCategoryVaild(true);
-            setIndicator(false);
         } else {
             setCategoryVaild(false);
-            setIndicator(true);
         }
         if(scrollY >= 174) {
             setHomeNav(true);
@@ -97,7 +92,12 @@ const Home: React.FC<any> = ( props:any ) => {
                             <Indicator/>
                         </>
                 }
-                
+                <div className="home-order-bt">
+                    {
+                        homeNav? <OrderButtonContainer/>
+                        : <></>
+                    }
+                </div>
             </div>
         </div>
     );

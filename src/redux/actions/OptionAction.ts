@@ -18,11 +18,13 @@ interface SelectedOption {
     options: Option[],
 }
 
-export const commendSelectOption: ActionCreator = (name: string) => {
+export const commendSelectOption: ActionCreator = (name: string, maxSelect: number, state: boolean) => {
     return {
         type: Types.C_SELECT_OPTION,
         payload:{
             name:name,
+            maxSelect:maxSelect,
+            state:state
         }
     }
 };

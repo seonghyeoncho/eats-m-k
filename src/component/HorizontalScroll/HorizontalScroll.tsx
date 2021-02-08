@@ -23,7 +23,6 @@ interface Item {
 
 const HorizontalScroll = ({title, list, width, height, radius}:Props) => {
     const dispatch = useDispatch();
-    console.log(list);
     return (
         <div className="horizontal-scroll">
             <div className="title-con">
@@ -37,7 +36,7 @@ const HorizontalScroll = ({title, list, width, height, radius}:Props) => {
                     {
                         list.map((item:Item) => {
                             return (
-                                <Link to={`/detail/`} onClick={() => dispatch(setMenu(item.name, 1,[]))}>
+                                <Link to={`/detail/`} onClick={() => dispatch(setMenu(item.name, 1,[]))} key={item.name}>
                                     {
                                         width === 325 ? <BigBox width={width} height={height} radius={radius} name={item.name} price={item.price}/>
                                         : <SmallBox width={width} height={height} radius={radius} name={item.name} price={item.price}/>

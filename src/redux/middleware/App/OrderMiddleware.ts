@@ -21,27 +21,20 @@ export const OrderMiddleware = ({ dispatch, getState }: param) => (
         const bucket = getState().Data.data.bucket;
         const totalPrice = getState().Data.data.totalPrice;
         const receiptTotalPrice = getState().Data.data.receipttotalprice;
-        console.log(receiptTotalPrice);
-        console.log(totalPrice);
         const receipt = getState().Data.data.receipt;
-        console.log(bucket);
         const newReceipt = receipt.concat(bucket);
-        console.log(newReceipt);
 
         dbService
             .collection(`${storeName}`)
             .doc(`${table}`)
             .update({
-                'order':[
-                    ...bucket
-                ],
                 'bucket':[],
-                'receipttotalprice':receiptTotalPrice + totalPrice,
-                'totalPrice':0,
+                'receipt_total_price':receiptTotalPrice + totalPrice,
+                'total_price':0,
                 'receipt':[
                     ...newReceipt
                 ],
-                'orderStatus':true,
+                'order_state':true,
                 'state':false
             })
             .then(() => {

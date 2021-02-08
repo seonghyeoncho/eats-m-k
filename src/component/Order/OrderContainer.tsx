@@ -11,7 +11,6 @@ const OrderContainer = ({text}:Props) => {
   const dispatch = useDispatch();
 
   const onSubmit = () => {
-    console.log('dispatch')
     dispatch(OrderAction.addOrder());
   };
   return <Order text={text} onSubmit={onSubmit} />

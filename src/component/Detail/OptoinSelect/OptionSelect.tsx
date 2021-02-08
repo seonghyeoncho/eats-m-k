@@ -1,5 +1,4 @@
 import React from 'react';
-import { OptionGroup } from '../../../redux/Types';
 import Options from './Options';
 
 interface Option {
@@ -7,22 +6,16 @@ interface Option {
     price: number;
     state:boolean;
 };
-interface OptionGroups {
-    name: string,
-    selecOption: Option[],
-    optionPrice: number,
-}
 interface SelectedOption {
     name: string,
     maxSelect: number,
     options: Option[]
-}
+};
 interface Props {
     option: SelectedOption[];
 };
 
 const OptionSelect = ({ option }:Props) => {
-    console.log(option)
 
     return (
         <div className="select-option">

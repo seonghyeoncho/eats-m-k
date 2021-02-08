@@ -1,30 +1,21 @@
 import React from 'react';
-import numberWithCommas from '../../../functions/addCommaFunc';
 import { Option } from '../../../redux/Types';
 import OptionsItem from './OptionsItem';
 
 interface Props {
     options: Option[];
 };
-interface O {
-    name:string;
-    
-}
 
 const Options = ({ options }:Props) => {
-    console.log(options);
-
-   
-
     return (
         <div className="options">
             {
-                options.map((op:any) => {
+                options.map((op:any):JSX.Element | undefined => {
                     var count = 0;
                     count = op.options.filter((state:any) => state.state === true).length;
                     if(count !== 0){
                         return (
-                            <div  className="item">
+                            <div  className="item" key={op.name}>
                                 <div>
                                     {op.name} : 
                                 </div>

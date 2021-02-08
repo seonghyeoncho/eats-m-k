@@ -14,17 +14,11 @@ export interface Select {
     menu: string,
     count:number,
     options: Options[]
-
 }
 interface Options {
     name: string,
     price: number,
     optionCategory: string,
-}
-interface OptionGroups {
-    name: string,
-    selecOption: Option[],
-    optionPrice: number,
 }
 const initialState: Select = {
     select: {
@@ -39,7 +33,6 @@ const initialState: Select = {
     menu:'',
     count: 1,
     options:[],
-    
 };
 
 const SelectReducer = ( state = initialState , action: Action ) => {

@@ -21,7 +21,6 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
     next(action);
 
     if(DataAction.Types.LOAD_DATA_FIREBASE === action.type && store !== null) {
-        console.log('load data')
         dbService
             .collection(`${store}`)
             .doc(`${table}`)
@@ -34,9 +33,7 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
         const select = action.payload.select;
         var morePrice = select.price;
         const options = getState().Option.option
-        console.log(options);
         options.forEach((doc:any) => doc.options.map((O:any) => {if(O.state) morePrice += O.price}));
-        console.log(morePrice);
         const count = getState().Counter.count;
         const Obj = {
             name: select.name,
@@ -48,7 +45,6 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
         };
         const bucket = addOrdersFunc( getState().Data.data.bucket, Obj);
         const totalPrice = getState().Data.data.totalPrice + Obj.itemTotalPrice;
-        console.log('BUCKET TEST',bucket)
         dbService
             .collection(`${store}`)
             .doc(`${table}`)
@@ -56,11 +52,8 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
                 'bucket':[
                     ...bucket
                 ],
-                'totalPrice': totalPrice
+                'total_price': totalPrice
             }).then(() => {
-                dispatch(CounterAction.resetCount());
-                dispatch(SelectAction.resetSelect());
-                dispatch(SelectAction.resetOption());
             }).catch((e) => console.log(e));
     };
     if(DataAction.Types.MODIF_BUCKET_MENU_DECREASE === action.type) {
@@ -71,8 +64,6 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
         var morePrice = select.price;
         select.options.forEach((doc:any) => doc.options.map((O:any) => {if(O.state) morePrice += O.price}));
         const itemTotalPrice = select.itemTotalPrice - morePrice;
-        console.log(itemTotalPrice);
-        console.log(select.itemTotalPrice)
         const Obj = {
             name:select.name,
             price:select.price,
@@ -90,9 +81,8 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
                 'bucket':[
                     ...modifBuc
                 ],
-                'totalPrice': totalPrice
+                'total_price': totalPrice
             }).then(() => {
-                dispatch(CounterAction.resetCount());
             }).catch((e) => console.log(e));
     }
     if(DataAction.Types.MODIF_BUCKET_MENU_INCREASE === action.type) {
@@ -120,9 +110,8 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
                 'bucket':[
                     ...modifBuc
                 ],
-                'totalPrice': totalPrice
+                'total_price': totalPrice
             }).then(() => {
-                dispatch(CounterAction.resetCount());
             }).catch((e) => console.log(e));
     };
     if(DataAction.Types.DELETE_MENU === action.type) {
@@ -135,12 +124,9 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
                 'bucket':[
                     ...bucket
                 ],
-                'totalPrice': totalPrice
+                'total_price': totalPrice
             }).then(() => {
-                dispatch(CounterAction.resetCount());
             }).catch((e) => console.log(e));
-
-
     };
     if(DataAction.Types.RESER_BUCKET === action.type ) {
         dbService
@@ -148,9 +134,8 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
             .doc(`${table}`)
             .update({
                 'bucket':[],
-                'totalPrice': 0
+                'total_price': 0
             }).then(() => {
-                dispatch(CounterAction.resetCount());
             }).catch((e) => console.log(e));
     }
 };

@@ -6,7 +6,6 @@ export enum Types {
 };
 
 export const setLocation: ActionCreator = ( store, table ) => {
-  console.log('hello');
   return {
     type: Types.SET_LOCATION,
     payload: {
@@ -16,7 +15,6 @@ export const setLocation: ActionCreator = ( store, table ) => {
   };
 }
 export const initiateLocation: ActionCreator = ( store, table ) => {
-  console.log('hello');
   return {
     type: Types.INIT_LOCATION,
     payload: {

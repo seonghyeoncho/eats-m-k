@@ -19,30 +19,21 @@ const CheckItem = ({menu,moreMenuHandler}:Props) => {
 
         moreMenuHandler(menuObj , select);
     };
-
-
+    
     return (
-
         <div className="checkbox-item-con" onClick={()=>{setSelct(!select);checkHandler(menu.menu, select, menu.price)}}>
-            
             <div className="info">
                 {
-                    select ? 
-                        <img alt="none" src={CheckBoxDe}/>
-                    : 
-                        <img alt="selected" src={CheckBox}/>
+                    select ? <img alt="none" src={CheckBoxDe}/>
+                    : <img alt="selected" src={CheckBox}/>
 
                 }
-
                 <div className="checkbox-item">
                     <div>{menu.menu}</div>
                 </div>
             </div>
-
             <div>+ {menu.price}원</div>
-
         </div>
-
     );
 }
 

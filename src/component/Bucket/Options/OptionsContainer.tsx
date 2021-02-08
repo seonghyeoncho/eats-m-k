@@ -7,7 +7,7 @@ interface Props {
 };
 
 const OptionsContainer = ({ options }:Props) => {
-    console.log(options)
+
     return(
         <div>
             {

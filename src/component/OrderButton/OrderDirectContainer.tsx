@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux';
-import { DataAction, OrderAction } from '../../redux/actions';
+import { DataAction } from '../../redux/actions';
 import OrderButton from './OrderButton';
 
 const OrderButtonDirectContainer = () => {

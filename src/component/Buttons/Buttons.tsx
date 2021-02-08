@@ -9,7 +9,6 @@ interface Props {
 
 const Buttons = ({homeNav}:Props) => {
     const table = window.localStorage.getItem('table');
-    
     return (
         <div className={`${homeNav ? 'buttons-nav':'buttons-con '}`}>
             <div className="buttons-state">

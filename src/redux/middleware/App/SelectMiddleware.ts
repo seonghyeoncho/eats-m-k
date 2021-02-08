@@ -1,5 +1,5 @@
 import { Action } from '../../Types';
-import { OptionAction, SelectAction } from '../../actions';
+import { CounterAction, OptionAction, SelectAction } from '../../actions';
 import { RootState } from '../..';
 
 interface param {
@@ -13,10 +13,8 @@ export const SelectMiddleware = ({ dispatch, getState }: param) => (
     next(action);
 
     if(SelectAction.Types.SET_MENU === action.type) {
-        console.log(action.type);
         const items = getState().Store.menu.items;
         const count = action.payload.count;
-        console.log(items);
 
         for( var i=0 ; i<items.length ; i++ ) {
             if (items[i].name === action.payload.menu) {
@@ -32,6 +30,8 @@ export const SelectMiddleware = ({ dispatch, getState }: param) => (
                 break;
             }; 
         };
+        dispatch(SelectAction.resetOption());
+        dispatch(CounterAction.resetCount());
     };
     if(SelectAction.Types.RESET_SELECT === action.type) {
         dispatch(SelectAction.selectMenu({}));

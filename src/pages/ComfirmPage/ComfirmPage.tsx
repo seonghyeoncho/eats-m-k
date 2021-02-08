@@ -12,13 +12,13 @@ const ComfirmPage = ({ bucket}: Props) => {
     
     return (
         <>
-        <div className="comfirm">
-            <CurrentInfo/>
-            <ComfirmContent bucket={bucket}/>            
-        </div>
-        <div className="confirm-order">
-            <OrderContainer text={"취소"}/>
-        </div>
+            <div className="comfirm">
+                <CurrentInfo/>
+                <ComfirmContent bucket={bucket}/>            
+            </div>
+            <div className="confirm-order">
+                <OrderContainer text={"취소"}/>
+            </div>
         </>
     );
 };

@@ -8,7 +8,7 @@ interface Props {
 };
 
 const CategoryMenuList = ({categoryName, list}:Props): JSX.Element => {
-    console.log(list);
+
     return (
         <div className="category">
             <div className="category-name">
@@ -20,7 +20,9 @@ const CategoryMenuList = ({categoryName, list}:Props): JSX.Element => {
                         for( var i=0 ; i<item.categories.length ; i++ ){
                             if(item.categories[i] === categoryName) {
                                 return (
-                                    <ItemLink name={item.name} desc={item.description} price={item.price}/>
+                                    <div key={item.name}>
+                                        <ItemLink name={item.name} desc={item.description} price={item.price}/>
+                                    </div>
                                 )
                             }
                         }

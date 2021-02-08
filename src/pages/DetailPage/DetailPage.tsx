@@ -23,11 +23,6 @@ interface Option {
     name: string;
     price: number;
 };
-interface OptionGroups {
-    name: string;
-    selecOption: Option[];
-    optionPrice: number;
-};
 
 const DetailPage = ({select, history}:Props) => {
     return (

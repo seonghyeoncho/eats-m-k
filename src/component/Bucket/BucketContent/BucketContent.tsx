@@ -8,8 +8,6 @@ interface Props {
 };
 
 const BucketContent = ({ bucket }:Props) => {
-    console.log(bucket);
-
     return (
         <div className="bucket-content">
             <BucketItem bucket={bucket} />

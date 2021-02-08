@@ -29,5 +29,3 @@ export const StoreMiddleware = ({ dispatch, getState }: param) => (
       .catch((e) => console.log(e));
   };
 };
-// V10WuwulJcyZx08OhxKF
-// `${getState().Location.store}`

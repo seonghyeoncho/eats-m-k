@@ -3,7 +3,6 @@ import StateIndicator from '../../component/Receipt/StateIndecator/StateIndicato
 import ReceiptInfo from '../../component/Receipt/ReceiptInfo/ReceiptInfo';
 import ReceiptNav from '../../component/Receipt/ReceiptNav/ReceiptNav';
 import ReceiptContent from '../../component/Receipt/ReceiptContent/ReceiptContent';
-import CurrentInfo from '../BucketPage/CurrentInfo';
 
 interface Props {
     history: any;

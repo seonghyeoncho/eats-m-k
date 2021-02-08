@@ -8,7 +8,7 @@ const ReceiptInfo = () => {
     const table = window.localStorage.getItem('table');
 
     const { receiptTotalPrice } = useSelector((state:RootState) => ({
-        receiptTotalPrice: state.Data.data.receipttotalprice,
+        receiptTotalPrice: state.Data.data.receipt_total_price,
     }));
 
     return (

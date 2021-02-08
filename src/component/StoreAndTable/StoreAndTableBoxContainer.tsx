@@ -6,7 +6,7 @@ import './StoreAndTable.scss';
 
 const StoreAndTableBoxContainer = () => {
     const { orderStatus, state } = useSelector((state:RootState)=>({
-        orderStatus:state.Data.data.orderStatus,
+        orderStatus:state.Data.data.order_state,
         store:state.Store.information.name,
         table:state.Location.table,
         state:state.Data.data.state

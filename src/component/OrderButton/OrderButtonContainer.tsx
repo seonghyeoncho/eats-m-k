@@ -5,7 +5,7 @@ import OrderButton from './OrderButton';
 
 const OrderButtonContainer = () => {
     const { totalPrice } = useSelector((state:RootState) => ({
-        totalPrice:state.Data.data.totalPrice,
+        totalPrice:state.Data.data.total_price,
     }));
     const func = () => {
     }

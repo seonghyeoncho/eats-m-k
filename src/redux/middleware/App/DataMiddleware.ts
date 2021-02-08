@@ -1,12 +1,12 @@
 import { Action } from '../../Types';
-import { CounterAction, DataAction, SelectAction } from '../../actions';
+import { DataAction } from '../../actions';
 import { dbService } from '../../../firebase/firebase';
 import { RootState } from '../..';
-import { loadDataFirebase, setData } from '../../actions/DataAction';
+import { setData } from '../../actions/DataAction';
 import { addOrdersFunc } from '../../../functions/compareAndMerge';
-import { resetCount } from '../../actions/CounterAction';
 import { Bucket } from '../../reducers/DataReducer';
-const store = window.localStorage.getItem('storeName');
+const storeName = window.localStorage.getItem('storeName');
+const store = window.localStorage.getItem('store');
 const table = window.localStorage.getItem('table');
 
 interface param {
@@ -22,7 +22,9 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
 
     if(DataAction.Types.LOAD_DATA_FIREBASE === action.type && store !== null) {
         dbService
-            .collection(`${store}`)
+            .collection('stores')
+            .doc(`${store}`) 
+            .collection('orders')
             .doc(`${table}`)
             .onSnapshot((doc:any) => {
                 const data = doc.data();
@@ -41,12 +43,15 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
             options: options,
             count: count,
             id:`${select.name}/${count}/${JSON.stringify(select.options)}`,
-            itemTotalPrice: (morePrice) * count
+            item_total_price: (morePrice) * count,
+            state:false
         };
         const bucket = addOrdersFunc( getState().Data.data.bucket, Obj);
-        const totalPrice = getState().Data.data.totalPrice + Obj.itemTotalPrice;
+        const totalPrice = getState().Data.data.total_price + Obj.item_total_price;
         dbService
-            .collection(`${store}`)
+            .collection('stores')
+            .doc(`${store}`) 
+            .collection('orders')
             .doc(`${table}`)
             .update({
                 'bucket':[
@@ -63,19 +68,22 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
         const count = select.count - 1;
         var morePrice = select.price;
         select.options.forEach((doc:any) => doc.options.map((O:any) => {if(O.state) morePrice += O.price}));
-        const itemTotalPrice = select.itemTotalPrice - morePrice;
+        const itemTotalPrice = select.item_total_price - morePrice;
         const Obj = {
             name:select.name,
             price:select.price,
             options:select.options,
             count: count,
             id:`${select.name}/${count}/${JSON.stringify(select.options)}`,
-            itemTotalPrice: itemTotalPrice 
+            item_total_price: itemTotalPrice,
+            state:false
         };
         const modifBuc = bucket.map((item:Bucket) => item.id === prevId ? Obj : item);
-        const totalPrice = getState().Data.data.totalPrice - morePrice;
+        const totalPrice = getState().Data.data.total_price - morePrice;
         dbService
-            .collection(`${store}`)
+            .collection('stores')
+            .doc(`${store}`) 
+            .collection('orders')
             .doc(`${table}`)
             .update({
                 'bucket':[
@@ -92,19 +100,22 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
         var morePrice = select.price;
         select.options.forEach((doc:any) => doc.options.map((O:any) => {if(O.state) morePrice += O.price}));
         const count = select.count + 1;
-        const itemTotalPrice = select.itemTotalPrice + morePrice;
+        const itemTotalPrice = select.item_total_price + morePrice;
         const Obj = {
             name:select.name,
             price:select.price,
             options:select.options,
             count: count,
             id:`${select.name}/${count}/${JSON.stringify(select.options)}`,
-            itemTotalPrice: itemTotalPrice 
+            item_total_price: itemTotalPrice,
+            state:false
         };
         const modifBuc = bucket.map((item:any) => item.id === prevId ? Obj : item);
-        const totalPrice = getState().Data.data.totalPrice + morePrice;
+        const totalPrice = getState().Data.data.total_price + morePrice;
         dbService
-            .collection(`${store}`)
+            .collection('stores')
+            .doc(`${store}`) 
+            .collection('orders')
             .doc(`${table}`)
             .update({
                 'bucket':[
@@ -116,9 +127,11 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
     };
     if(DataAction.Types.DELETE_MENU === action.type) {
         const bucket = getState().Data.data.bucket.filter((doc:Bucket) => doc.id !== action.payload.id);
-        const totalPrice = getState().Data.data.totalPrice - action.payload.itemTotalPrice;
+        const totalPrice = getState().Data.data.total_price - action.payload.item_total_price;
         dbService
-            .collection(`${store}`)
+            .collection('stores')
+            .doc(`${store}`) 
+            .collection('orders')
             .doc(`${table}`)
             .update({
                 'bucket':[
@@ -130,7 +143,9 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
     };
     if(DataAction.Types.RESER_BUCKET === action.type ) {
         dbService
-            .collection(`${store}`)
+            .collection('stores')
+            .doc(`${store}`) 
+            .collection('orders')
             .doc(`${table}`)
             .update({
                 'bucket':[],

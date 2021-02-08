@@ -1,22 +1,26 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux';
 import ItemLink from '../Item/Item';
 import './Category.scss';
 
 interface Props {
     categoryName : string;
-    list: any;
 };
 
-const CategoryMenuList = ({categoryName, list}:Props): JSX.Element => {
-
+const CategoryMenuList = ({categoryName}:Props): JSX.Element => {
+    const { items, categotys } = useSelector((state:RootState)=>({
+        orderStatus:state.Data.data.order_state,
+        totalPrice:state.Data.data.total_price,
+        items:state.Store.menu.items,
+        categotys: state.Store.menu.categories,
+    }));
     return (
         <div className="category">
-            <div className="category-name">
-                <div className="name-text">{categoryName}</div>
-            </div>
+            
             <div className="list">
                 {
-                    list.map((item:any): JSX.Element | undefined => {
+                    items.map((item:any): JSX.Element | undefined => {
                         for( var i=0 ; i<item.categories.length ; i++ ){
                             if(item.categories[i] === categoryName) {
                                 return (

@@ -1,12 +1,10 @@
 export const addOrdersFunc = ( bucket:any,select:any) => {
-
     if( bucket.length !== 0 ) {
         const c = bucket.length;
         var flag = 0;
         for( let i=0 ; i<bucket.length ; i++ ) {
             console.log(bucket[i].options)
             if( bucket[i].name === select.name && compareAndMerge(bucket[i].options, select.options) ) {
-                
                 return addOrdersProcesser('M', bucket, select);
             }
             flag++;
@@ -15,9 +13,7 @@ export const addOrdersFunc = ( bucket:any,select:any) => {
     } else { 
         return addOrdersProcesser('A', bucket, select);
     };
-
 };
-
 
 const compareAndMerge = ( bucketMore:[], selectMore:any ) => {
     if( bucketMore.length !== 0 && selectMore.length !== 0 ) {
@@ -44,14 +40,10 @@ const compareAndMerge = ( bucketMore:[], selectMore:any ) => {
     };
     return false;
 };
-
-
-
 const addOrdersProcesser = (c:string, bucket:any, select:any) => {
     if( c === 'A' ) return processA(bucket, select);
     else if ( c === 'M' ) return processM(bucket, select);
-}
-
+};
 const processA = (bucket:any, select:any): any => {
     const obj = bucket.concat({
         ...select,
@@ -59,14 +51,13 @@ const processA = (bucket:any, select:any): any => {
     });
     return obj;
 };
-
 const processM = (bucket:any, select:any): any => {
     const obj = bucket.map( (doc:any) =>
         doc.name === select.name && compareAndMerge(doc.options, select.options) ? 
             {
                 ...select,
                 count:doc.count + select.count,
-                itemTotalPrice: Number(doc.itemTotalPrice) + Number(select.itemTotalPrice),
+                item_total_price: Number(doc.itemTotalPrice) + Number(select.itemTotalPrice),
                 id:`${select.name}/${doc.count + select.count}/${JSON.stringify(select.options)}`,   
             }
         :

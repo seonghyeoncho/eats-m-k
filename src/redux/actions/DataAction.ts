@@ -53,7 +53,7 @@ export const deleteBucket: ActionCreator = (id, itemTotalPrice) => {
         type:Types.DELETE_MENU,
         payload:{
             id:id,
-            itemTotalPrice: itemTotalPrice
+            item_total_price: itemTotalPrice
         }
     };
 };

@@ -20,14 +20,14 @@ const BucketItem = ({ bucket }:Props) => {
                             <div className="item"> 
                                 <BucketItemInfo 
                                     name={item.name} 
-                                    itemTotalPrice={item.itemTotalPrice} 
+                                    itemTotalPrice={item.item_total_price} 
                                     count={item.count} 
                                     price={item.price}
                                 />
                                 <OptionsContainer options={item.options}/>
                                 <div className="line"/>
                                 <div className="modif-bt">
-                                    <DeleteMenuContainer id={item.id} itemTotalPrice={item.itemTotalPrice}/>
+                                    <DeleteMenuContainer id={item.id} itemTotalPrice={item.item_total_price}/>
                                     <ModifBucket c={item.count} select={item}/>
                                 </div>
                             </div>

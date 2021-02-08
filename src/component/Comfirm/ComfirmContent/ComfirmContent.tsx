@@ -17,7 +17,7 @@ const ComfirmContent = ({ bucket }:Props) => {
                         <div className="cfitem" key={item.name}>
                             <div className="cfinfo">
                                 <div className="cfname">{item.name}</div>
-                                <div className="cfprice">{numberWithCommas(item.itemTotalPrice)}원</div>
+                                <div className="cfprice">{numberWithCommas(item.item_total_price)}원</div>
                             </div>
                             <div className="cfcontent">
                                 <div className="cfsinfo">

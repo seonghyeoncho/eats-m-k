@@ -7,7 +7,7 @@ import './ReceiptButton.scss';
 const ReceiptButtonContainer = () => {
     const { state, orderStatus } = useSelector((state:RootState) => ({
         state: state.Data.data.state,
-        orderStatus: state.Data.data.orderStatus
+        orderStatus: state.Data.data.order_state
     }));
     return (
         <div>

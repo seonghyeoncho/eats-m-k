@@ -9,7 +9,7 @@ const CurrentInfo = () => {
     const table = window.localStorage.getItem('table');
 
     const { totalPrice } =useSelector((state:RootState) => ({
-        totalPrice:state.Data.data.totalPrice,
+        totalPrice:state.Data.data.total_price,
     }))
     return (
         <div className="currentinfo">

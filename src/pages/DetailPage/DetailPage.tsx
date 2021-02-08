@@ -11,7 +11,7 @@ interface Props {
     select: {
         name: string,
         price:number,
-        itemTotalPrice:number,
+        item_total_price:number,
         optionGroups: string[],
         count:number,
         options:Option[],

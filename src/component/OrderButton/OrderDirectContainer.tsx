@@ -16,7 +16,7 @@ const OrderButtonDirectContainer = () => {
         const Obj = {
             name: select.name,
             price: select.price,
-            itemTotalPrice: select.itemTotalPrice,
+            item_total_price: select.item_total_price,
             count: select.count,
             options:select.options,
         };

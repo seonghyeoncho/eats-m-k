@@ -16,7 +16,7 @@ const AddMenuButtonContainer = () => {
         const Obj = {
             name: select.name,
             price: select.price,
-            itemTotalPrice: select.itemTotalPrice,
+            item_total_price: select.item_total_price,
             count: count,
             options:options
         };

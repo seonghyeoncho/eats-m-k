@@ -5,7 +5,7 @@ export interface Select {
     select:{
         name: string,
         price:number,
-        itemTotalPrice:number,
+        item_total_price:number,
         optionGroups: string[],
         count:number,
         options:Option[],
@@ -24,7 +24,7 @@ const initialState: Select = {
     select: {
         name:'',
         price: 0,
-        itemTotalPrice: 0,
+        item_total_price: 0,
         optionGroups: [],
         options:[],
         count: 1,

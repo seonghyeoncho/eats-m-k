@@ -35,8 +35,8 @@ const Home: React.FC<any> = ( props:any ) => {
 
     const scrollY = useScroll().y;
     const { items, categotys } = useSelector((state:RootState)=>({
-        orderStatus:state.Data.data.orderStatus,
-        totalPrice:state.Data.data.totalPrice,
+        orderStatus:state.Data.data.order_state,
+        totalPrice:state.Data.data.total_price,
         items:state.Store.menu.items,
         categotys: state.Store.menu.categories,
     }));
@@ -63,7 +63,7 @@ const Home: React.FC<any> = ( props:any ) => {
         } else {
             setCategoryVaild(false);
         }
-        if(scrollY >= 174) {
+        if(scrollY >= 178) {
             setHomeNav(true);
         } else {
             setHomeNav(false);
@@ -85,7 +85,7 @@ const Home: React.FC<any> = ( props:any ) => {
                     categoryVaild ? 
                         <>
                             <CategoryNav categorys={categotys} setCategoryName={setCategoryName} categoryName={categoryName}/>
-                            <CategoryMenuList list={items} categoryName={categoryName} />
+                            {/* <CategoryMenuList list={items} categoryName={categoryName} /> */}
                         </>
                     :
                         <>

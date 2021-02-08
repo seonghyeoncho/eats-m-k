@@ -10,13 +10,6 @@ interface Props {
 
 const ReceiptButton = ({ orderStatus,state }:Props) => {
 
-    let text:string = '';
-    if(state && orderStatus){
-        text = '접수완료';
-    } else if(!state && orderStatus){
-        text = '주문완료';
-    };
-    
     return (
         <Link to='/receipt'>
             <div className="receipt-bt">

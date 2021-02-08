@@ -63,7 +63,7 @@ const Home: React.FC<any> = ( props:any ) => {
         } else {
             setHomeNav(false);
         }
-    },[s, categotys, scrollY]);
+    },[s, categotys, scrollY, items.length, categoryName, dispatch, store, table]);
 
     return (
         <div className="home">

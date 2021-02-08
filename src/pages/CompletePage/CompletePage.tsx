@@ -15,7 +15,7 @@ const CompletePage = (props:any) => {
             if(time>0) setTime(time-1);
         }, 1000);
         return () => clearInterval(countdown);
-    },[time]);
+    },[props.history, store, table, time]);
 
     return (
         <div className="complete">

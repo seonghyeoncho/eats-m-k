@@ -5,10 +5,7 @@ import numberWithCommas from '../../../functions/addCommaFunc';
 import { RootState } from '../../../redux';
 import { Bucket } from '../../../redux/reducers/DataReducer';
 
-interface Props {
-};
-
-const ReciptContent = ({}:Props) => {
+const ReciptContent = () => {
 
     const { receipts } =  useSelector((state:RootState) => ({
         receipts:state.Data.data.receipt,

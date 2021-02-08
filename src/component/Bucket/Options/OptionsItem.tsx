@@ -4,7 +4,7 @@ interface Props {
 };
 const OptionsItem = ({options}:Props) => {
     var morePrice = 0;
-    options.map((O:any) => {if(O.state) morePrice += O.price});
+    options.forEach((O:any): void => {if(O.state) {morePrice += O.price}});
 
     return (
         <div className="name-price">
@@ -14,6 +14,7 @@ const OptionsItem = ({options}:Props) => {
                         if(doc.state) {
                             return <div className="name" key={index}>{doc.name},</div>
                         }
+                        return <></>;
                     })
                 }
             </div>

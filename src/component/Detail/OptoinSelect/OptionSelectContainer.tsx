@@ -4,10 +4,8 @@ import { RootState } from '../../../redux';
 import OptionSelect from './OptionSelect';
 import './OptionSelect.scss';
 
-interface Props {
-};
 
-const OptionSelectContainer = ({ }:Props) => {
+const OptionSelectContainer = () => {
     const { option } = useSelector((state:RootState)=>({
         option:state.Option.option,
     }));

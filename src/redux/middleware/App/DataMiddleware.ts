@@ -5,7 +5,6 @@ import { RootState } from '../..';
 import { setData } from '../../actions/DataAction';
 import { addOrdersFunc } from '../../../functions/compareAndMerge';
 import { Bucket } from '../../reducers/DataReducer';
-const storeName = window.localStorage.getItem('storeName');
 const store = window.localStorage.getItem('store');
 const table = window.localStorage.getItem('table');
 
@@ -33,9 +32,9 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
     };
     if(DataAction.Types.ADD_BUCKET_MENU === action.type) {
         const select = action.payload.select;
-        var morePrice = select.price;
+        let morePrice = select.price;
         const options = getState().Option.option
-        options.forEach((doc:any) => doc.options.map((O:any) => {if(O.state) morePrice += O.price}));
+        options.forEach((doc:any) => doc.options.forEach((O:any) => {if(O.state) morePrice += O.price}));
         const count = getState().Counter.count;
         const Obj = {
             name: select.name,
@@ -66,8 +65,8 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
         const select = action.payload.select
         const prevId = select.id;
         const count = select.count - 1;
-        var morePrice = select.price;
-        select.options.forEach((doc:any) => doc.options.map((O:any) => {if(O.state) morePrice += O.price}));
+        let morePrice = select.price;
+        select.options.forEach((doc:any) => doc.options.forEach((O:any) => {if(O.state) morePrice += O.price}));
         const itemTotalPrice = select.item_total_price - morePrice;
         const Obj = {
             name:select.name,
@@ -98,7 +97,7 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
         const select = action.payload.select
         const prevId = select.id;
         var morePrice = select.price;
-        select.options.forEach((doc:any) => doc.options.map((O:any) => {if(O.state) morePrice += O.price}));
+        select.options.forEach((doc:any) => doc.options.forEach((O:any) => {if(O.state) morePrice += O.price}));
         const count = select.count + 1;
         const itemTotalPrice = select.item_total_price + morePrice;
         const Obj = {

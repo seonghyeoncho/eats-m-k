@@ -11,7 +11,7 @@ const SelectMenuPrice = () => {
         count: state.Counter.count,
     }));
     var selectPrice = select.price;
-    options.forEach((option:any) => option.options.map((doc:any) => {if(doc.state) selectPrice+=doc.price}));
+    options.forEach((option:any) => option.options.forEach((doc:any) => {if(doc.state) selectPrice+=doc.price}));
     return (
         <div className="selectprice">
             <div className="text">합계</div>

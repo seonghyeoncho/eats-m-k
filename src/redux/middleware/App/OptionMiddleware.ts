@@ -81,7 +81,7 @@ export const OptionMiddleware = ({ dispatch, getState }: param) => (
             dispatch(OptionAction.setSelectOption(test));
         } else {
             let count = 0;
-            options.map((Op:SelectedOption) =>  {
+            options.forEach((Op:SelectedOption) =>  {
                 count = Op.options.filter((state:Options) => state.state === true).length;
             });
             if(state) {

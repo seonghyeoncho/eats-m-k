@@ -2,10 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Cart from '../../image/graphics/graphic_cart_x3.png';
 
-type Props = {
-}
 
-const BucketButton = ({}:Props) => {
+const BucketButton = () => {
 
     return (
         <div>

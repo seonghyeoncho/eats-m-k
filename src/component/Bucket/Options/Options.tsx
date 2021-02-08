@@ -10,6 +10,7 @@ const Options = ({ options }:Props) => {
     return (
         <div className="options">
             {
+
                 options.map((op:any):JSX.Element | undefined => {
                     var count = 0;
                     count = op.options.filter((state:any) => state.state === true).length;
@@ -23,6 +24,7 @@ const Options = ({ options }:Props) => {
                             </div>
                         )
                     }
+                    return <></>;
                 })
             }
         </div>

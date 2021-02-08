@@ -1,11 +1,7 @@
 import React from 'react';
 import OptionSelectContainer from './OptoinSelect/OptionSelectContainer';
 
-interface Props {
-    
-};
-
-const DetailContent = ({ }:Props) => {
+const DetailContent = () => {
     return(
         <OptionSelectContainer/>
     );

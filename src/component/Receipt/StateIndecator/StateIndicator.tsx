@@ -4,10 +4,7 @@ import Complete from '../../../image/icons/icon_OrderCompleted_x3.png';
 import Reception from '../../../image/icons/icon_ReceptionCompleted_x3.png';
 import { RootState } from '../../../redux';
 
-interface Props {
-};
-
-const StateIndicator = ({}:Props) => {
+const StateIndicator = () => {
     const { state } = useSelector((state:RootState) => ({
         state:state.Data.data.state,
     }));

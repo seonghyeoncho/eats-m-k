@@ -9,7 +9,7 @@ interface Props {
 };
 
 const CategoryMenuList = ({categoryName}:Props): JSX.Element => {
-    const { items, categotys } = useSelector((state:RootState)=>({
+    const { items } = useSelector((state:RootState)=>({
         orderStatus:state.Data.data.order_state,
         totalPrice:state.Data.data.total_price,
         items:state.Store.menu.items,
@@ -30,6 +30,7 @@ const CategoryMenuList = ({categoryName}:Props): JSX.Element => {
                                 )
                             }
                         }
+                        return <></>
                     })
                 }
             </div>

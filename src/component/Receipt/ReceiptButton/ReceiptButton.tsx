@@ -24,7 +24,6 @@ const ReceiptButton = ({ orderStatus,state }:Props) => {
                     state ? <img src={Reception} alt="Re"/>
                     : <img src={Complete} alt="Co"/>
                 }
-                <div className="text">{text}</div>
             </div>
         </Link>
     );

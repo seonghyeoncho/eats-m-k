@@ -13,7 +13,7 @@ const BucketButtonContainer = () => {
     return(
         <>
             {
-                totalPrice === 0 ? <></>
+                totalPrice === 0 ? <div className="bucket-bt-block"/>
                 : <BucketButton/>
             }
         </> 

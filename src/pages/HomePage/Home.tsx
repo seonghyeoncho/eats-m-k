@@ -68,10 +68,9 @@ const Home: React.FC<any> = ( props:any ) => {
             setCategoryVaild(false);
             setIndicator(true);
         }
-        if(scrollY >= 170) {
+        if(scrollY >= 174) {
             setHomeNav(true);
-        }
-        if(scrollY< 170) {
+        } else {
             setHomeNav(false);
         }
     },[s, categotys, scrollY]);

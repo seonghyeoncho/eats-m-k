@@ -14,6 +14,8 @@ interface O {
 const Options = ({ options }:Props) => {
     console.log(options);
 
+   
+
     return (
         <div className="options">
             {
@@ -24,7 +26,7 @@ const Options = ({ options }:Props) => {
                         return (
                             <div  className="item">
                                 <div>
-                                    {op.name}
+                                    {op.name} : 
                                 </div>
                                 <OptionsItem options={op.options}/>
                             </div>

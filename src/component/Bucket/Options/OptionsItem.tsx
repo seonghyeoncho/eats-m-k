@@ -1,25 +1,35 @@
 import React from 'react';
-import numberWithCommas from '../../../functions/addCommaFunc';
 interface Props {
     options:any;
-}
-
+};
 const OptionsItem = ({options}:Props) => {
-    options.map((doc:any) => (doc.state ? console.log(doc.name, doc.price) : ''))
+    var morePrice = 0;
+    options.map((O:any) => {if(O.state) morePrice += O.price});
+    console.log(options)
+    var count = 0;
+    options.map((O:any) => {if(O.state) count ++;});
+    console.log(count)
     return (
-        <div>
-            {
-                options.map((doc:any) => {
-                    if(doc.state) {
-                        return (
-                            <div>
-                                <div className="name">{doc.name}</div>
-                                <div className="price"> + {numberWithCommas(doc.price)}원</div>
-                            </div>
-                        )
-                    }
-                })
-            }
+        <div className="name-price">
+            <div className="name-price-content">
+                { 
+                    options.map((doc:any, index:number) => {
+                        if(doc.state) {
+                            if(index === count- 1) {
+                                return (
+                                        <div className="name">{doc.name}</div>
+                                )
+                            } else {
+                                return (
+                                        <div className="name">{doc.name},</div>
+                                )
+                            }
+                        }
+                    })
+                }
+            </div>
+          
+            <div className="price">{morePrice}원</div>
         </div>
        
     );

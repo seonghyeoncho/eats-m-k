@@ -1,9 +1,9 @@
 import React from 'react';
-
+import Indi from '../../image/icons/icon_scrollIndi_x3.png';
 const Indicator = () => {
     return (
-        <div style={{color:"white"}}>
-            this is indicator!!!!
+        <div className="home-indicator">
+            <img src={Indi}/>
         </div>
     );
 };

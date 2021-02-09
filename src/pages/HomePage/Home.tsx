@@ -78,7 +78,7 @@ const Home: React.FC<any> = ( props:any ) => {
                 </div>
                 {
                     categoryVaild ? <CategoryNav categorys={categotys} setCategoryName={setCategoryName} categoryName={categoryName}/>
-                    : <Indicator/>
+                    : <></>
                 }
                 <div className="home-order-bt">
                     {

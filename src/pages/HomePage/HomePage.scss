@@ -20,6 +20,21 @@
         padding-bottom: 100px;
         padding-top: 18px;
     }
+    .home-indicator{
+        background: linear-gradient(to top, #000000, #000000 20%, rgba(84, 84, 84, 0));
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+       img{
+           width: 200px;
+           height: 20px;
+           margin-bottom: 20px;
+       }
+    }
     .home-order-bt{
         .order-bt{
             .order{

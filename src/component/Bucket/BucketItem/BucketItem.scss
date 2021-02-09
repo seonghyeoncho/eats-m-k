@@ -13,9 +13,11 @@
             }
             .options{
                 .item{
-                    margin: 0 25px;
-                    margin-bottom: 6px;
+                    padding-bottom: 6px;
                 }
+                padding-bottom: 10px;
+                border-bottom: solid rgba($color: #ffffff, $alpha: 0.2) 2px;
+                margin: 0 25px;
             }
             
             .info{

@@ -6,6 +6,7 @@ import ReceiptPageContainer from '../pages/ReceiptPage/ReceiptPageContainer';
 import Home from '../pages/HomePage/Home';
 import BucketPageContainer from '../pages/BucketPage/BucketPageContainer';
 import DetailPageContainer from '../pages/DetailPage/DetailPageContainer';
+import '../scss/main.scss';
 
 const AppRouter = () => {
     return(

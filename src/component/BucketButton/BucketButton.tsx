@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Cart from '../../image/graphics/graphic_cart_x3.png';
+import Cart from '../../image/icons/icon_cart _x3.png';
 
 
 const BucketButton = () => {
 
     return (
-        <div>
-            <Link to={`/bucket`}>
+        <div className="bucket-img-con">
+            <Link to={`/bucket`} className="bucket-href">
                     <img className="bucket-img" src={Cart} alt="Cart"/>
             </Link>
         </div>

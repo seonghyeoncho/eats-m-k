@@ -14,7 +14,7 @@ const DetailNav = ({history, }:Props) => {
         <div className="detailnav">
             <div className="content">
                 <div>
-                    <img  className="back-bt" src={Arrow} alt="Arrow" onClick={()=>{history.goBack();dispatch(CounterAction.resetCount());}}/> 
+                    <img className="back-bt" src={Arrow} alt="Arrow" onClick={()=>{history.goBack();dispatch(CounterAction.resetCount());}}/> 
                 </div>   
                 <div className="text">MENU</div>
                 <BucketButtonContainer/>

@@ -6,11 +6,12 @@
     height: 64px;
     border-bottom: solid 1px black;
     .content{
-        padding: 12px 25px;
+        padding: 12px 23px;
         display: flex;
         align-items: center;
         justify-content: space-between;
         .title{
+            margin-left: 2px;
             color:white;
             font-size: 17px;
             font-weight: bold;

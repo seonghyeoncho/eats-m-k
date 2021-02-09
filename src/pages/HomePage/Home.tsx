@@ -28,11 +28,12 @@ const useScroll = () => {
 const Home: React.FC<any> = ( props:any ) => {
 
     const scrollY = useScroll().y;
-    const { items, categotys, totalPrice } = useSelector((state:RootState)=>({
+    const { items, categotys, totalPrice, eventState } = useSelector((state:RootState)=>({
         orderStatus:state.Data.data.order_state,
         items:state.Store.menu.items,
         categotys: state.Store.menu.categories,
         totalPrice: state.Data.data.total_price,
+        eventState: state.Event.eventState
     }));
     const s = window.localStorage.getItem('storeName');
     const [ categoryName, setCategoryName ] = useState<string>('');
@@ -68,6 +69,10 @@ const Home: React.FC<any> = ( props:any ) => {
         <div className="home">
             <StoreAndTableBoxContainer/>
             <ButtonsContainer homeNav={homeNav}/>
+            {
+                eventState? <div className={homeNav? 'event-nav':'event'}> 장바구니에 메뉴가 담겼습니다</div>
+                : <></>
+            }
             <div className={homeNav ?  totalPrice === 0? 'home-content-noprice' : 'home-content-nav' : `home-content`}>
                 <div className="first">
                     <HorizontalScroll list={items} title={'사장님 추천'} width={325} height={160} radius={10}/>

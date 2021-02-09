@@ -8,6 +8,7 @@ import DataReducer, { Data } from './reducers/DataReducer';
 import { Store } from './Types';
 import SelectReducer, { Select } from './reducers/SelectReducer';
 import OptionReducer, {OptionSelect} from './reducers/OptionReducer';
+import EventReducer, { EventState } from './reducers/EventReducer';
 
 const reducer = combineReducers({
   Store: StoreReducer,
@@ -16,7 +17,7 @@ const reducer = combineReducers({
   Data: DataReducer,
   Select: SelectReducer,
   Option: OptionReducer,
-
+  Event: EventReducer,
 });
 
 const store = createStore(
@@ -31,6 +32,7 @@ export interface RootState {
   Data: Data;
   Select: Select;
   Option: OptionSelect;
+  Event: EventState;
 };
 
 export default store;

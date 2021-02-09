@@ -49,6 +49,23 @@
         }
     }
 }
+.event-detail{
+    z-index: 4;
+    padding: 10px 0 10px 0px;
+    color: white;
+    position: fixed;
+    left: 21.6%;
+    right: 21.6%;
+    bottom: 100px;
+    width: 214px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.4);
+    background-color: rgba($color: #ff0000, $alpha: 0.6);
+    font-weight: bold;
+    font-size: 14px;
+    text-align: center;
+    
+}
 .detail-bt{
     position: fixed;
     left: 4%;

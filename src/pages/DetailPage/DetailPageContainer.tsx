@@ -6,7 +6,7 @@ import DetailPage from './DetailPage';
 import './DetailPage.scss';
 
 const DetailPageContainer = (props:any) => {
-    const { select } = useSelector((state:RootState) => ({
+    const { select, } = useSelector((state:RootState) => ({
         select:state.Select.select,
     }));
     const store = window.localStorage.getItem('store');

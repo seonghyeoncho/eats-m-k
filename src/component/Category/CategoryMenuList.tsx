@@ -25,7 +25,7 @@ const CategoryMenuList = ({categoryName}:Props): JSX.Element => {
                             if(item.categories[i] === categoryName) {
                                 return (
                                     <div key={item.name}>
-                                        <ItemLink name={item.name} desc={item.description} price={item.price}/>
+                                        <ItemLink name={item.name} desc={item.description} price={item.price} key={item.name}/>
                                     </div>
                                 )
                             }

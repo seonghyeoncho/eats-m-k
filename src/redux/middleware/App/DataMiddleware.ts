@@ -34,8 +34,13 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
         const select = action.payload.select;
         let morePrice = select.price;
         const options = getState().Option.option
-        options.forEach((doc:any) => doc.options.forEach((O:any) => {if(O.state) morePrice += O.price}));
+        options.forEach((doc:any) => doc.options.forEach((O:any) => {if(O.state) morePrice += O.price;console.log(O.price)}));
+        console.log(options);
+        
+        
         const count = getState().Counter.count;
+        console.log(count);
+        console.log(morePrice * count);
         const Obj = {
             name: select.name,
             price: select.price,

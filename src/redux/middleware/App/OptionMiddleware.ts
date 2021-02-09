@@ -1,5 +1,5 @@
 import { Action } from '../../Types';
-import { OptionAction } from '../../actions';
+import { EventAction, OptionAction } from '../../actions';
 import { RootState } from '../..';
 
 interface param {
@@ -123,7 +123,10 @@ export const OptionMiddleware = ({ dispatch, getState }: param) => (
                         ew = test;
                     }
                     dispatch(OptionAction.setSelectOption(test));
-                } else {}
+                } else {
+                    console.log("ddd")
+                    dispatch(EventAction.detailEventTrigger(maxSelect));
+                }
             }
         }
     };

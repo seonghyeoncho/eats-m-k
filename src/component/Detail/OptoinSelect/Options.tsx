@@ -13,7 +13,6 @@ interface Props {
 };
 
 const Options = ({ maxSelect, options, }:Props) => {
-
     return (
         <div className="options">
             {

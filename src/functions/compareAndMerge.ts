@@ -57,7 +57,7 @@ const processM = (bucket:any, select:any): any => {
             {
                 ...select,
                 count:doc.count + select.count,
-                item_total_price: Number(doc.itemTotalPrice) + Number(select.itemTotalPrice),
+                item_total_price: Number(doc.item_total_price) + Number(select.item_total_price),
                 id:`${select.name}/${doc.count + select.count}/${JSON.stringify(select.options)}`,   
             }
         :

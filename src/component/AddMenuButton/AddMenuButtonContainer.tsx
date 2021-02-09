@@ -4,6 +4,7 @@ import AddMenuButton from './AddMenuButton';
 import { addBucketMenu } from '../../redux/actions/DataAction';
 import './AddMenuButton.scss';
 import { RootState } from '../../redux';
+import { EventAction } from '../../redux/actions';
 
 const AddMenuButtonContainer = () => {
     const { select, count, options } = useSelector((state:RootState) => ({
@@ -13,14 +14,15 @@ const AddMenuButtonContainer = () => {
     }));
     const dispatch = useDispatch();
     const addOrders = () => {
+        dispatch(EventAction.eventTrigger());
         const Obj = {
             name: select.name,
             price: select.price,
-            item_total_price: select.item_total_price,
             count: count,
             options:options
         };
         dispatch(addBucketMenu(Obj));
+       
     };
     return <AddMenuButton  addOrders={addOrders}/>
 }

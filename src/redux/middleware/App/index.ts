@@ -4,5 +4,6 @@ import { DataMiddleware } from './DataMiddleware';
 import { OrderMiddleware } from './OrderMiddleware';
 import { SelectMiddleware } from './SelectMiddleware';
 import { OptionMiddleware } from './OptionMiddleware';
+import { EventMiddleware } from './EventMiddleware'
 
-export const appMiddleware = [StoreMiddleware, LocationMiddleware, DataMiddleware, OrderMiddleware, SelectMiddleware, OptionMiddleware];
+export const appMiddleware = [StoreMiddleware, LocationMiddleware, DataMiddleware, OrderMiddleware, SelectMiddleware, OptionMiddleware, EventMiddleware, ];

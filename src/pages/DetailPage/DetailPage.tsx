@@ -6,6 +6,8 @@ import DetailInfo from '../../component/Detail/Info/DetailInfo';
 import OrderDirectContainer from '../../component/OrderButton/OrderDirectContainer';
 import { CounterContainer } from '../../component/Counter';
 import SelectMenuPrice from './SelectMenuPrice';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux';
 
 interface Props {
     select: {
@@ -25,9 +27,18 @@ interface Option {
 };
 
 const DetailPage = ({select, history}:Props) => {
+    const { eventState, maxSelect } = useSelector((state:RootState) => ({
+        eventState: state.Event.eventState,
+        maxSelect: state.Event.maxSelect
+    }));
     return (
         <>
+            {
+                eventState? <div className='event-detail'>최대 {maxSelect}개까지 선택할 수 있습니다</div>
+                : <></>
+            }
             <div className="detail">
+                
                 <div className="con">
                     <DetailNav history={history}/>
                     <div className="test"></div>

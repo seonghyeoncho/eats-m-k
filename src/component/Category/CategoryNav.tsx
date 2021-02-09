@@ -22,12 +22,9 @@ const CategoryNav = ({ categorys, setCategoryName, categoryName}:Props) => {
                     categorys.map((category:Category) => {
                         return (
                             <>
-                                <div className="category-name">
+                                <div className="category-name" key={category.name}>
                                     <div className="name-text">{category.name}</div>
                                 </div>
-                                {/* <div className={`item ${categoryName===category.name ? 'selectedC':''}`} onClick={() => setCategoryName(category.name)} key={category.name}>
-                                    {category.name}
-                                </div> */}
                                 <CategoryMenuList categoryName={category.name} />
                             </>
                             

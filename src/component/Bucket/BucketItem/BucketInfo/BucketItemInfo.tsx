@@ -9,6 +9,7 @@ interface Props {
 }
 
 const BucketItemInfo = ({name, itemTotalPrice, count, price}:Props) => {
+    console.log(itemTotalPrice)
     return (
         <div className="info">
             <div className="name">

@@ -16,7 +16,7 @@ const EventReducer = (state:EventState = initialState, action:Action) => {
         case EventAction.Types.S_INIT_EVENT_STATE :
             return {
                 maxSelect: action.payload.maxSelect,
-                eventState: !state.eventState
+                eventState: action.payload.state
             }
 
         default:

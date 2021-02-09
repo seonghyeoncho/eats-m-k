@@ -12,10 +12,11 @@ export const eventTrigger:ActionCreator = () => {
         payload:null
     }
 };
-export const initEventState: ActionCreator= (maxSelect:number) => {
+export const initEventState: ActionCreator= (maxSelect:number, state:boolean) => {
     return {
         type:Types.S_INIT_EVENT_STATE,
         payload:{
+            state:state,
             maxSelect: maxSelect
         }
     }

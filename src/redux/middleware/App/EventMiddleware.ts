@@ -11,12 +11,13 @@ export const EventMiddleware = ({dispatch}:param) => (
     next(action);
 
     if(EventAction.Types.C_EVENT_TRIGGER === action.type) {
-        dispatch(EventAction.initEventState());
-        setTimeout(()=>dispatch(EventAction.initEventState()), 1200);
+        console.log('ddddddd')
+        dispatch(EventAction.initEventState(0,true));
+        setTimeout(()=>dispatch(EventAction.initEventState(0,false)), 1200);
     };
     if(EventAction.Types.C_DETAIL_EVENT_TRIGGER === action.type) {
-        dispatch(EventAction.initEventState(action.payload.maxSelect));
-        setTimeout(()=>dispatch(EventAction.initEventState()), 1200);
+        dispatch(EventAction.initEventState(action.payload.maxSelect,true));
+        setTimeout(()=>dispatch(EventAction.initEventState(0,false)), 1200);
     };
     
 }

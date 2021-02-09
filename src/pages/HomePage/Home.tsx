@@ -8,7 +8,6 @@ import HorizontalScroll from '../../component/HorizontalScroll/HorizontalScroll'
 import CategoryNav from '../../component/Category/CategoryNav';
 import './HomePage.scss';
 import ButtonsContainer from '../../component/Buttons/ButtonsContainer';
-import Indicator from './Indicator';
 import { OrderButtonContainer } from '../../component/OrderButton';
 
 const useScroll = () => {

@@ -32,7 +32,6 @@
             text-align: center;
             margin:  0px 64px;
             font-size: 15px;
-            font-family: NotoSansCJKkr-Regular;
             margin-bottom: 34px;
         }
         .popup-bt-con{
@@ -44,7 +43,7 @@
                 background-color: $category;
                 font-size: 18px;
                 color: white;
-                font-family: NotoSansCJKkr-Bold;
+                font-weight: bold;
                 text-align: center;
                 padding: 10px 39px; 
             }
@@ -55,7 +54,7 @@
                 background-color: $base-color;
                 color: white;
                 font-size: 18px;
-                font-family: NotoSansCJKkr-Bold;
+                font-weight: bold;
                 text-align: center;
                 padding: 10px 39px; 
             }

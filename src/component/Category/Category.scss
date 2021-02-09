@@ -9,7 +9,6 @@
     color: black;
     margin-top: 40px;
     .name{
-        font-family: NotoSansCJKkr-Regular;
         .item{
             display: inline-block;
             color: $category;
@@ -28,7 +27,7 @@
                 margin-left: 25px;
                 font-size: 14px;
                 padding-top: 12px;
-                font-family: NotoSansCJKkr-Bold;
+                font-weight: bold;
             }
         }
     }
@@ -51,16 +50,14 @@
                 margin-left: 15px;
                 .name{
                     font-size: 15px;
-                    font-family: NotoSansCJKkr-Bold;
+                    font-weight: bold;
                 }
                 .description{
-                    font-family: NotoSansCJKkr-Regular;
                     font-size: 13px;
                     color: $sub-text;
                     margin-bottom: 4px;
                 }
                 .price{
-                    font-family: NotoSansCJKkr-Regular;
                     font-size: 15px;
                 }
             }

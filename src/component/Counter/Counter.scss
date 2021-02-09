@@ -13,7 +13,7 @@
         .title{
             color:white;
             font-size: 17px;
-            font-family: NotoSansCJKkr-Bold;
+            font-weight: bold;
         }
         .bt{
             width: 138px;
@@ -21,12 +21,10 @@
             border: solid 1px $button-BG;
             border-radius: 8px;
             height: 40px;
-            
             .text{
                 width: 24px;
                 text-align: center;
                 font-size: 15px;
-                font-family: NotoSansCJkkr-Regular;
                 margin :auto 0;
                 color: white;
             }
@@ -36,14 +34,12 @@
                 padding: 14px 21px;
             }
             .de{
-               
                 opacity: 1;
             }
             .deni{
                 opacity: 0.4;
             }
             .in-img{
-                // padding: 14px 21px;
             }
             
         }

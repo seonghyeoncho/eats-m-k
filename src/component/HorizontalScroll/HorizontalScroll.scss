@@ -6,7 +6,7 @@
             color: white;
             margin-left: 25px;
             font-size: 18px;
-            font-family: NotoSansCJkkr-Bold;
+            font-weight: bold;
         }
     }
     .content-con{
@@ -20,10 +20,9 @@
                     
                     margin-bottom: 10px;
                     .name{
-                        font-family: NotoSansCJKkr-Bold;
+                        font-weight: bold;
                     }
                     .price{
-                        font-family: NotoSansCJKkr-Regular;
                     }
                 }
                 display: inline-block;

@@ -57,10 +57,9 @@
                             margin-bottom: 10px;
                             font-size: 16px;
                             .name{     
-                                font-family: NotoSansCJKkr-Bold;
+                                font-weight: bold;
                             }
                             .price{
-                                font-family: NotoSansCJKkr-Regular;
                             }
                         }
                         .box{
@@ -97,11 +96,10 @@
                             margin-left: 12px;
                             .name{
                                 color: white;
-                                font-family: NotoSansCJKkr-Bold;
+                                font-weight: bold;
                             }
                             .price{
                                 color: $sub-text;
-                                font-family: NotoSansCJKkr-Regular;
                             }
                         }
                         .smallbox-img{

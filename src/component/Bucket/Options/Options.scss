@@ -3,7 +3,6 @@
     .item{
         display: flex;
         font-size: 14px;
-        font-family: NotoSansCJKkr-Regular;
         color: $sub-text;
         .name-price{
             display: flex;
@@ -20,24 +19,3 @@
         
     }
 }
-/*
-
-order:Order[]
-Order:{
-    item:Item[]
-    totalPrice: number
-}
-Item:{
-    name: string
-    price: number
-    itemTotalPrice: number
-    count: number
-    state: boolean
-    options:Option[]
-}
-Option: {
-    name: string
-    price: number
-    optionGroup:number[]//미정
-}
-*/

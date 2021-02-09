@@ -16,7 +16,7 @@
             margin: auto 0;
         }
         .text{
-            font-family: NotoSansCJKkr-Bold;
+            font-weight: bold;
             font-size: 18px;
             transform: translate(-33px,0);
         }
@@ -30,7 +30,6 @@
         padding-bottom: 30px;
         margin-left: 23px;
         margin-right: 23px;
-        font-family: NotoSansCJKkr;
         border-bottom: dashed 1px black;
         .store{
             font-weight: bold;
@@ -123,7 +122,7 @@
             }
             .text{
                 font-size: 15px;
-                font-family: NotoSansCJkkr-Bold;
+                font-weight: bold;
             }
         }
         .receipt{
@@ -166,7 +165,7 @@
             }
             .text {
                 font-size: 15px;
-                font-family: NotoSansCJkkr-Bold;
+                font-weight: bold;
                 opacity: 0.54;
             }
             .ytext {

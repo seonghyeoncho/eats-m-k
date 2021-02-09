@@ -34,17 +34,15 @@
                 .info1{
                     .name{
                         font-size: 17px;
-                        font-family: NotoSansCJKkr-Bold;
+                        font-weight: bold;
                     }
                     .desc{
                         font-size: 13px;
-                        font-family: NotoSansCJKkr-Regular;
                         color: $sub-text;
                     }
                 }
                 .price{
                     font-size: 17px;
-                    font-family: NotoSansCJKkr-Regular;
                     margin: auto 0;
                 }
             }

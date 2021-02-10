@@ -1,25 +1,28 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux';
+import { DataAction, StoreAction } from '../../redux/actions';
 import ReceiptPage from './ReceiptPage';
 import './ReceiptPage.scss';
 
 const ReceiptPageContainer = (props:any) => {
 
-    const { receipts } =  useSelector((state:RootState) => ({
+    const { receipts, storeData} =  useSelector((state:RootState) => ({
         receipts:state.Data.data.receipt,
+        storeData:state.Store
     }));
-    const store = window.localStorage.getItem('store');
-    const table = window.localStorage.getItem('table');
-
+    const dispatch = useDispatch();
+    console.log(receipts)
+    useEffect(() => {
+        if(receipts.length === 0){
+            dispatch(StoreAction.loadStoreFirebase());
+            dispatch(DataAction.loadDataFirebase());
+            console.log('dis')
+        };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[storeData]);
     return (
-        <>
-            {
-                receipts.length === 0 ? <Redirect to={`/?store=${store}&table=${table}`}/>
-                : <ReceiptPage history={props.history}/>
-            }
-        </>
+        <ReceiptPage history={props.history}/>
     );
 };
 

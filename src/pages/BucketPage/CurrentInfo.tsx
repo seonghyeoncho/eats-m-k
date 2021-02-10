@@ -12,7 +12,7 @@ const CurrentInfo = () => {
         totalPrice:state.Data.data.total_price,
     }))
     return (
-        <div className="currentinfo">
+        <div className={totalPrice === 0 ? 'currentinfo-none':'currentinfo'}>
             <div className="current-store">
                 {storeName}
             </div>

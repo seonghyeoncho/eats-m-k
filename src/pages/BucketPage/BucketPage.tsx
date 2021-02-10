@@ -22,7 +22,7 @@ const BucketPage = ({history, bucket}:Props) => {
     };
     
     return (
-        <>
+        <>  
             <div className="bucket">
                 <ResetBucketPopup popUpState={popUpState} popUpTrigger={popUpTrigger}/>
                 <BucketNav goBack={goBack} popUpTrigger={popUpTrigger}/>

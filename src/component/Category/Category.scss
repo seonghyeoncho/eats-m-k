@@ -22,12 +22,20 @@
         .category-name{
             background-color: $mc-list-BG;
             height: 44px;
+            display: flex;
+            justify-content: space-between;
             .name-text{
                 color: white;
                 margin-left: 25px;
                 font-size: 14px;
                 padding-top: 12px;
                 font-weight: bold;
+            }
+            img{
+                margin-top: 18px;
+                margin-right: 25px;
+                width: 16px;
+                height: 8px;
             }
         }
     }
@@ -63,4 +71,7 @@
             }
         }
     }
+}
+.listdropdowm{
+    display: none;
 }

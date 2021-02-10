@@ -9,13 +9,11 @@ export enum Types {
     DELETE_OPTION = '[Select] delete options',
 };
 
-export const setMenu: ActionCreator = (menu, count, options) => {
+export const setMenu: ActionCreator = (menu) => {
     return {
         type:Types.SET_MENU,
         payload: {
             menu:menu,
-            count:count,
-            options:options,
         }
     };
 };

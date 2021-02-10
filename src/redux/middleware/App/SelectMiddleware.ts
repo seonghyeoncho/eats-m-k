@@ -14,7 +14,7 @@ export const SelectMiddleware = ({ dispatch, getState }: param) => (
 
     if(SelectAction.Types.SET_MENU === action.type) {
         const items = getState().Store.menu.items;
-        const count = action.payload.count;
+        const count = getState().Counter.count;
 
         for( var i=0 ; i<items.length ; i++ ) {
             if (items[i].name === action.payload.menu) {

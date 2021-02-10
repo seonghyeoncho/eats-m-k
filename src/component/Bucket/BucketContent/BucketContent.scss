@@ -1,3 +1,17 @@
 .bucket-content{
     margin-bottom: 100px;
+    .bucket-default{
+        margin-top: 160px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        .bucket-default-img{
+            width: 303px;
+            font-weight: bold;
+            font-size: 17px;
+            .default-text{
+            }
+        }
+    }
 }

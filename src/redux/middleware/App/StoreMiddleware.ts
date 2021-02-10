@@ -15,7 +15,7 @@ export const StoreMiddleware = ({ dispatch, getState }: param) => (
   next(action);
 
   if (StoreAction.Types.LOAD_STORE_FIREBASE === action.type) {
-    const store = window.localStorage.getItem('store')
+    const store = window.localStorage.getItem('store')   
     dbService
       .collection('stores')
       .doc(`${store}`)

@@ -1,0 +1,12 @@
+.loading-con{
+    height: 100%;
+    margin: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .loading-img{
+        img{
+            width: 303px;
+        }
+    }
+}

@@ -14,6 +14,9 @@
     font-weight: bold;
     font-size: 18px;
 }
+.none{
+    display: none;
+}
 .buttons-con{
     margin: auto 25px;
     display: flex;
@@ -28,11 +31,12 @@
             border: solid 1px #660000;
             border-radius: 4px;
             height: 42px;
+            width: 48px;
             img{
             }
         }
         .bucket-img-con{
-            height: 44px;
+            height: 42px;
             width: 48px;
             border: solid 1px #660000;
             border-radius: 4px;

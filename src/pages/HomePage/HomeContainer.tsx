@@ -21,6 +21,7 @@ const HomeContainer = (props:any) => {
             dispatch(StoreAction.loadStoreFirebase());
             dispatch(DataAction.loadDataFirebase());
         };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[globalLoading]);
     return (
         <>

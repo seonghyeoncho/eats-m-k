@@ -1,5 +1,5 @@
 import { Action } from '../../Types';
-import { DataAction, GlobalLoadingAction } from '../../actions';
+import { DataAction } from '../../actions';
 import { dbService } from '../../../firebase/firebase';
 import { RootState } from '../..';
 import { setData } from '../../actions/DataAction';

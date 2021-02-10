@@ -1,5 +1,5 @@
 import { Action } from '../../Types';
-import { StoreAction } from '../../actions';
+import { GlobalLoadingAction, StoreAction } from '../../actions';
 import { dbService } from '../../../firebase/firebase';
 import { RootState } from '../..';
 
@@ -25,6 +25,7 @@ export const StoreMiddleware = ({ dispatch, getState }: param) => (
         dispatch(StoreAction.setStoreInformation(data.information.name));
         window.localStorage.setItem('storeName', data.information.name);
         dispatch(StoreAction.setStoreMenu(data.menu));
+        dispatch(GlobalLoadingAction.commendGlobalLoading());
       })
       .catch((e) => console.log(e));
   };

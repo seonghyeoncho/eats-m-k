@@ -29,7 +29,6 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
                 const data = doc.data();
                 dispatch(setData(data));
             });
-        dispatch(GlobalLoadingAction.commendGlobalLoading());
     };
     if(DataAction.Types.ADD_BUCKET_MENU === action.type) {
         const select = action.payload.select;

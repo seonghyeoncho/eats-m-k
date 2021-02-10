@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import queryString from 'query-string';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux';
 import StoreAndTableBoxContainer from '../../component/StoreAndTable/StoreAndTableBoxContainer';
-import { LocationAction, StoreAction, DataAction } from '../../redux/actions';
 import HorizontalScroll from '../../component/HorizontalScroll/HorizontalScroll';
 import CategoryNav from '../../component/Category/CategoryNav';
 import './HomePage.scss';
@@ -33,23 +31,14 @@ const Home: React.FC<any> = ( props:any ) => {
         items:state.Store.menu.items,
         categotys: state.Store.menu.categories,
         totalPrice: state.Data.data.total_price,
-        eventState: state.Event.eventState
+        eventState: state.Event.eventState,
     }));
     const s = window.localStorage.getItem('storeName');
     const [ categoryName, setCategoryName ] = useState<string>('');
     const [ homeNav, setHomeNav ] = useState<boolean>(false);
     const [ categoryVaild, setCategoryVaild ] = useState<boolean>(false);
-    const query = queryString.parse(window.location.search);
-    const store = query.store;
-    const table = query.table;
     const dispatch = useDispatch();
-    
     useEffect(()=>{
-        if(items.length === 0) {
-            dispatch(LocationAction.initiateLocation(store, table));
-            dispatch(StoreAction.loadStoreFirebase());
-            dispatch(DataAction.loadDataFirebase());
-        }
         if(categoryName === '') {
             if(categotys.length !== 0 ) {setCategoryName(categotys[0].name); return;}
         };
@@ -63,8 +52,8 @@ const Home: React.FC<any> = ( props:any ) => {
         } else {
             setHomeNav(false);
         }
-    },[s, categotys, scrollY, items.length, categoryName, dispatch, store, table]);
-
+    },[s, categotys, scrollY, items.length, categoryName, dispatch,]);
+    
     return (
         <div className="home">
             <StoreAndTableBoxContainer/>

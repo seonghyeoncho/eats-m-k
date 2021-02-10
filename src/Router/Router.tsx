@@ -3,17 +3,18 @@ import { BrowserRouter as Router, BrowserRouterProps, Route, Switch} from 'react
 import ComfirmPageContainer from '../pages/ComfirmPage/ComfirmPageContainer';
 import CompletePage from '../pages/CompletePage/CompletePage';
 import ReceiptPageContainer from '../pages/ReceiptPage/ReceiptPageContainer';
-import Home from '../pages/HomePage/Home';
 import BucketPageContainer from '../pages/BucketPage/BucketPageContainer';
 import DetailPageContainer from '../pages/DetailPage/DetailPageContainer';
-import '../scss/main.scss';
+import HomeContainer from '../pages/HomePage/HomeContainer';
 
 const AppRouter = () => {
+    
+
     return(
         <Router>
             <Switch>
                 <Route exact path="/" 
-                    component={(props:BrowserRouterProps) => <Home {...props}/>}
+                    component={(props:BrowserRouterProps) => <HomeContainer {...props}/>}
                 />
                 <Route exact path="/comfirm/" 
                     component={(props:BrowserRouterProps)=><ComfirmPageContainer {...props}/>}

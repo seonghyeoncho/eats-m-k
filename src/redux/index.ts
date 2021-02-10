@@ -9,6 +9,7 @@ import { Store } from './Types';
 import SelectReducer, { Select } from './reducers/SelectReducer';
 import OptionReducer, {OptionSelect} from './reducers/OptionReducer';
 import EventReducer, { EventState } from './reducers/EventReducer';
+import GlobalLoadingReducer, { LoadingState } from './reducers/GlobalLoadingReducer';
 
 const reducer = combineReducers({
   Store: StoreReducer,
@@ -18,6 +19,7 @@ const reducer = combineReducers({
   Select: SelectReducer,
   Option: OptionReducer,
   Event: EventReducer,
+  GlobalLoading: GlobalLoadingReducer,
 });
 
 const store = createStore(
@@ -33,6 +35,7 @@ export interface RootState {
   Select: Select;
   Option: OptionSelect;
   Event: EventState;
+  GlobalLoading: LoadingState;
 };
 
 export default store;

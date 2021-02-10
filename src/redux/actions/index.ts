@@ -6,5 +6,5 @@ import * as OrderAction from './OrderAction';
 import * as SelectAction from './SelectMenuAction';
 import * as OptionAction from './OptionAction';
 import * as EventAction from './EventAction';
-
-export { StoreAction, LocationAction, CounterAction, DataAction, OrderAction, SelectAction, OptionAction, EventAction, };
+import * as GlobalLoadingAction from './GlobalLoadingAction'
+export { StoreAction, LocationAction, CounterAction, DataAction, OrderAction, SelectAction, OptionAction, EventAction, GlobalLoadingAction,  };

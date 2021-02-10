@@ -1,5 +1,5 @@
 import { Action } from '../../Types';
-import { DataAction } from '../../actions';
+import { DataAction, GlobalLoadingAction } from '../../actions';
 import { dbService } from '../../../firebase/firebase';
 import { RootState } from '../..';
 import { setData } from '../../actions/DataAction';
@@ -29,6 +29,7 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
                 const data = doc.data();
                 dispatch(setData(data));
             });
+        dispatch(GlobalLoadingAction.commendGlobalLoading());
     };
     if(DataAction.Types.ADD_BUCKET_MENU === action.type) {
         const select = action.payload.select;

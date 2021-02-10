@@ -1,4 +1,8 @@
 body{
+    @import url(https://fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+    font-family: "Noto Sans KR", sans-serif !important;
+    background-color: black;
     margin:0px;
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */

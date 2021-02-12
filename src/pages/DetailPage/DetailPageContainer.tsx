@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux';
@@ -19,17 +20,9 @@ const DetailPageContainer = (props:any) => {
             dispatch(DataAction.loadDataFirebase());
             dispatch(SelectAction.setMenu(name));
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[select, storeData]);
 
-    return (
-        <>
-            {
-                // select.name === '' ? <Redirect to={`/?store=${store}&table=${table}`}/>
-                <DetailPage select={select} history={props.history}/>
-            }
-        </>
-    );
+    return <DetailPage select={select} history={props.history}/>
 };
 
 export default DetailPageContainer;

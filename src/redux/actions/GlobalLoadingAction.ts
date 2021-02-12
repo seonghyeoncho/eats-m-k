@@ -5,7 +5,6 @@ export enum Types {
     S_GLOBAL_LOADING_SUCCESS = '[Global Loading] set global loading',
 
 };
-
 export const commendGlobalLoading: ActionCreator= () => {
     return {
         type:Types.C_GLOBAL_LOADING_SUCCESS,

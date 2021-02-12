@@ -1,32 +1,31 @@
 export interface Action {
-    type: string;
-    payload: any;
+  type: string;
+  payload: any;
 };
 export interface ActionCreator {
-    (...param: any): { type: string; payload: any };
+  (...param: any): { type: string; payload: any };
 };
-
 interface Category {
-    id: number;
-    name: string;
-    description: string;
+  id: number;
+  name: string;
+  description: string;
 };
 export interface Option {
-    name: string;
-    price: number;
+  name: string;
+  price: number;
 };
 export interface OptionGroup {
-    id: number;
-    name: string;
-    maxSelect: number;
-    options: Option[];
+  id: number;
+  name: string;
+  maxSelect: number;
+  options: Option[];
 };
 interface Item {
-    name: string;
-    price: number;
-    description: string;
-    categories: number[];
-    optionGroups: string[];
+  name: string;
+  price: number;
+  description: string;
+  categories: number[];
+  optionGroups: string[];
 };
 
 export interface Store {

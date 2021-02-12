@@ -8,6 +8,7 @@ import { CounterContainer } from '../../component/Counter';
 import SelectMenuPrice from './SelectMenuPrice';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux';
+import testImg from '../../image/graphics/testImg.jpg'
 
 interface Props {
     select: {
@@ -41,7 +42,7 @@ const DetailPage = ({select, history}:Props) => {
                 
                 <div className="con">
                     <DetailNav history={history}/>
-                    <div className="test"></div>
+                    <div className="test" style={{backgroundImage:`url(${testImg})`}}></div>
                     <DetailInfo name={select.name} price={select.price} desc={select.desc}/>
                 </div>
                 <DetailContent />

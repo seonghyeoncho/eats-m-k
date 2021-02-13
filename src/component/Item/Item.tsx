@@ -13,7 +13,7 @@ interface Props {
 const ItemLink = ({name, price, desc}:Props) => {
     const dispatch = useDispatch();
     return (
-        <Link to={`/detail/?name=${name}`} onClick={() => dispatch(SelectAction.setMenu(name, 1,[]))}>
+        <Link to={`/detail/?name=${name}`} onClick={() => {dispatch(SelectAction.setMenu(name, 1,[]));window.scrollTo(0,0)}}>
             <div className="list-con">
                 <div className="img"/>
                 <div className="item">

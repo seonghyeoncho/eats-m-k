@@ -11,7 +11,7 @@ interface Props {
 const ReceiptButton = ({ orderStatus,state }:Props) => {
 
     return (
-        <Link to='/receipt'>
+        <Link to='/receipt' onClick={()=>window.scrollTo(0,0)}>
             <div className="receipt-bt">
                 {   
                     state ? <img src={Reception} alt="Re"/>

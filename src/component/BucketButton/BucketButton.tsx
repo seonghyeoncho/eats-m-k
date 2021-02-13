@@ -7,7 +7,7 @@ const BucketButton = () => {
 
     return (
         <div className="bucket-img-con">
-            <Link to={`/bucket`} className="bucket-href">
+            <Link to={`/bucket`} className="bucket-href" onClick={()=>window.scrollTo(0,0)}>
                     <img className="bucket-img" src={Cart} alt="Cart"/>
             </Link>
         </div>

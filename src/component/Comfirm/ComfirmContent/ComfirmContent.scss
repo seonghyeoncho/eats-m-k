@@ -2,6 +2,7 @@
 .cfcontent{
     color: white;
     background-color: $list-BG;
+    padding-bottom: 20px;
     .cfitem{
         margin: 0 25px;
         padding-bottom: 10px;
@@ -16,7 +17,7 @@
             }
 
         }
-        .cfcontent{
+        .cfcontents{
             color: $sub-text;
             font-size: 14px;
             .cfsinfo{

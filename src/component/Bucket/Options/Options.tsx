@@ -16,7 +16,7 @@ const Options = ({ options }:Props) => {
                     count = op.options.filter((state:any) => state.state === true).length;
                     if(count !== 0){
                         return (
-                            <div  className="item" key={op.name}>
+                            <div  className="item-op" key={op.name}>
                                 <div className="item-ca">
                                     {`${op.name}`}  
                                 </div>

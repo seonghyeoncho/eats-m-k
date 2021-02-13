@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import Complete from '../../../image/icons/icon_OrderCompleted_x3.png';
-import Reception from '../../../image/icons/icon_ReceptionCompleted_x3.png';
+import Complete from '../../../image/icons/icon_OC_x3.png';
+import Reception from '../../../image/icons/icon_RC_x3.png';
 import { RootState } from '../../../redux';
 
 const StateIndicator = () => {

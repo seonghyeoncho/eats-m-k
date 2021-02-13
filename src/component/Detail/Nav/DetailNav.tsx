@@ -6,17 +6,19 @@ import { CounterAction } from '../../../redux/actions';
 import './DetailNav.scss';
 interface Props {
     history:any;
+    name:string;
+    state:boolean
 };
 
-const DetailNav = ({history, }:Props) => {
+const DetailNav = ({history, name, state }:Props) => {
     const dispatch = useDispatch();
     return(
-        <div className="detailnav">
-            <div className="content">
+        <div className={state? 'detailnav-b':'detailnav'}>
+            <div className="content-detail">
                 <div>
                     <img className="back-bt" src={Arrow} alt="Arrow" onClick={()=>{history.goBack();dispatch(CounterAction.resetCount());}}/> 
                 </div>   
-                <div className="text">MENU</div>
+                <div className="text">{name}</div>
                 <BucketButtonContainer/>
             </div>
         </div>

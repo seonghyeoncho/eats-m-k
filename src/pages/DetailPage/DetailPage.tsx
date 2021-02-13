@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import DetailNav from '../../component/Detail/Nav/DetailNav';
 import DetailContent from '../../component/Detail/DetailContent';
 import AddMenuButtonContainer from '../../component/AddMenuButton/AddMenuButtonContainer';
@@ -26,12 +26,32 @@ interface Option {
     name: string;
     price: number;
 };
-
+const useScroll = () => {
+    // state를 생성합니다.
+    const [state, setState] = useState({
+      x: 0,
+      y: 0
+    });
+    const onScroll = () => {
+      setState({ y: window.scrollY, x: window.scrollX });
+    };
+    useEffect(() => {
+      window.addEventListener("scroll", onScroll);
+      return () => window.removeEventListener("scroll", onScroll);
+    }, []);
+    return state;
+};
 const DetailPage = ({select, history}:Props) => {
+    const scrollY = useScroll().y;
     const { eventState, maxSelect } = useSelector((state:RootState) => ({
         eventState: state.Event.eventState,
         maxSelect: state.Event.maxSelect
     }));
+    const [ detailNav, setDetailNav ] = useState<boolean>(false);
+    useEffect(() => {
+        if(scrollY !== 0) setDetailNav(true);
+        else setDetailNav(false);
+    }, [scrollY]);
     return (
         <>
             {
@@ -41,7 +61,7 @@ const DetailPage = ({select, history}:Props) => {
             <div className="detail">
                 
                 <div className="con">
-                    <DetailNav history={history}/>
+                    <DetailNav history={history} name={select.name} state={detailNav}/>
                     <div className="test" style={{backgroundImage:`url(${testImg})`}}></div>
                     <DetailInfo name={select.name} price={select.price} desc={select.desc}/>
                 </div>

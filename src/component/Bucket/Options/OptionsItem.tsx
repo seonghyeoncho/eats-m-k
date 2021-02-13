@@ -10,7 +10,7 @@ const OptionsItem = ({options}:Props) => {
     return (
         <div className="name-price">
             <div className="name-price-content">
-            &nbsp;: { 
+                : { 
                     options.map((doc:any, index:number) => {
                         if(doc.state) {
                             return <div className="name" key={doc.name}>&nbsp;{doc.name}{index === flag-1 ? '': ', '}</div>

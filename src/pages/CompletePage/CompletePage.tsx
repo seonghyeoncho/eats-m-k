@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import BackButton from '../../component/BackButton/BackButton';
+import { Link } from 'react-router-dom';
 import Finish from '../../image/graphics/graphic_finish_x3.png';
 import './CompletePage.scss';
 
@@ -29,7 +29,9 @@ const CompletePage = (props:any) => {
                     주문 현황을 확인하실 수 있습니다
                 </div>
                 <div className="timer">{time}초 후에 메뉴판으로 이동합니다</div>
-                <BackButton text={'주문 현황 확인'}/>
+                <Link to={`/receipt`} className="back-bt">
+                    <div className="text">{'주문 현황 확인'}</div>
+                </Link>
             </div>
         </div>
 

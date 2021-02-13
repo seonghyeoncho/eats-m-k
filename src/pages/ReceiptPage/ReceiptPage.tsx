@@ -9,9 +9,10 @@ interface Props {
 };
 
 const ReceiptView = ({ history }:Props) => {
-
+    const store = window.localStorage.getItem('store')!;
+    const table = window.localStorage.getItem('table')!;
     const goBack = () => {
-       history.goBack();
+       history.push(`/?store=${store}&table=${table}`);
     };
 
     return (

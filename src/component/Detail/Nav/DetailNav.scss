@@ -1,8 +1,8 @@
 .detailnav{
-    position: absolute;
-    z-index: 3;
+    position: fixed;
+    z-index: 5;
     width: 100%;
-    .content{
+    .content-detail{
         width: 100%;
         height: 44px;
         display: flex;
@@ -18,6 +18,44 @@
             height: 21px;
             margin-left: 25px;
             padding: 0 10px;
+            padding-top: 3px;
+        }
+        .text{
+            text-align: center;
+            font-weight: bold;
+        }
+        .bucket-img{
+            float: right;
+            margin-right: 25px;
+            width: 34px;
+            height: 34px;
+        }   
+    }
+}
+.detailnav-b{
+    position: fixed;
+    z-index: 5;
+    width: 100%;
+    background-color: #000000;
+    .content-detail{
+        width: 100%;
+        height: 44px;
+        display: flex;
+        background: linear-gradient(to bottom, #000000 -80%, rgba(0, 0, 0, 0));
+        color: white;
+        div{
+            z-index: 4;
+            flex: 1 1 30%;
+            margin: auto 0px;
+        }
+        .back-bt{
+            
+            width: 12px;
+            height: 21px;
+            margin-left: 25px;
+            padding: 0 10px;
+            padding-top: 3px;
+            
         }
         .text{
             text-align: center;

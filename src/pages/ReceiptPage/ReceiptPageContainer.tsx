@@ -12,12 +12,10 @@ const ReceiptPageContainer = (props:any) => {
         storeData:state.Store
     }));
     const dispatch = useDispatch();
-    console.log(receipts)
     useEffect(() => {
         if(receipts.length === 0){
             dispatch(StoreAction.loadStoreFirebase());
             dispatch(DataAction.loadDataFirebase());
-            console.log('dis')
         };
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[storeData]);

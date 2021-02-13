@@ -16,7 +16,7 @@ const ReciptContent = () => {
                 {
                     receipts.map((doc:Bucket) => {
                         return (
-                            <div className="ritem" key={doc.name}>
+                            <div className="ritem" key={doc.id}>
                                 <div className="title">
                                     <div>{doc.name}</div>
                                     <div>{numberWithCommas(doc.item_total_price)}원</div>
@@ -26,7 +26,7 @@ const ReciptContent = () => {
                                     <div>{numberWithCommas(doc.price)}원</div>
                                 </div>
                                 <OptionsContainer options={doc.options}/>
-                                <div>{doc.state? 'y':'n'}</div>
+                                {/* <div>{doc.state? 'y':'n'}</div> */}
                             </div>
                         );
                     })

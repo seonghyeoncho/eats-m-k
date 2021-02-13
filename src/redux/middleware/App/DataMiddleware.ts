@@ -5,6 +5,7 @@ import { RootState } from '../..';
 import { setData } from '../../actions/DataAction';
 import { addOrdersFunc } from '../../../functions/compareAndMerge';
 import { Bucket } from '../../reducers/DataReducer';
+import { makeId } from '../../../functions/makeId';
 const store = window.localStorage.getItem('store');
 const table = window.localStorage.getItem('table');
 
@@ -18,6 +19,7 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
 ) => ( action: Action ) => {
 
     next(action);
+    const bucket = getState().Data.data.bucket;
 
     if(DataAction.Types.LOAD_DATA_FIREBASE === action.type && store !== null) {
         dbService
@@ -31,26 +33,22 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
             });
     };
     if(DataAction.Types.ADD_BUCKET_MENU === action.type) {
+        
         const select = action.payload.select;
         let morePrice = select.price;
-        const options = getState().Option.option
-        options.forEach((doc:any) => doc.options.forEach((O:any) => {if(O.state) morePrice += O.price;console.log(O.price)}));
-        console.log(options);
-        
-        
+        const options = getState().Option.option;
+        options.forEach((doc:any) => doc.options.forEach((O:any) => {if(O.state) morePrice += O.price}));
         const count = getState().Counter.count;
-        console.log(count);
-        console.log(morePrice * count);
         const Obj = {
             name: select.name,
             price: select.price,
             options: options,
             count: count,
-            id:`${select.name}/${count}/${JSON.stringify(select.options)}`,
+            id:`${select.name}/${count}/${makeId(options)}`,
             item_total_price: (morePrice) * count,
             state:false
         };
-        const bucket = addOrdersFunc( getState().Data.data.bucket, Obj);
+        const newBucket = addOrdersFunc(bucket, Obj);
         const totalPrice = getState().Data.data.total_price + Obj.item_total_price;
         dbService
             .collection('stores')
@@ -59,14 +57,13 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
             .doc(`${table}`)
             .update({
                 'bucket':[
-                    ...bucket
+                    ...newBucket
                 ],
                 'total_price': totalPrice
             }).then(() => {
             }).catch((e) => console.log(e));
     };
     if(DataAction.Types.MODIF_BUCKET_MENU_DECREASE === action.type) {
-        const bucket = getState().Data.data.bucket;
         const select = action.payload.select
         const prevId = select.id;
         const count = select.count - 1;
@@ -78,7 +75,7 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
             price:select.price,
             options:select.options,
             count: count,
-            id:`${select.name}/${count}/${JSON.stringify(select.options)}`,
+            id:`${select.name}/${count}/${makeId(select.options)}`,
             item_total_price: itemTotalPrice,
             state:false
         };
@@ -98,7 +95,6 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
             }).catch((e) => console.log(e));
     }
     if(DataAction.Types.MODIF_BUCKET_MENU_INCREASE === action.type) {
-        const bucket = getState().Data.data.bucket;
         const select = action.payload.select
         const prevId = select.id;
         var morePrice = select.price;
@@ -110,7 +106,7 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
             price:select.price,
             options:select.options,
             count: count,
-            id:`${select.name}/${count}/${JSON.stringify(select.options)}`,
+            id:`${select.name}/${count}/${makeId(select.options)}`,
             item_total_price: itemTotalPrice,
             state:false
         };

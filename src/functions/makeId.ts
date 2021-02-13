@@ -8,7 +8,6 @@ export const makeId = (options:any): string => {
         };
     };
     let id:string = JSON.stringify(itemId);
-    console.log(id);
     return id;
 };
 export const optionsArr = (options:any) => {

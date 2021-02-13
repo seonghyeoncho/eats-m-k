@@ -1,13 +1,20 @@
 @import '../../../scss/_variables.scss';
 .options{
     .item{
+        width: 100%;
         display: flex;
         font-size: 14px;
         color: $sub-text;
+        .item-ca{
+            width: 17.2%;
+        }
         .name-price{
+            width: 100%;
             display: flex;
+            justify-content: space-between;
             .name-price-content{
                 display: flex;
+                
             }
             .name{
 

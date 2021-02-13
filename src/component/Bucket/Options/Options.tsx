@@ -17,8 +17,8 @@ const Options = ({ options }:Props) => {
                     if(count !== 0){
                         return (
                             <div  className="item" key={op.name}>
-                                <div>
-                                    {op.name} : 
+                                <div className="item-ca">
+                                    {`${op.name}`}  
                                 </div>
                                 <OptionsItem options={op.options}/>
                             </div>

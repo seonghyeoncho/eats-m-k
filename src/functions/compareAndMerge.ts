@@ -14,8 +14,6 @@ export const addOrdersFunc = ( bucket:any,select:any) => {
 const compareAndMerge = ( bucketMore:[], selectMore:any ) => {
     const bucketOptions = optionsArr(bucketMore);
     const selectOptions = optionsArr(selectMore);
-    console.log(bucketOptions)
-    console.log(selectOptions)
     if( bucketOptions.length + selectOptions.length === 0) {
         console.log('true : reason 2');
         return true;

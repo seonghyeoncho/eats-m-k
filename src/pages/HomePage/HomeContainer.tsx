@@ -14,7 +14,6 @@ const HomeContainer = (props:any) => {
     const store = query.store;
     const table = query.table;
     const dispatch = useDispatch();
-    console.log(globalLoading)
     useEffect(() => {
         if(!globalLoading) {
             dispatch(LocationAction.initiateLocation(store, table));

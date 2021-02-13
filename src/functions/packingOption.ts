@@ -8,6 +8,5 @@ export const packingOption = (options:any) => {
             }
         }
     }
-    console.log(packedOption);
     return packedOption;
 }

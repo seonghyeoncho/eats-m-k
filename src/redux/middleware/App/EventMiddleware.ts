@@ -11,7 +11,6 @@ export const EventMiddleware = ({dispatch}:param) => (
     next(action);
 
     if(EventAction.Types.C_EVENT_TRIGGER === action.type) {
-        console.log('ddddddd')
         dispatch(EventAction.initEventState(0,true));
         setTimeout(()=>dispatch(EventAction.initEventState(0,false)), 1200);
     };

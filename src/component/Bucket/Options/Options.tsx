@@ -1,4 +1,5 @@
 import React from 'react';
+import { optionsArr } from '../../../functions/makeId';
 import { Option } from '../../../redux/Types';
 import OptionsItem from './OptionsItem';
 
@@ -7,6 +8,7 @@ interface Props {
 };
 
 const Options = ({ options }:Props) => {
+    const count = optionsArr(options);
     return (
         <div className="options">
             {
@@ -18,9 +20,9 @@ const Options = ({ options }:Props) => {
                         return (
                             <div  className="item-op" key={op.name}>
                                 <div className="item-ca">
-                                    {`${op.name}`}  
+                                    {op.name}
                                 </div>
-                                <OptionsItem options={op.options}/>
+                                <OptionsItem options={op.options} count={count}/>
                             </div>
                         )
                     }

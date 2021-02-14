@@ -5,7 +5,11 @@
         display: flex;
         font-size: 14px;
         color: $sub-text;
-        .item-ca{
+        white-space: nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;        
+        .item-ca{  
+            // width: 100%;
         }
         .name-price{
             width: 100%;

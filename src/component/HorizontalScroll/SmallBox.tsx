@@ -13,7 +13,7 @@ interface Props {
 const SmallBox = ({ name, price, width, height, radius}:Props) => {
     
     return (
-        <div className="item">
+        <div className="item"  onClick={()=> window.scrollTo(0,0)}>
             <div className="box" style={{width:`${width}px`, height:`${height}px`, borderRadius:`${radius}`}}>
                 <img src={Test} className="smallbox-img" alt="background-img"/>
                 <img src={BG} className="smallbox-box" alt="text-box"/>

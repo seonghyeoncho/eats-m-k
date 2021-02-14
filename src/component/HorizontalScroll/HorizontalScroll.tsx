@@ -36,7 +36,7 @@ const HorizontalScroll = ({title, list, width, height, radius}:Props) => {
                     {
                         list.map((item:Item) => {
                             return (
-                                <Link to={`/detail/?name=${item.name}`} onClick={() => {dispatch(setMenu(item.name, 1,[]));window.scrollTo(0,0)}} key={item.name}>
+                                <Link to={`/detail/?name=${item.name}`} onClick={() => {dispatch(setMenu(item.name, 1,[]));}} key={item.name}>
                                     {
                                         width === 325 ? <BigBox width={width} height={height} radius={radius} name={item.name} price={item.price}/>
                                         : <SmallBox width={width} height={height} radius={radius} name={item.name} price={item.price}/>

@@ -49,7 +49,7 @@ const DetailPage = ({select, history}:Props) => {
     }));
     const [ detailNav, setDetailNav ] = useState<boolean>(false);
     useEffect(() => {
-        if(scrollY !== 0) setDetailNav(true);
+        if(scrollY > 0) setDetailNav(true);
         else setDetailNav(false);
         
     }, [scrollY]);

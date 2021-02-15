@@ -8,14 +8,12 @@ interface Props {
 };
 
 const Options = ({ options }:Props) => {
-    const count = optionsArr(options);
+    const count = optionsArr(options).length;
     return (
         <div className="options">
             {
 
                 options.map((op:any):JSX.Element | undefined => {
-                    var count = 0;
-                    count = op.options.filter((state:any) => state.state === true).length;
                     if(count !== 0){
                         return (
                             <div  className="item-op" key={op.name}>

@@ -44,7 +44,7 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
             price: select.price,
             options: options,
             count: count,
-            id:`${select.name}/${count}/${makeId(options)}`,
+            id:`${select.name}/${makeId(options)}`,
             item_total_price: (morePrice) * count,
             state:false
         };
@@ -75,7 +75,7 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
             price:select.price,
             options:select.options,
             count: count,
-            id:`${select.name}/${count}/${makeId(select.options)}`,
+            id:`${select.name}/${makeId(select.options)}`,
             item_total_price: itemTotalPrice,
             state:false
         };
@@ -106,7 +106,7 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
             price:select.price,
             options:select.options,
             count: count,
-            id:`${select.name}/${count}/${makeId(select.options)}`,
+            id:`${select.name}/${makeId(select.options)}`,
             item_total_price: itemTotalPrice,
             state:false
         };

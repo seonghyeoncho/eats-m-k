@@ -37,7 +37,8 @@ export const OrderMiddleware = ({ dispatch, getState }: param) => (
                     ...newReceipt
                 ],
                 'order_state':true,
-                'state':false
+                'state':false,
+				'orderAt':Date.now()
             })
             .then(() => {
                 dispatch(loadDataFirebase());

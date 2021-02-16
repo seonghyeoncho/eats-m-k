@@ -59,7 +59,8 @@ const Home: React.FC<any> = ( props:any ) => {
             <StoreAndTableBoxContainer/>
             <ButtonsContainer homeNav={homeNav}/>
             {
-                eventState? <div className={homeNav? 'event-nav':'event'}> 장바구니에 메뉴가 담겼습니다</div>
+                eventState
+                ? <div className={homeNav? 'event-nav':'event'}> 장바구니에 메뉴가 담겼습니다</div>
                 : <></>
             }
             <div className={homeNav ?  totalPrice === 0 && !orderStatus? 'home-content-noprice' : 'home-content-nav' : `home-content`}>
@@ -70,12 +71,14 @@ const Home: React.FC<any> = ( props:any ) => {
                     <HorizontalScroll list={items} title={'이런건 어때요?'} width={120} height={160} radius={18}/>
                 </div>
                 {
-                    categoryVaild ? <CategoryNav categorys={categotys} setCategoryName={setCategoryName} categoryName={categoryName}/>
+                    categoryVaild 
+                    ? <CategoryNav categorys={categotys} setCategoryName={setCategoryName} categoryName={categoryName}/>
                     : <></>
                 }
                 <div className="home-order-bt">
                     {
-                        homeNav? <OrderButtonContainer/>
+                        homeNav
+                        ? <OrderButtonContainer/>
                         : <></>
                     }
                 </div>

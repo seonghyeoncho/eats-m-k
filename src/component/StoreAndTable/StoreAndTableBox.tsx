@@ -12,7 +12,7 @@ const StoreAndTableBox = ({ store, table }:BoxProps) => {
         <div className="nav">
             <div>
                 <div className="store">{store}</div>
-                <div className="table">테이블 {table}</div>
+                <div className="table">{`테이블 ${table}`}</div>
             </div>
         </div>
     );

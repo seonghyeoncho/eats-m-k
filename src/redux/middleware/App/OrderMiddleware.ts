@@ -16,14 +16,16 @@ export const OrderMiddleware = ({ dispatch, getState }: param) => (
     next(action);
 
     if(OrderAction.Types.ADD_NEW_ORDER === action.type) {
+		//주문 캡슐
         const store = window.localStorage.getItem('store');
         const table = window.localStorage.getItem('table');
         const bucket = getState().Data.data.bucket;
         const totalPrice = getState().Data.data.total_price;
         const receiptTotalPrice = getState().Data.data.receipt_total_price;
         const receipt = getState().Data.data.receipt;
-        const newReceipt = receipt.concat(bucket);
-
+		const newReceipt = receipt.concat(bucket);
+		const date = new Date();
+		const orderTime = date.getTime();
         dbService
             .collection('stores')
             .doc(`${store}`) 
@@ -38,7 +40,7 @@ export const OrderMiddleware = ({ dispatch, getState }: param) => (
                 ],
                 'order_state':true,
                 'state':false,
-				'orderAt':Date.now()
+				'orderAt':orderTime
             })
             .then(() => {
                 dispatch(loadDataFirebase());

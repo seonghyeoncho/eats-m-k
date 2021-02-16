@@ -22,7 +22,6 @@
     display: flex;
     justify-content: space-between;
     .buttons-state{
-
         .buttons-table{
             display: none;
         }
@@ -32,8 +31,7 @@
             border-radius: 4px;
             height: 42px;
             width: 48px;
-            img{
-            }
+            img{}
         }
         .bucket-img-con{
             height: 42px;
@@ -41,7 +39,6 @@
             border: solid 1px #660000;
             border-radius: 4px;
             .bucket-href{
-               
                 .bucket-img{
                     margin: 3px 0;
                     padding: 0 5px;

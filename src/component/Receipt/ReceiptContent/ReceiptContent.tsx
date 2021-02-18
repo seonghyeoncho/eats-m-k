@@ -10,25 +10,35 @@ const ReciptContent = () => {
     const { receipts } =  useSelector((state:RootState) => ({
         receipts:state.Data.data.receipt,
     }));
+    console.log(receipts);
     return (
         <>
             <div className="receipt-con">
                 {
-                    receipts.map((doc:Bucket) => {
-                        return (
-                            <div className="ritem" key={doc.id}>
-                                <div className="title">
-                                    <div>{doc.name}</div>
-                                    <div>{numberWithCommas(doc.item_total_price)}원</div>
-                                </div>
-                                <div className="sub">
-                                    <div>수량 : {doc.count}개</div>
-                                    <div>{numberWithCommas(doc.price)}원</div>
-                                </div>
-                                <OptionsContainer options={doc.options}/>
-                                {/* <div>{doc.state? 'y':'n'}</div> */}
+                    receipts.map((order:any)=>{
+                        return(
+                            <div>
+                                <div>{order.order_time}</div>
+                                {
+                                    order.receipts.map((doc:Bucket) => {
+                                        return (
+                                            <div className="ritem" key={doc.id}>
+                                                <div className="title">
+                                                    <div>{doc.name}</div>
+                                                    <div>{numberWithCommas(doc.item_total_price)}원</div>
+                                                </div>
+                                                <div className="sub">
+                                                    <div>수량 : {doc.count}개</div>
+                                                    <div>{numberWithCommas(doc.price)}원</div>
+                                                </div>
+                                                <OptionsContainer options={doc.options}/>
+                                                {/* <div>{doc.state? 'y':'n'}</div> */}
+                                            </div>
+                                        );
+                                    })
+                                }
                             </div>
-                        );
+                        )
                     })
                 }
             </div>

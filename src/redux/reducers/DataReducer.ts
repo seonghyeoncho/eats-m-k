@@ -15,10 +15,15 @@ export interface Bucket {
     state:boolean,
 
 };
+interface Receipt {
+    order_time:string,
+    state:string,
+    receipt:Bucket[],
+}
 export interface Data {
     data: {
         bucket: Bucket[],
-        receipt: Bucket[],
+        receipt: Receipt[],
         total_price: number,
         receipt_total_price: number,
         state:boolean,

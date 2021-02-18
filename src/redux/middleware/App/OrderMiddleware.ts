@@ -19,13 +19,19 @@ export const OrderMiddleware = ({ dispatch, getState }: param) => (
 		//주문 캡슐
         const store = window.localStorage.getItem('store');
         const table = window.localStorage.getItem('table');
-        const bucket = getState().Data.data.bucket;
+		const bucket = getState().Data.data.bucket;
         const totalPrice = getState().Data.data.total_price;
         const receiptTotalPrice = getState().Data.data.receipt_total_price;
-        const receipt = getState().Data.data.receipt;
-		const newReceipt = receipt.concat(bucket);
+		const receipt = getState().Data.data.receipt;
 		const date = new Date();
 		const orderTime = date.getTime();
+		const obj:any = {
+			order_time:orderTime,
+			state:'주문 완료',
+			receipts:bucket
+		};
+		const newReceipt = receipt.concat(obj);
+		
         dbService
             .collection('stores')
             .doc(`${store}`) 

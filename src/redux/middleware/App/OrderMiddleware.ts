@@ -24,7 +24,7 @@ export const OrderMiddleware = ({ dispatch, getState }: param) => (
         const receiptTotalPrice = getState().Data.data.receipt_total_price;
 		const receipt = getState().Data.data.receipt;
 		const date = new Date();
-		const orderTime = date.getTime();
+		const orderTime = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
 		const obj:any = {
 			order_time:orderTime,
 			state:'주문 완료',

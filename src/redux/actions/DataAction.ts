@@ -7,7 +7,7 @@ export enum Types {
     MODIF_BUCKET_MENU_DECREASE = '[Bucket] modif bucket menu count decrease',
     LOAD_DATA_FIREBASE = '[Bucket] load data from firebase',
     DELETE_MENU = '[Bucket] delete menu in bucket',
-    RESER_BUCKET = '[Bucket] reset bucket' 
+    RESER_BUCKET = '[Bucket] reset bucket' ,
 };
 
 export const setData: ActionCreator = (data) => {

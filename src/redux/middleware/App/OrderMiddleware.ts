@@ -31,7 +31,6 @@ export const OrderMiddleware = ({ dispatch, getState }: param) => (
 			receipts:bucket
 		};
 		const newReceipt = receipt.concat(obj);
-		
         dbService
             .collection('stores')
             .doc(`${store}`) 

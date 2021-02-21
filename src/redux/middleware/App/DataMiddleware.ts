@@ -29,7 +29,17 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
             .doc(`${table}`)
             .onSnapshot((doc:any) => {
                 const data = doc.data();
-                dispatch(setData(data));
+                let price = 0;
+                data.receipt.forEach((receipts:any) => {
+                    receipts.receipts.forEach((item:any) => {
+                        if(item.state === "주문 완료") price += item.item_total_price;
+                    })
+                })
+                const newData = {
+                    ...data,
+                    receipt_total_price: price
+                }
+                dispatch(setData(newData));
             });
     };
     if(DataAction.Types.ADD_BUCKET_MENU === action.type) {

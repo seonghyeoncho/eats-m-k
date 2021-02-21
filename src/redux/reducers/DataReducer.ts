@@ -12,7 +12,7 @@ export interface Bucket {
     options:Option[]
     item_total_price:number,
     count:number,
-    state:boolean,
+    state:string,
 
 };
 interface Receipt {

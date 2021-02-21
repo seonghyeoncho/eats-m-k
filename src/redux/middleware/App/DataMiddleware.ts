@@ -49,7 +49,7 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
             count: count,
             id:`${select.name}/${makeId(options)}/${orderTime}`,
             item_total_price: (morePrice) * count,
-            state:false
+            state:"주문 완료"
         };
         const newBucket = addOrdersFunc(bucket, Obj);
         const totalPrice = getState().Data.data.total_price + Obj.item_total_price;
@@ -83,7 +83,7 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
             count: count,
             id:`${select.name}/${makeId(select.options)}/${orderTime}`,
             item_total_price: itemTotalPrice,
-            state:false
+            state:"주문 완료"
         };
         const modifBuc = bucket.map((item:Bucket) => item.id === prevId ? Obj : item);
         const totalPrice = getState().Data.data.total_price - morePrice;
@@ -117,7 +117,7 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
             count: count,
             id:`${select.name}/${makeId(select.options)}/${orderTime}`,
             item_total_price: itemTotalPrice,
-            state:false
+            state:"주문 완료"
         };
         const modifBuc = bucket.map((item:any) => item.id === prevId ? Obj : item);
         const totalPrice = getState().Data.data.total_price + morePrice;

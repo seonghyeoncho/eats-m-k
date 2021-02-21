@@ -34,9 +34,6 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
     };
     if(DataAction.Types.ADD_BUCKET_MENU === action.type) {
         
-		
-        const date = new Date();
-        const orderTime = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
         const select = action.payload.select;
         let morePrice = select.price;
         const options = getState().Option.option;
@@ -47,9 +44,9 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
             price: select.price,
             options: options,
             count: count,
-            id:`${select.name}/${makeId(options)}/${orderTime}`,
+            id:`${select.name}/${makeId(options)}`,
             item_total_price: (morePrice) * count,
-            state:"주문 완료"
+            state:'주문 완료'
         };
         const newBucket = addOrdersFunc(bucket, Obj);
         const totalPrice = getState().Data.data.total_price + Obj.item_total_price;
@@ -72,18 +69,15 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
         const count = select.count - 1;
         let morePrice = select.price;
         select.options.forEach((doc:any) => doc.options.forEach((O:any) => {if(O.state) morePrice += O.price}));
-
-        const date = new Date();
-	    const orderTime = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
         const itemTotalPrice = select.item_total_price - morePrice;
         const Obj = {
             name:select.name,
             price:select.price,
             options:select.options,
             count: count,
-            id:`${select.name}/${makeId(select.options)}/${orderTime}`,
+            id:`${select.name}/${makeId(select.options)}`,
             item_total_price: itemTotalPrice,
-            state:"주문 완료"
+            state:'주문 완료'
         };
         const modifBuc = bucket.map((item:Bucket) => item.id === prevId ? Obj : item);
         const totalPrice = getState().Data.data.total_price - morePrice;
@@ -102,8 +96,6 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
     }
     if(DataAction.Types.MODIF_BUCKET_MENU_INCREASE === action.type) {
 
-        const date = new Date();
-	    const orderTime = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
         const select = action.payload.select
         const prevId = select.id;
         var morePrice = select.price;
@@ -115,9 +107,9 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
             price:select.price,
             options:select.options,
             count: count,
-            id:`${select.name}/${makeId(select.options)}/${orderTime}`,
+            id:`${select.name}/${makeId(select.options)}`,
             item_total_price: itemTotalPrice,
-            state:"주문 완료"
+            state:'주문 완료'
         };
         const modifBuc = bucket.map((item:any) => item.id === prevId ? Obj : item);
         const totalPrice = getState().Data.data.total_price + morePrice;

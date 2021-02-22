@@ -6,8 +6,8 @@ type Props = {
 };
 
 const AddMenuButton = ({addOrders}:Props) => {
-    const store = window.localStorage.getItem('store');
-    const table = window.localStorage.getItem('table');
+    const store = JSON.parse(window.localStorage.getItem('storeId')!);
+    const table = JSON.parse(window.localStorage.getItem('tableId')!);
     return(
         <Link to={`/?store=${store}&table=${table}`} className="addmenu-bt" onClick={addOrders}>
             <div>

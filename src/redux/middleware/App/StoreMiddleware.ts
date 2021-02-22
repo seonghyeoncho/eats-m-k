@@ -1,5 +1,5 @@
 import { Action } from '../../Types';
-import { GlobalLoadingAction, StoreAction } from '../../actions';
+import { DataAction, GlobalLoadingAction, StoreAction } from '../../actions';
 import { dbService } from '../../../firebase/firebase';
 import { RootState } from '../..';
 
@@ -14,19 +14,32 @@ export const StoreMiddleware = ({ dispatch, getState }: param) => (
   
   next(action);
 
-  if (StoreAction.Types.LOAD_STORE_FIREBASE === action.type) {
-    const store = window.localStorage.getItem('store')   
+  if(StoreAction.Types.LOAD_STORE_FIREBASE === action.type) {
     dbService
       .collection('stores')
-      .doc(`${store}`)
+      .doc(`${action.payload.storeId}`)
       .get()
       .then((querySnapshot) => { 
         const data:any = querySnapshot.data();
-        dispatch(StoreAction.setStoreInformation(data.information.name));
-        window.localStorage.setItem('storeName', data.information.name);
+        dispatch(StoreAction.setStoreInformation(data.information.name, data.id));
         dispatch(StoreAction.setStoreMenu(data.menu));
+        dispatch(DataAction.loadDataFirebase(action.payload.storeId, action.payload.tableId));
         dispatch(GlobalLoadingAction.commendGlobalLoading());
       })
       .catch((e) => console.log(e));
   };
+  if(StoreAction.Types.LOAD_STORE_FIREBASE_FOR_SELECT === action.type) {
+    dbService
+      .collection('stores')
+      .doc(`${action.payload.storeId}`)
+      .get()
+      .then((querySnapshot) => { 
+        const data:any = querySnapshot.data();
+        dispatch(StoreAction.setStoreInformation(data.information.name, data.id));
+        dispatch(StoreAction.setStoreMenu(data.menu));
+        dispatch(DataAction.loadDataFirebaseForDetail(action.payload.storeId, action.payload.tableId, action.payload.name));
+        dispatch(GlobalLoadingAction.commendGlobalLoading());
+      })
+      .catch((e) => console.log(e));
+  }
 };

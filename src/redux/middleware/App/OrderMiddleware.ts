@@ -14,11 +14,10 @@ export const OrderMiddleware = ({ dispatch, getState }: param) => (
 ) => ( action:Action ) => {
 
     next(action);
-
+	const storeId = getState().Location.storeId;
+	const tableId = getState().Location.tableId;
     if(OrderAction.Types.ADD_NEW_ORDER === action.type) {
 		//주문 캡슐
-        const store = window.localStorage.getItem('store');
-        const table = window.localStorage.getItem('table');
 		const bucket = getState().Data.data.bucket;
         const totalPrice = getState().Data.data.total_price;
         const receiptTotalPrice = getState().Data.data.receipt_total_price;
@@ -33,9 +32,9 @@ export const OrderMiddleware = ({ dispatch, getState }: param) => (
 		const newReceipt = receipt.concat(obj);
         dbService
             .collection('stores')
-            .doc(`${store}`) 
+            .doc(`${storeId}`) 
             .collection('orders')
-            .doc(`${table}`)
+            .doc(`${tableId}`)
             .update({
                 'bucket':[],
                 'receipt_total_price':receiptTotalPrice + totalPrice,

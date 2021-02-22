@@ -5,22 +5,22 @@ import { RootState } from '../../redux';
 import DetailPage from './DetailPage';
 import queryString from 'query-string';
 import './DetailPage.scss';
-import { DataAction, SelectAction, StoreAction } from '../../redux/actions';
+import { StoreAction } from '../../redux/actions';
 
 const DetailPageContainer = (props:any) => {
-    const { select, storeData } = useSelector((state:RootState) => ({
+    const { select, storeId } = useSelector((state:RootState) => ({
         select:state.Select.select,
-        storeData:state.Store
+        storeId:state.Location.storeId
     }));
     const dispatch = useDispatch();
     const name = queryString.parse(window.location.search).name;
     useEffect(()=>{
-       if(select.name === "") {
-            dispatch(StoreAction.loadStoreFirebase());
-            dispatch(DataAction.loadDataFirebase());
-            dispatch(SelectAction.setMenu(name));
+       if(storeId === null) {
+            const storeId = JSON.parse(window.localStorage.getItem("storeId")!);
+            const tableId = JSON.parse(window.localStorage.getItem("tableId")!);
+            dispatch(StoreAction.loadStoreFirebaseForDetail(storeId, tableId, name))
         }
-    },[select, storeData]);
+    },[storeId]);
 
     return <DetailPage select={select} history={props.history}/>
 };

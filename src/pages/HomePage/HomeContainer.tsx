@@ -4,21 +4,21 @@ import GlobalLoading from '../../component/AddMenuButton/GlobalLoading';
 import { RootState } from '../../redux';
 import Home from './Home';
 import queryString from 'query-string';
-import { DataAction, LocationAction, StoreAction } from '../../redux/actions';
+import { LocationAction } from '../../redux/actions';
 
 const HomeContainer = (props:any) => {
     const { globalLoading } = useSelector((state:RootState) => ({
         globalLoading:state.GlobalLoading.loadingState,
     }));
     const query = queryString.parse(window.location.search);
-    const store = query.store;
-    const table = query.table;
+    const storeId = query.store;
+    const tableId = query.table;
     const dispatch = useDispatch();
     useEffect(() => {
         if(!globalLoading) {
-            dispatch(LocationAction.initiateLocation(store, table));
-            dispatch(StoreAction.loadStoreFirebase());
-            dispatch(DataAction.loadDataFirebase());
+            window.localStorage.removeItem("storeId");
+            window.localStorage.removeItem("tableId");
+            dispatch(LocationAction.initiateLocation(storeId, tableId));
         };
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[globalLoading]);

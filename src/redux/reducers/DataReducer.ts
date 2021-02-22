@@ -28,7 +28,8 @@ export interface Data {
         receipt_total_price: number,
         state:boolean,
         order_state:boolean
-    }
+    },
+    tableNumber:string
 };
 
 const initialState: Data = {
@@ -39,7 +40,8 @@ const initialState: Data = {
         receipt_total_price: 0,
         state: false,
         order_state: false,
-    }
+    },
+    tableNumber:''
 }
 const DataReducer = (state = initialState, action: Action) => {
     switch (action.type) {
@@ -47,6 +49,7 @@ const DataReducer = (state = initialState, action: Action) => {
           return {
             ...state,
             data: action.payload.data,
+            tableNumber:action.payload.tableNumber
           };
         default:
           return state;

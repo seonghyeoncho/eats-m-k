@@ -10,7 +10,6 @@ const ReciptContent = () => {
     const { receipts } =  useSelector((state:RootState) => ({
         receipts:state.Data.data.receipt,
     }));
-    console.log(receipts);
     return (
         <>
             <div className="receipt-con">

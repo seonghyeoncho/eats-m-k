@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Complete from '../../../image/icons/orderCompleted_1.gif'
-import Reception from '../../../image/icons/receptionCompleted_1.gif';
-// import co from '../../../image/icons/receptionCompleted'
+import Complete from '../../../image/icons/icon_main_OC_x3.png'
+import Reception from '../../../image/icons/icon_main_RC_x3.png';
 interface Props {
     orderStatus:boolean | undefined;
     state:boolean | undefined;

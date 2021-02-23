@@ -1,13 +1,11 @@
 import { Action } from '../../Types';
-import { DataAction } from '../../actions';
+import { DataAction, SelectAction } from '../../actions';
 import { dbService } from '../../../firebase/firebase';
 import { RootState } from '../..';
 import { setData } from '../../actions/DataAction';
 import { addOrdersFunc } from '../../../functions/compareAndMerge';
 import { Bucket } from '../../reducers/DataReducer';
 import { makeId } from '../../../functions/makeId';
-const store = window.localStorage.getItem('store');
-const table = window.localStorage.getItem('table');
 
 interface param {
     dispatch: any;
@@ -19,18 +17,61 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
 ) => ( action: Action ) => {
 
     next(action);
-    const bucket = getState().Data.data.bucket;
 
-    if(DataAction.Types.LOAD_DATA_FIREBASE === action.type && store !== null) {
+    const bucket = getState().Data.data.bucket;
+    const storeId = getState().Location.storeId;
+    const tableId = getState().Location.tableId;
+    if(DataAction.Types.LOAD_DATA_FIREBASE === action.type) {
         dbService
             .collection('stores')
-            .doc(`${store}`) 
+            .doc(`${action.payload.storeId}`) 
             .collection('orders')
-            .doc(`${table}`)
+            .doc(`${action.payload.tableId}`)
             .onSnapshot((doc:any) => {
                 const data = doc.data();
-                dispatch(setData(data));
+                let price = 0;
+                data.receipt.forEach((receipts:any) => {
+                    receipts.receipts.forEach((item:any) => {
+                        if(item.state === "주문 완료" || item.state === "접수 완료") price += item.item_total_price;
+                    })
+                })
+                const newData = {
+                    ...data,
+                    receipt_total_price: price
+                }
+                dispatch(setData(newData, newData.table_number));
             });
+            if(storeId !== null) {
+                window.localStorage.setItem("storeId", JSON.stringify(storeId));
+                window.localStorage.setItem("tableId", JSON.stringify(tableId));
+            }
+    };
+    if(DataAction.Types.LOAD_DATA_FIREBASE_FOR_SELECT === action.type) {
+        dbService
+            .collection('stores')
+            .doc(`${action.payload.storeId}`) 
+            .collection('orders')
+            .doc(`${action.payload.tableId}`)
+            .onSnapshot((doc:any) => {
+                const data = doc.data();
+                let price = 0;
+                data.receipt.forEach((receipts:any) => {
+                    receipts.receipts.forEach((item:any) => {
+                        if(item.state === "주문 완료" || item.state === "접수 완료") price += item.item_total_price;
+                    })
+                })
+                const newData = {
+                    ...data,
+                    receipt_total_price: price
+                }
+                console.log(newData)
+                dispatch(setData(newData, newData.table_number));
+            });
+            if(storeId !== null) {
+                window.localStorage.setItem("storeId", JSON.stringify(storeId));
+                window.localStorage.setItem("tableId", JSON.stringify(tableId));
+            }
+            dispatch(SelectAction.setMenu(action.payload.name));
     };
     if(DataAction.Types.ADD_BUCKET_MENU === action.type) {
         
@@ -46,15 +87,15 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
             count: count,
             id:`${select.name}/${makeId(options)}`,
             item_total_price: (morePrice) * count,
-            state:false
+            state:'주문 완료'
         };
         const newBucket = addOrdersFunc(bucket, Obj);
         const totalPrice = getState().Data.data.total_price + Obj.item_total_price;
         dbService
             .collection('stores')
-            .doc(`${store}`) 
+            .doc(`${storeId}`) 
             .collection('orders')
-            .doc(`${table}`)
+            .doc(`${tableId}`)
             .update({
                 'bucket':[
                     ...newBucket
@@ -77,15 +118,15 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
             count: count,
             id:`${select.name}/${makeId(select.options)}`,
             item_total_price: itemTotalPrice,
-            state:false
+            state:'주문 완료'
         };
         const modifBuc = bucket.map((item:Bucket) => item.id === prevId ? Obj : item);
         const totalPrice = getState().Data.data.total_price - morePrice;
         dbService
             .collection('stores')
-            .doc(`${store}`) 
+            .doc(`${storeId}`) 
             .collection('orders')
-            .doc(`${table}`)
+            .doc(`${tableId}`)
             .update({
                 'bucket':[
                     ...modifBuc
@@ -95,6 +136,7 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
             }).catch((e) => console.log(e));
     }
     if(DataAction.Types.MODIF_BUCKET_MENU_INCREASE === action.type) {
+
         const select = action.payload.select
         const prevId = select.id;
         var morePrice = select.price;
@@ -108,15 +150,15 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
             count: count,
             id:`${select.name}/${makeId(select.options)}`,
             item_total_price: itemTotalPrice,
-            state:false
+            state:'주문 완료'
         };
         const modifBuc = bucket.map((item:any) => item.id === prevId ? Obj : item);
         const totalPrice = getState().Data.data.total_price + morePrice;
         dbService
             .collection('stores')
-            .doc(`${store}`) 
+            .doc(`${storeId}`) 
             .collection('orders')
-            .doc(`${table}`)
+            .doc(`${tableId}`)
             .update({
                 'bucket':[
                     ...modifBuc
@@ -130,9 +172,9 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
         const totalPrice = getState().Data.data.total_price - action.payload.item_total_price;
         dbService
             .collection('stores')
-            .doc(`${store}`) 
+            .doc(`${storeId}`) 
             .collection('orders')
-            .doc(`${table}`)
+            .doc(`${tableId}`)
             .update({
                 'bucket':[
                     ...bucket
@@ -144,9 +186,9 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
     if(DataAction.Types.RESER_BUCKET === action.type ) {
         dbService
             .collection('stores')
-            .doc(`${store}`) 
+            .doc(`${storeId}`) 
             .collection('orders')
-            .doc(`${table}`)
+            .doc(`${tableId}`)
             .update({
                 'bucket':[],
                 'total_price': 0

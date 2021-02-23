@@ -1,24 +1,25 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux';
-import { DataAction, StoreAction } from '../../redux/actions';
+import { StoreAction } from '../../redux/actions';
 import ReceiptPage from './ReceiptPage';
 import './ReceiptPage.scss';
 
 const ReceiptPageContainer = (props:any) => {
 
-    const { receipts, storeData} =  useSelector((state:RootState) => ({
+    const { receipts, storeId} =  useSelector((state:RootState) => ({
         receipts:state.Data.data.receipt,
-        storeData:state.Store
+        storeId:state.Location.storeId,
     }));
     const dispatch = useDispatch();
     useEffect(() => {
         if(receipts.length === 0){
-            dispatch(StoreAction.loadStoreFirebase());
-            dispatch(DataAction.loadDataFirebase());
+            const storeId = JSON.parse(window.localStorage.getItem("storeId")!);
+            const tableId = JSON.parse(window.localStorage.getItem("tableId")!);
+            dispatch(StoreAction.loadStoreFirebase(storeId, tableId))
         };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[storeData]);
+    },[storeId]);
     return (
         <ReceiptPage history={props.history}/>
     );

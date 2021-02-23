@@ -3,7 +3,8 @@ import { Action, Store } from '../Types';
 
 const initialState: Store = {
   information: {
-    name: ''
+    name: '',
+    id:'',
   },
   menu: {
     categories: [],

@@ -9,8 +9,8 @@ interface Props {
 
 const Order = ({ onSubmit, text }:Props) => {
 
-    const store = window.localStorage.getItem('store');
-    const table= window.localStorage.getItem('table');
+    const store:string = JSON.parse(window.localStorage.getItem('storeId')!);
+    const table:string = JSON.parse(window.localStorage.getItem('tableId')!);
 
     return ( 
         <div className="order">

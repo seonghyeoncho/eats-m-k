@@ -31,6 +31,7 @@ interface Item {
 export interface Store {
   information: {
     name: string;
+    id:string;
   };
   menu: {
     categories: Category[];

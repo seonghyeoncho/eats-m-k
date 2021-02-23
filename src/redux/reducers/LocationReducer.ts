@@ -2,13 +2,13 @@ import { LocationAction } from '../actions';
 import { Action } from '../Types';
 
 export interface Location {
-    store: string | string[] | null;
-    table: string | string[] | null;
+    storeId: string | string[] | null;
+    tableId: string | string[] | null;
 }
 
 const initialState: Location = {
-    store: null,
-    table: null
+    storeId: null,
+    tableId: null
 };
 
 const LocationReducer = (state = initialState, action: Action) => {
@@ -16,8 +16,8 @@ const LocationReducer = (state = initialState, action: Action) => {
     case LocationAction.Types.SET_LOCATION:
       return {
         ...state,
-        store: action.payload.store, 
-        table: action.payload.table
+        storeId: action.payload.storeId, 
+        tableId: action.payload.tableId
       };
     default:
       return state;

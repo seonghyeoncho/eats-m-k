@@ -9,12 +9,11 @@ interface Props {
 };
 
 const ReceiptView = ({ history }:Props) => {
-    const store = window.localStorage.getItem('store')!;
-    const table = window.localStorage.getItem('table')!;
+    const storeId = JSON.parse(window.localStorage.getItem("storeId")!);
+    const tableId = JSON.parse(window.localStorage.getItem("tableId")!);
     const goBack = () => {
-       history.push(`/?store=${store}&table=${table}`);
+       history.push(`/?store=${storeId}&table=${tableId}`);
     };
-
     return (
         <div className="receipt">
             <ReceiptNav goBack={goBack}/>

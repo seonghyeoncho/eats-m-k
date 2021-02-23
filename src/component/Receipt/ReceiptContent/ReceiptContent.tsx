@@ -14,21 +14,30 @@ const ReciptContent = () => {
         <>
             <div className="receipt-con">
                 {
-                    receipts.map((doc:Bucket) => {
-                        return (
-                            <div className="ritem" key={doc.id}>
-                                <div className="title">
-                                    <div>{doc.name}</div>
-                                    <div>{numberWithCommas(doc.item_total_price)}원</div>
-                                </div>
-                                <div className="sub">
-                                    <div>수량 : {doc.count}개</div>
-                                    <div>{numberWithCommas(doc.price)}원</div>
-                                </div>
-                                <OptionsContainer options={doc.options}/>
-                                {/* <div>{doc.state? 'y':'n'}</div> */}
+                    receipts.map((order:any)=>{
+                        return(
+                            <div>
+                                <div>{order.order_time}</div>
+                                {
+                                    order.receipts.map((doc:Bucket) => {
+                                        return (
+                                            <div className="ritem" key={doc.id}>
+                                                <div className="title">
+                                                    <div>{doc.name}</div>
+                                                    <div>{numberWithCommas(doc.item_total_price)}원</div>
+                                                </div>
+                                                <div className="sub">
+                                                    <div>수량 : {doc.count}개</div>
+                                                    <div>{numberWithCommas(doc.price)}원</div>
+                                                </div>
+                                                <OptionsContainer options={doc.options}/>
+                                                <div>{doc.state === "주문 거부" ? "주문이 최소되었습니다.":""}</div>
+                                            </div>
+                                        );
+                                    })
+                                }
                             </div>
-                        );
+                        )
                     })
                 }
             </div>

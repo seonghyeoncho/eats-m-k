@@ -12,18 +12,24 @@ export interface Bucket {
     options:Option[]
     item_total_price:number,
     count:number,
-    state:boolean,
+    state:string,
 
 };
+interface Receipt {
+    order_time:string,
+    state:string,
+    receipt:Bucket[],
+}
 export interface Data {
     data: {
         bucket: Bucket[],
-        receipt: Bucket[],
+        receipt: Receipt[],
         total_price: number,
         receipt_total_price: number,
         state:boolean,
         order_state:boolean
-    }
+    },
+    tableNumber:string
 };
 
 const initialState: Data = {
@@ -34,7 +40,8 @@ const initialState: Data = {
         receipt_total_price: 0,
         state: false,
         order_state: false,
-    }
+    },
+    tableNumber:''
 }
 const DataReducer = (state = initialState, action: Action) => {
     switch (action.type) {
@@ -42,6 +49,7 @@ const DataReducer = (state = initialState, action: Action) => {
           return {
             ...state,
             data: action.payload.data,
+            tableNumber:action.payload.tableNumber
           };
         default:
           return state;

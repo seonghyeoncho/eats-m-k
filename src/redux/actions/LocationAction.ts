@@ -5,21 +5,27 @@ export enum Types {
   INIT_LOCATION = '[Location] initiate current location',
 };
 
-export const setLocation: ActionCreator = ( store, table ) => {
+export const setLocation: ActionCreator = ( 
+  storeId: string, 
+  tableId: string 
+) => {
   return {
     type: Types.SET_LOCATION,
     payload: {
-      store: store,
-      table: table
+      storeId: storeId,
+      tableId: tableId
     },
   };
 }
-export const initiateLocation: ActionCreator = ( store, table ) => {
+export const initiateLocation: ActionCreator = ( 
+  storeId:string, 
+  tableId:string 
+) => {
   return {
     type: Types.INIT_LOCATION,
     payload: {
-      store: store,
-      table: table
+      storeId: storeId,
+      tableId: tableId
     },
   };
 }

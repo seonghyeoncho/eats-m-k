@@ -53,7 +53,6 @@ const Home: React.FC<any> = ( props:any ) => {
             setHomeNav(false);
         }
     },[s, categotys, scrollY, items.length, categoryName, dispatch,]);
-    
     return (
         <div className="home">
             <StoreAndTableBoxContainer/>

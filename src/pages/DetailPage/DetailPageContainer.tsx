@@ -18,6 +18,7 @@ const DetailPageContainer = (props:any) => {
        if(storeId === null) {
             const storeId = JSON.parse(window.localStorage.getItem("storeId")!);
             const tableId = JSON.parse(window.localStorage.getItem("tableId")!);
+            console.log(storeId)
             dispatch(StoreAction.loadStoreFirebaseForDetail(storeId, tableId, name))
         }
     },[storeId]);

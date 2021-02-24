@@ -16,8 +16,8 @@ const HomeContainer = (props:any) => {
     const dispatch = useDispatch();
     useEffect(() => {
         if(!globalLoading) {
-            window.localStorage.removeItem("storeId");
-            window.localStorage.removeItem("tableId");
+            // window.localStorage.removeItem("storeId");
+            // window.localStorage.removeItem("tableId");
             dispatch(LocationAction.initiateLocation(storeId, tableId));
         };
     // eslint-disable-next-line react-hooks/exhaustive-deps

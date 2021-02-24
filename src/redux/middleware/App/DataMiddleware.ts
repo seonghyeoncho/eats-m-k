@@ -19,8 +19,8 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
     next(action);
 
     const bucket = getState().Data.data.bucket;
-    const storeId = getState().Location.storeId;
-    const tableId = getState().Location.tableId;
+    let storeId = getState().Location.storeId;
+    let tableId = getState().Location.tableId;
     if(DataAction.Types.LOAD_DATA_FIREBASE === action.type) {
         dbService
             .collection('stores')
@@ -74,7 +74,10 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
             dispatch(SelectAction.setMenu(action.payload.name));
     };
     if(DataAction.Types.ADD_BUCKET_MENU === action.type) {
-        
+        if(storeId === null) {
+			storeId = JSON.parse(window.localStorage.getItem('storeId')!);
+			tableId = JSON.parse(window.localStorage.getItem('tableId')!);
+		}
         const select = action.payload.select;
         let morePrice = select.price;
         const options = getState().Option.option;
@@ -105,6 +108,10 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
             }).catch((e) => console.log(e));
     };
     if(DataAction.Types.MODIF_BUCKET_MENU_DECREASE === action.type) {
+        if(storeId === null) {
+			storeId = JSON.parse(window.localStorage.getItem('storeId')!);
+			tableId = JSON.parse(window.localStorage.getItem('tableId')!);
+		}
         const select = action.payload.select
         const prevId = select.id;
         const count = select.count - 1;
@@ -136,7 +143,10 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
             }).catch((e) => console.log(e));
     }
     if(DataAction.Types.MODIF_BUCKET_MENU_INCREASE === action.type) {
-
+        if(storeId === null) {
+			storeId = JSON.parse(window.localStorage.getItem('storeId')!);
+			tableId = JSON.parse(window.localStorage.getItem('tableId')!);
+		}
         const select = action.payload.select
         const prevId = select.id;
         var morePrice = select.price;
@@ -168,6 +178,10 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
             }).catch((e) => console.log(e));
     };
     if(DataAction.Types.DELETE_MENU === action.type) {
+        if(storeId === null) {
+			storeId = JSON.parse(window.localStorage.getItem('storeId')!);
+			tableId = JSON.parse(window.localStorage.getItem('tableId')!);
+		}
         const bucket = getState().Data.data.bucket.filter((doc:Bucket) => doc.id !== action.payload.id);
         const totalPrice = getState().Data.data.total_price - action.payload.item_total_price;
         dbService
@@ -184,6 +198,11 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
             }).catch((e) => console.log(e));
     };
     if(DataAction.Types.RESER_BUCKET === action.type ) {
+        if(storeId === null) {
+			console.log("ddd")
+			storeId = JSON.parse(window.localStorage.getItem('storeId')!);
+			tableId = JSON.parse(window.localStorage.getItem('tableId')!);
+		}
         dbService
             .collection('stores')
             .doc(`${storeId}`) 

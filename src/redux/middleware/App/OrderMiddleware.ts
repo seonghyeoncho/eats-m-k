@@ -14,10 +14,15 @@ export const OrderMiddleware = ({ dispatch, getState }: param) => (
 ) => ( action:Action ) => {
 
     next(action);
-	const storeId = getState().Location.storeId;
-	const tableId = getState().Location.tableId;
+	let storeId = getState().Location.storeId;
+	let tableId = getState().Location.tableId;
+	
     if(OrderAction.Types.ADD_NEW_ORDER === action.type) {
 		//주문 캡슐
+		if(storeId === null) {
+			storeId = JSON.parse(window.localStorage.getItem('storeId')!);
+			tableId = JSON.parse(window.localStorage.getItem('tableId')!);
+		}
 		const bucket = getState().Data.data.bucket;
         const totalPrice = getState().Data.data.total_price;
         const receiptTotalPrice = getState().Data.data.receipt_total_price;

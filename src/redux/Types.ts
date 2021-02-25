@@ -32,6 +32,7 @@ export interface Store {
   information: {
     name: string;
     id:string;
+    bestPhotoUrl:string,
   };
   menu: {
     categories: Category[];

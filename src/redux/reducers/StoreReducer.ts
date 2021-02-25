@@ -5,6 +5,7 @@ const initialState: Store = {
   information: {
     name: '',
     id:'',
+    bestPhotoUrl:'',
   },
   menu: {
     categories: [],

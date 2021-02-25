@@ -13,6 +13,7 @@ export interface Bucket {
     item_total_price:number,
     count:number,
     state:string,
+    photoUrl: string,
 
 };
 interface Receipt {

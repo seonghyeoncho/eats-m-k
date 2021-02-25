@@ -31,7 +31,7 @@ const ReciptContent = () => {
                                                     <div>{numberWithCommas(doc.price)}원</div>
                                                 </div>
                                                 <OptionsContainer options={doc.options}/>
-                                                <div>{doc.state === "주문 거부" ? "주문이 최소되었습니다.":""}</div>
+                                                <div className="orderStateText">{doc.state === "주문 거부" ? "주문이 최소되었습니다.":""}</div>
                                             </div>
                                         );
                                     })

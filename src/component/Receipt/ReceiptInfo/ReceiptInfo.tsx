@@ -5,10 +5,10 @@ import { RootState } from '../../../redux';
 
 const ReceiptInfo = () => {
     const store = window.localStorage.getItem('storeName');
-    const table = window.localStorage.getItem('table');
 
-    const { receiptTotalPrice } = useSelector((state:RootState) => ({
+    const { receiptTotalPrice, tableNumber } = useSelector((state:RootState) => ({
         receiptTotalPrice: state.Data.data.receipt_total_price,
+        tableNumber:state.Data.tableNumber
     }));
 
     return (
@@ -16,7 +16,7 @@ const ReceiptInfo = () => {
             <div className="zigzag"/>
             <div className="receipt-info">
                 <div className="store">{store}</div >
-                <div className="table">테이블 {table}</div >
+                <div className="table">테이블 {tableNumber}</div >
                 <div className="totalprice">{numberWithCommas(receiptTotalPrice)}원</div >
             </div>
         </>

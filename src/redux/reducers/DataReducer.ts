@@ -28,7 +28,8 @@ export interface Data {
         total_price: number,
         receipt_total_price: number,
         state:boolean,
-        order_state:boolean
+        order_state:boolean,
+        deny_state:boolean
     },
     tableNumber:string
 };
@@ -41,6 +42,7 @@ const initialState: Data = {
         receipt_total_price: 0,
         state: false,
         order_state: false,
+        deny_state: false,
     },
     tableNumber:''
 }

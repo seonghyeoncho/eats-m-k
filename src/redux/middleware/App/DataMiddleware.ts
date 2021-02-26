@@ -197,6 +197,22 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
             }).then(() => {
             }).catch((e) => console.log(e));
     };
+    if(DataAction.Types.Q_DENY_STATE === action.type) {
+        if(storeId === null) {
+			console.log("ddd")
+			storeId = JSON.parse(window.localStorage.getItem('storeId')!);
+			tableId = JSON.parse(window.localStorage.getItem('tableId')!);
+		}
+        dbService
+            .collection('stores')
+            .doc(`${storeId}`) 
+            .collection('orders')
+            .doc(`${tableId}`)
+            .update({
+                'deny_state':false
+            }).then(() => {
+            }).catch((e) => console.log(e));
+    }
     if(DataAction.Types.RESER_BUCKET === action.type ) {
         if(storeId === null) {
 			console.log("ddd")

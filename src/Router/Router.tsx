@@ -9,10 +9,10 @@ import HomeContainer from '../pages/HomePage/HomeContainer';
 
 const AppRouter = () => {
     
-
+    
     return(
         <>
-            {}
+            
             <Router>
                 <Switch>
                     <Route exact path="/" 

@@ -9,8 +9,14 @@ export enum Types {
     LOAD_DATA_FIREBASE_FOR_SELECT = '[Bucket] load data from firebase for detail',
     DELETE_MENU = '[Bucket] delete menu in bucket',
     RESER_BUCKET = '[Bucket] reset bucket' ,
+    Q_DENY_STATE = '[Deny] query state'
 };
-
+export const queryDenyState: ActionCreator= () => {
+    return {
+        type:Types.Q_DENY_STATE,
+        payload:null
+    }
+}
 export const setData: ActionCreator = (data, tableNumber) => {
     return {
         type:Types.SET_BUCKET_MENU,

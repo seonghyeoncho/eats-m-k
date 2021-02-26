@@ -29,6 +29,7 @@ export const DataMiddleware = ({ dispatch, getState }: param) => (
             .doc(`${action.payload.tableId}`)
             .onSnapshot((doc:any) => {
                 const data = doc.data();
+                console.log(data)
                 let price = 0;
                 data.receipt.forEach((receipts:any) => {
                     receipts.receipts.forEach((item:any) => {

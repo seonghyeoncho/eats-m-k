@@ -52,7 +52,6 @@ export const OrderMiddleware = ({ dispatch, getState }: param) => (
 				'orderAt':orderTime
             })
             .then(() => {
-                dispatch(loadDataFirebase());
             })
             .catch((e) => console.log(e));
     };

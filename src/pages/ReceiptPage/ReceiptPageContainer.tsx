@@ -17,6 +17,7 @@ const ReceiptPageContainer = (props:any) => {
         if(receipts.length === 0){
             const storeId = JSON.parse(window.localStorage.getItem("storeId")!);
             const tableId = JSON.parse(window.localStorage.getItem("tableId")!);
+            console.log('ddd')
             dispatch(StoreAction.loadStoreFirebase(storeId, tableId))
         };
         if(receiptTotalPrice === 0) {

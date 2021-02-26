@@ -15,6 +15,7 @@ const ComfirmContainer = (props:any) => {
     const dispatch = useDispatch();
     useEffect(()=>{
        if(storeId === null) {
+           console.log('dfdf')
             const storeId = JSON.parse(window.localStorage.getItem("storeId")!);
             const tableId = JSON.parse(window.localStorage.getItem("tableId")!);
             dispatch(loadStoreFirebase(storeId, tableId));

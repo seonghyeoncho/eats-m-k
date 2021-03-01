@@ -9,7 +9,8 @@ export interface Select {
         optionGroups: string[],
         count:number,
         options:Option[],
-        desc:string
+        desc:string,
+        photoUrl:string,
     },
     menu: string,
     count:number,
@@ -28,7 +29,8 @@ const initialState: Select = {
         optionGroups: [],
         options:[],
         count: 1,
-        desc:''
+        desc:'',
+        photoUrl:''
     },
     menu:'',
     count: 1,

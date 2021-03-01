@@ -39,7 +39,6 @@ const ReciptContent = () => {
                                     {changeTime(order.order_time)}
                                     <div className="tiemLine"/>
                                 </div>
-                                
                                 {
                                     order.receipts.map((doc:Bucket) => {
                                         return (

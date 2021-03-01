@@ -26,6 +26,7 @@ interface Item {
   description: string;
   categories: string[];
   optionGroups: string[];
+  photoUrl:string
 };
 
 export interface Store {

@@ -24,6 +24,7 @@ export const SelectMiddleware = ({ dispatch, getState }: param) => (
                     optionGroups:items[i].optionGroups,
                     count: count,
                     desc: items[i].description,
+                    photoUrl:items[i].photoUrl
                 };
                 dispatch(SelectAction.selectMenu(item));
                 dispatch(OptionAction.commendInitSelectOtpion(item.optionGroups));

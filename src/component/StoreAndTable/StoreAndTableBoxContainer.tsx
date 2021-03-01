@@ -11,8 +11,6 @@ const StoreAndTableBoxContainer = () => {
         table:state.Data.tableNumber,
         state:state.Data.data.state
     }));
-
-
     return <StoreAndTableBox store={store} table={table} state={state} orderStatus={orderStatus}/>
 }
 export default StoreAndTableBoxContainer;

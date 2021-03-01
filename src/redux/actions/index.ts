@@ -7,4 +7,6 @@ import * as SelectAction from './SelectMenuAction';
 import * as OptionAction from './OptionAction';
 import * as EventAction from './EventAction';
 import * as GlobalLoadingAction from './GlobalLoadingAction'
-export { StoreAction, LocationAction, CounterAction, DataAction, OrderAction, SelectAction, OptionAction, EventAction, GlobalLoadingAction,  };
+
+
+export { StoreAction, LocationAction, CounterAction, DataAction, OrderAction, SelectAction, OptionAction, EventAction, GlobalLoadingAction,   };

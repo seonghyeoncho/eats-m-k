@@ -9,30 +9,33 @@ import HomeContainer from '../pages/HomePage/HomeContainer';
 
 const AppRouter = () => {
     
-
+    
     return(
-        <Router>
-            <Switch>
-                <Route exact path="/" 
-                    component={(props:BrowserRouterProps) => <HomeContainer {...props}/>}
-                />
-                <Route exact path="/comfirm/" 
-                    component={(props:BrowserRouterProps)=><ComfirmPageContainer {...props}/>}
-                />
-                <Route exact path="/bucket/"
-                    component={(props:BrowserRouterProps)=><BucketPageContainer {...props}/>}
-                />
-                <Route exact path="/receipt/"
-                    component={(props:BrowserRouterProps)=><ReceiptPageContainer {...props}/>}
-                />
-                <Route exact path="/detail/" 
-                    component={(props:BrowserRouterProps)=><DetailPageContainer {...props}/>}
-                />
-                <Route exact path="/complete/"
-                    component={(props:BrowserRouterProps)=><CompletePage {...props}/>}
-                /> 
-            </Switch>
-        </Router>
+        <>
+            
+            <Router>
+                <Switch>
+                    <Route exact path="/" 
+                        component={(props:BrowserRouterProps) => <HomeContainer {...props}/>}
+                    />
+                    <Route exact path="/comfirm/" 
+                        component={(props:BrowserRouterProps)=><ComfirmPageContainer {...props}/>}
+                    />
+                    <Route exact path="/bucket/"
+                        component={(props:BrowserRouterProps)=><BucketPageContainer {...props}/>}
+                    />
+                    <Route exact path="/receipt/"
+                        component={(props:BrowserRouterProps)=><ReceiptPageContainer {...props}/>}
+                    />
+                    <Route exact path="/detail/" 
+                        component={(props:BrowserRouterProps)=><DetailPageContainer {...props}/>}
+                    />
+                    <Route exact path="/complete/"
+                        component={(props:BrowserRouterProps)=><CompletePage {...props}/>}
+                    /> 
+                </Switch>
+            </Router>
+        </>
     );
 };
 

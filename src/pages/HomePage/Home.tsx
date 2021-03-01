@@ -7,6 +7,7 @@ import CategoryNav from '../../component/Category/CategoryNav';
 import './HomePage.scss';
 import ButtonsContainer from '../../component/Buttons/ButtonsContainer';
 import { OrderButtonContainer } from '../../component/OrderButton';
+import DenyStatePopUP from './DenyStatePopUp';
 
 interface Item {
     name: string;
@@ -35,12 +36,14 @@ const useScroll = () => {
 const Home: React.FC<any> = ( props:any ) => {
 
     const scrollY = useScroll().y;
-    const { items, categotys, totalPrice, eventState, orderStatus} = useSelector((state:RootState)=>({
+    const { items, categotys, totalPrice, eventState, orderStatus, photo, denyState} = useSelector((state:RootState)=>({
         orderStatus:state.Data.data.order_state,
         items:state.Store.menu.items,
         categotys: state.Store.menu.categories,
         totalPrice: state.Data.data.total_price,
         eventState: state.Event.eventState,
+        photo:state.Store.information.bestPhotoUrl,
+        denyState:state.Data.data.deny_state,
     }));
     const s = window.localStorage.getItem('storeName');
     const [ categoryName, setCategoryName ] = useState<string>('');
@@ -74,9 +77,14 @@ const Home: React.FC<any> = ( props:any ) => {
         }
     },[s, categotys, scrollY, items.length, categoryName, dispatch,]);
     return (
-        <div className="home">
+        <div className="home" style={{backgroundImage:`${photo}`}}>
             <StoreAndTableBoxContainer/>
             <ButtonsContainer homeNav={homeNav}/>
+            { 
+                denyState
+                ? <DenyStatePopUP/>
+                :<></>
+            }
             {
                 eventState
                 ? <div className={homeNav? 'event-nav':'event'}> 장바구니에 메뉴가 담겼습니다</div>

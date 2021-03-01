@@ -2,7 +2,6 @@ import { Action } from '../../Types';
 import { OrderAction } from '../../actions';
 import { dbService } from '../../../firebase/firebase';
 import { RootState } from '../..';
-import { loadDataFirebase } from '../../actions/DataAction';
 
 interface param {
     dispatch: any;
@@ -52,7 +51,6 @@ export const OrderMiddleware = ({ dispatch, getState }: param) => (
 				'orderAt':orderTime
             })
             .then(() => {
-                dispatch(loadDataFirebase());
             })
             .catch((e) => console.log(e));
     };

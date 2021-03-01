@@ -69,6 +69,7 @@
         margin-bottom: 20px;
         .receipt-con{
             margin: 0 25px;
+            margin-bottom: 30px;
             .receipt-orderTime{
                 display: flex;
                 .tiemLine{
@@ -82,7 +83,7 @@
             .ritem{
                 padding: 16px 0;
                 border-bottom: solid 1px black;
-                margin-bottom: 30px;
+                // margin-bottom: 30px;
                 .title{
                     font-size: 16px;
                     font-weight: bold;

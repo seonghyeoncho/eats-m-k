@@ -8,7 +8,6 @@ import { CounterContainer } from '../../component/Counter';
 import SelectMenuPrice from './SelectMenuPrice';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux';
-import testImg from '../../image/graphics/testImg.jpg'
 
 interface Props {
     select: {
@@ -18,7 +17,8 @@ interface Props {
         optionGroups: string[],
         count:number,
         options:Option[],
-        desc:string
+        desc:string,
+        photoUrl:string
     };
     history:any;
 };
@@ -42,6 +42,7 @@ const useScroll = () => {
     return state;
 };
 const DetailPage = ({select, history}:Props) => {
+    console.log(select)
     const scrollY = useScroll().y;
     const { eventState, maxSelect } = useSelector((state:RootState) => ({
         eventState: state.Event.eventState,
@@ -60,10 +61,9 @@ const DetailPage = ({select, history}:Props) => {
                 : <></>
             }
             <div className="detail">
-                
                 <div className="con">
                     <DetailNav history={history} name={select.name} state={detailNav}/>
-                    <div className="test" style={{backgroundImage:`url(${testImg})`}}></div>
+                    <div className="test" style={{backgroundImage:`url(${select.photoUrl})`}}></div>
                     <DetailInfo name={select.name} price={select.price} desc={select.desc}/>
                 </div>
                 <DetailContent />

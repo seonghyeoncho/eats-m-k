@@ -1,4 +1,5 @@
 import React from 'react';
+import numberWithCommas from '../../../functions/addCommaFunc';
 interface Props {
     options:any;
     count:number
@@ -20,7 +21,7 @@ const OptionsItem = ({options,count}:Props) => {
                     })
                 }
             </div>
-            <div className="price">{morePrice}원</div>
+            <div className="price">{numberWithCommas(morePrice)}원</div>
         </div>
         
         </>

@@ -30,7 +30,15 @@
                 font-size: 14px;
                 padding-top: 12px;
                 font-weight: bold;
+                display: flex;
+                .name-desc{
+                    color: white;
+                    font-size: 12px;
+                    opacity: 0.88;
+                    
+                }
             }
+            
             img{
                 margin-top: 18px;
                 margin-right: 25px;

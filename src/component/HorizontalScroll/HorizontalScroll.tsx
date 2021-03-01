@@ -17,8 +17,9 @@ interface Item {
     name: string;
     price: number;
     description: string;
-    categories: number[];
+    categories: string[];
     optionGroups: string[];
+    photoUrl:string
 };
 
 const HorizontalScroll = ({title, list, width, height, radius}:Props) => {
@@ -38,7 +39,7 @@ const HorizontalScroll = ({title, list, width, height, radius}:Props) => {
                             return (
                                 <Link to={`/detail/?name=${item.name}`} onClick={() => {dispatch(setMenu(item.name, 1,[]));}} key={item.name}>
                                     {
-                                        width === 325 ? <BigBox width={width} height={height} radius={radius} name={item.name} price={item.price}/>
+                                        width === 325 ? <BigBox width={width} height={height} radius={radius} name={item.name} photoUrl={item.photoUrl}price={item.price}/>
                                         : <SmallBox width={width} height={height} radius={radius} name={item.name} price={item.price}/>
                                     }
                                 </Link>

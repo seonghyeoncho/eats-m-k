@@ -22,7 +22,7 @@ const CategoryNav = ({ categorys, setCategoryName, categoryName}:Props) => {
                     categorys.map((category:Category) => {
                         return (
                             <div key={category.name}>
-                                <CategoryMenuList categoryName={category.name} />
+                                <CategoryMenuList categoryName={category.name} desc={category.description} />
                             </div>
                             
                         )

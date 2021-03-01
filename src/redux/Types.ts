@@ -24,8 +24,9 @@ interface Item {
   name: string;
   price: number;
   description: string;
-  categories: number[];
+  categories: string[];
   optionGroups: string[];
+  photoUrl:string
 };
 
 export interface Store {

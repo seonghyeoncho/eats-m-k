@@ -8,9 +8,10 @@ import Down from '../../image/icons/icon_arrow_bottom_white_x3.png';
 
 interface Props {
     categoryName : string;
+    desc: string
 };
 
-const CategoryMenuList = ({categoryName}:Props): JSX.Element => {
+const CategoryMenuList = ({categoryName, desc}:Props): JSX.Element => {
     const [dropDown, setDropDown ] = useState<boolean>(true);
     const { items } = useSelector((state:RootState)=>({
         orderStatus:state.Data.data.order_state,
@@ -21,7 +22,11 @@ const CategoryMenuList = ({categoryName}:Props): JSX.Element => {
     return (
         <div className='category'>
             <div className="category-name" onClick={()=>setDropDown(!dropDown)}>
-                <div className="name-text" >{categoryName}</div>
+                <div className="name-text" >
+                    {categoryName} 
+                    {desc && <div className="name-desc">( {desc} )</div>}
+                </div>
+                
                 {
                     dropDown? <img src={Up} alt='up'/>
                     :<img src={Down} alt='down'/>
@@ -34,7 +39,7 @@ const CategoryMenuList = ({categoryName}:Props): JSX.Element => {
                             if(item.categories[i] === categoryName) {
                                 return (
                                     <div key={item.name}>
-                                        <ItemLink name={item.name} desc={item.description} price={item.price} key={item.name}/>
+                                        <ItemLink name={item.name} desc={item.description} price={item.price} photoUrl={item.photoUrl}key={item.name}/>
                                     </div>
                                 )
                             }

@@ -1,6 +1,5 @@
 import React from 'react';
 import numberWithCommas from '../../functions/addCommaFunc';
-import Test from '../../image/graphics/testImg.jpg'
 
 interface Props {
     name: string,
@@ -8,8 +7,9 @@ interface Props {
     width: number;
     height: number;
     radius: number;
+    photoUrl:string
 }
-const BigBox = ({ name, price, width, height, radius}:Props) => {
+const BigBox = ({ name, price, width, height, radius, photoUrl}:Props) => {
     return (
         <div className="item">
             <div className="scinfo">
@@ -17,7 +17,7 @@ const BigBox = ({ name, price, width, height, radius}:Props) => {
                 <div className="price">{numberWithCommas(price)}원</div>
             </div>
             <div className="box" style={{width:`${width}px`, height:`${height}px`, borderRadius:`${radius}` }}>
-                <img src={Test} className="test" alt="background-img"/>
+                <img src={photoUrl} className="test" alt="background-img"/>
             </div>
         </div>
     );

@@ -8,6 +8,15 @@ import './HomePage.scss';
 import ButtonsContainer from '../../component/Buttons/ButtonsContainer';
 import { OrderButtonContainer } from '../../component/OrderButton';
 
+interface Item {
+    name: string;
+    price: number;
+    description: string;
+    categories: string[];
+    optionGroups: string[];
+    photoUrl:string
+};
+
 const useScroll = () => {
     // state를 생성합니다.
     const [state, setState] = useState({
@@ -36,16 +45,27 @@ const Home: React.FC<any> = ( props:any ) => {
     const s = window.localStorage.getItem('storeName');
     const [ categoryName, setCategoryName ] = useState<string>('');
     const [ homeNav, setHomeNav ] = useState<boolean>(false);
-    const [ categoryVaild, setCategoryVaild ] = useState<boolean>(false);
+    // const [ categoryVaild, setCategoryVaild ] = useState<boolean>(false);
+    const bestList = () => {
+        let tempList:Item[] = [];
+        items.forEach((item) => {
+            item.categories.forEach((category) => {
+                if(category === "사장님 추천" ) {
+                    tempList.push(item);
+                }
+            })
+        })
+        return tempList;
+    }
     const dispatch = useDispatch();
     useEffect(()=>{
         if(categoryName === '') {
             if(categotys.length !== 0 ) {setCategoryName(categotys[0].name); return;}
         };
         if(scrollY !== 0) {
-            setCategoryVaild(true);
+            // setCategoryVaild(true);
         } else {
-            setCategoryVaild(false);
+            // setCategoryVaild(false);
         }
         if(scrollY >= 178) {
             setHomeNav(true);
@@ -64,16 +84,17 @@ const Home: React.FC<any> = ( props:any ) => {
             }
             <div className={homeNav ?  totalPrice === 0 && !orderStatus? 'home-content-noprice' : 'home-content-nav' : `home-content`}>
                 <div className="first">
-                    <HorizontalScroll list={items} title={'사장님 추천'} width={325} height={160} radius={10}/>
+                    <HorizontalScroll list={bestList()} title={'사장님 추천'} width={325} height={160} radius={10}/>
                 </div>
-                <div className="second">
+                {/* <div className="second">
                     <HorizontalScroll list={items} title={'이런건 어때요?'} width={120} height={160} radius={18}/>
-                </div>
-                {
+                </div> */}
+                <CategoryNav categorys={categotys} setCategoryName={setCategoryName} categoryName={categoryName}/>
+                {/* {
                     categoryVaild 
                     ? <CategoryNav categorys={categotys} setCategoryName={setCategoryName} categoryName={categoryName}/>
                     : <></>
-                }
+                } */}
                 <div className="home-order-bt">
                     {
                         homeNav

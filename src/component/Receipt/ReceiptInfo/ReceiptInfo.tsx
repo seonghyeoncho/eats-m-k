@@ -4,18 +4,17 @@ import numberWithCommas from '../../../functions/addCommaFunc';
 import { RootState } from '../../../redux';
 
 const ReceiptInfo = () => {
-    const store = window.localStorage.getItem('storeName');
-
-    const { receiptTotalPrice, tableNumber } = useSelector((state:RootState) => ({
+    const { receiptTotalPrice, tableNumber,storeName } = useSelector((state:RootState) => ({
         receiptTotalPrice: state.Data.data.receipt_total_price,
-        tableNumber:state.Data.tableNumber
+        tableNumber:state.Data.tableNumber,
+        storeName:state.Store.information.name
     }));
 
     return (
         <>
             <div className="zigzag"/>
             <div className="receipt-info">
-                <div className="store">{store}</div >
+                <div className="store">{storeName}</div >
                 <div className="table">테이블 {tableNumber}</div >
                 <div className="totalprice">{numberWithCommas(receiptTotalPrice)}원</div >
             </div>

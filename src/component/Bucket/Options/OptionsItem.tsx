@@ -15,7 +15,7 @@ const OptionsItem = ({options,count}:Props) => {
                 : { 
                     options.map((doc:any, index:number) => {
                         if(doc.state) {
-                            return <div className="name" key={doc.name}>&nbsp;{doc.name}{index === count-1 ? ',': ''}</div>
+                            return <div className="name" key={doc.name}>&nbsp;{doc.name}{index === count-1 ? '': ','}</div>
                         }
                         return <></>;
                     })

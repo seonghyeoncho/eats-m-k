@@ -22,8 +22,9 @@ const compareAndMerge = ( bucketMore:[], selectMore:any ) => {
         const flag = selectOptions.length;
         for(let i=0 ; i<flag ; i++) {
             if( JSON.stringify(bucketOptions).includes(JSON.stringify(selectOptions[i])) ) count++;
+            console.log(bucketOptions, selectOptions[i])
         }
-        if (flag === count ) {
+        if (flag === count && count !== 0) {
             console.log('ture : reason 1');
             return true;
         } else {

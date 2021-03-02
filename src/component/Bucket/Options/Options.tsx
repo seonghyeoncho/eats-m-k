@@ -9,12 +9,19 @@ interface Props {
 
 const Options = ({ options }:Props) => {
     const count = optionsArr(options).length;
+    const checkOptionState = (op:any) => {
+        let c = 0;
+        op.forEach((item:any) => {
+            if(item.state) c++;
+        });
+        return c;
+    }
     return (
         <div className="options">
             {
 
                 options.map((op:any):JSX.Element | undefined => {
-                    if(count !== 0){
+                    if(count !== 0 && checkOptionState(op.options) !== 0){
                         return (
                             <div  className="item-op" key={op.name}>
                                 <div className="item-ca">

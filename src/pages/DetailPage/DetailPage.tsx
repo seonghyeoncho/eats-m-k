@@ -42,7 +42,6 @@ const useScroll = () => {
     return state;
 };
 const DetailPage = ({select, history}:Props) => {
-    console.log(select)
     const scrollY = useScroll().y;
     const { eventState, maxSelect } = useSelector((state:RootState) => ({
         eventState: state.Event.eventState,

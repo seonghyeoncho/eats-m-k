@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import numberWithCommas from '../../../functions/addCommaFunc';
 import Checked from '../../../image/icons/icon_CheckBox_selected_x3.png';
 import NotCheck from '../../../image/icons/icon_CheckBox_deselect_x3.png';
@@ -20,6 +20,11 @@ const SelectItem = ({ name, price, maxSelect, state }:Props) => {
     const checkCount = () => {
         dispatch(OptionAction.commendSelectOption(name, maxSelect, state))
     };
+    useEffect(() => {
+        if(maxSelect === 1 && price === 0) {
+            checkCount();
+        }
+    }, []);
 
     return (
         <div className="item" onClick={checkCount}>

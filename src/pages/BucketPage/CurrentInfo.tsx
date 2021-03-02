@@ -5,11 +5,12 @@ import { RootState } from '../../redux';
 import './CurrentInfo.scss';
 
 const CurrentInfo = () => {
-    const storeName = window.localStorage.getItem('storeName');
 
-    const { totalPrice, tableNumber } =useSelector((state:RootState) => ({
+
+    const { totalPrice, tableNumber, storeName} =useSelector((state:RootState) => ({
         totalPrice:state.Data.data.total_price,
-        tableNumber:state.Data.tableNumber
+        tableNumber:state.Data.tableNumber,
+        storeName:state.Store.information.name
     }))
     return (
         <div className={totalPrice === 0 ? 'currentinfo-none':'currentinfo'}>

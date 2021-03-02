@@ -6,10 +6,10 @@ import './CurrentInfo.scss';
 
 const CurrentInfo = () => {
     const storeName = window.localStorage.getItem('storeName');
-    const table = window.localStorage.getItem('table');
 
-    const { totalPrice } =useSelector((state:RootState) => ({
+    const { totalPrice, tableNumber } =useSelector((state:RootState) => ({
         totalPrice:state.Data.data.total_price,
+        tableNumber:state.Data.tableNumber
     }))
     return (
         <div className={totalPrice === 0 ? 'currentinfo-none':'currentinfo'}>
@@ -17,7 +17,7 @@ const CurrentInfo = () => {
                 {storeName}
             </div>
             <div className="current-table">
-                테이블 {table}
+                테이블 {tableNumber}
             </div>
             <div className="current-totalprice">
                 {numberWithCommas(totalPrice)}원

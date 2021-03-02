@@ -5,7 +5,7 @@ const DenyStatePopUP = () => {
 
     const dispatch = useDispatch();
     return (
-        <div className="popup-con">
+        <div className="deny-popup-con">
             <div className="popup-inner-con">
                 <div className="popup-title">
                     주문이 취소되었습니다

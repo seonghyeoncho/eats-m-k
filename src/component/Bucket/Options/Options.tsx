@@ -18,7 +18,7 @@ const Options = ({ options }:Props) => {
                         return (
                             <div  className="item-op" key={op.name}>
                                 <div className="item-ca">
-                                    {op.name}
+                                    {op.name} : 
                                 </div>
                                 <OptionsItem options={op.options} count={count}/>
                             </div>

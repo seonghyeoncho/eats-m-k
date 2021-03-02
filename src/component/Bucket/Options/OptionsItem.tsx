@@ -12,7 +12,7 @@ const OptionsItem = ({options,count}:Props) => {
         <>
         <div className="name-price">
             <div className="name-price-content">
-                : { 
+                { 
                     options.map((doc:any, index:number) => {
                         if(doc.state) {
                             return <div className="name" key={doc.name}>&nbsp;{doc.name}{index === count-1 ? '': ','}</div>

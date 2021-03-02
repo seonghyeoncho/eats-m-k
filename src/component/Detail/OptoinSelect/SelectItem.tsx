@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import numberWithCommas from '../../../functions/addCommaFunc';
 import Checked from '../../../image/icons/icon_CheckBox_selected_x3.png';

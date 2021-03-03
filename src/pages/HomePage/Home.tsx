@@ -45,6 +45,7 @@ const Home: React.FC<any> = ( props:any ) => {
         photo:state.Store.information.bestPhotoUrl,
         denyState:state.Data.data.deny_state,
     }));
+    console.log(photo)
     const s = window.localStorage.getItem('storeName');
     const [ categoryName, setCategoryName ] = useState<string>('');
     const [ homeNav, setHomeNav ] = useState<boolean>(false);
@@ -77,7 +78,7 @@ const Home: React.FC<any> = ( props:any ) => {
         }
     },[s, categotys, scrollY, items.length, categoryName, dispatch,]);
     return (
-        <div className="home" style={{backgroundImage:`${photo}`}}>
+        <div className="home" style={{background:`linear-gradient(to top, #000000, #000000 0%, rgba(84, 84, 84, 0)), no-repeat url(${photo})`}}>
             <StoreAndTableBoxContainer/>
             <ButtonsContainer homeNav={homeNav}/>
             { 

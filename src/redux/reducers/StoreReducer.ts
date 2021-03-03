@@ -25,7 +25,8 @@ const StoreReducer = (state = initialState, action: Action) => {
       return {
         ...state,
         information: {
-          name:action.payload.name
+          name:action.payload.name,
+          bestPhotoUrl:action.payload.bestPhotoUrl
         }
       }
     default:

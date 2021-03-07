@@ -3,6 +3,7 @@ import OrderContainer from '../../component/Order/OrderContainer';
 import ComfirmContent from '../../component/Comfirm/ComfirmContent/ComfirmContent';
 import { Bucket } from '../../redux/reducers/DataReducer';
 import CurrentInfo from '../BucketPage/CurrentInfo';
+import PayMentOption from '../../component/AddMenuButton/PayMentOption';
 
 interface Props {
     bucket: Bucket[];
@@ -14,6 +15,7 @@ const ComfirmPage = ({ bucket}: Props) => {
         <>
             <div className="comfirm">
                 <CurrentInfo/>
+                <PayMentOption/>
                 <ComfirmContent bucket={bucket}/>            
             </div>
             <div className="confirm-order">

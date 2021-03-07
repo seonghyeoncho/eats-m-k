@@ -5,6 +5,7 @@ import BucketNav from '../../component/Bucket/BucketNav/BucektNav';
 import CurrentInfo from './CurrentInfo';
 import { OrderButtonContainer } from '../../component/OrderButton';
 import BackButton from '../../component/BackButton/BackButton';
+import PayMentOption from '../../component/AddMenuButton/PayMentOption';
 
 interface Props {
     history: any

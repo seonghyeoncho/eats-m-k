@@ -48,7 +48,8 @@ export const OrderMiddleware = ({ dispatch, getState }: param) => (
                 ],
                 'order_state':true,
                 'state':false,
-				'orderAt':orderTime
+				'orderAt':orderTime,
+				'payment':getState().Payment.payment
             })
             .then(() => {
             })

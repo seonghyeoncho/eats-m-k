@@ -10,6 +10,7 @@ import SelectReducer, { Select } from './reducers/SelectReducer';
 import OptionReducer, {OptionSelect} from './reducers/OptionReducer';
 import EventReducer, { EventState } from './reducers/EventReducer';
 import GlobalLoadingReducer, { LoadingState } from './reducers/GlobalLoadingReducer';
+import PaymentReducer, { Payment } from './reducers/PaymentReducer';
 
 const reducer = combineReducers({
   Store: StoreReducer,
@@ -20,6 +21,7 @@ const reducer = combineReducers({
   Option: OptionReducer,
   Event: EventReducer,
   GlobalLoading: GlobalLoadingReducer,
+  Payment: PaymentReducer
 });
 
 const store = createStore(
@@ -36,6 +38,7 @@ export interface RootState {
   Option: OptionSelect;
   Event: EventState;
   GlobalLoading: LoadingState;
+  Payment: Payment
 };
 
 export default store;

@@ -1,0 +1,52 @@
+@import '../../scss/_variables.scss';
+.pmo-con{
+    .pmo-title{
+        background-color: $list-BG;
+        color: white;
+        font-size: 17px;
+        font-weight: bold;
+        height: 49px;
+        display: flex;
+        align-items: center;
+        padding-left: 25px;
+    }
+    .pmo-bt{
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        margin-left: 25px;
+        padding-top: 15px;
+        button{
+            border: none;
+            background-color: transparent;
+            outline: none;
+            img{
+                width: 26px;
+                margin-right: 10px;
+            }
+            font-size: 15px;
+            .cashE{
+                margin-left: 36px;
+                font-size: 13px;
+                color: #dedede;
+            }
+        }
+        .nochecked{
+            color: white;
+            padding-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+        .pmoC{
+            display: flex;
+            align-items: center;
+        }
+        .checked{
+            color: white;
+            padding-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+
+        }
+    }
+}

@@ -11,6 +11,7 @@ interface Props {
 const ComfirmContent = ({ bucket }:Props) => {
     return (
         <div className="cfcontent">
+            <div className="cf-title">주문 내역</div>
             {
                 bucket.map((item:Bucket) => {
                     return (

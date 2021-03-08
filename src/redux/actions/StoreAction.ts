@@ -18,12 +18,14 @@ export const setStoreMenu: ActionCreator = (menu) => {
 export const setStoreInformation: ActionCreator = (
   name: string,
   id:string,
+  bestPhotoUrl:string
 ) => {
   return {
     type: Types.SET_STORE_INFO,
     payload: {
       name: name,
       id:id,
+      bestPhotoUrl:bestPhotoUrl
     },
   };
 };

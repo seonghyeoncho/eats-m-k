@@ -21,7 +21,7 @@ export const StoreMiddleware = ({ dispatch, getState }: param) => (
       .get()
       .then((querySnapshot) => { 
         const data:any = querySnapshot.data();
-        dispatch(StoreAction.setStoreInformation(data.information.name, data.id));
+        dispatch(StoreAction.setStoreInformation(data.information.name, data.id, data.information.bestPhotoUrl));
         dispatch(StoreAction.setStoreMenu(data.menu));
         dispatch(DataAction.loadDataFirebase(action.payload.storeId, action.payload.tableId));
         dispatch(GlobalLoadingAction.commendGlobalLoading());

@@ -1,4 +1,4 @@
-import { DataAction, PaymentAction } from '../actions';
+import { PaymentAction } from '../actions';
 import { Action } from '../Types';
 
 export interface Payment {

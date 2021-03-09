@@ -45,7 +45,6 @@ const Home: React.FC<any> = ( props:any ) => {
         photo:state.Store.information.bestPhotoUrl,
         denyState:state.Data.data.deny_state,
     }));
-    console.log(photo)
     const s = window.localStorage.getItem('storeName');
     const [ categoryName, setCategoryName ] = useState<string>('');
     const [ homeNav, setHomeNav ] = useState<boolean>(false);
@@ -55,6 +54,17 @@ const Home: React.FC<any> = ( props:any ) => {
         items.forEach((item) => {
             item.categories.forEach((category) => {
                 if(category === "사장님 추천" ) {
+                    tempList.push(item);
+                }
+            })
+        })
+        return tempList;
+    }
+    const LunchList = () => {
+        let tempList:Item[] = [];
+        items.forEach((item) => {
+            item.categories.forEach((category) => {
+                if(category === "런치 스페샬" ) {
                     tempList.push(item);
                 }
             })
@@ -95,9 +105,9 @@ const Home: React.FC<any> = ( props:any ) => {
                 <div className="first">
                     <HorizontalScroll list={bestList()} title={'사장님 추천'} width={325} height={160} radius={10}/>
                 </div>
-                {/* <div className="second">
-                    <HorizontalScroll list={items} title={'이런건 어때요?'} width={120} height={160} radius={18}/>
-                </div> */}
+                <div className="second">
+                    <HorizontalScroll list={LunchList()} title={'런치 스페샬'} width={120} height={160} radius={18}/>
+                </div>
                 <CategoryNav categorys={categotys} setCategoryName={setCategoryName} categoryName={categoryName}/>
                 {/* {
                     categoryVaild 

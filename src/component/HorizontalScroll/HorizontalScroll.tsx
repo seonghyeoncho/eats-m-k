@@ -40,7 +40,7 @@ const HorizontalScroll = ({title, list, width, height, radius}:Props) => {
                                 <Link to={`/detail/?name=${item.name}`} onClick={() => {dispatch(setMenu(item.name, 1,[]));}} key={item.name}>
                                     {
                                         width === 325 ? <BigBox width={width} height={height} radius={radius} name={item.name} photoUrl={item.photoUrl}price={item.price}/>
-                                        : <SmallBox width={width} height={height} radius={radius} name={item.name} price={item.price}/>
+                                        : <SmallBox photoUrl={item.photoUrl}width={width} height={height} radius={radius} name={item.name} price={item.price}/>
                                     }
                                 </Link>
                             )

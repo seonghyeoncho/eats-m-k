@@ -36,7 +36,7 @@ const PayMentOption = () => {
                         {Type.cash}
                     </div>
                     <div className="cashE">
-                        탕수육(꿔바로우)을 포함해 3만원 이상 주문시<br/>현금결제 또는 계와이체하면 Size Up
+                        탕수육(꿔바로우)을 포함해 3만원 이상 주문시<br/>현금결제 또는 계좌이체하면 Size Up
                     </div>
                 </button>
             </div>

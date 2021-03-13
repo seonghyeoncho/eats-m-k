@@ -8,6 +8,19 @@ import * as OptionAction from './OptionAction';
 import * as EventAction from './EventAction';
 import * as GlobalLoadingAction from './GlobalLoadingAction'
 import * as PaymentAction from './PaymentAction';
+import * as RequestAction from './RequestAction';
 
 
-export { StoreAction, LocationAction, CounterAction, DataAction, OrderAction, SelectAction, OptionAction, EventAction, GlobalLoadingAction, PaymentAction };
+export { 
+    StoreAction, 
+    LocationAction, 
+    CounterAction,
+    DataAction, 
+    OrderAction, 
+    SelectAction, 
+    OptionAction, 
+    EventAction, 
+    GlobalLoadingAction, 
+    PaymentAction, 
+    RequestAction
+};

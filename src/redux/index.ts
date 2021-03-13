@@ -11,6 +11,7 @@ import OptionReducer, {OptionSelect} from './reducers/OptionReducer';
 import EventReducer, { EventState } from './reducers/EventReducer';
 import GlobalLoadingReducer, { LoadingState } from './reducers/GlobalLoadingReducer';
 import PaymentReducer, { Payment } from './reducers/PaymentReducer';
+import RequestReducer, {Request} from './reducers/RequestReducer';
 
 const reducer = combineReducers({
   Store: StoreReducer,
@@ -21,7 +22,8 @@ const reducer = combineReducers({
   Option: OptionReducer,
   Event: EventReducer,
   GlobalLoading: GlobalLoadingReducer,
-  Payment: PaymentReducer
+  Payment: PaymentReducer,
+  Request: RequestReducer,
 });
 
 const store = createStore(
@@ -39,6 +41,7 @@ export interface RootState {
   Event: EventState;
   GlobalLoading: LoadingState;
   Payment: Payment
+  Request: Request
 };
 
 export default store;

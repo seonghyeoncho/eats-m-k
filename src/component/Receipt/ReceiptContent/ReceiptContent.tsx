@@ -57,6 +57,8 @@ const ReciptContent = () => {
                                         );
                                     })
                                 }
+                                <div className="payment">결제 수단 : {order.payment}</div>
+                                <div className="request">요청 사항 : {order.request}</div>
                             </div>
                         )
                     })

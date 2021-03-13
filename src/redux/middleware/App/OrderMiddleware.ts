@@ -1,5 +1,5 @@
 import { Action } from '../../Types';
-import { OrderAction } from '../../actions';
+import { OrderAction, RequestAction } from '../../actions';
 import { dbService } from '../../../firebase/firebase';
 import { RootState } from '../..';
 
@@ -31,7 +31,9 @@ export const OrderMiddleware = ({ dispatch, getState }: param) => (
 		const obj:any = {
 			order_time:orderTime,
 			state:'주문 완료',
-			receipts:bucket
+			receipts:bucket,
+			request: getState().Request.request,
+			payment: getState().Payment.payment,
 		};
 		const newReceipt = receipt.concat(obj);
         dbService
@@ -49,9 +51,10 @@ export const OrderMiddleware = ({ dispatch, getState }: param) => (
                 'order_state':true,
                 'state':false,
 				'orderAt':orderTime,
-				'payment':getState().Payment.payment
+				
             })
             .then(() => {
+				dispatch(RequestAction.setRequests(''));
             })
             .catch((e) => console.log(e));
     };

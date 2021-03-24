@@ -20,7 +20,7 @@ const PayMentOption = () => {
     }
     return (
         <div className="pmo-con">
-            <div className="pmo-title">결제 수단 선택</div>
+            <div className="pmo-title">결제 수단 선택(후불)</div>
             <div className="pmo-bt"> 
                 <button className={ payMent === Type.card ? 'checked':'nochecked'} onClick={() => onClick(Type.card)}>
                     <div className="pmoC">
